@@ -1,0 +1,3 @@
+.DS_Store
+# source screen recordings exceed GitHub's 100MB file limit
+reference/*.mov
