@@ -7,7 +7,7 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 ## 2026-10-26 — process documentation
 
 - **Did:** `docs/tools/snap.mjs` (zero-dep, drives Comet/Chrome headless over
-  DevTools). Shot two sets: `2026-10-24-first-build` (from `94ab34d`) and
+  DevTools). Shot two sets: `2026-10-24-first-draft` (from `94ab34d`) and
   `2026-10-26-current` (33 stills + intro/transition/projects films).
   Wrote `docs/process/JOURNAL.md` (chapters 0–10 from CLAUDE.md's history)
   and the routine in CLAUDE.md "How we work".

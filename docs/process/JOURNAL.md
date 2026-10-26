@@ -25,12 +25,17 @@ References: [`docs/site/reference/`](../site/reference/).
 
 ---
 
-## 1 · First build (2026-10-24)
+## 1 · The first draft (2026-10-24)
 
-Stills: [stills/2026-10-24-first-build](stills/2026-10-24-first-build/) (shot
+Stills: [stills/2026-10-24-first-draft](stills/2026-10-24-first-draft/) (shot
 afterwards from commit `94ab34d`).
 
-![First build](stills/2026-10-24-first-build/contact-sheet.jpg)
+His framing: this is **the first draft — the foundation everything after was
+built on top of.** Not a throwaway: the palette, the shard field, the menu
+model, the wedge and the portrait all start here, and every chapter below
+reworks one of these pieces.
+
+![First draft](stills/2026-10-24-first-draft/contact-sheet.jpg)
 
 - Intro: a beat-for-beat recreation of his logo video — shard field strobing,
   wordmark in the centre.

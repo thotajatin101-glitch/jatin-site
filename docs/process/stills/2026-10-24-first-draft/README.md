@@ -1,4 +1,4 @@
-# Stills: 2026-10-24 · first-build
+# Stills: 2026-10-24 · first-draft
 
 Captured 2026-10-26 from `94ab34d` with `docs/tools/snap.mjs` (Comet, Chrome 155.0.8059.148, headless).
 Desktop 1440×900 @1x, phone 375×812 @2x. Generated file: re-run the tool rather than editing it;
