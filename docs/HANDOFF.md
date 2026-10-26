@@ -11,10 +11,9 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
   `docs/tools/`, and the raw recordings and screenshots into `.local/reference/`
   (gitignored, now untracked). Added `tests/check.mjs` (syntax + route check,
   passes) and `docs/site/README.md`. Preview server now serves `site/`.
-- **In flight:** path updates in `CLAUDE.md`, `README.md` and
-  `.claude/serve.js` are made but **not committed** — those files carry older
-  uncommitted work. Same for the content edits in `site/index.html` and
-  `site/jatin-cutout.png`: only the renames are committed.
+- **In flight:** nothing. On his yes, all earlier-session work (`CLAUDE.md`,
+  `README.md`, `.claude/*`, `site/index.html`, `site/jatin-cutout.png`) plus
+  the path updates were committed in `5807bb6`. Working tree clean.
 - **Next:** host choice (recommend Cloudflare Pages), then fill the commands
   in `docs/RELEASE.md`.
 - **Watch out:** the two screenshots that used to be in `reference/` exist only
