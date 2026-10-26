@@ -1,6 +1,7 @@
 # Release — launch guards
 
-The site is a static page: `index.html` + `jatin-cutout.png`. Nothing else
+The site is a static page: `site/index.html` + `site/jatin-cutout.png`. The
+`site/` folder is the deploy folder. Nothing else
 ships. No build step, so "build" below means "the exact files that go out".
 
 > **Status (2026-10-26): no host chosen yet.** The deploy and rollback commands
