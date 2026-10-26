@@ -3,6 +3,7 @@
 | Workstream | State | Where its notes live |
 |---|---|---|
 | Working system (these docs) | **active** — set up 2026-10-26 | `docs/` |
+| Process documentation (stills, films, journal) | **ongoing** — every visual change | `docs/process/` |
 | PROJECTS → JATIN OS: real folder contents | next | `CLAUDE.md` (PROJECTS step 2) |
 | Real logo swap (replace font approximation) | waiting on his export | `CLAUDE.md` Open work |
 | CONTACT content (`[Replace me]`) | waiting on his links | `CLAUDE.md` Open work |

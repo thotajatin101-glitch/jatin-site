@@ -13,6 +13,7 @@ single source of truth for decisions. This README is the map of the folder.
 | `.local/reference/` | Raw source recordings and screenshots — gitignored, local only. |
 | `docs/tools/` | Reusable scripts (`cutout.swift` — the portrait cutout). |
 | `docs/concepts/YYYY-MM-DD-name/` | One folder per design/motion iteration: rounds, his notes, stills. |
+| `docs/process/` | The making-of: `JOURNAL.md` + snapshot sets from `docs/tools/snap.mjs`. |
 | `tests/check.mjs` | Pre-release syntax + route check (`node tests/check.mjs [url]`). |
 | `CyberwayRiders-lg97d.ttf` | Font master (embedded in the page as base64). |
 

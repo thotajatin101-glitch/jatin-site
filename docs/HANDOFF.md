@@ -4,6 +4,18 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-10-26 — process documentation
+
+- **Did:** `docs/tools/snap.mjs` (zero-dep, drives Comet/Chrome headless over
+  DevTools). Shot two sets: `2026-10-24-first-build` (from `94ab34d`) and
+  `2026-10-26-current` (33 stills + intro/transition/projects films).
+  Wrote `docs/process/JOURNAL.md` (chapters 0–10 from CLAUDE.md's history)
+  and the routine in CLAUDE.md "How we work".
+- **In flight:** nothing.
+- **Next:** each visual change → `snap.mjs --only` + a journal chapter.
+- **Watch out:** a full set with films is ~40MB in git — full sets at
+  milestones only. Not pushed.
+
 ## 2026-10-26 — folder restructure
 
 - **Did:** moved the shipped files into `site/` (the deploy folder), the

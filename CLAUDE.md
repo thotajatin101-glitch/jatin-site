@@ -61,6 +61,15 @@ The concept is a deliberate merge of two references (see `docs/site/reference/`;
 - When he corrects you, save the lesson (his words + why) to memory and to the
   relevant section here.
 
+**Documenting the process** (his ask, 2026-10-26: snapshots + the story, so
+he can make documentation for others when it's done)
+- Any session that changes the look or motion: `node docs/tools/snap.mjs
+  <label> --only <pieces>` and a new chapter in `docs/process/JOURNAL.md` —
+  his notes in his words, what was built, what was cut and why.
+- Snapshot anything he rejects **before** replacing it.
+- Full set + `--film intro,transition,projects` at milestones only (~40MB).
+  See `docs/process/README.md`.
+
 ## The aesthetic — non-negotiable
 
 Everything comes from his logo animation. Do not soften or "clean up" this look.

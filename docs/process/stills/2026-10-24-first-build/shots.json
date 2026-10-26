@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-24",
+  "label": "first-build",
+  "shots": [
+    {
+      "file": "intro-400ms.jpg",
+      "caption": "Intro at 400ms (live, timed)"
+    },
+    {
+      "file": "intro-1000ms.jpg",
+      "caption": "Intro at 1000ms (live, timed)"
+    },
+    {
+      "file": "intro-1600ms.jpg",
+      "caption": "Intro at 1600ms (live, timed)"
+    },
+    {
+      "file": "intro-2300ms.jpg",
+      "caption": "Intro at 2300ms (live, timed)"
+    },
+    {
+      "file": "intro-3100ms.jpg",
+      "caption": "Intro at 3100ms (live, timed)"
+    },
+    {
+      "file": "menu-01-about.jpg",
+      "caption": "Menu, ABOUT selected"
+    },
+    {
+      "file": "menu-02-projects.jpg",
+      "caption": "Menu, PROJECTS selected"
+    },
+    {
+      "file": "menu-03-skills.jpg",
+      "caption": "Menu, SKILLS selected"
+    },
+    {
+      "file": "menu-04-experience.jpg",
+      "caption": "Menu, EXPERIENCE selected"
+    },
+    {
+      "file": "menu-05-contact.jpg",
+      "caption": "Menu, CONTACT selected"
+    },
+    {
+      "file": "01-about.jpg",
+      "caption": "ABOUT, settled after entry"
+    },
+    {
+      "file": "02-projects.jpg",
+      "caption": "PROJECTS, settled after entry"
+    },
+    {
+      "file": "03-skills.jpg",
+      "caption": "SKILLS, settled after entry"
+    },
+    {
+      "file": "04-experience.jpg",
+      "caption": "EXPERIENCE, settled after entry"
+    },
+    {
+      "file": "05-contact.jpg",
+      "caption": "CONTACT, settled after entry"
+    },
+    {
+      "file": "phone-menu.jpg",
+      "caption": "Phone 375×812, menu"
+    },
+    {
+      "file": "phone-01-about.jpg",
+      "caption": "Phone 375×812, ABOUT"
+    },
+    {
+      "file": "phone-02-projects.jpg",
+      "caption": "Phone 375×812, PROJECTS"
+    },
+    {
+      "file": "phone-03-skills.jpg",
+      "caption": "Phone 375×812, SKILLS"
+    },
+    {
+      "file": "phone-04-experience.jpg",
+      "caption": "Phone 375×812, EXPERIENCE"
+    },
+    {
+      "file": "phone-05-contact.jpg",
+      "caption": "Phone 375×812, CONTACT"
+    }
+  ],
+  "films": [],
+  "commit": "94ab34d",
+  "captured": "2026-10-26",
+  "browser": "Comet, Chrome 155.0.8059.148"
+}

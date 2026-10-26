@@ -1,0 +1,155 @@
+{
+  "date": "2026-10-26",
+  "label": "current",
+  "shots": [
+    {
+      "file": "intro-f05.jpg",
+      "caption": "Intro f5: chained: JATIN and the chains fly in out of depth"
+    },
+    {
+      "file": "intro-f08.jpg",
+      "caption": "Intro f8: tug: the sway kicks the other way"
+    },
+    {
+      "file": "intro-f17.jpg",
+      "caption": "Intro f17: strain: squeeze, tremble, slices"
+    },
+    {
+      "file": "intro-f20.jpg",
+      "caption": "Intro f20: SNAP: the white flash frame"
+    },
+    {
+      "file": "intro-f21.jpg",
+      "caption": "Intro f21: the links flung at the lens, shockwave"
+    },
+    {
+      "file": "intro-f23.jpg",
+      "caption": "Intro f23: the fan slam crashes in around the name"
+    },
+    {
+      "file": "intro-f28.jpg",
+      "caption": "Intro f28: fan slam: bolt wedge, swoosh, speed streaks"
+    },
+    {
+      "file": "intro-f34.jpg",
+      "caption": "Intro f34: starburst whiteout"
+    },
+    {
+      "file": "intro-f38.jpg",
+      "caption": "Intro f38: hold: logo slammed centre over the crumpled star"
+    },
+    {
+      "file": "intro-f44.jpg",
+      "caption": "Intro f44: beat: scale punch, split spike, ASCII band"
+    },
+    {
+      "file": "intro-f72.jpg",
+      "caption": "Intro f72: crumple-out: pixel-block datamosh"
+    },
+    {
+      "file": "menu-01-about.jpg",
+      "caption": "Menu, ABOUT selected"
+    },
+    {
+      "file": "menu-02-projects.jpg",
+      "caption": "Menu, PROJECTS selected"
+    },
+    {
+      "file": "menu-03-skills.jpg",
+      "caption": "Menu, SKILLS selected"
+    },
+    {
+      "file": "menu-04-contact.jpg",
+      "caption": "Menu, CONTACT selected"
+    },
+    {
+      "file": "transition-90ms.jpg",
+      "caption": "Screen transition at 90ms: trace: neon outlines whip in"
+    },
+    {
+      "file": "transition-200ms.jpg",
+      "caption": "Screen transition at 200ms: flash: the white impact frame"
+    },
+    {
+      "file": "transition-228ms.jpg",
+      "caption": "Screen transition at 228ms: slam: fills land oversized, wide RGB split"
+    },
+    {
+      "file": "transition-330ms.jpg",
+      "caption": "Screen transition at 330ms: retract: fills drain off, outlines un-draw"
+    },
+    {
+      "file": "01-about.jpg",
+      "caption": "ABOUT, settled after entry"
+    },
+    {
+      "file": "02-projects.jpg",
+      "caption": "PROJECTS, settled after entry"
+    },
+    {
+      "file": "02-projects-600ms.jpg",
+      "caption": "PROJECTS entrance at 600ms: chained up, mid-spin"
+    },
+    {
+      "file": "02-projects-1060ms.jpg",
+      "caption": "PROJECTS entrance at 1060ms: the snap"
+    },
+    {
+      "file": "02-projects-1300ms.jpg",
+      "caption": "PROJECTS entrance at 1300ms: the break: links fly at the lens"
+    },
+    {
+      "file": "02-projects-os.jpg",
+      "caption": "PROJECTS, clicked: the dolly lands in JATIN OS (folder stage)"
+    },
+    {
+      "file": "02-projects-os-folder.jpg",
+      "caption": "JATIN OS, first folder opened"
+    },
+    {
+      "file": "03-skills.jpg",
+      "caption": "SKILLS, settled after entry"
+    },
+    {
+      "file": "04-contact.jpg",
+      "caption": "CONTACT, settled after entry"
+    },
+    {
+      "file": "phone-menu.jpg",
+      "caption": "Phone 375×812, menu"
+    },
+    {
+      "file": "phone-01-about.jpg",
+      "caption": "Phone 375×812, ABOUT"
+    },
+    {
+      "file": "phone-02-projects.jpg",
+      "caption": "Phone 375×812, PROJECTS"
+    },
+    {
+      "file": "phone-03-skills.jpg",
+      "caption": "Phone 375×812, SKILLS"
+    },
+    {
+      "file": "phone-04-contact.jpg",
+      "caption": "Phone 375×812, CONTACT"
+    }
+  ],
+  "films": [
+    {
+      "file": "films/intro.mp4",
+      "caption": "The whole intro, frame by frame at 24fps (f0–f76, ?frame=N)"
+    },
+    {
+      "file": "films/transition.mp4",
+      "caption": "A screen transition, 0–533ms at 60fps (TransFX.peek; drawn over the menu, so no screen swap underneath)"
+    },
+    {
+      "file": "films/projects.mp4",
+      "caption": "PROJECTS entrance, 0–2000ms at 30fps (MonitorFX.hold): rise, chains, snap, break"
+    }
+  ],
+  "commit": "153d899",
+  "captured": "2026-10-26",
+  "browser": "Comet, Chrome 155.0.8059.148"
+}
