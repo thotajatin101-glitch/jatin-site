@@ -1,9 +1,9 @@
-// Minimal static server for local preview of index.html
+// Minimal static server for local preview of site/index.html
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = '/Users/thota/Downloads/jatin-site';
+const ROOT = path.resolve(__dirname, '..', 'site');
 const TYPES = {
   '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript',
   '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
@@ -19,4 +19,4 @@ http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
     res.end(data);
   });
-}).listen(5178, () => console.log('serving jatin-site on http://localhost:5178'));
+}).listen(+process.env.PORT || 5178, function () { console.log('serving jatin-site on port ' + this.address().port); });

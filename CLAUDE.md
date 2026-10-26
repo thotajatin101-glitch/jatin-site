@@ -21,10 +21,45 @@ defend it rather than offering him five choices.
 A single-page personal portfolio. It is not a scrolling website — it behaves
 like a **game menu**. One landing screen, and sections open over it.
 
-The concept is a deliberate merge of two references (see `reference/`):
+The concept is a deliberate merge of two references (see `docs/site/reference/`; raw recordings in `.local/reference/`, gitignored):
 
 1. **His own JATIN intro logo animation** — supplies the entire visual language.
 2. **A Persona-style game menu** — supplies the interaction and layout model.
+
+## How we work (set up 2026-10-26)
+
+**Start / finish every session**
+- Read `docs/HANDOFF.md` before changing files. When done, add an entry at the
+  top: date, did, in flight, next, watch out. Commit docs before the session
+  ends.
+- `docs/BUILD-ORDER.md` is the index of workstreams and which is active.
+- Before any hand-over run `docs/WEB-BUGS.md`; check motion per
+  `docs/VERIFY.md`. Releases follow `docs/RELEASE.md` — **deploy only when he
+  says "deploy"**.
+
+**Building**
+- Plan for the long term — no stopgaps meant to be replaced later.
+- Content: one source of truth. Here that means one content object inside
+  `index.html`, not a separate typed file (no TS, no build — single-file rule
+  below wins).
+- Dependencies: the single-file, no-dependency rule (Technical state) wins over
+  "install a package". Dev-only tools that never ship (e.g. Playwright for
+  filming) are OK with his yes; pin exact versions and say why.
+- Every screen keeps working direct links (`#about` etc.), a phone layout as
+  considered as desktop, keyboard access and reduced motion.
+
+**Shared repo hygiene**
+- Never touch, revert or commit someone else's uncommitted files. Stage by
+  name; never `git add -A`.
+- Never bare `git stash` — WIP commit, or a uniquely tagged stash applied by SHA.
+
+**Iterating on design or motion**
+- Each piece gets `docs/concepts/YYYY-MM-DD-name/README.md`: every round, his
+  notes in his words, what was built, stills, why ideas were dropped.
+- Show stills of key moments before building anything big; look at every
+  frame yourself first.
+- When he corrects you, save the lesson (his words + why) to memory and to the
+  relevant section here.
 
 ## The aesthetic — non-negotiable
 
@@ -63,6 +98,27 @@ Everything comes from his logo animation. Do not soften or "clean up" this look.
   self-contained file. The source `CyberwayRiders-lg97d.ttf` sits in the
   project root — keep it, it's the master. Mono for body and micro-copy
   (IBM Plex Mono).
+- **Tracking: `--track` (.14em) on ALL display type, `--wordsp` (.28em) on
+  multi-word heads.** Cyberway Riders has long spurs/swashes; near zero
+  tracking the glyphs fuse (he flagged PROJECTS reading as one blob). Tested
+  side by side: .035 merges, .12 separates, .16 falls apart as a word. Never
+  set display type tighter than the token — and the intro's canvas logo is
+  tracked by hand in `makeLogo` (canvas ignores CSS letter-spacing).
+- **Layout rule: anything placed under a heading hangs off the heading's real
+  size.** Headings are capped by width AND height (`--headFs`:
+  `clamp(3rem,min(9.5vw,15vh),7.2rem)`; collage uses its own); `.secBody`
+  and the collage's tag/card stack (`--cgTop`) start at
+  `7vh + 1.95 × --headFs + gap`. Width-only sizing collided with vh-placed
+  content on short, wide screens. The banner is height-capped too and sits
+  14px higher, since its rotation drops the left end toward BACK. On the
+  collage the heading sits above the portrait (z7). On phones the outline
+  section number shrinks and rides above the heading's second line.
+- **Layout audit before shipping any type/layout change:** check every screen
+  (menu + 4 sections) at 1440×900, 1280×800, 1440×700 (short-wide — where
+  the collisions show) and 375×812 for overflow (`scrollWidth >
+  clientWidth`, including every `.mItem`), collisions between headings /
+  cards / tags / BACK, and off-screen text. Bounding boxes overstate rotated
+  elements (the banner's 1.6° adds ~29px), so confirm borderline hits by eye.
 - **No grunge/distress.** He cut it. The texture comes from the glitch
   shadow, not from eroded glyphs. Don't reach for distressed faces.
 - **Glitch shadow** replaces it: a static chromatic split (cyan left, pink
@@ -76,110 +132,244 @@ Everything comes from his logo animation. Do not soften or "clean up" this look.
   glitch twitches ("looks like a problem with a TV"), then cut the
   **scanlines entirely** — 1px lines every 3px moiréd against the halftone
   dots and read as glitch/noise. No line overlay, no animated texture.
-- **Background motion is one slow rotation.** The whole shard field turns as
-  a single pinwheel (`bgSpin`, 180s linear, SVG oversized to 172% so corners
-  never sweep into frame). Per-shard drift and the random flicker are gone —
-  competing micro-motions read as noise. One continuous linear rotation is
-  the most fluid option and it's what he asked for.
-- **Chromatic aberration is everywhere and it is PERMANENT** (his ask: harder,
-  more cyberpunk, Spider-Verse dimensional-glitch). Three mechanisms:
-  1. **Background + wedge + section bands** use a real channel-split SVG
-     filter (`#chromaSplit`, softer `#chromaSplitSoft`): red offset one way,
-     green+blue the other, screened back together. Flat interiors reconstruct
-     the original colour, only edges fringe — that's why it reads as depth
-     rather than a coloured shadow pasted on. Do NOT fake this with a plain
-     two-tone drop-shadow on big shapes.
-  2. **Menu plates** carry `--plate-fx` on the silhouette (drop-shadow, which
-     follows the clip-path where box-shadow would be clipped away), and
-     `chromaBurst` settles ON `--plate-fx-sel` instead of zero.
-  3. **Type** uses the layered `--glitch-*` shadows (tight inner fringe +
-     wider outer one).
-  Resting values were doubled, then trimmed ~25% — first pass too subtle,
-  second too hot. If it needs changing, scale `--plate-fx`, `--glitch-*` and
-  the `dx` in `#chromaSplit` together; moving only one breaks the consistency.
-  4. **The intro carries it too**: `#impact svg` (chaos + outline frames) takes
-     `#chromaSplitSoft`, the wordmark's smear beats get chromatic drop-shadows,
-     and the `rgbHit*` ghosts settle at ±8px instead of 0 so the slam leaves a
-     permanent fringe. The impact SVGs are built once and only shown/hidden, so
-     filtering them costs nothing per frame — unlike the strobing background.
-- **Navigation surge (`navPulse`).** Every menu move separates the WHOLE
-  plate stack, not just the landing item — a filter on `#menuList` itself,
-  ~34px of separation easing back to zero over 0.5s. He asked for the
-  aberration to be part of the menu-scrolling animation, so this fires on
-  every select, restarts cleanly on rapid navigation (class removed + reflow
-  before re-adding), and always returns to the resting design.
-- **The 5-second glitch beat** (`startGlitchBeat`, gated behind `.split` so it
-  only runs once the background settles): swaps the background filter to
-  `#chromaGlitchA` for 90ms, `#chromaGlitchB` for 100ms, then back — a ~190ms
-  chromatic tear every 5s, with vertical offset so it reads as a signal tear
-  rather than just a wider blur. This is the **one** deliberate hard-cut
-  effect. It survives his no-stutter rule precisely because it is rare and
-  brief; do not make it more frequent, and do not add other idle glitches.
-  Swapping the filter (rather than animating a value) also keeps the cached
-  filtered texture for the other 4.8s of every cycle.
-- Everything else is **static except the input surges** — he wants intensity,
-  not motion. `chromaBurst`, `navPulse` and `wordSlam` fire on input only and
-  ease smoothly.
-- **Performance guardrails for the split** (he asked explicitly for smooth):
-  - The filter sits on `#shardbg svg`, the same element that carries the
-    rotation, so the compositor caches one filtered texture and rotates it
-    instead of re-filtering per frame. Don't move the filter to the parent.
-  - It's gated behind `.split`, added in `settle()`. During the intro the
-    shards regenerate ~21 times; filtering a fullscreen layer that often
-    would stutter over the slam. Keep the intro unfiltered.
+- **The world has depth (Oct 2026 — supersedes "one slow rotation").** He
+  asked for "more depth, intentionality and personality", from Spider-Verse-
+  style references. What makes those read as SPACE: one **vanishing point**
+  that everything radiates from or recedes into; a glowing **perspective
+  grid** floor + ceiling; **light streaks** with white-hot cores; **ink
+  streaks** (dark tonal-halftone wedges cutting the bright field); a **bloom**
+  at the point; partial shapes with **air** between them; layers moving at
+  different depths. Built as:
+  - `DepthFX` — one canvas (`#fxCv`, ~1ms/frame of lines) at z17: over the
+    wedge, under the black panel, plates and type. Grid flows toward the
+    viewer, streaks turn with the shard field (180s), sparkles sit fixed, and
+    every layer parallaxes with the pointer at its own depth. On a selection:
+    streak burst + the whole world eases to that item's accent (`--world`,
+    a registered `@property` so the sky transitions too). It is re-parented
+    INTO a section when one opens (between its bands and its dot screen /
+    copy) and back to the body for the menu. `SECTION_WORLD` sets each
+    section's vanishing point + tint (ABOUT points behind the portrait).
+  - Shards are sparse now (`sparse:true`: narrower, starting further out) and
+    the bitmap is centred on the vanishing point, so the slow turn pivots on
+    the light source; they dissolve as they recede into it (radial
+    destination-out in `BgRaster.split`). Gaps stay transparent so the sky
+    (`#shardbg::before`, glow pooled at the point) reads through.
+  - Motions are few and coherent — flow, turn, parallax, burst-on-input. No
+    twinkle, no flicker, no vignette (the sky only brightens toward the
+    point; edges are never darkened).
+  - The intro speaks the same language (`pGrid`, `lightStreaks`,
+    `inkStreaks`, `glow` in IntroFX): the grid shoots out of the vanishing
+    point during the build, light streaks rip through the fan slam, and the
+    hold stands on a glowing perspective floor that surges on every beat.
+    Transitions fire speed streaks from centre on the slam.
+  - An IntroFX frame that throws is skipped, never frozen on screen.
+  - **The wedge is alive** (`livingWedge` in DepthFX): a gradient flows
+    through the accent triangle on a 5-step ramp of the accent (deep purple
+    shade → accent → near-white highlight), at ~0.62 alpha so the halftone
+    reads through. Tuning history (his notes, in order): "not too harsh" →
+    "too subtle, more motion and contrast, keep the smooth blend" → "bands too
+    narrow, make them flowy and wider, add a small dither". So now:
+    - **Wide, flowing bands** (~0.85 cycles across the screen) moving outward
+      from the vanishing point (5.2s), **warped by a slow wave** so they curve
+      and sway, with the band axis itself swaying ±0.12rad; a cross-drift
+      (11s) and a wandering light pool (slow Lissajous).
+    - **Ordered 4×4 Bayer dither** between the ramp steps, in 3px cells, so
+      blends resolve in small deliberate pixel steps — print/screen texture,
+      intentional, never a smear.
+    - Computed per pixel on a low-res CPU buffer, then scaled up unsmoothed:
+      ~2ms at 1440×900, recomputed at 30fps and re-blitted between. No GPU
+      readback, no per-frame gradient objects, never animate the wedge's own
+      SVG fill. Menu only; follows the accent on selection.
+  - **Every solid shape carries the same dither** (`DitherFX`, his ask: "give
+    it some personality"). Plates, section bands, cards, BACK, collage tabs,
+    quote, role ribbon, name banner, wedge tag and description plate each get
+    a `canvas.dith` inside them (host `isolation:isolate`, canvas `z-index:-1`)
+    so the host's own clip-path/skew/rotation shape it and type stays on top.
+    Same field as the wedge — wide flowing bands, 4×4 Bayer, 3px cells (5px
+    on the huge section bands) — each shape on its own phase. Two strengths:
+    - **Colour shapes:** full ramp around their own colour, deep → highlight.
+    - **Black shapes:** subtle sheen tinted 20% toward the current accent, so
+      white copy stays fully legible. Don't push this one harder.
+    Base colour is read live from the computed background (`.mItem` reads
+    `--acc` when `.sel` so the dither flips on the cut, not after the 0.13s
+    steps transition). `paintWedge` rewrites `textContent`, which drops the
+    canvas — `attach()` re-inserts it; keep that if you touch either. Ticked
+    from `DepthFX.draw` at 30fps, sine via a lookup table, and the menu shapes
+    are skipped while a section covers them: ~1.2ms menu, ~1.4ms a section.
+    To add a shape, add its selector to `SEL`.
+  - **No SVG `url()` filter on anything that animates or is large.** The menu
+    background used to run `#chromaSplit` live on a 172%-of-screen rotating
+    layer: ~15M pixels re-filtered every frame, forever, starving every other
+    animation. Now `BgRaster` rasterises the shard SVG once (during the intro's
+    black-slate frames), bakes the channel split into a bitmap, removes the
+    live SVG, and only the bitmap rotates (compositor-only). The 5s glitch beat
+    is a redraw of that bitmap with wider offsets, skipped while a transition
+    is running. The bitmap is sized to the window diagonal; it re-rasters if
+    the window grows past that.
+  - Section bands and the wedge use a red/cyan `drop-shadow` pair instead of
+    the SVG filter — identical at the edge of a flat colour shape, GPU-cheap.
+    They animate in right at the transition swap, which is where the old
+    filter stuttered.
+  - The SVG filter defs are deleted. The true channel split now lives only in
+    canvas code (`IntroFX.composite`, `BgRaster.split`).
+  - Intro paces on **rAF** (vsync) with a `setTimeout` watchdog for hidden
+    tabs; the old pure-setTimeout clock judders against the display.
+  - **Intro ASCII runs on the GPU** (`asciiGL`: a tiny WebGL pass reads the
+    downsampled scene as a texture and picks glyphs in the shader). The old
+    `getImageData` path stalled 10–22ms per band (64ms on the first) waiting
+    for the GPU to finish the frame. After a few reads Chrome also demoted
+    the tiny canvas to the CPU, turning every downsample into a full-screen
+    readback. **Never read pixels back in the intro.** The 2D path survives
+    only as a no-WebGL fallback. Worst intro frame is now ~1.7ms of JS. The
+    downsample canvas must still not be `willReadFrequently`.
+  - **The intro's opening draws every vsync** (the chained phase + the first
+    7 frames after the snap, up to `SMOOTH`): smooth S-curves on a 24fps clock read as lag (his note). From
+    the fan slam on, frames render only on a new 24fps frame, on 2s; that
+    stepped look is deliberate and stays.
+  - Transitions: one at a time (`TransFX.active()`), timers owned per run,
+    canvas swallows input while up. A second transition used to get killed
+    mid-retract by the first one's cleanup timer. The transition canvas is
+    only reallocated when the window size changes.
+  - Loading: Plex Mono is a non-blocking preload (a blocking third-party
+    stylesheet held the page blank); the logo-font wait is capped at 250ms;
+    the ABOUT portrait is stored grayscale+alpha (-21%, visually identical),
+    `fetchpriority=low`, and sits on its own layer (`.cutWrap` will-change).
+  - **The ABOUT sticker is baked** (`bakeCutout`): outline, red/cyan ghosts
+    and drop shadow are drawn once into a canvas from the plain cutout, and
+    the canvas replaces the `<img>`. As 11 stacked CSS drop-shadows it was
+    rasterised at the moment ABOUT appeared — the transition's swap — and the
+    transition froze for about a second (he reported this). Runs 560ms after
+    `settle()`, with `openSection` forcing it as a backstop. The CSS filter on
+    `#cutout` is only a fallback if the bake fails.
+  - Return/Enter goes back from a section (with Esc and Backspace). It used
+    to be ignored there, which looked like the page had frozen.
+  - **History:** each open section is a history entry (`#about` etc.), so the
+    browser Back/Forward buttons move between menu and section. UI back (BACK
+    button, Esc, Return) goes through `goBack()`, which walks history so the
+    two never disagree; `popstate` drives the screens. A reload on a hash
+    starts clean on the intro.
+  - **Timing runs on the frame clock** (`later(fn,ms)`: rAF poll + setTimeout
+    fallback, first one wins) for the transition swap/cleanup and the menu
+    cascade. Browsers ration setTimeout in background-treated tabs while rAF
+    keeps running. A menu click during the cascade is queued (`pendingOpen`),
+    not dropped.
+  - **The Claude preview pane is not a valid playback surface.** It runs the
+    page as a background tab and was measured at 1–2 fps at times, which looks
+    exactly like stuck transitions. Judge motion in a real Chrome/Safari tab.
+  - `?frame=N` scrub mode resumes on any click/key and strips itself from the
+    URL — he once landed on a stale `?frame=16` via the Back button and was
+    stuck on a frozen frame.
 - **Older glitch:** clip-path slices and skew jumps live in the intro hit
   ONLY. The settled logo does a smooth 6s breathing glow (`logoBreathe`).
 
 ## The motion — this is the part that matters most
 
-He is a motion person. Timing is the deliverable. The intro was rebuilt
-**beat-for-beat from his reference video** (`reference/*10.50*.mov`, 24fps —
-frames were extracted and matched one by one). Do not re-invent it:
+He is a motion person. Timing is the deliverable.
 
-| Time | Beat (source frame) |
+**The intro was rebuilt (Oct 2026) from his second reference set** — two
+pop-art explosion title intros (an emblem burst and a "CRUMPLE" title card).
+His brief: explosive composition, electric colour, pop-art comic textures
+(halftone, print stripes, ASCII dithering), chromatic aberration, glitching,
+background shapes expanding/shattering/morphing frame by frame, motion
+aggressive and rhythmic. The earlier beat-for-beat recreation of his own logo
+video is retired.
+
+It is **one canvas** (`IntroFX`, `#introCv`), not DOM/SVG — per-frame shape
+regeneration, real RGB channel splitting, slice glitches and ASCII dither
+aren't practical any other way. Each frame: scene → RGB split (red and
+green+blue channel buffers offset and added back) → horizontal glitch slices
+→ ASCII bands.
+
+**The cadence is the look:** a 24fps clock, and every shape re-rolls **on 2s**
+(seeded RNG per 2-frame step, so a step holds identical across both frames).
+That stepped timing is what reads as hand-drawn impact frames. Don't smooth it
+into tweens.
+
+| Frames (24fps) | Beat |
 |---|---|
-| 0ms | Chaos frame A — white bg, blue/red/green shatter (f1) |
-| 42ms | Chaos frame B — dark, noisy version (f2) |
-| 83ms | Yellow neon shard outlines on black (f3) |
-| 125ms | Red neon outlines (f4) |
-| 167/208ms | Red outlines decaying dimmer (f5–f6) |
-| 250ms | **COLOR ON** — full shatter snaps in (no scale-up, it just IS there), black blob on, white brush streak starts sweeping down, per-frame background strobe starts (f7) |
-| 292/333ms | Streak sweeps down, shatter re-rolls every frame (f8–f9) |
-| 375/417ms | Logo materializes as a horizontal glitch smear (f10–f11) |
-| 458/500ms | Blows out into a huge white smear bar (f12–f13) |
-| 542ms | **Blackout** — logo gone, shards raging (f14–f15) |
-| 625ms | **SLAM** — logo hits clean with heavy glitch (f16) |
-| 1560ms | Landed — sub fades in, name holds center |
-| 1700ms | **HANDOFF** — band wipe sweeps; behind it the name cuts to the corner, the black panel and accent wedge take the screen, plates cascade in from the left 70ms apart, then `select(0)` slams the first wedge word |
+| 0–1 | Black slate |
+| 2–19 | **Chained, in real 3D**: JATIN (an extruded slab) and the chains (lit tori) fly in out of depth, sway, and show parallax: each strap runs in front of the face on one side and behind the slab on the other. **Tugs at 8 and 13** kick the sway the other way (RGB split spike, sparks where the anchors bite). **Strain 15–19**: squeeze, tremble, slices, and the slab squares up face-on. Every vsync |
+| 20 | **SNAP = the fan slam's crash frame.** White flash frame, shockwave, speed lines, impact bursts; every link flung in 3D (out of the centre, toward the lens, tumbling, with a dithered smear). **The name stays**: it takes the hit (punch scale, big split) while the slam crashes in around it. Camera jolt. Debris gone by ~.6s |
+| 20–33 | **Fan slam** (no black gap, no build): the fills, yellow bolt wedge, cyan swoosh and speed streaks, with the name holding centre and re-rolling on 2s |
+| 34–35 | Starburst whiteout (the name still drawn over it), then the field ignites |
+| 36–69 | **Hold**: logo slammed centre (extrusion + 6 tinted ghosts) over a black crumpled star that re-shatters every step, on a green/magenta field. **Beat every 8 frames (180bpm)** from f44: scale punch + split spike + slices + an ASCII band |
+| 70–75 | Crumple-out: logo squashes, star collapses, pixel-block datamosh |
+| 76 | `END` → `toMenu()`; tail frames run under the transition, `IntroFX.stop()` removes the canvas behind its slam |
 
-**The background strobe:** in the video the whole shatter re-randomizes every
-single frame, the entire time. On the site it runs full-rate (42ms rerolls)
-through the intro, then decays (90→140→220→340→520ms) and **stops** — once
-settled the shatter holds still with slow 7–15s drift only. He explicitly
-cut the idle rerolls/flicker ("looks like a bug"). Do not add idle-state
-background rerolls back. Intro strobe stays — that IS the video.
-
-All intro beats are hard cuts driven by a JS timeline (`TL` in the script) —
-zero easing, class swaps only.
+- **The opening is a set-up, not filler** (he rejected a version of random
+  sparks on a HUD as "empty and random, no intention"). It is now the chained
+  lock-up: the tension is the intention, and the snap is what unleashes the
+  rest. The earlier neon-outline "build" that previewed the slam's geometry
+  is GONE (his note, Oct 2026: after the break the name must not disappear,
+  and it must continue straight into the chaos — the build left a black screen
+  with lines). `CH`/`OFF` in `IntroFX`: the snap lands on the slam's original
+  crash frame, so every beat keeps its original internal frame number, offset
+  by `OFF`.
+- **The chained opening is real 3D** (his notes, Oct 2026: "same chain break
+  as the computer", then "it feels flat — make the chains and name 3D"). A
+  small WebGL scene, no library: `init3` / `makeScene3` / `chain3D` /
+  `debris3`, drawn into the scene canvas so the RGB split and slices still
+  apply on top. Falls back to the flat 2D chain (`chainFrame`) without WebGL.
+  - **World units are CSS px**, screen centre at the origin, +z toward the
+    viewer, camera at `Fz = 1.45·H`. At z=0 one unit is one px, so the slab
+    at rest lines up with the 2D logo the slam takes over with (face at z=0).
+  - **JATIN is a slab**: 22 stacked silhouette layers for the thickness
+    (alpha-tested, depth buffer sorts), dark purple → black ramp, three offset
+    colour ghost planes behind, the white face on top with a dithered acid
+    glint sweeping across. The face/side bitmaps come from `makeLogo`.
+  - **The chains are tori** (a stadium-shaped tube, flat and edge-on links
+    alternating so they interlock), toon-lit with the site's **Bayer dither in
+    3px cells**, a hot spec spot and a black ink rim. Flat links run green →
+    acid, edge-on links deep blue → cyan. No smooth shading.
+  - **Two straps** loop round the word diagonally in the (diagonal, depth)
+    plane, so one run is in front of the face and one behind the slab — the
+    sway shows real parallax. **Four anchors** run to the frame corners, ending
+    nearer the camera so they grow as they leave the word.
+  - **Debris** uses the same meshes: each link keeps its place at the break
+    pose and is flung out of the centre + toward the lens, tumbling about its
+    own axis, under gravity, fading by dithered discard (not blending), with
+    one trailing smear pass. Precomputed at the break pose, so every frame is a
+    pure function of time and `?frame=N` scrubs it.
+  - Straps wider or a third horizontal band bury the name — keep to the X.
+- **`?frame=N`** freezes the intro on frame N — scrub it like a timeline.
+  Use it to check any beat; the live intro is too fast to judge by eye.
+- The clock is rAF with a `setTimeout` watchdog, and frames are derived from
+  elapsed time: rAF stalls in a hidden/throttled tab and the menu would never
+  arrive. A throttled tab drops frames but still lands on time.
+- The wordmark is pre-rendered once in Cyberway Riders (main face + ghost
+  tints) so frames only blit. `start()` waits up to 800ms for the font.
+- Intro motion stays in the intro. **The menu does NOT re-roll** — he cut idle
+  flicker twice. The menu field carries the references' *look* instead:
+  stripe/hatch print fills on ~45% of colour shards (never the black wedges),
+  wireframe scribbles and pixel stickers (`addFurniture`), all static and
+  turning with the slow `bgSpin`.
+- Strobing/whiteout content: `prefers-reduced-motion` skips the intro.
 
 ## Layout rules
 
 - **The wordmark holds center through the whole intro** and slams there. It
-  only relocates at the intro→menu handoff, and only *behind the wipe bands*
+  only relocates at the intro→menu handoff, and only *behind the transition slam*
   as an instant cut — never a visible tween, never drift. (This supersedes the
   older "never moves" rule: he asked for a dedicated menu screen, so the name
   docks to the top-left as a corner mark once the menu owns the screen. Do not
-  animate that move; the band wipe must cover it.)
+  animate that move; the transition must cover it.)
 - **The menu is a Persona-5-Royal system menu** (his explicit ask, with his
   palette as the twist — accents instead of P5's red):
-  - Vertical stack of five plates down the left, each a skewed bar with a
-    lightning-notched left edge (`clip-path` on `.mItem`), solid near-black,
-    white display type and a small accent number. **No sub-label inside the
+  - **Four plates in a diagonal staircase** (his sketch, Oct 2026): each
+    plate bleeds off the left screen edge, each one down is `--step` shorter,
+    and its right end is cut on a `--slant` matched to the step, so the cuts
+    line up into ONE continuous diagonal down the stack. Solid near-black,
+    white display type, small accent number. The step is capped by CONTACT —
+    the longest label sits on the narrowest plate — so it's shallower than
+    his sketch; steepen it only if the bottom word still fits
+    (`scrollWidth - clientWidth` on each plate must stay 0). The old
+    lightning-notched left edge is gone (it would be off-screen). **No sub-label inside the
     plate** — it was redundant with the wedge tag and its right-alignment was
     forcing the plates wide; removing it is what freed room for the heading.
   - **Selected plate floods with its accent color**, type flips to ink, and it
-    scales up hard (1.17) over its neighbours with a black drop so it reads as
-    lifted off the stack. Hard `steps(1)` colour cuts, no fades.
+    scales up 1.09 from its LEFT edge (transform-origin left — it pushes out
+    to the right, never pulls the off-screen edge into view) with a black
+    drop. Hard `steps(1)` colour cuts, no fades.
   - **Chromatic aberration burst on every selection change** (`chromaBurst`):
     red/cyan channels rip ~13px apart and collapse back in 0.4s, on both the
     plate silhouette and the giant wedge word. It's a one-shot per change —
@@ -192,6 +382,10 @@ zero easing, class swaps only.
     (`data-desc` on each `.mItem`) — heading, tag and copy live together in
     `#wedgeText` so the block scales as one. It **re-slams on every selection
     change** (smear → overshoot → settle).
+  - **The heading clears only the plates level with it** (a 25–67% height
+    band) — with the staircase, the long top plate sits above the heading,
+    so clearing the widest plate would waste the wedge. A selected plate's
+    right edge is `left + 1.105 × width` (1.09 scale + 1.5% shift).
   - **The heading is measured and fitted, not guessed** (`fitWedge()`). It
     measures the word at a 100px reference and solves for the size that fills
     the gap between the selected plate and the screen edge, then does a
@@ -217,7 +411,7 @@ zero easing, class swaps only.
     load and back-from-section. The CSS fallbacks are also pointed at item
     0's cyan, not acid; if the first menu item ever changes, move them too.
   - **`#wedgeText` is hidden until `fitWedge()` has run** (`.fitted`), and
-    the handoff sizes it on adding `body.menu`, behind the wipe bands. Without both, the heading paints at the CSS fallback size and
+    the handoff sizes it on adding `body.menu`, behind the transition slam. Without both, the heading paints at the CSS fallback size and
     visibly pops a moment later — he reported exactly that. There's also a
     re-fit on `document.fonts.ready`, because measuring before Cyberway
     Riders lands uses fallback metrics.
@@ -235,44 +429,384 @@ zero easing, class swaps only.
     flush-left again on mobile. `#wedgeText` uses `right:0` (not a fixed
     width) so those percentages resolve against the real available space.
   - P5 stars pop on each selection change; everything recolors to the accent.
-- Per-item accent: ABOUT cyan, PROJECTS pink, SKILLS green, EXPERIENCE
-  magenta, CONTACT acid. Order is the section order, top to bottom.
+- Per-item accent: ABOUT cyan, PROJECTS pink, SKILLS green, CONTACT acid.
+  Order is the section order, top to bottom. **EXPERIENCE was removed** (his
+  call, Oct 2026) — menu item, section, accent and world entry all gone;
+  numbering is 01–04.
 - **Class handoff (`.in` → `.done`) is driven by a timer, not `animationend`.**
   The event doesn't fire reliably when the tab is throttled, and a stuck `.in`
   pins the selected plate's transform. Same rule as the old opacity bug:
   visibility lives on classes, never inline.
-- Sections open **over** the landing via a diagonal color-band wipe, with their
-  own band colors, a slammed-in wonky header, and staggered cards.
-- **ABOUT is a P5 collage, not a card list** (`.collage`, his ask, built from a
-  Persona-5 fan-poster reference). Composition, which IS the design — don't
-  reflow it into a grid:
-  - **Portrait dead centre**, bottom-anchored, with a sticker outline made of
-    stacked `drop-shadow()`s. Those follow the PNG's alpha, so the outline
-    traces his hair — a border/box-shadow would just box the image.
-  - **Copy plates flank it** left and right (`.cgCard-l` / `.cgCard-r`), tilted
-    opposite ways.
-  - **The name banner** is the anchor: a long chevron-pointed bar slammed
-    across the bottom, split-colour, with angled tabs pinned on both points.
-    Built as outer (white) + inner (black) sharing a `clip-path`, because a
-    clip-path eats a real border — the outer showing through IS the border.
-    `box-shadow` is eaten too, so the hard drop is a `filter`, which follows
-    the clipped shape.
-  - Furniture (tabs, arrow triangles, stars, quote plate) scatters around the
-    edges. **Nothing sits on the face** — that was the first pass and it read
-    as damage rather than collage.
-  - `BACK` needs `z-index:10` here; the banner spans the whole bottom at z8.
+- Sections open **over** the landing, with a slammed-in wonky header and
+  staggered cards.
+- **Every section wears its menu item's colour and the menu's layout** (his
+  ask: continuity and balance). `#sec-*` set `--acc` to the item's accent
+  (ABOUT cyan, PROJECTS pink, SKILLS green, CONTACT acid), and everything
+  "accent" inside reads `var(--acc)`: card titles, bullets, meta tags, chips,
+  scrollbar, BACK, and the ABOUT poster details (title's small word, bubble
+  highlight, name letters, banner glow, stars, the baked sticker rim). The
+  old two clashing colour bands per section are gone: `.secWedge > .secBand`
+  is the menu's triangle, the same geometry as `#wedge` (right-anchored 64vw,
+  polygon 0,45 / 100,-22 / 100,162), the same accent and the same dither. It
+  sits exactly where the menu's triangle was, so it carries straight through
+  the transition. The wrapper carries the red/cyan edge, because a filter on
+  the clipped element would be clipped away.
+  - Accent text on the accent triangle vanishes. The title's small word drops
+    the glitch split (cyan on a cyan fringe smeared), and the copy's
+    highlight is an accent marker strip with ink text, not accent text.
+  - PROJECTS / SKILLS / CONTACT also carry the menu chain (see Chains).
+- **Every screen change is `TransFX`** (`doTransition(mid)`): the intro's
+  opening in miniature, on a canvas (`#transCv`, z60). It replaced a sliding
+  colour-band wipe ("just a slide"), then a shatter version he rejected in
+  favour of **matching outlines, more impact, shorter**. It's symmetric —
+  shapes leave the way they came:
+  - **0–190ms trace**: neon outlines whip in along their own axis, staggered,
+    on the intro's S-curve; the outgoing screen dims behind.
+  - **190–214ms flash**: one white impact frame, black plate outlines.
+  - **214–240ms slam**: fills land oversized (1.14) and snap to rest with a
+    wide RGB split. Fully opaque; `mid` (the swap) fires at **240ms**.
+  - **240–520ms retract**: fills drain off downstream (t², moving from frame
+    one), reverse stagger; each outline holds a beat behind its fill, then
+    un-draws from its tail.
+  - Plates are 1.5× the screen diagonal, so the retract must travel ~.95 of
+    their length to clear the frame — less, and they pop off instead.
+  - Plates tile with 3px overlap (no seams). Draw rides rAF; `mid`/cleanup
+    ride `setTimeout`. `TransFX.peek(ms)` freezes it for checking. Reduced
+    motion skips it.
+- **ABOUT is a P5 poster, not a card list** (`.collage`). Rebuilt box-for-box
+  (Oct 2026) from his KREFTON P5 poster reference — "understand and analyse
+  the layout of the boxes … and execute it". The composition IS the design;
+  don't reflow it into a grid:
+  - **Title** top-left, stacked ransom-style like "SeLECT tHE DiFFicuLTY":
+    big outer letters (`.rk`), a small accent word riding between the lines
+    (`.sm`), steep −7° tilt, a small black subtitle strip under it (`.cgSub`).
+    It overlaps the portrait (z7).
+  - **Portrait dead centre**, feet behind the banner, thick acid sticker rim +
+    acid glow (baked — `bakeCutout`, `OUT=11`).
+  - **Speech bubble left** (`.cgBubble`): black slab, white rule, a white
+    spike stabbing out of its left side. Its right end runs BEHIND the
+    portrait (z4 < z5) like the poster; the copy is padded clear of him.
+  - **Plain copy right of the head** (`.cgCopy`), no box — the poster's JP
+    lines. White with a hard ink drop to hold on the band; last line accent.
+  - **One big display tag behind the right shoulder** (`.cgBigTag`
+    "DIRECTOR", the poster's "PERSONA"), first letter swallowed by the jacket.
+  - **The banner is an angular P5 slab, NOT an arrow.** A flared arrow was
+    tried first and he rejected it ("looks like an arrow, make it edgy like
+    the reference"). Every edge of `--ban` kinks: lightning tail left, a
+    shard spiking off the top-right, a hard cut to a point, a notch dropped
+    out of the bottom. Layers: `.cgNameBack` (pink copy offset behind — the
+    poster's red layer) > `.cgNameShape` (glow + hard drop filter — a filter
+    on the clipped element itself would be clipped away) > `.cgNameEdge`
+    (white rule) > `.cgNameInner` (black slab, inset 8px).
+  - **The name sits IN the slab** (he flagged it as misaligned when it was
+    bottom-anchored): `.cgNameText` is centred on the slab's body (top 13%,
+    bottom 12%), tilted −1.8° to follow the top edge, sized so the letters
+    fill ~85% of the slab height. Ransom sizes grow left→right; only the N
+    breaks out, evenly top and bottom. If you change `--ban`, re-centre this.
+  - Tabs are children of the banner so they ride it: a white plate on its
+    top-left (the poster's MONTHSARY) and a white plate on the top-right
+    shard (FIRST). A stroked-text version of the right tab sat over the
+    jacket and was illegible — keep it a solid plate, clear of the portrait.
+  - **DIRECTOR and the right copy hang off the portrait's size**
+    (`50% + 36vh` / `50% + 31vh` — the cutout is ≈0.78× its height wide),
+    not off the viewport width. Placed by vw they ended up under the hair:
+    the tag showed only "TOR" and the copy ran into the glow rim.
+  - The role tag peeks out under the arrowhead (the poster's GET ABILITY).
+  - **Chains** (see below) slam in at the bottom-left and bottom.
+  - `BACK` needs `z-index:10` here.
   - The source photo is `jatin-cutout.png`: background removed with Vision's
-    foreground-instance mask (see `tools/cutout.swift`), then desaturated and
+    foreground-instance mask (see `docs/tools/cutout.swift`), then desaturated and
     contrast-pushed to match the reference's B&W treatment.
-  - On mobile the whole thing restacks: portrait becomes a faint backdrop at
-    `z-index:1` (at desktop it sits beside the cards; on a phone it overlaps
-    them, and on top it made the copy unreadable), cards stack, most furniture
-    hides.
+  - On mobile it restacks: portrait becomes a faint backdrop at `z-index:1`,
+    bubble and copy stack down the middle, the big tag hides, the banner keeps
+    its arrow shape.
+- **Pixel-piece chains** (`ChainFX`, his ask from the same poster): chains
+  built from the site's own pixel "puzzle pieces" (the stepped stickers on the
+  background field) instead of real chain links. Each link is a stepped pixel
+  ring/bar sprite: gradient face (acid→green rings, cyan→deep bars — the two
+  gradients from his logo video), fine ink dots at the halftone angle, black
+  ink rule, red/cyan split fringe. Face-on rings alternate with edge-on bars,
+  drawn in chain order so every bar crosses over one ring wall and under the
+  next — a real interlock without masking. Sprites are built once per size.
+  - **Menu: one endless chain on HIS drawn path** (`ChainFX.menu`, from his
+    second red-line sketch, Oct 2026). Origin: tucked under the accent
+    triangle, low on its LOWER-left edge. It comes out heading left, loops up
+    behind the plates, over the top of the wedge, round the right side and
+    down under the description box, crosses in front of its own start, and
+    sweeps toward the viewer off the bottom-left. **It grows from small/far
+    to huge/near the whole way.** That perspective is the point. Links scroll
+    along it endlessly (~1.15 links/s, surging on a menu move); link spacing
+    grows with link size so it stays locked.
+    - History: a slow inward spiral that faded links in and out was rejected
+      ("slowly come out transparency"). A flat ring round the wedge came
+      next. Then a traced-point version of his first sketch, which he called
+      **crooked**: wobbles and corners from tracing, and it started on the
+      wrong (upper) edge.
+    - **The curve is a Hermite spline through six key points with explicit
+      tangents** (`MKEYS`, in his sketch's 1674×1952 pixels), so every joint
+      is smooth. Don't go back to traced points.
+    - **Nothing fades.** The triangle hides the start: the origin is snapped
+      just inside its lower edge, and links near the start are clipped to
+      outside it. The frame edge takes the end: the path runs one screen
+      past it.
+    - y scales with height. x hangs off the RIGHT edge and stretches by the
+      geometric mean of the two ratios, so on 16:10 the loop stays round
+      instead of flattening into an oval, and still reaches behind the plates.
+    - Own canvas `#chainCv` at z19: above the black plate panel (z18, which
+      would swallow the near end), below wedge copy (z20), plates (z22) and
+      hint (z24). Drawn from the DepthFX loop, menu only.
+    - Sprites are built at 8px cells and scaled down, so the near links stay
+      crisp at ~3× size.
+    - **It recolours with the selection, on the same hard cut as the
+      triangle** (`ChainFX.accent`, called from `paintWedge`). Rings run
+      highlight→accent and bars run accent→deep shade, the triangle's own
+      ramp. The ink rule and red/cyan fringe keep it separate from the
+      same-coloured wedge. Sprites are cached per palette.
+    - **The chain follows into PROJECTS / SKILLS / CONTACT**: same path, same
+      triangle, that section's accent. `#chainCv` is moved into the open
+      section (`.inSection`, z4, right after `.secWedge`, so the heading,
+      cards and BACK paint over it) and back to the body for the menu. ABOUT
+      has its poster chains instead, drawn in its accent.
+  - **ABOUT: appears aggressively, then static.** `.cgChains` canvas (z7,
+    under the banner) draws two chains running from off-frame into the
+    banner. On entry (`ChainFX.slam`, 480ms in, landing with the banner) they
+    whip in along their own length in three hard steps on 2s (83ms): whip,
+    overshoot, lock, each with a wide RGB split collapsing to none. Then they
+    **keep scrolling** (his ask: passive scrolling throughout, same
+    position) — links run in from the frame edge and vanish under the
+    banner, ~0.9 links/s. The scroll offset wraps at two links so ring/bar
+    parity never flips. The loop stops itself when ABOUT closes. Reduced
+    motion draws them static.
+- **PROJECTS has a 3D retro computer** (`MonitorFX`, `.pcCv`). He gave a
+  rendered reference: a stylised vintage monitor with a soft rounded beige
+  plastic shell and a deep bezel, resting on a flat desktop base station
+  with two knobs. This is step 1. **Step 2 (next):** it zooms into the
+  screen, which becomes a small custom OS with folders Flux Magazine 1, 2
+  and 3, Outstation, and BTN.
+  - **No library.** One WebGL fragment shader raymarches a signed-distance
+    model; three.js would break the one-file, no-dependency rule. SDF rounded
+    boxes ARE moulded plastic, and it gives real soft shadows + AO.
+  - Model (object units, y up, +z to the viewer), after his first notes
+    ("edges too rounded", "sides should align with the base", "knobs are
+    pointy — the reference's are flat-topped cylinders, like buttons"):
+    - shell = **two mouldings** (his side-profile reference): a front
+      frame (z .08–.5, half .62×.52, r .06, flush with the base's sides) and
+      a slightly narrower rear housing (half-width .59) whose **top slopes
+      down toward the back**. It now reads as a computer, not a box.
+    - **hooded bezel**: the front face leans back toward the bottom (about
+      .07 over the height), so the top border overhangs the glass like a
+      hood and the bottom border sits further in. Borders thin (≈.04 sides,
+      ≈.05 top/bottom). The **glass sits forward** at z .37 (it used to sit
+      deep at .33 behind a thick border). Glass half-size .575×.465; the
+      screen maps 1.15 × .93 units.
+      **The glass bulges out .08** (a domed tube; .045 read too flat to
+      him), and the image's barrel bend (.14) matches it. Keep it
+      moderate. He asked for "a little curved, not too heavy".
+    - the panel seam is gone (the frame/housing step does that job); the
+      bolts sit on the frame at z .27;
+    - stickers moved onto the rear housing's flat side (FLUX above, BTN
+      below, z −.45 … .05) so they never straddle the step;
+    - recess: shallow (glass forward), r .045, crisp .012 lip; vent slots on the frame's left side;
+    - glass: bulged, at the bottom of the recess;
+    - base: **same .62 half-width as the monitor and flush with its back**,
+      juts out only at the front, r .02, with grooved front panels and NO
+      label (he cut "Beyond the Noise Studio");
+    - knobs: two short flat-faced cylinders (r .052, softened rim), barely
+      proud of the panel;
+    - **base detail, from his "too plain" reference** (a beige PC front):
+      a grid of vertical vent slots in two rows at the left of the front; a
+      green power LED beside them (material 7, emissive); a recessed drive
+      bay in the middle with two charcoal floppy-drive fronts (material 6),
+      each with a disk slot and a beige eject; the knobs at right; and a row
+      of vertical vent slots along both sides of the base. The old flat
+      panel-divider grooves are gone; the top seam stays.
+    - stickers on the outer left side only (`q.x<-.5`; without that check
+      they printed onto the bezel's inner wall too): **FLUX in cyan** (high
+      and back) and **BTN + pink star** (low and forward). He likes both;
+      keep them.
+    - **Decals: sample unconditionally, mask after.** Sampling the atlas only
+      inside each sticker's rect made the UVs jump at the rect border. The
+      mip selection blew up there and drew a faint dashed box around the
+      stickers (he spotted it). Smooth UVs everywhere on the side, then
+      multiply by the rect mask. The atlas also keeps a clear gutter
+      (screen ends at y=736) so coarse mips can't bleed the screen's black
+      into the sticker regions. Same rule for any future decal.
+      That alone did NOT fix it on his machine. The real fix: **stickers
+      have their own texture (`uStk`, linear, NO mipmaps)**, cut from the
+      atlas's bottom quarter. No mip levels means nothing can smear the
+      region edges. Keep decals off the mipmapped screen texture.
+  - **Look: his cinematic lighting reference** (a close-up of a pale monitor
+    under cool light), which supersedes the print-styled first pass:
+    - beige `(.86,.78,.64)` albedo kept, so it stays beige, under a cool
+      key from the upper left;
+    - a blue-teal sky fill, so shadows go cool and deep, with a
+      harder-than-wrap terminator for contrast;
+    - a glossy spec plus a broad sheen, and a strong cool fresnel rim so
+      every bevel catches a bright edge (that's the reference's signature);
+    - the screen's glow spilling onto the bezel;
+    - dull-metal side bolts;
+    - an ACES-style filmic tone curve and a fine static grain.
+    - The halftone dots and ink silhouette are REMOVED from the model. Its
+      edge fringe is now a CSS red/cyan drop-shadow pair on `.pcCv`, the
+      same treatment as the wedge.
+    - Two bolts per side near the front (on the frame). The glass carries a
+      faint pixel mesh (210×160) that shows in the dark, as in the
+      reference.
+    - Contact shadow on a transparent canvas, as before.
+  - **CRT glass, balanced** (his ask: not too heavy, not too subtle). All
+    static, no flicker:
+    - barrel-bent image (.14, matched to the .08 glass bulge);
+    - red/blue fringing that grows toward the edges;
+    - a 4-tap phosphor bloom (.35);
+    - soft scanlines (140 across, 30% depth);
+    - a faint aperture-grille mask;
+    - a corner vignette and a lifted, centre-weighted black (a lit tube is
+      never pure black);
+    - one soft diagonal glare;
+    - fresnel and a key-light spec on top.
+  - Screen and stickers come from ONE 2D-canvas atlas uploaded as a
+    mipmapped texture: the screen is the top 3/4, FLUX bottom-left and BTN
+    bottom-right.
+    Redrawn on `document.fonts.ready`. The OS UI goes in here for step 2.
+    Keep screen content inside the bezel's safe area (≈90px inset); the
+    texture's edges sit under the lip.
+  - Motion: on entry it rises out of the floor with ONE fast decelerating
+    turn (950ms, ease-out quart), landing at the reference's three-quarter
+    view onto its LEFT side (yaw +.5). After that it moves only with the
+    pointer (parallax ±.5 yaw / ±.18 pitch, eased). It redraws only when
+    something moved, and the loop stops itself when PROJECTS closes.
+  - **Framing is in JS, not CSS**: `.pcCv` covers the whole section, and the
+    shader takes `uCtr` (where the computer sits), `uS` (how big) and
+    `uRo/uTa` (camera). `rest()` places it right of the heading: the box
+    starts at `6vw + 5 × heading font-size`, the model fits the shorter side
+    (`min(w×1.08, h×1.15)`), and on phones it takes the band below the
+    heading. That's what lets the click dolly carry it to page centre.
+- **PROJECTS step 2: screen intro → CLICK ME!! → dolly → JATIN OS.**
+  - **Screen intro** (`drawScreen`), in **JATINSPACE's own UI language**
+    (his ask: the screen should match the OS, and the first monochrome
+    version was too slow). 30fps, about 0.7s, starting the moment the
+    computer lands. Frame map:
+    - 0 black;
+    - 1–4 palette outlines (pink / acid / cyan / magenta) draw on;
+    - 5–8 shards slam in with Bayer-dithered palette fills (canvas patterns
+      from `ditherCanvas`) and a black star;
+    - 9 white flash; 10 pink negative;
+    - 11–17 the JATINSPACE wordmark slams (JATIN paper, SPACE pink, pink and
+      cyan ghosts) with a punch and slice glitch at 15;
+    - 18–20 crumple into palette pixel blocks;
+    - 21+ the **idle screen = the OS chrome**: LAST UPDATED strip, the
+      JATINSPACE header, the link row, the HOW TO USE bar, and a BIG,
+      heavy pink old-web **CLICK ME!!** button (660×196 on the 1024 screen;
+      the type is stroked in its own ink to read bolder) with a paper drop
+      shadow, the pixel hand cursor, and "▸ enter JATINSPACE" with a
+      blinking caret. The teaser folders under it were cut (his note).
+    - **Loading**: the same chrome with a chunky pink dithered bar that
+      fills step by step WITH the dolly.
+    - Canvas text never triggers a webfont load, so `init` asks for VT323
+      and Cyberway explicitly, then repaints.
+    `MonitorFX.peek(n)` freezes frame n (21+ = the click screen).
+  - **PERF rules (he reported the loading and animations as laggy).** The
+    canvas covers the whole section, so:
+    - rays that miss the computer's bounding box never march (most pixels
+      are empty);
+    - the floor contact shadow is only shadow-marched near the base (it
+      used to run a 40-step march on every lower-half pixel);
+    - loops: 90 main steps, 26 shadow, 4 AO taps;
+    - the entrance spin and the dolly render at 55% resolution (`heavy`);
+      the settled frame re-renders crisp;
+    - the CSS edge fringe on `.pcCv` applies only `.still`, never while
+      it's moving;
+    - the OS animates **only transform and opacity**: no animated `filter`
+      (it re-rasterised the folder every frame), and the power-on uses a
+      flash layer instead of `filter:brightness` on the whole OS. The hero
+      has `will-change` so browse and dive run on the compositor.
+  - **It arrives CHAINED UP, then breaks out** (his ask). Three loops of
+    our pixel-piece chain in PROJECTS' accent wrap the computer: a band round
+    the body and two diagonals crossing in an X over the screen and under
+    the base.
+    - The loops are rounded superellipses defined in the MODEL's space
+      (`LOOPS`), so they spin and rise with it.
+    - Each link is projected with the shader's own camera (`project`); links
+      nearer than the model's centre draw on a canvas in front of the 3D
+      canvas, the rest on one behind (`.pcChain`), so it reads as wrapped,
+      not pasted on.
+    - On landing: a 70ms strain (the loops squeeze to 90% with a jitter),
+      then SNAP. He asked for it "more aggressive, with motion and a flash":
+      - a full-page white flash frame (~70ms) burning off;
+      - a shockwave ring blasting out of the computer (white core,
+        pink/cyan edges, ~280ms) and 28 speed lines tearing outward;
+      - white impact bursts at the break points;
+      - links flying at 1700–4100 px/s, spinning hard, growing as they rush
+        the camera, with 3-ghost motion smears and a red/cyan split;
+      - a 240ms shake on the computer and chain canvases with a 6% scale
+        punch from the computer's own centre.
+      All gone by ~600ms.
+      The screen intro boots right after (t0 + 1.21s); clicks unlock at 1.1s.
+    - Links are drawn with `ChainFX.drawLink` (sprites at 8px cells); the
+      pitch is .13 model units.
+    - `MonitorFX.hold(ms)` freezes the whole entrance ms after it starts
+      (e.g. 600 = wrapped mid-spin, 1060 = the snap, 1300 = mid-explosion);
+      `hold(null)` releases it.
+    - Reduced motion skips the chains.
+  - **Click = the computer.** The canvas takes clicks; the hit test redraws
+    the current pose and reads the one pixel under the pointer (alpha > 200),
+    so only the model is clickable (cursor turns to a pointer over it).
+    Return also opens it on PROJECTS.
+  - **Dolly** (620ms, in-out cubic): the camera eases in, yaw/pitch/lift go
+    to zero (it squares up to you), and the framing centre moves to page
+    centre.
+  - **JATIN OS fills the glass, and the glass fills the page, with the
+    bezel kept.** He wanted it immersive AND still to feel like a computer.
+    `zoomPose` sizes the glass to about 96% of the page (contain, not
+    cover), so the hood, the borders and the base stay in frame around it.
+    The OS (`.pcOS`) is a real DOM layer placed exactly on the glass:
+    `placeOS` projects the glass corners with the shader's camera maths,
+    radius ≈ the glass corners. It powers on like a tube (a line opening
+    into the picture plus a white flash layer). While it's up, BACK hides
+    (`#sec-projects.osOpen`) and the header's **[X] EXIT** takes over. Type
+    scales with the glass (2.4% of its height).
+    - **Chrome he kept** from the old-web pass: pink LAST UPDATED strip +
+      clock, black JATINSPACE header (DAILY CUT, colour squares, EXIT), grey
+      link row (FLUX | BTN | OUTSTATION, current one inverted) with a
+      breadcrumb path and a search box (typing jumps to the first match),
+      and the grey [ HOW TO USE ] bar at the bottom (its text follows the
+      view).
+    - **The folder system, from his reference video, re-cut digital**:
+      - ONE hero folder centre stage, seen at an angle: a back panel with a
+        tab, two ruled paper pages peeking, a front flap, and a dark spine
+        down the right. A square label sticker sits above it
+        (FLUX / MAGAZINE, BTN / STUDIO, OUTSTATION / FIELD WORK) and a
+        "01 / 03" count below.
+      - The other folders are scattered behind at three depths. **Depth is
+        pixelation, not blur**: far ones are tiny dithered bitmaps scaled up
+        with `image-rendering: pixelated`.
+      - Browse with ← / →, the side arrows, the wheel or a swipe. The hero
+        slides out quickly and the next one slams in with a little
+        overshoot; the background shifts and the stage re-tints to the
+        folder's colour. **Smooth eases, not `steps()`**: he read the
+        stepped motion as lag.
+      - Open (click, Return, or a nav link): the flap swings, the pages
+        rise, then the camera **dives** into the folder (scale 2.6 + fade,
+        240ms) and the contents arrive as a grid of tiles that pop in one by
+        one.
+        FLUX holds Flux Magazine 01/02/03 as numbered dithered covers; BTN
+        and Outstation show a grey [ EMPTY ] box. Esc surfaces back out.
+      - **Every gradient is the site's 4×4 Bayer dither**, generated on a
+        canvas once per colour and size (`dither()`, cached data URLs)
+        instead of the reference's film grain. Hero ≈ 3px cells like the
+        site; distant folders deliberately coarser.
+      - Folder ramps: FLUX pale cyan → cyan → blue, BTN pale acid → acid →
+        green, OUTSTATION pale pink → pink → purple.
+    - Keys: on the stage ← / → browse, Return opens, Esc exits the OS;
+      inside a folder the arrows move between tiles and Esc goes back;
+      typing in search never triggers OS keys (Esc blurs it).
+  - **Next:** the real contents of each folder (magazine pages, project
+    media).
 - Full keyboard nav, like a game: arrows to move, Enter to select, Esc to back.
 
 ## Technical state
 
-Single self-contained `index.html`. No build step, no dependencies, no
+Single self-contained `site/index.html` (shipped with `site/jatin-cutout.png` — `site/` is the deploy folder, nothing else goes live). No build step, no dependencies, no
 framework. Vanilla HTML/CSS/JS; shards are procedurally generated SVG
 (regenerate randomly on every load); Cyberway Riders is embedded as base64,
 IBM Plex Mono comes from Google Fonts. Just open it in a browser.
@@ -293,10 +827,11 @@ completed. **Visibility must be driven entirely by animation classes**
 
 - **Real logo.** The wordmark is currently a font approximation. When he exports
   his actual logo (SVG or transparent PNG), swap it in — that's the single
-  biggest fidelity win available. See `reference/06-logo-still.jpeg` for target.
-- **Content.** ABOUT / SKILLS / EXPERIENCE are drafted from real details.
-  PROJECTS and CONTACT are placeholders marked `[Replace me]` — needs his real
-  project list, links, email, and handles.
+  biggest fidelity win available. See `docs/site/reference/06-logo-still.jpeg` for target.
+- **Content.** ABOUT / SKILLS are drafted from real details. CONTACT is a
+  placeholder marked `[Replace me]` — needs his real links, email, and
+  handles. PROJECTS' content moves onto the computer's OS (Flux Magazine
+  1/2/3, Outstation, BTN) — needs the real material for each folder.
 - **Project media.** No thumbnails or video embeds yet. Projects section will
   need a treatment that survives this aesthetic (shard-framed thumbnails,
   hover-scrub previews).

@@ -1,7 +1,7 @@
 # jatin-site
 
 Personal portfolio for Jatin — Beyond the Noise Studio.
-Single self-contained page. Open `index.html` in a browser. That's it.
+Single self-contained page. Open `site/index.html` in a browser. That's it.
 
 ## Picking this up in Claude Code
 
@@ -17,19 +17,19 @@ project.
 
 Good first message to give it:
 
-> Read CLAUDE.md and the images in reference/, then open index.html and tell me
+> Read CLAUDE.md and the images in docs/site/reference/, then open site/index.html and tell me
 > what you'd tighten first.
 
 ## Files
 
 | File | What it is |
 |---|---|
-| `index.html` | The whole site. HTML + CSS + JS in one file, no dependencies. |
+| `site/index.html` | The whole site. HTML + CSS + JS in one file, no dependencies. |
 | `CyberwayRiders-lg97d.ttf` | The display font. Already embedded as base64 inside `index.html` — this is the master copy, keep it. |
-| `jatin-cutout.png` | Background-removed B&W portrait used in the ABOUT collage. |
-| `tools/cutout.swift` | Regenerates that cutout from any photo. Build and run: `swiftc -O tools/cutout.swift -o /tmp/cutout && /tmp/cutout photo.jpg out.png` — then desaturate with ffmpeg (see below). |
+| `site/jatin-cutout.png` | Background-removed B&W portrait used in the ABOUT collage. |
+| `docs/tools/cutout.swift` | Regenerates that cutout from any photo. Build and run: `swiftc -O docs/tools/cutout.swift -o /tmp/cutout && /tmp/cutout photo.jpg out.png` — then desaturate with ffmpeg (see below). |
 | `CLAUDE.md` | Project brief. Auto-loaded by Claude Code each session. |
-| `reference/` | The visual references the design is built from. |
+| `docs/site/reference/` | The visual references the design is built from. Raw recordings and screenshots live in `.local/reference/` (gitignored). |
 
 ## Reference images
 
@@ -44,7 +44,7 @@ Good first message to give it:
 | `07-target-composition.png` | Target composition — name held in the black center of the shatter |
 
 Source screen recordings aren't included here (large files). Add them to
-`reference/` if you want them alongside.
+`.local/reference/` (gitignored) if you want them alongside.
 
 ## Editing notes
 
@@ -56,17 +56,20 @@ Source screen recordings aren't included here (large files). Add them to
   polygon inside `#wedgeTri`.
 - The halftone is a fine ink screen — `--dot` (size), `--dot-angle`, and
   `--dotgrid` (dot weight) at the top of the stylesheet drive it everywhere.
-- To swap the ABOUT portrait: run `tools/cutout.swift` on a new photo, then
-  `ffmpeg -i cut.png -vf "crop=…,format=rgba,hue=s=0,eq=contrast=1.42,scale=880:-1" jatin-cutout.png`.
+- To swap the ABOUT portrait: run `docs/tools/cutout.swift` on a new photo, then
+  `ffmpeg -i cut.png -vf "crop=…,format=rgba,hue=s=0,eq=contrast=1.42,scale=880:-1" site/jatin-cutout.png`.
   The sticker outline is CSS (`#cutout`'s stacked drop-shadows), so it adapts
   to whatever silhouette you give it — don't bake an outline into the PNG.
 - The wedge heading sizes itself to fill the space left of the screen edge
   (`fitWedge()` in the script). Tune `WEDGE_GAP` for its clearance from the
   menu and `WEDGE_MAX` for the ceiling on short words — don't hardcode a
   font size.
-- Intro timing lives in the `TL` timeline array in the script block — one
-  entry per beat, hard cuts, matched frame-by-frame to the reference video.
-  The last entry hands off to `toMenu()`.
+- The intro is the `IntroFX` canvas engine in the script block; its frame map
+  is in the comment at the top. Add `?frame=N` to the URL to freeze it on any
+  frame, e.g. `site/index.html?frame=40` for the first beat of the hold.
+- Screen transitions are `TransFX` (trace → flash → slam → retract, 520ms). Run
+  `TransFX.peek(400)` in the browser console to freeze one at 400ms, and
+  `TransFX.hide()` to clear it.
 - The background shatter re-rolls per-frame during the intro only, then holds
   still on slow drift — so refresh a few times before judging a composition
   change.
