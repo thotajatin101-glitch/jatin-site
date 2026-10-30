@@ -1,6 +1,7 @@
 # Release — launch guards
 
-The site is a static page: `site/index.html` + `site/jatin-cutout.png`. The
+The site is a static page: `site/index.html` + `site/jatin-cutout.png` + his
+photos in `site/work/<set>/` (built by `docs/tools/photos.mjs`). The
 `site/` folder is the deploy folder. Nothing else
 ships. No build step, so "build" below means "the exact files that go out".
 
@@ -24,7 +25,11 @@ ships. No build step, so "build" below means "the exact files that go out".
    *(Not set up yet — see "Gaps".)*
 2. **Type check** — n/a: no TypeScript. Replaced by: the page loads with
    **zero console errors** and **zero failed requests**.
-3. **Test suite** — the route tests below, run against the files that will ship.
+3. **Test suite** — `node tests/check.mjs` (syntax, routes, every photo file:
+   exact-case names, no EXIF/GPS, size budgets) and `node tests/load.mjs`
+   (real Chrome, empty cache, 4G + slow 4G: every grid, every photo in the
+   viewer, zoom/drag, fullscreen, phone). Both also take the live URL after
+   deploying: `node tests/check.mjs https://…` checks the live copies match.
 4. **Route tests** — every key route loads with its key content (list below).
 5. **Record first:** write the current live version id and its exact rollback
    command into the hand-off entry *before* running the deploy.

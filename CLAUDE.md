@@ -297,13 +297,13 @@ into tweens.
 | Frames (24fps) | Beat |
 |---|---|
 | 0–1 | Black slate |
-| 2–19 | **Chained, in real 3D**: JATIN (an extruded slab) and the chains (lit tori) fly in out of depth, sway, and show parallax: each strap runs in front of the face on one side and behind the slab on the other. **Tugs at 8 and 13** kick the sway the other way (RGB split spike, sparks where the anchors bite). **Strain 15–19**: squeeze, tremble, slices, and the slab squares up face-on. Every vsync |
-| 20 | **SNAP = the fan slam's crash frame.** White flash frame, shockwave, speed lines, impact bursts; every link flung in 3D (out of the centre, toward the lens, tumbling, with a dithered smear). **The name stays**: it takes the hit (punch scale, big split) while the slam crashes in around it. Camera jolt. Debris gone by ~.6s |
-| 20–33 | **Fan slam** (no black gap, no build): the fills, yellow bolt wedge, cyan swoosh and speed streaks, with the name holding centre and re-rolling on 2s |
-| 34–35 | Starburst whiteout (the name still drawn over it), then the field ignites |
-| 36–69 | **Hold**: logo slammed centre (extrusion + 6 tinted ghosts) over a black crumpled star that re-shatters every step, on a green/magenta field. **Beat every 8 frames (180bpm)** from f44: scale punch + split spike + slices + an ASCII band |
-| 70–75 | Crumple-out: logo squashes, star collapses, pixel-block datamosh |
-| 76 | `END` → `toMenu()`; tail frames run under the transition, `IntroFX.stop()` removes the canvas behind its slam |
+| 2–27 | **Chained, in real 3D**: JATIN (an extruded slab) and the chains (flat pixel-piece plates) fly in out of depth, sway, and show parallax: each strap runs in front of the face on one side and behind the slab on the other. **Zero-g float to f22**: the chains hang slack in drifting S-curves (pinned at the word and at the frame corner) and the word turns lazily. **The yank, f22–23**: slack gone in a frame, then the thud, the word jolts square, RGB split spike, sparks where the anchors bite. **Strain f25.4–27**: squeeze, tremble, slices. Every vsync |
+| 28 | **SNAP = the fan slam's crash frame.** White flash frame, shockwave, speed lines, impact bursts; every link flung in 3D (out of the centre, toward the lens, tumbling, with a dithered smear). **The name stays**: it takes the hit (punch scale, big split) while the slam crashes in around it. Camera jolt. Debris gone by ~.6s |
+| 28–41 | **Fan slam** (no black gap, no build): the fills, yellow bolt wedge, cyan swoosh and speed streaks, with the name holding centre and re-rolling on 2s |
+| 42–43 | Starburst whiteout (the name still drawn over it), then the field ignites |
+| 44–65 | **Hold**: logo slammed centre (extrusion + 6 tinted ghosts) over a black crumpled star that re-shatters every step, on a green/magenta field. **Beat every 8 frames (180bpm)** at f48, f56, f64: scale punch + split spike + slices + an ASCII band |
+| 66–71 | Crumple-out: logo squashes, star collapses, pixel-block datamosh |
+| 72 | `END` → `toMenu()`; tail frames run under the transition, `IntroFX.stop()` removes the canvas behind its slam |
 
 - **The opening is a set-up, not filler** (he rejected a version of random
   sparks on a HUD as "empty and random, no intention"). It is now the chained
@@ -326,20 +326,74 @@ into tweens.
     (alpha-tested, depth buffer sorts), dark purple → black ramp, three offset
     colour ghost planes behind, the white face on top with a dithered acid
     glint sweeping across. The face/side bitmaps come from `makeLogo`.
-  - **The chains are tori** (a stadium-shaped tube, flat and edge-on links
-    alternating so they interlock), toon-lit with the site's **Bayer dither in
-    3px cells**, a hot spec spot and a black ink rim. Flat links run green →
-    acid, edge-on links deep blue → cyan. No smooth shading.
-  - **Two straps** loop round the word diagonally in the (diagonal, depth)
-    plane, so one run is in front of the face and one behind the slab — the
-    sway shows real parallax. **Four anchors** run to the frame corners, ending
-    nearer the camera so they grow as they leave the word.
+  - **The chains are two X straps round the word PLUS four anchors, one per
+    corner, all bolted on and taut until the snap.** (He asked for the straps
+    to stay: "i do like logo being chained up".) **The straps hug the slab and stay inside its silhouette** (tilt ±.2 rad,
+    half-length .44·width: at ±.3 / .5 their turnaround lobes poked out past
+    the J and N as horns — "why is there extra chain spiking up around the
+    logo"). The anchors leave the word gently (slack ramps in over the first
+    ~40% of the run) so there's no kink at the slab. The straps also sit
+    just proud of the face and behind the back (`b = depth/2 + .32·pitch`); at
+    `fs·.2` they bulged off the logo and he said they should be "closer to the
+    logo model as it is stuck to the logo". Each anchor starts INSIDE the slab
+    (at ±.3 of the word's width, ±.12·fs), so its first link is hidden in the
+    letters, and runs on the straight line through the screen corner and out
+    past it; all four mirror each other (the top-left once ended short of its
+    corner). Link pitch is constant whatever the length and the chain always
+    runs past its far end, so it never opens a gap at the word, even while the
+    whole lock-up flies in from depth.
+  - **CLICK ANY BUTTON** (his ask, Oct 2026: keep the float going until the
+    user starts it, "click any button" blinking under the logo like a game).
+    The live intro runs to the yank (f22) and WAITS there: the timeline clock
+    stops, a separate float clock (`ffl`) keeps the chains and the word
+    drifting. `#pressAny` (a DOM element under the word, in **VT323** — his
+    reference was a crisp pixel face, "Click on" — with a hard ink drop, a
+    SUBTLE hard-step blink — 1 ↔ .5 opacity every 1.5s, smallish type; at
+    full on/off and bigger he asked for it smaller and subtler) appears once the word has landed (f8).
+    Any pointer press or key (not bare modifiers / Tab) releases it: the
+    timeline resumes AT the yank that instant, so the pull is the response to
+    the press. Presses before the prompt shows are ignored. `?frame=N` is
+    unaffected (scrub never waits past N≥22). Anything that scripts the live
+    intro (snapshots, tests) has to press a key — `snap.mjs` does. There is
+    no auto-timeout.
+  - **Zero-g, then the yank** (his ask, Oct 2026: "the chains float like
+    zero gravity, then suddenly and quickly tighten up, then the break"; the
+    chained phase grew from 18 to 26 frames, `CH=28`, so the float can be
+    read). Slack is a path, not a pose: each anchor is the taut line plus
+    drifting S-curves (`G.slack`, `G.fr` in `links3`), zero at the word and
+    at the frame corner, links walked along the curve at constant pitch. The
+    slack drops `(1-yk)^1.5` over 1 frame at `Y0 = CH-6`; the word's float
+    (yaw/pitch/roll/bob) is cut at the same moment, so the jolt is the beat.
+    A softer, slower tighten loses it. His second note: the float was "too
+    flowy" and should be SLOW — gentle curves (amplitude .06·length, waves at
+    ~.8 rad/s), slow drift — so the contrast with the pull is the beat. **The
+    pull has weight**: once fully taut the lock-up rings — a damped THUD
+    (`th`, ~10Hz, gone in ~4 frames) on camera jolt, yaw, roll, scale pop and
+    a push back in z, with an RGB spike on each swing — then the strain
+    tremble builds to the snap.
+  - **Link SHAPE is the 2D sprite first** (his order: shape, then texture).
+    A flat plate, not a tube: the ring is the stadium 15×7 cells with a 9×3
+    hole (`stad(.364,.318)` / `stad(.273,.136)`), the bar is the same plate
+    seen edge-on (15×3), pitch 11 cells. Rings are turned to face the lens as
+    squarely as the chain's direction allows (`links3`), bars are edge-on
+    between them; a diagonal run otherwise shows every ring edge-on and the
+    chain reads as rope. The red band on the left of each ring at the snap is
+    the intro's own RGB split, not part of the link.
+  - **Texture: Bayer dither, not halftone** (same colours). The face
+    gradient steps across the link in ordered-Bayer cells; the 2D chains'
+    fine ink dots are NOT used here. The chain layer renders into a
+    small corner of the canvas, one texel per sprite cell, and is blown up
+    unsmoothed (`blitChains`): the stepped pixel-piece silhouette. Faces are
+    flat gradients across each link (rings acid→green, bars cyan→deep), a thick
+    black ink rule, then the red/cyan fringe laid over it in 2D. No smooth lighting (an earlier toon + Bayer shaded
+    version read as a different chain). The slab is drawn depth-only into the
+    chain pass so chains pass behind it.
   - **Debris** uses the same meshes: each link keeps its place at the break
     pose and is flung out of the centre + toward the lens, tumbling about its
     own axis, under gravity, fading by dithered discard (not blending), with
     one trailing smear pass. Precomputed at the break pose, so every frame is a
     pure function of time and `?frame=N` scrubs it.
-  - Straps wider or a third horizontal band bury the name — keep to the X.
+  - Straps wider or a third horizontal band bury the name — keep to the X of two.
 - **`?frame=N`** freezes the intro on frame N — scrub it like a timeline.
   Use it to check any beat; the live intro is too fast to judge by eye.
 - The clock is rAF with a `setTimeout` watchdog, and frames are derived from
@@ -482,59 +536,63 @@ into tweens.
   - Plates tile with 3px overlap (no seams). Draw rides rAF; `mid`/cleanup
     ride `setTimeout`. `TransFX.peek(ms)` freezes it for checking. Reduced
     motion skips it.
-- **ABOUT is a P5 poster, not a card list** (`.collage`). Rebuilt box-for-box
-  (Oct 2026) from his KREFTON P5 poster reference — "understand and analyse
-  the layout of the boxes … and execute it". The composition IS the design;
-  don't reflow it into a grid:
-  - **Title** top-left, stacked ransom-style like "SeLECT tHE DiFFicuLTY":
-    big outer letters (`.rk`), a small accent word riding between the lines
-    (`.sm`), steep −7° tilt, a small black subtitle strip under it (`.cgSub`).
-    It overlaps the portrait (z7).
-  - **Portrait dead centre**, feet behind the banner, thick acid sticker rim +
-    acid glow (baked — `bakeCutout`, `OUT=11`).
-  - **Speech bubble left** (`.cgBubble`): black slab, white rule, a white
-    spike stabbing out of its left side. Its right end runs BEHIND the
-    portrait (z4 < z5) like the poster; the copy is padded clear of him.
-  - **Plain copy right of the head** (`.cgCopy`), no box — the poster's JP
-    lines. White with a hard ink drop to hold on the band; last line accent.
-  - **One big display tag behind the right shoulder** (`.cgBigTag`
-    "DIRECTOR", the poster's "PERSONA"), first letter swallowed by the jacket.
-  - **The banner is an angular P5 slab, NOT an arrow.** A flared arrow was
-    tried first and he rejected it ("looks like an arrow, make it edgy like
-    the reference"). Every edge of `--ban` kinks: lightning tail left, a
-    shard spiking off the top-right, a hard cut to a point, a notch dropped
-    out of the bottom. Layers: `.cgNameBack` (pink copy offset behind — the
-    poster's red layer) > `.cgNameShape` (glow + hard drop filter — a filter
-    on the clipped element itself would be clipped away) > `.cgNameEdge`
-    (white rule) > `.cgNameInner` (black slab, inset 8px).
-  - **The name sits IN the slab** (he flagged it as misaligned when it was
-    bottom-anchored): `.cgNameText` is centred on the slab's body (top 13%,
-    bottom 12%), tilted −1.8° to follow the top edge, sized so the letters
-    fill ~85% of the slab height. Ransom sizes grow left→right; only the N
-    breaks out, evenly top and bottom. If you change `--ban`, re-centre this.
-  - Tabs are children of the banner so they ride it: a white plate on its
-    top-left (the poster's MONTHSARY) and a white plate on the top-right
-    shard (FIRST). A stroked-text version of the right tab sat over the
-    jacket and was illegible — keep it a solid plate, clear of the portrait.
-  - **DIRECTOR and the right copy hang off the portrait's size**
-    (`50% + 36vh` / `50% + 31vh` — the cutout is ≈0.78× its height wide),
-    not off the viewport width. Placed by vw they ended up under the hair:
-    the tag showed only "TOR" and the copy ran into the glow rim.
-  - The role tag peeks out under the arrowhead (the poster's GET ABILITY).
-  - **Chains** (see below) slam in at the bottom-left and bottom.
-  - `BACK` needs `z-index:10` here.
-  - The source photo is `jatin-cutout.png`: background removed with Vision's
-    foreground-instance mask (see `docs/tools/cutout.swift`), then desaturated and
-    contrast-pushed to match the reference's B&W treatment.
-  - On mobile it restacks: portrait becomes a faint backdrop at `z-index:1`,
-    bubble and copy stack down the middle, the big tag hides, the banner keeps
-    its arrow shape.
+- **ABOUT is a "Have you seen this DIRECTOR?" poster** (`.collage`, Oct 2026;
+  concept: `docs/concepts/2026-10-26-about-poster/`). Rebuilt from his
+  reference ("Have you seen this MAN?"), replacing the earlier KREFTON P5
+  collage (stills: `2026-10-26-about-p5-kreften`). His brief: copy the **text
+  placement, scale ramp and perspective**, in his language, with his new
+  night photo. The composition IS the design; don't reflow it into a grid:
+  - **Two banners** frame the portrait: `.cgTop` is a pink wedge (thin at the
+    left, tall at the right) and `.cgBot` a purple one rising to the right.
+    Kinked edges (a notch each), ink drop, white rule, `DitherFX` inside.
+  - **No text on the banners — final** (his call, Oct 27, and he reversed it
+    twice: HAVE-YOU-SEEN ramp → name-only ramp in Anton with a printed dot
+    screen → cut all text → brought the name back → "Remove text i changed
+    mind"). Treat it as settled: the bars are shorter, pushed toward the screen
+    edges (top 31vh at `top:-8vh`, bottom 27vh at `bottom:-7vh`; phone 22vh / 15vh at -5vh) and carry only the chains.
+    The name-ramp code (per-letter height = bar height at its x, Anton, skewed
+    along the edge, slide-right fit) is not in the page; the look is in stills
+    `2026-10-27-about-name-*` if he ever wants it back.
+  - **The portrait's glow is a dither that flows outward** (`CutGlow`, his ask,
+    Oct 27: "a dither animation going outwards for that glow"). `bakeCutout`
+    keeps only a crisp cyan/pale rim; the wide glow is a second canvas behind
+    the portrait: a chamfer distance field from the silhouette (built once,
+    4 baked px per cell), bands travelling away from the figure, 4×4 Bayer
+    between a 5-step ramp (deep purple → magenta → hot pink → cyan → pale),
+    ink dots thinning to nothing at the far edge. ~30fps on a 333×358 buffer
+    scaled up unsmoothed; loop runs only while ABOUT is open (`CutGlow.start`
+    from `openSection`), static frame under reduced motion. Cyan is kept to the
+    inner third so pink stays the wide colour. It sits in its own `.glowWrap` twin of `.cutWrap` at z3: above the wedge and streaks, under the bubble, tags, sparks and bars (his note: it clashed on top). Soft by his note: 3px cells, alpha 170, slow wide bands. Stills `2026-10-27-about-dither-glow`.
+  - **Portrait** (the new photo, `jatin-cutout.png`: `docs/tools/cutout.swift`
+    → `docs/tools/grade.swift`, B&W with lifted shadows, γ.78) sits right of
+    centre (`--ph:min(88vh,74vw)`, head ≈56% across, bottom −5vh). **His right
+    arm is cut by the photo's edge, so the cut must stay hidden behind the
+    bottom banner** — if you move/scale the portrait, check that. Accent rim
+    is baked by `bakeCutout` in `--acc`.
+  - Speech bubble left (`.cgBubble`) with the studio paragraph, behind the
+    portrait (z4 < z5); tags JATIN and DIRECT · SHOOT · CUT; three acid
+    sparkles (`.spark-a/b/c` — a sits BELOW the bubble, never over its copy);
+    credit bottom-left, BACK bottom-right (z10). ABOUT chains still slam in
+    (`ChainFX.slam`) but run behind the portrait into the bottom banner.
+  - Small type (`.hey`, `.sm`) uses a 1px glitch split — the 4px split
+    doubled the letterforms.
+  - Phone (<760px): headline stacks (lead-in / HAVE YOU SEEN THIS / big
+    DIRECTOR?), bubble above the portrait, BACK shrinks so the punchline
+    clears it (punchline 8vw).
+  - Audited at 1440×900, 1440×700, 1280×800, 375×812. `snap.mjs` takes
+    `SNAP_W`/`SNAP_H` for odd sizes; the label must be lower-case-with-dashes
+    (no `1440x700`).
 - **Pixel-piece chains** (`ChainFX`, his ask from the same poster): chains
   built from the site's own pixel "puzzle pieces" (the stepped stickers on the
   background field) instead of real chain links. Each link is a stepped pixel
   ring/bar sprite: gradient face (acid→green rings, cyan→deep bars — the two
-  gradients from his logo video), fine ink dots at the halftone angle, black
-  ink rule, red/cyan split fringe. Face-on rings alternate with edge-on bars,
+  gradients from his logo video), a tonal ink screen at the halftone angle,
+  black ink rule, red/cyan split fringe. **The screen is printed INTO the face
+  and tonal**: clipped to the link's own cells (never on the rule or the
+  fringe), pitch .42 cell, dots swelling toward the shaded end and nearly gone
+  in the highlight. His note: the old uniform 50% dots at .85 cell, laid over
+  the fringe too, "look too much like an overlay rather than a texture, and
+  a bit too big". Face-on rings alternate with edge-on bars,
   drawn in chain order so every bar crosses over one ring wall and under the
   next — a real interlock without masking. Sprites are built once per size.
   - **Menu: one endless chain on HIS drawn path** (`ChainFX.menu`, from his
@@ -804,14 +862,56 @@ into tweens.
         canvas once per colour and size (`dither()`, cached data URLs)
         instead of the reference's film grain. Hero ≈ 3px cells like the
         site; distant folders deliberately coarser.
-      - Folder ramps: FLUX pale cyan → cyan → blue, BTN pale acid → acid →
-        green, OUTSTATION pale pink → pink → purple.
+      - Folder ramps: FLUX pale pink → pink → purple, OUTSTATION pale cyan →
+        cyan → blue (swapped Oct 30), BTN (off) pale acid → acid → green.
     - Keys: on the stage ← / → browse, Return opens, Esc exits the OS;
       inside a folder the arrows move between tiles and Esc goes back;
       typing in search never triggers OS keys (Esc blurs it).
-  - **Next:** the real contents of each folder (magazine pages, project
-    media).
+  - **Fullscreen (Oct 30, his ask: "easier for people to view my work"):**
+    the tube powers on on the glass, then grows off it to fill the page
+    (`full()`, a FLIP: transform only). EXIT shrinks it back onto the glass
+    before the power-off. This supersedes "glass ≈96% with the bezel kept"
+    for the OS itself; the dolly is unchanged.
+  - **His photos** (concept `docs/concepts/2026-10-30-os-gallery/`):
+    - FLUX → three magazine covers → photo grid; OUTSTATION → photo grid.
+      BTN is switched off (`off:true` in `FOLDERS`, his call Oct 30) until he
+      has material; the CRT intro's nav row lists only FLUX | OUTSTATION.
+      Colours swapped by his call: FLUX is the pink ramp, OUTSTATION the cyan
+      (the monitor's FLUX side sticker stays cyan). A cover is chosen per magazine with
+      `cover:N` in `FOLDERS`, numbered as the viewer counts. He picked photo
+      03 (the sunglasses close-up) for Magazine 02. Covers are tall 2:3
+      posters (his sketch): container-unit sized, as tall as the stage allows
+      and as wide as `--n` fit; two a row on phones.
+    - Files are `site/work/<set>/NN.jpg` (2000px), `NN-t.jpg` (640w thumb)
+      and `NN-z.jpg` (3000px, fetched on first zoom).
+    - All of it comes from `node docs/tools/photos.mjs "<his BEST folder>"`:
+      sRGB conversion, no EXIF/GPS, lower-case names. It also rewrites the
+      `PHOTOS` block in the page. Never hand-edit that block or drop files in
+      by hand.
+    - In the grid, landscapes span two columns.
+    - The viewer:
+      - shows the thumb instantly, fades the full photo over it, and prefetches
+        the neighbours;
+      - zooms with wheel or pinch at the pointer, pans by drag, and flips
+        fit ↔ 250% on a double-click or double-tap;
+      - drops the tube's scanlines so the work shows clean.
+    - Esc goes up one level at a time.
+  - **Tests:** `tests/check.mjs` covers every photo file (case, EXIF, budgets,
+    live copy current). `tests/load.mjs` runs real Chrome throttled to 4G and
+    slow 4G over every grid and photo, plus zoom/drag, fullscreen and phone.
 - Full keyboard nav, like a game: arrows to move, Enter to select, Esc to back.
+
+## Apply mode + REVERT MAIN (2026-10-30)
+
+For a Vogue application he asked for the intro to go **straight to PROJECTS**,
+without deleting the menu site. `const APPLY=true` (just above `toMenu()`)
+routes the handoff to `landOnProjects()`. In apply mode the menu, BACK and
+back-navigation are off. Set it to `false` and the full site is back as built.
+
+**"REVERT MAIN"** — his words: "When i Say "REVERT MAIN" i want you to reset
+the website to it's current stage so i can continue my work in the future".
+Restore `site/` from `.local/revert-main/` or local tag
+`revert-main-2026-10-30`. Diff first if `site/` changed after 10-30.
 
 ## Technical state
 
@@ -839,8 +939,8 @@ completed. **Visibility must be driven entirely by animation classes**
   biggest fidelity win available. See `docs/site/reference/06-logo-still.jpeg` for target.
 - **Content.** ABOUT / SKILLS are drafted from real details. CONTACT is a
   placeholder marked `[Replace me]` — needs his real links, email, and
-  handles. PROJECTS' content moves onto the computer's OS (Flux Magazine
-  1/2/3, Outstation, BTN) — needs the real material for each folder.
+  handles. PROJECTS: FLUX 1/2/3 and OUTSTATION hold his photos (Oct 30); BTN
+  still needs material.
 - **Project media.** No thumbnails or video embeds yet. Projects section will
   need a treatment that survives this aesthetic (shard-framed thumbnails,
   hover-scrub previews).

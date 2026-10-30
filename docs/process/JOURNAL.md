@@ -191,3 +191,153 @@ deploy.
 
 <!-- New chapters go below. Each: ## N · Title (date) · stills link · his
      notes in his words · what was built · what was cut and why. -->
+
+## 11 · The chained intro goes 3D, then floats (2026-10-26)
+
+Before: [stills/2026-10-26-3d-chains-bulge](stills/2026-10-26-3d-chains-bulge/) ·
+After: [stills/2026-10-26-3d-chains-zero-g](stills/2026-10-26-3d-chains-zero-g/)
+
+His notes, in order:
+- "do the same chain break with the website intro, JATIN chained, then the
+  aggressive break unleashes the animation" → ported from the PROJECTS computer.
+- "i want the chains and name logo to be 3d … after the break i don't want the
+  name to disappear, continue with the chaos" → WebGL slab + links; the snap
+  lands on the fan slam's crash frame.
+- "the logo and the side chains connected at all times until the break; the
+  top-left chain isn't in the corner like the others; chain texture the same
+  as the 2d chains" → four mirrored anchors, pixel-stepped chain layer.
+- "i do like logo being chained up, don't remove that. shape like the 2d chain
+  first, then texture on top — dithering instead of halftone, don't touch the
+  colours" → X straps back; flat ring/bar plates; Bayer dither.
+- "the chains on the logo are bulging, it should be closer to the logo model as
+  it is stuck to it" → straps hug the slab (the rejected state is the
+  `3d-chains-bulge` set).
+- "in the start the chains float like zero gravity, then suddenly and quickly
+  tighten up and the break happens — more depth" → slack S-curve paths, a
+  1.4-frame yank, chained phase 18 → 26 frames.
+
+Cut: the neon-outline build (the name vanished into black); tube links and
+smooth toon lighting (read as a different chain).
+
+Round 2 (same day), his notes: "a bit too flowy for my taste … slow during the
+floating part, then from the moment the chains pull the logo it bursts out …
+the pull needs more weight, when it's completely pulled out a small shake to
+add impact." → slack amplitude nearly halved and the drift slowed to a crawl;
+yank down to one frame; a damped thud rings through camera, word and chains
+once taut, before the strain builds to the snap.
+
+Round 3: "that looks good now — make this part (the break and the chaos after it)
+just 2.5 seconds long, since we're giving more time at the start." Snap → hand-off
+was 2.33s; the hold now runs 4 frames longer so it is exactly 2.5s (60 frames).
+Intro total: 88 frames = 3.67s.
+
+Round 4 (what he meant by "this part"): "the burst animation — only 2 seconds
+long max, shorter, so the intro isn't too long since we're giving more time to
+the chain break scene." Burst = snap → hand-off, now 48 frames = 2.0s; the
+hold lost 12 frames (three beats instead of four, the last one landing right
+on the crumple). Intro total 76 frames = 3.17s — the same length as before the
+chained opening grew, so the extra float time costs nothing overall.
+
+Round 5: "still feels long — shorter, a bit quicker; don't touch the chain break
+(its length stays)." The chained opening and the snap are untouched; the burst
+went 48 → 36 frames (1.5s): the hold is 14 frames with two beats (the first
+lands 4 frames after the starburst, the second right before the crumple)
+instead of 26 frames and three. Intro total 64 frames = 2.67s.
+
+Round 6: "ok nvm, let's stick with 2.5 seconds." Back to the round-3 burst: 60
+frames (2.5s) from the snap, hold of 38 frames with beats every 8 from f52,
+intro total 88 frames = 3.67s. The 2.0s and 1.5s cuts (rounds 4–5) were tried
+and dropped.
+
+Round 7: "let's actually keep it at 1.85 secs — the sweet spot." Burst = 44 frames
+(1.83s, kept even so the on-2s cadence holds): hold of 22 frames with three
+beats at 180bpm (the last two frames before the crumple), crumple 6 frames.
+Intro total 72 frames = 3.0s. This is the setting he settled on after 2.5s,
+2.0s and 1.5s were tried.
+
+Round 8: "i love it now — keep the first 3D floating part floating until the
+user clicks any button to start the animation, with a click-any-button text
+underneath the logo with a subtle blink like video games." → the intro waits
+at the yank (float keeps drifting on its own clock) with a blinking PRESS ANY
+BUTTON under the word; any press fires the yank → break → burst. Tooling that
+drives the live intro now has to press a key.
+
+Round 9: "why is there extra chain spiking up like that around the logo? fix
+anything like it. and change the text font to something like [a pixel face]."
+→ the strap loops' tilted ends stuck out past the letters as horns; flattened
+the X (±.2 rad, shorter) so they stay inside the silhouette, and the slack
+anchors now leave the word gently instead of kinking. Prompt is VT323 and
+reads CLICK ANY BUTTON (his words).
+
+Round 10: "text a bit smaller, and the blinking subtler." → ~60% of the size;
+blink now 1 ↔ .5 opacity on a 1.5s step instead of full on/off.
+
+Round 11: "the halftone on the chains in the website looks too much like overlay
+rather than a texture, and it's a bit too big." → ChainFX dots halved in pitch,
+clipped to each link's face (off the ink rule and the red/cyan fringe) and made
+tonal — they swell with the gradient's shade and fade out in the highlight.
+
+## Chapter 12 — ABOUT becomes a poster ("Have you seen this DIRECTOR?")
+
+His words: "I want the about page to be designed like this but obviously
+keeping my design language. I want you to particularly observe the text
+placement, how it is scaled and the perspective changes. And replace my image
+with the one I uploaded."
+
+Built: two kinked wedge banners (pink top, purple bottom) holding a headline
+that grows 1× → 1.8× → 2.6× and leans into perspective; a punchline that does
+the same at the bottom ("IT DOESN'T SHIP." — his own line turned into the
+poster's gag); the new night photo cut with Vision and graded to the site's B&W
+print look, rimmed in cyan; bubble, sparkles and chains behind. Cut: the P5
+KREFTON collage with the name slab (stills kept in `about-p5-kreften`).
+Audit fixes: sparkle moved off the bubble copy on short screens; phone BACK was
+sitting on the punchline; the 4px glitch split doubled small type.
+Stills: `about-poster-v1`, `about-poster-short`, `about-poster-laptop`.
+
+Round 2 (his notes): the photo felt small against the big bars, the black gap
+above the top banner bothered him, and BACK sat on the purple bar. "For now
+just remove all the text from top and bottom so we can figure out the
+alignment." → text out, bars flush and thinner, portrait ~14% bigger, BACK
+moved to the top-left. Stills: `about-notext`.
+
+Round 3 (his notes, with a red/black marked-up screenshot): top bar covers to
+the top edge, photo sits ABOVE the top bar and BELOW the bottom one at the scale
+of the poster crop, bars were "leaving a lot of empty space", and he sketched
+the big punchline in the bottom right. → text back at fill size, bars reshaped
+to his lines, portrait re-layered and rescaled. Stills: `about-layout`.
+
+Round 4 (his notes): the crop "looks very unnatural", and the outline "looks
+like a sketch pen — make it fade outwards using cyan and hot pink." → new
+matte (colour-keyed hair on a 2x upscale, decontaminated edge) and a neon halo
+instead of the stamped outline. Stills: `about-glow`; the old look is in
+`about-before-glow`.
+
+Round 5 (his notes, green lines on a screenshot): chains should replace the
+pink and purple bars' edges, straight, scrolling forever. → two canvases, one
+per banner, path read from the banner's own edge. Stills: `about-edge-chains`.
+
+
+## Chapter 13 — The work goes on the computer (2026-10-30)
+
+A Vogue position opened. His plan: "keep the intro video and rather than opening
+menu screen … go directly to projects menu, to show my work immediately." →
+apply mode (`APPLY=true`): the intro's last slam cuts to PROJECTS, and the menu
+and BACK step aside. Nothing deleted; "REVERT MAIN" brings the full site back.
+Stills: `apply-mode-2`.
+
+Round 1 (his screen recording): "when return from the folder there is a weird
+animation." The folder pulled back, held open, then blinked out and slid in
+again: the browse slide-in was replaying under the pull-back. → cleared.
+
+Round 2: his BEST folder (Mag 1/2/3, Outstation) into the OS, plus tests that it
+holds up when hosted. → `docs/tools/photos.mjs` (sRGB, three sizes, no camera
+or GPS data; 200MB of sources → 39MB). The OS goes FLUX → magazine covers →
+photo grid → viewer, and OUTSTATION opens straight to its grid. The photos show
+clean in the viewer: the tube's scanlines step aside for the work.
+
+Round 3: "make the computer screen fullscreen when it comes close so that it's
+easier for people to view my work … zoom into the photos and drag and stuff to
+have some freedom." → the tube powers on on the glass, then grows off it to
+fill the page; EXIT shrinks it back first. The viewer zooms where you point
+(scroll, pinch, double-click) and drags, loading a 3000px frame on first zoom.
+Stills: `os-gallery`.

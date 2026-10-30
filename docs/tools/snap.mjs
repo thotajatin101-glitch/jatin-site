@@ -33,24 +33,25 @@ import { spawn, spawnSync, execFileSync } from 'node:child_process';
 
 const REPO = path.resolve(import.meta.dirname, '..', '..');
 const STILLS = path.join(REPO, 'docs', 'process', 'stills');
-const DESK = { w: 1440, h: 900, dpr: 1 };
+const DESK = { w: +process.env.SNAP_W || 1440, h: +process.env.SNAP_H || 900, dpr: +process.env.SNAP_DPR || 1 };   /* SNAP_W/SNAP_H: the short-wide and small-laptop audits */
 const PHONE = { w: 375, h: 812, dpr: 2, mobile: true };
 
 /* the intro's key beats, in its own frame numbers (CLAUDE.md timing table) */
 const INTRO = [
   [5, 'chained: JATIN and the chains fly in out of depth'],
-  [8, 'tug: the sway kicks the other way'],
-  [17, 'strain: squeeze, tremble, slices'],
-  [20, 'SNAP: the white flash frame'],
-  [21, 'the links flung at the lens, shockwave'],
-  [23, 'the fan slam crashes in around the name'],
-  [28, 'fan slam: bolt wedge, swoosh, speed streaks'],
-  [34, 'starburst whiteout'],
-  [38, 'hold: logo slammed centre over the crumpled star'],
-  [44, 'beat: scale punch, split spike, ASCII band'],
-  [72, 'crumple-out: pixel-block datamosh'],
+  [14, 'zero-g: the chains float slack, the word drifts'],
+  [22, 'the yank: the slack snaps taut'],
+  [26, 'strain: squeeze, tremble, slices'],
+  [28, 'SNAP: the white flash frame'],
+  [29, 'the links flung at the lens, shockwave'],
+  [31, 'the fan slam crashes in around the name'],
+  [36, 'fan slam: bolt wedge, swoosh, speed streaks'],
+  [42, 'starburst whiteout'],
+  [44, 'hold: logo slammed centre over the crumpled star'],
+  [48, 'beat: scale punch, split spike, ASCII band'],
+  [68, 'crumple-out: pixel-block datamosh'],
 ];
-const INTRO_LAST = 76;   /* END frame — the menu transition takes over here */
+const INTRO_LAST = 72;   /* END frame — the menu transition takes over here */
 const TRANSITION = [
   [90, 'trace: neon outlines whip in'],
   [200, 'flash: the white impact frame'],
@@ -62,7 +63,14 @@ const PROJECTS_HOLDS = [
   [1060, 'the snap'],
   [1300, 'the break: links fly at the lens'],
 ];
-const SETTLE = { about: 2600, projects: 3400 };   /* ms after the swap; others 2000 */
+const SKILLS_HOLDS = [
+  [360, 'chained up, turning edge-on (slab thickness)'],
+  [500, 'chained up, mid-spin (the back is showing)'],
+  [1030, 'strain, then the snap: flash and shockwave'],
+  [1120, 'the break: links fly at the lens'],
+  [1400, 'debris clearing, card jolting'],
+];
+const SETTLE = { about: 2600, projects: 3400, skills: 3000 };   /* ms after the swap; others 2000 */
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, Math.max(0, ms)));
 const pad = (n) => String(n).padStart(2, '0');
@@ -252,8 +260,8 @@ function record(list, entry) {
   i < 0 ? list.push(entry) : (list[i] = entry);
 }
 async function still(name, caption) {
-  await p.capture(path.join(out, name + '.jpg'));
-  record(manifest.shots, { file: name + '.jpg', caption });
+  await p.capture(path.join(out, name + (process.env.SNAP_PNG ? '.png' : '.jpg')));
+  record(manifest.shots, { file: name + (process.env.SNAP_PNG ? '.png' : '.jpg'), caption });
   log(`  ${name}`);
 }
 
@@ -265,17 +273,26 @@ async function introFrame(n) {
 }
 async function toMenu() {
   await p.go(`?_=${Date.now()}`);
+  /* the intro now waits at PRESS ANY BUTTON — press one */
+  await p.until(`!!document.getElementById('pressAny')`, 15000);
+  await p.js(`dispatchEvent(new KeyboardEvent('keydown',{key:'x'}))`);
   await p.until('typeof menuReady!=="undefined"&&menuReady', 30000);
   await sleep(900);
 }
+/* apply mode (APPLY=true) lands on PROJECTS with no menu: it is already open,
+   and there's no going back */
+const applied = () => p.js(`document.body.classList.contains('apply')`);
 async function openSec(i, name) {
+  if (await applied()) { await sleep(SETTLE[name] || 2000); return; }
   await p.js(`select(${i})`);
   await sleep(300);
   await p.js(`openSection('sec-${name}')`);
   await p.until('!!currentScreen&&!busy');
   await sleep(SETTLE[name] || 2000);
+  await p.until("typeof TransFX==='undefined'||!TransFX.active()");   /* a loaded machine runs the transition late */
 }
 async function backOut() {
+  if (await applied()) return;
   await p.js(`typeof goBack==='function'?goBack():backToMenu()`);
   await p.until('!currentScreen&&menuReady', 15000);
   await sleep(500);
@@ -349,7 +366,18 @@ try {
     if (!want(name) && !(extras && args.film.includes('projects'))) continue;
     log(name);
     await openSec(i, name);
+    if (process.env.SNAP_PRE && name === 'skills') { await p.js(process.env.SNAP_PRE); await sleep(500); }   /* diagnosis hook: JS run on the open section before its first still */
     if (want(name)) await still(`${pad(i + 1)}-${name}`, `${name.toUpperCase()}, settled after entry`);
+    if (name === 'skills' && want(name) && has('SkillFX')) {
+      for (const [ms, c] of SKILLS_HOLDS) {
+        await p.js(`SkillFX.hold(${ms})`); await sleep(300);
+        await still(`${pad(i + 1)}-skills-${ms}ms`, `SKILLS card entrance at ${ms}ms: ${c}`);
+      }
+      await p.js('SkillFX.hold(null)'); await sleep(1200);
+      await p.js(`document.querySelector('.skCard').click()`); await sleep(1100);
+      await still(`${pad(i + 1)}-skills-back`, 'SKILLS card flipped to its back');
+      await p.js(`document.querySelector('.skCard').click()`); await sleep(900);
+    }
     if (extras && want(name)) {
       for (const [ms, c] of PROJECTS_HOLDS) {
         await p.js(`MonitorFX.hold(${ms})`); await sleep(300);
@@ -360,6 +388,18 @@ try {
       await still(`${pad(i + 1)}-projects-os`, 'PROJECTS, clicked: the dolly lands in JATIN OS (folder stage)');
       await p.key('Enter'); await sleep(1800);
       await still(`${pad(i + 1)}-projects-os-folder`, 'JATIN OS, first folder opened');
+      if (await p.js(`!!document.querySelector('.osGrid .osTile.mag img')`)) {   /* his photos: grid, viewer, zoom */
+        await p.js(`document.querySelectorAll('.osGrid .osTile.mag')[1].click()`); await sleep(1800);
+        await still(`${pad(i + 1)}-projects-os-grid`, 'JATIN OS, a magazine opened: the photo grid');
+        await p.js(`document.querySelectorAll('.osGrid .osPhoto')[3].click()`); await sleep(1600);
+        await still(`${pad(i + 1)}-projects-os-viewer`, 'JATIN OS viewer: one photo, clean (no scanlines)');
+        await p.js(`(()=>{const r=document.querySelector('.osShot').getBoundingClientRect();
+          document.querySelector('.osShot').dispatchEvent(new WheelEvent('wheel',{deltaY:-600,clientX:r.left+r.width/2,clientY:r.top+r.height*.3,bubbles:true,cancelable:true}));})()`);
+        await sleep(2000);
+        await still(`${pad(i + 1)}-projects-os-zoom`, 'JATIN OS viewer zoomed in (3000px frame)');
+        await p.key('Escape'); await sleep(500);
+        await p.key('Escape'); await sleep(800);
+      }
       await p.key('Escape'); await sleep(800);
       await p.key('Escape'); await sleep(1600);
     }
