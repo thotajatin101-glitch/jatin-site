@@ -102,3 +102,10 @@ does this). And the Safari sizing trap again: a sized poster box drew at a
 third of its column — tiles are built like the photo tiles, the row sets the
 size and the poster is pinned to the tile's edges.
 Stills: `2026-10-31-os-edits`.
+
+## Round 8 — no EXIT (2026-10-31)
+**His note:** "could u actually remove exit altogether and let back button exit
+the monitor screen thats better and simple."
+**Built:** [X] EXIT is gone from the header. BACK is never dimmed now: photo →
+grid → folders → out of the computer, one level per press (Esc does the same).
+Stills: `2026-10-31-os-no-exit`.

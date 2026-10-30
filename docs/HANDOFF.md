@@ -6,6 +6,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 
 
+
+## 2026-10-31 (late) — EXIT removed, BACK leaves the computer. NOT deployed
+- Did: header [X] EXIT gone (colour squares stay); BACK is live on the folder stage and calls close(); hints say BACK leaves. Walk now BACKs out twice instead of clicking EXIT. 6 configs pass.
+- Next: "deploy".
+
 ## 2026-10-31 (later) — EDITS: his videos in the OS. NOT deployed
 - Did: `docs/tools/videos.mjs` (8 edits → site/work/flux-edits, outstation-edits; VIDEOS block), FLUX › EDITS + OUTSTATION › EDITS, poster grid + video player in the viewer. Shared range-aware `tests/serve.mjs` for check/load/browsers + .claude/serve.js. check.mjs checks edits (faststart, ≤95MB, posters, 206 on Range); site budget 100→500MB. Browser walk plays the first edit: 14/14 pass.
 - Next: he says "deploy" → push (adds ~233MB; GitHub Pages limit 1GB site / 100MB file).

@@ -123,7 +123,7 @@ button{cursor:pointer;}
   display:flex;flex-direction:column;}
 .pcOS[hidden]{display:none;}
 /* fullscreen (his ask: easier to look at the work): once the tube is on, the
-   screen grows off the glass to fill the page; EXIT shrinks it back first */
+   screen grows off the glass to fill the page; leaving (BACK from the folders) shrinks it back first */
 .pcOS.full{left:0!important;top:0!important;width:100%!important;height:100%!important;border-radius:0;
   font-size:max(11px,min(2.4vh,1.92vw))!important;}
 .pcOS button{font:inherit;color:inherit;}
@@ -141,20 +141,17 @@ button{cursor:pointer;}
 .pcOS.on::before{animation:osFlash .26s ease-out both;}
 .pcOS.off::before{animation:osFlash .18s ease-in reverse both;}
 @keyframes osFlash{0%{opacity:.9;}50%{opacity:.55;}100%{opacity:0;}}
-/* while the OS is up it owns the page: BACK steps aside for its EXIT */
+/* while the OS is up it owns the page: the section BACK steps aside for the OS's own BACK */
 #sec-projects.osOpen .backBtn{display:none;}
 #sec-projects.osOpen{overflow:hidden;}
 /* ---- the chrome he kept ---- */
 .osTop{display:flex;justify-content:space-between;padding:.1em .9em;font-size:.95em;
   background:var(--os-acc);color:var(--os-ink);text-shadow:none;border-bottom:2px solid var(--os-ink);}
-.osHead{display:flex;flex-direction:row-reverse;align-items:center;justify-content:space-between;   /* EXIT left, wordmark right (his call) */
+.osHead{display:flex;flex-direction:row-reverse;align-items:center;justify-content:space-between;   /* colour squares left, wordmark right (his call). No EXIT: BACK leaves from the folders (his call, Oct 31) */
   padding:.35em .9em;background:var(--os-ink);}
 .osTitle{font-family:var(--font-menu);font-weight:400;font-size:2.3em;letter-spacing:var(--track);line-height:1;color:var(--os-paper);}
 .osTitle em{font-style:normal;color:var(--os-acc);}
 .osBtns{display:flex;flex-direction:row-reverse;gap:.45em;align-items:center;}
-.pcOS .osExit{all:unset;cursor:pointer;background:var(--os-acc);color:var(--os-ink);text-shadow:none;padding:.1em .6em;font-size:1.15em;}
-.pcOS .osExit{background:var(--os-paper);margin-right:.6em;}
-.pcOS .osExit:hover,.pcOS .osExit:focus-visible{background:var(--acid);}
 .osBtns i{width:1.4em;height:1.4em;background:var(--os-acc);display:block;}
 .osBtns i+i{background:var(--acid);}
 .osNav{display:flex;align-items:center;gap:.55em;padding:.25em .9em;background:var(--os-grey);color:var(--os-ink);
@@ -3186,7 +3183,7 @@ void main(){
       return `<i class="bgF z${z}" style="left:${x}%;top:${y}%;--r:${(i*29%40)-20}deg;background-image:url(${dither(f.ramp,z===0?16:z===1?24:32,z===0?12:z===1?18:24,z===0?3:2,0)})"></i>`;}).join('');
     os.innerHTML=`<div class="osTop"><span>LAST UPDATED: ${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}</span><span class="osClock"></span></div>
       <header class="osHead"><b class="osTitle">JATIN<em>SPACE</em></b>
-        <span class="osBtns"><i></i><i></i><button class="osExit" aria-label="Exit JATIN OS">[X] EXIT</button></span></header>
+        <span class="osBtns"><i></i><i></i></span></header>
       <nav class="osNav">${FOLDERS.map((f,i)=>`<a href="#" data-go="${i}"><u>${f.name[0]}</u>${f.name.slice(1)}</a>`).join('<span>|</span>')}
         <span class="osPath"></span>
         <label class="osSearch"><input type="text" placeholder="search the noise..." aria-label="Search folders" spellcheck="false"><span aria-hidden="true">⌕</span></label></nav>
@@ -3250,10 +3247,9 @@ void main(){
       else if(zs<=1&&view==='viewer'&&dy>80&&dy>Math.abs(dx)*1.5)closeView();};
     shotEl.addEventListener('pointerup',lift);shotEl.addEventListener('pointercancel',lift);
     os.querySelector('.osFolder').addEventListener('click',openFolder);
-    os.querySelector('.osExit').addEventListener('click',close);
     os.querySelector('.osTabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b)setTab(+b.dataset.tab);});
     os.querySelector('.osPath').addEventListener('click',e=>{const b=e.target.closest('[data-up]');if(b)climb(b.dataset.up);});
-    os.querySelector('.osBack').addEventListener('click',()=>{if(view==='viewer')closeView();else if(view==='grid')up();});
+    os.querySelector('.osBack').addEventListener('click',()=>{if(view==='viewer')closeView();else if(view==='grid')up();else if(view==='stage')close();});   /* from the folders BACK leaves the computer */
     os.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();
       if(view==='viewer')closeView();
       if(view==='grid')back(()=>goTo(+a.dataset.go,true));else goTo(+a.dataset.go,true);}));
@@ -3272,11 +3268,11 @@ void main(){
       if(view==='stage'&&Math.abs(dx)>50)swap(dx<0?1:-1);});
     paintHero(0);
   }
-  function setHow(){const k=os.querySelector('.osBack');k.disabled=view==='stage'||view==='busy';k.parentNode.classList.toggle('off',k.disabled);setPath();
+  function setHow(){const k=os.querySelector('.osBack');k.disabled=view==='busy';k.parentNode.classList.toggle('off',k.disabled);setPath();
     const T=TOUCH.matches,tabs=FOLDERS[cur].tabs.length>1,none=view==='grid'&&!shots().length,
       ed=view==='grid'&&(shots()[0]||{}).vid,thing=ed?'an edit':'a photo',verb=ed?'play it':'view it';
     os.querySelector('.osHow').textContent=view==='stage'
-    ?(T?'swipe or ◀ ▶ to browse · tap the folder to open · EXIT leaves':'◀ ▶ browse · return or click to open · esc exits')
+    ?(T?'swipe or ◀ ▶ to browse · tap the folder to open · BACK leaves':'◀ ▶ browse · return or click to open · esc or BACK leaves')
     :isVid()?(T?'tap the picture for controls · ◀ ▶ next edit · BACK closes':'space plays / pauses · ◀ ▶ next edit · esc back')
     :view==='viewer'?(T?'swipe for next · pinch to zoom · double-tap to fit · swipe down to close'
       :'◀ ▶ next · scroll to zoom · drag to move · double-click to fit · esc back')

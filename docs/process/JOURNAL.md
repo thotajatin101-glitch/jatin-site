@@ -397,3 +397,9 @@ with sound. Encoded down to 1080 for the web (233MB for all eight). Caught in
 testing: Safari drew the posters at a third of their width, and wouldn't play
 video from the local test server (needs byte ranges) — both fixed.
 Stills: `stills/2026-10-31-os-edits/`.
+
+## 2026-10-31 — one way out
+His note: "remove exit altogether and let back button exit the monitor screen
+thats better and simple." EXIT cut from the OS header; BACK walks up one level
+at a time and, from the folders, leaves the computer.
+Stills: `stills/2026-10-31-os-no-exit/`.

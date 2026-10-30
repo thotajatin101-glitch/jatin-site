@@ -12,7 +12,7 @@
 //          Firefox  = Firefox desktop.
 // Each config walks it like a visitor — taps on touch devices, clicks and
 // keys on desktop: intro → PROJECTS → the computer → FLUX photos + tabs → every photo
-// grid → the viewer (+ zoom) → EXIT. Fails on collapsed tiles (the Safari
+// grid → the viewer (+ zoom) → BACK out. Fails on collapsed tiles (the Safari
 // "dots"), broken images, sideways overflow, console errors, failed requests.
 // Screenshots land in docs/process/stills/<date>-browsers/.
 
@@ -118,9 +118,10 @@ async function walk(name, engine, opts, base) {
     await page.waitForSelector('.osGrid.photos .osPhoto', { timeout: 8000 }); await sleep(700);
     r.grids.push(await checkGrid(page, 'outstation', fail));
     if (await overflow() > 0) fail(`OS overflows sideways by ${await overflow()}px`);
-    // EXIT
-    await tapOrClick('.osExit');
-    await page.waitForFunction(() => !MonitorFX.isOpen(), null, { timeout: 6000 }).catch(() => fail('EXIT did not close the OS'));
+    // BACK up to the folders, then BACK again leaves the computer (there is no EXIT)
+    await tapOrClick('.osBack'); await page.waitForFunction(() => !document.querySelector('.osStage').classList.contains('inside'), null, { timeout: 4000 }); await sleep(500);
+    await tapOrClick('.osBack');
+    await page.waitForFunction(() => !MonitorFX.isOpen(), null, { timeout: 6000 }).catch(() => fail('BACK from the folders did not close the OS'));
   } catch (e) {
     fail(e.message.split('\n')[0]);
     await shot('error');
