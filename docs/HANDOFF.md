@@ -4,6 +4,13 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-10-30 (latest) — JATIN OS: touch-aware hints + easier navigation. NOT deployed
+- **His ask:** hints only make sense on a laptop; change them per device; make getting around the folders and computer easier.
+- **Did (`site/index.html`, MonitorFX):** `TOUCH = matchMedia('(hover:none) and (pointer:coarse)')` (live; re-hints on change). `setHow()` has touch + key wording per level; the click-screen canvas hint too. `setPath()` now builds `.osPath` as clickable crumbs (`climb('top'|'folder')`) and labels BACK with its destination (◀ FOLDERS / ◀ FLUX / ◀ MAGAZINE 01). Swipe down (>80px, mostly vertical, at fit) closes the viewer. Phone grid top padding 4.2em so BACK clears the first tile.
+- **Checked:** walk on Chromium 1440 + WebKit iPhone 17 Pro (labels, hints, crumbs, swipe-down, EXIT); `tests/check.mjs`; `tests/browsers` 14/14. Stills `2026-10-30-os-touch-nav`.
+- **Next:** deploy on his word (pushing main = deploy). Unpushed: 1e429a6 (hand-off) + this.
+- **Watch out:** a laptop with a touchscreen reports a fine pointer, so it gets the key wording — intended.
+
 ## 2026-10-30 (latest) — DEPLOYED c96fe32 (his word: "deploy")
 - **Live:** https://thotajatin101-glitch.github.io/jatin-site/ — Pages run 41093113739, success. Carries BACK/EXIT (9753923) and clean photos (c96fe32).
 - **Rollback:** previous live is 4bef897 (run 41090788308): `git revert c96fe32 9753923 && git push`, or re-run 41090788308 in Actions.

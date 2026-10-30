@@ -162,8 +162,11 @@ button{cursor:pointer;}
 .osNav a{color:inherit;text-decoration:none;cursor:pointer;padding:0 .2em;}
 .osNav a.on{background:var(--os-ink);color:var(--os-paper);}
 .osNav a:hover,.osNav a:focus-visible{background:var(--os-ink);color:var(--os-paper);}
-.osPath{margin-left:1.4em;opacity:.75;}
+.osPath{margin-left:1.4em;}
 .osPath b{font-weight:400;}
+/* the path is a way back: every level above the current one is a link */
+.pcOS .osPath button{all:unset;cursor:pointer;opacity:.75;text-decoration:underline;text-underline-offset:.15em;}
+.pcOS .osPath button:hover,.pcOS .osPath button:focus-visible{opacity:1;background:var(--os-ink);color:var(--os-paper);text-decoration:none;}
 .osSearch{margin-left:auto;display:flex;align-items:center;background:var(--os-paper);border:2px solid var(--os-ink);}
 .osSearch input{all:unset;width:9em;padding:0 .4em;font-size:.85em;color:var(--os-ink);}
 .osSearch input::placeholder{color:#6d685f;}
@@ -326,7 +329,7 @@ button{cursor:pointer;}
   .osGrid.mags .osTile.mag i b{font-size:3.2em;}
   .osSearch input{width:6em;}
   .osArrow{font-size:1.7em;}.osArrow.l{left:.3em;}.osArrow.r{right:.3em;}
-  .osGridV{padding:3.4em 1.2em 1.4em;}
+  .osGridV{padding:4.2em 1.2em 1.4em;}
   .pcOS .osBack{left:.5em;top:.6em;}
 }
 #shardbg svg{
@@ -2628,6 +2631,7 @@ void main(){
   const st={yaw:.5,pitch:.06,lift:0},par={x:0,y:0},parT={x:0,y:0};
   const REST_YAW=.5,REST_PITCH=.06;   /* three-quarter view onto the LEFT side, like the reference */
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const TOUCH=matchMedia('(hover:none) and (pointer:coarse)');   /* phones + tablets: hints say tap/swipe, not keys */
   /* ---- state: enter → idle (screen intro, then CLICK ME!!) → zoomIn → os → zoomOut → idle */
   let mode='idle',zt0=0,scrKey='',os=null,sel=0,lastHover=0;
   const ZOOM_MS=620;
@@ -2718,7 +2722,7 @@ void main(){
     sx.fillStyle='#9b968c';sx.fillRect(0,140,SW,40);sx.fillStyle=INK;sx.fillRect(0,180,SW,4);
     sx.font=VT(28);sx.fillText('FLUX  |  OUTSTATION',56,161);
     sx.fillStyle='#bdb9ad';sx.fillRect(0,662,SW,40);sx.fillStyle=INK;sx.fillRect(0,658,SW,4);
-    sx.textAlign='center';sx.font=VT(24);sx.fillText('[ HOW TO USE ]  click the computer · or press return',CX,683);
+    sx.textAlign='center';sx.font=VT(24);sx.fillText(TOUCH.matches?'[ HOW TO USE ]  tap the computer to switch it on':'[ HOW TO USE ]  click the computer · or press return',CX,683);
     /* the stage between: dark, with the dot grid */
     sx.fillStyle='#0b0c10';sx.fillRect(0,184,SW,474);
     sx.fillStyle='rgba(239,233,220,.07)';for(let y=190;y<656;y+=12)for(let x=6;x<SW;x+=12)sx.fillRect(x,y,2,2);
@@ -3124,7 +3128,7 @@ void main(){
       <header class="osHead"><b class="osTitle">JATIN<em>SPACE</em></b>
         <span class="osBtns"><i></i><i></i><button class="osExit" aria-label="Exit JATIN OS">[X] EXIT</button></span></header>
       <nav class="osNav">${FOLDERS.map((f,i)=>`<a href="#" data-go="${i}"><u>${f.name[0]}</u>${f.name.slice(1)}</a>`).join('<span>|</span>')}
-        <span class="osPath">JATINSPACE / <b>${FOLDERS[0].name}</b></span>
+        <span class="osPath"></span>
         <label class="osSearch"><input type="text" placeholder="search the noise..." aria-label="Search folders" spellcheck="false"><span aria-hidden="true">⌕</span></label></nav>
       <div class="osStage">
         <div class="osBg">${bg}</div>
@@ -3181,10 +3185,12 @@ void main(){
       if(still){const now=performance.now(),[px,py]=rel(e);
         if(now-lastTap<320&&tapAt&&Math.hypot(px-tapAt[0],py-tapAt[1])<30){lastTap=0;zs>1?zoomTo(1,0,0,true):zoomTo(2.5,px,py,true);}
         else{lastTap=now;tapAt=[px,py];}return;}
-      if(zs<=1&&view==='viewer'&&Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))viewPhoto(vi+(dx<0?1:-1),dx<0?1:-1);};
+      if(zs<=1&&view==='viewer'&&Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))viewPhoto(vi+(dx<0?1:-1),dx<0?1:-1);
+      else if(zs<=1&&view==='viewer'&&dy>80&&dy>Math.abs(dx)*1.5)closeView();};
     shotEl.addEventListener('pointerup',lift);shotEl.addEventListener('pointercancel',lift);
     os.querySelector('.osFolder').addEventListener('click',openFolder);
     os.querySelector('.osExit').addEventListener('click',close);
+    os.querySelector('.osPath').addEventListener('click',e=>{const b=e.target.closest('[data-up]');if(b)climb(b.dataset.up);});
     os.querySelector('.osBack').addEventListener('click',()=>{if(view==='viewer')closeView();else if(view==='grid')up();});
     os.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();
       if(view==='viewer')closeView();
@@ -3204,18 +3210,22 @@ void main(){
       if(view==='stage'&&Math.abs(dx)>50)swap(dx<0?1:-1);});
     paintHero(0);
   }
-  function setHow(){os.querySelector('.osBack').disabled=view==='stage'||view==='busy';
+  function setHow(){os.querySelector('.osBack').disabled=view==='stage'||view==='busy';setPath();
+    const T=TOUCH.matches;
     os.querySelector('.osHow').textContent=view==='stage'
-    ?'◀ ▶ browse · return or click to open · esc exits'
-    :view==='viewer'?'◀ ▶ next · scroll or pinch to zoom · drag to move · double-click to fit · esc back'
-    :setOf()?'arrows move · return or click to view · esc goes back':'arrows move · return or click to open · esc goes back';}
+    ?(T?'swipe or ◀ ▶ to browse · tap the folder to open · EXIT leaves':'◀ ▶ browse · return or click to open · esc exits')
+    :view==='viewer'?(T?'swipe for next · pinch to zoom · double-tap to fit · swipe down to close'
+      :'◀ ▶ next · scroll to zoom · drag to move · double-click to fit · esc back')
+    :T?(setOf()?'tap a photo to view it · BACK goes up':'tap a magazine to open it · BACK goes up')
+      :setOf()?'arrows move · return or click to view · esc or BACK goes up':'arrows move · return or click to open · esc or BACK goes up';}
+  if(TOUCH.addEventListener)TOUCH.addEventListener('change',()=>{if(os)setHow();});
   function paintHero(dir){
     const f=FOLDERS[cur],st=os.querySelector('.osStage');
     st.style.setProperty('--fc',f.ramp[1]);st.style.setProperty('--fd',f.ramp[2]);
     os.querySelector('.osFolder').innerHTML=folderHTML(f);
     os.querySelector('.osLabel b').textContent=f.name;os.querySelector('.osLabel span').textContent=f.tag;
     os.querySelector('.osCount').textContent=String(cur+1).padStart(2,'0')+' / '+String(FOLDERS.length).padStart(2,'0');
-    os.querySelector('.osPath b').textContent=f.name;
+    setPath();
     os.querySelectorAll('.osNav [data-go]').forEach((a,i)=>a.classList.toggle('on',i===cur));
     st.style.setProperty('--shift',(-cur*4)+'%');           /* the background folders drift with the browse */
     const h=os.querySelector('.osHero');h.classList.remove('in-l','in-r','out-l','out-r');
@@ -3276,7 +3286,24 @@ void main(){
     setPath();setHow();
   }
   function setName(){const f=FOLDERS[cur],it=gset&&f.items.find(t=>t.set===gset);return it?it.name:f.name;}
-  function setPath(){const n=FOLDERS[cur].name;os.querySelector('.osPath b').textContent=n+(gset?' / '+setName().toUpperCase().replace(n+' ',''):'');}
+  /* where you are, as links back up: JATINSPACE / FLUX / MAGAZINE 01. BACK
+     names the level it goes to, so a phone (no path shown) still knows */
+  function crumbs(){const f=FOLDERS[cur],c=[['JATINSPACE','top']];
+    if(view==='stage'||view==='busy'&&!os.querySelector('.osStage.inside'))c.push([f.name]);
+    else{c.push([f.name,gset?'folder':null]);if(gset)c.push([setName().toUpperCase().replace(f.name+' ','')]);}
+    return c;}
+  function setPath(){
+    const c=crumbs(),el=os.querySelector('.osPath');
+    el.innerHTML=c.map(([n,go])=>go?`<button data-up="${go}">${n}</button>`:`<b>${n}</b>`).join(' / ');
+    const k=os.querySelector('.osBack');
+    k.textContent='◀ '+(view==='viewer'?c[c.length-1][0]:c.length>2?c[1][0]:view==='grid'?'FOLDERS':'BACK');
+  }
+  /* climb straight to a level from the path */
+  function climb(to){
+    if(view==='viewer')closeView();
+    if(view!=='grid')return;
+    if(to==='top')back();else if(to==='folder'&&gset)up();
+  }
   /* one level up inside the folder: photo grid → covers, else surface out */
   function up(){
     if(gset&&FOLDERS[cur].items.length){const k=FOLDERS[cur].items.findIndex(t=>t.set===gset);gset=null;fillGrid(k);}

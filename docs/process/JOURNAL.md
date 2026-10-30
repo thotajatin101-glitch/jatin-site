@@ -356,3 +356,19 @@ well" → the tube's scanlines now drop the moment you're inside a folder
 (covers, photo grid, viewer), not only in the viewer. The folder stage keeps
 them, so the computer still feels like a computer until the work is up.
 Before: `os-back` (grid still lined). After: `os-clean-photos`.
+
+**Phones get their own instructions (same night).** "this commands only work
+for laptop or pc but not for people who open up phones … is it possible for
+the commands to change based on the device … and also make the navigation
+around the files and computer easier" →
+- The HOW TO USE bar speaks the device: touch screens get "swipe or ◀ ▶ to
+  browse · tap the folder to open", "tap a photo to view it · BACK goes up",
+  "swipe for next · pinch to zoom · double-tap to fit · swipe down to close".
+  Laptops keep the keys. The computer's own screen says "tap the computer to
+  switch it on" on a phone.
+- BACK names where it goes: ◀ FOLDERS, ◀ FLUX, ◀ MAGAZINE 01. On a phone the
+  path is hidden, so this is how you know where you are.
+- The path on laptops is now a set of links: click JATINSPACE or FLUX to jump
+  straight up.
+- Swipe down on a photo closes it, the way phones expect.
+Stills: `os-touch-nav`.

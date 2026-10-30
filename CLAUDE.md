@@ -904,6 +904,10 @@ into tweens.
         and the photo grid (`.pcOS.inside`, his ask): no scanlines anywhere
         his photos are; only the folder stage keeps them.
     - Esc goes up one level at a time.
+    - **Hints follow the device** (his ask): `TOUCH` (hover:none + coarse
+      pointer) switches HOW TO USE and the click screen to tap/swipe wording.
+      BACK is labelled with where it goes (◀ FLUX); the desktop path is
+      clickable crumbs; swipe down closes a photo.
     - **BACK** (`.osBack`, top-left of the stage — his marked spot) does the
       same as Esc, one level per press; dimmed on the folder stage. The header's
       **[X] EXIT** leaves the computer from any depth.
