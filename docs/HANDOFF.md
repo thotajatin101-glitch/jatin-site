@@ -4,6 +4,12 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+
+## 2026-10-31 — OS buttons as menu plates. NOT deployed
+- Did: FOLDERS/BACK + PHOTOS/EDITS restyled as menu plates (`.osPlate` wrapper carries drop + fringe; `osBurst`; `.osBack`/`.osTab` added to DitherFX SEL; its registry is a WeakMap now since tabs are rebuilt per folder). Grid top padding up. Browser walk reads tab names without the numbers. 6 configs pass.
+- Next: he says "deploy" → ship 2d2725f, 4bef897, d8557f7 and this.
+- Watch out: clip-path clips a button's own filter — keep the drop on the wrapper.
+
 ## 2026-10-31 — FLUX opens straight onto photos, PHOTOS / EDITS tabs. NOT deployed
 - **His ask** (screenshot, two boxes beside BACK): inside FLUX drop the magazine folders, show the photos directly, tabs on top: PHOTOS and EDITS. He'll upload the edits later.
 - **Did:** `FOLDERS[].tabs` replaces `items`/`set`/`cover`. `shots()` flattens a tab's sets; grid + viewer + zoom work on that list. `.osTabs` sits beside BACK (centred desktop, right on phones), hidden with 1 tab or while a photo is up. Crumbs JATINSPACE / FLUX / PHOTOS; viewer BACK = ◀ PHOTOS. Cover CSS/code removed. Hints mention tabs; empty tab points back to PHOTOS. Keys 1/2.

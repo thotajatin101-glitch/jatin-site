@@ -380,3 +380,10 @@ photo and other being edits." → FLUX opens onto all 40 photos in one grid
 one filled pink, the other outlined. EDITS shows [ EMPTY ] until his edits
 arrive. The magazine covers are cut; before: `os-covers-before-tabs`,
 after: `flux-tabs`.
+
+## 2026-10-31 — OS buttons become menu plates
+His note: "i dont like these button design could u make something with our menu
+button design something similar." The outlined boxes (FOLDERS, PHOTOS, EDITS)
+were swapped for the menu's slanted black plates: Cyberway, glitch split,
+numbered, dithered, flooding the folder colour on select with the menu's
+chroma burst. Stills: `stills/2026-10-31-os-plates/`.

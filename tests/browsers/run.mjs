@@ -108,7 +108,7 @@ async function walk(name, engine, opts, base) {
     r.grids = [await checkGrid(page, 'flux photos', fail)];
     await shot('2-flux');
     // EDITS tab, then back to PHOTOS
-    const tabs = await page.$$eval('.osTab', (t) => t.map((b) => b.textContent.trim().split(/\s+/)[0]));
+    const tabs = await page.$$eval('.osTab', (t) => t.map((b) => b.textContent.replace(/\d+/g, '').trim()));
     if (tabs.join() !== 'PHOTOS,EDITS') fail(`FLUX tabs are ${tabs.join() || 'missing'}`);
     else {
       await tapOrClick('.osTab[data-tab="1"]'); await sleep(500);

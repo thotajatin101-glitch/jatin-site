@@ -65,3 +65,15 @@ or RGB split, which had been smearing the VT323 strokes.
 outstation." → BTN `off:true` (one flag to bring it back), FLUX pink ramp,
 OUTSTATION cyan; the background folder scatter and the CRT intro's nav row
 follow.
+
+## Round 6 — BACK and the tabs as menu plates (2026-10-31)
+**His note:** "i dont like these button design could u make something with our
+menu button design something similar."
+**Built:** FOLDERS/BACK and PHOTOS / EDITS are now the menu's plates:
+near-black, cut on the menu slant, Cyberway with the glitch split, mono accent
+numbers (01 / 02, photo count), the moving dither inside. BACK bleeds off the
+left edge, the tabs off the right. The selected tab floods the folder colour
+with ink type, scales up 1.09 and fires the menu's chroma burst (`osBurst`).
+On the dark stage each plate carries a hard drop in the folder colour (paper
+when lit) so the black plate reads at all. The grid moved down a little so a
+lit plate never touches the first row. Stills: `2026-10-31-os-plates`.
