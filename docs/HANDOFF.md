@@ -4,6 +4,12 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-10-30 (latest) — DEPLOYED c96fe32 (his word: "deploy")
+- **Live:** https://thotajatin101-glitch.github.io/jatin-site/ — Pages run 41093113739, success. Carries BACK/EXIT (9753923) and clean photos (c96fe32).
+- **Rollback:** previous live is 4bef897 (run 41090788308): `git revert c96fe32 9753923 && git push`, or re-run 41090788308 in Actions.
+- **Checked live:** `tests/check.mjs <live>` passed (live copies match); `tests/browsers` on the live URL passed on desktop 1440, iPhone 17 Pro, iPad Mini.
+- **Watch out:** pushing to `main` IS a deploy (`pages.yml` on push). Earlier tonight 4bef897 went live by a plain "push" request before that was clear to him — he now knows. Treat "push" as "deploy" and confirm. `docs/RELEASE.md` still says no host chosen; it's GitHub Pages now.
+
 ## 2026-10-30 (latest) — JATIN OS: BACK button, EXIT leaves the computer. NOT deployed
 - **His ask** (screenshot with the top-left of the stage boxed): a back button there to go folder to folder; top EXIT exits the computer directly.
 - **Did:** `.osBack` in `.osStage` (top-left, folder colour, z4 so it sits over grid and viewer). One level per press: viewer → grid → covers → stage, same path as Esc (`closeView`/`up`). Disabled (dimmed) on the stage and while a move is in flight; state is set in `setHow()`. Grid top padding grew so tiles clear it. EXIT unchanged in code (`close()` already hides from any depth) and verified from inside the viewer.
