@@ -403,3 +403,22 @@ His note: "remove exit altogether and let back button exit the monitor screen
 thats better and simple." EXIT cut from the OS header; BACK walks up one level
 at a time and, from the folders, leaves the computer.
 Stills: `stills/2026-10-31-os-no-exit/`.
+
+## 2026-10-31 — five strangers try the site
+His ask: act as launch QA. Five first-time visitors, each a different kind of
+person (impatient skimmer, skeptical recruiter, phone on slow 3G, a literal
+non-native reader, someone trying to break it), each going from the intro to
+seeing one of his photos full-size, screenshotting every snag. Then fix, then
+send them all back in.
+- What they all hit: there is no way to contact him (his call: leave it for
+  now) and the browser/phone Back button threw them off the site.
+- Fixed: Back now climbs the computer one level at a time; a click on the
+  computer while it's still chained is kept (Esc takes it back); a LOADING
+  line shows in the 13s of black on slow 3G; the full photo loads before
+  anything else; search says NO MATCH; LAST UPDATED is the real publish date;
+  link previews; touch targets; the help names the BACK plate you can see.
+- Round 2 caught one of our own: a touch pad under the OUTSTATION link let a
+  near-miss land on BACK and close the computer. Replaced with real padding.
+- Left as his decisions: contact/about, credits on the work, "CLICK ANY
+  BUTTON", the BTN sticker, the intro can't be skipped.
+Stills: `stills/2026-10-31-first-user-qa/` (before and after).
