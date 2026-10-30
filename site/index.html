@@ -314,8 +314,8 @@ button{cursor:pointer;}
 .pcOS .osViewX{all:unset;cursor:pointer;background:var(--os-paper);color:var(--os-ink);text-shadow:none;padding:0 .6em;}
 .pcOS .osViewX:hover,.pcOS .osViewX:focus-visible{background:var(--acid);}
 .osStage.inside .osView .osArrow{visibility:visible;z-index:2;}
-/* the work is shown clean: the tube's scanlines step aside while a photo is up */
-.pcOS.viewing::after{background:radial-gradient(ellipse at center,transparent 70%,rgba(0,0,0,.35) 100%);}
+/* the work is shown clean: no scanlines anywhere his photos are (covers, grid, viewer); the folder stage keeps them */
+.pcOS.viewing::after,.pcOS.inside::after{background:radial-gradient(ellipse at center,transparent 70%,rgba(0,0,0,.35) 100%);}
 .pcOS ::-webkit-scrollbar{width:.85em;}
 .pcOS ::-webkit-scrollbar-track{background:var(--os-grey);border-left:2px solid var(--os-ink);}
 .pcOS ::-webkit-scrollbar-thumb{background:#fff;border:2px solid var(--os-ink);}
@@ -3238,7 +3238,7 @@ void main(){
     later(()=>{st.classList.add('diving');},260);           /* camera dives into the folder */
     later(()=>{
       gset=null;fillGrid();
-      os.querySelector('.osGridV').hidden=false;st.classList.add('inside');view='grid';setHow();
+      os.querySelector('.osGridV').hidden=false;st.classList.add('inside');os.classList.add('inside');view='grid';setHow();
     },520);
   }
   /* what's inside: sub-folders as covers, or a photo set as a grid. gset is
@@ -3335,7 +3335,7 @@ void main(){
   function back(then){
     if(view!=='grid')return;view='busy';gset=null;
     const st=os.querySelector('.osStage');
-    os.querySelector('.osGridV').hidden=true;st.classList.remove('inside');
+    os.querySelector('.osGridV').hidden=true;st.classList.remove('inside');os.classList.remove('inside');
     st.classList.add('surfacing');st.classList.remove('diving');
     later(()=>{st.classList.remove('opening','surfacing');view='stage';setPath();setHow();if(then)then();},300);
   }
@@ -3375,7 +3375,7 @@ void main(){
   }
   function hideOS(now){
     if(!os)return;clearInterval(clock);host.classList.remove('osOpen');
-    const reset=()=>{os.hidden=true;os.classList.remove('on','off','full','viewing');
+    const reset=()=>{os.hidden=true;os.classList.remove('on','off','full','viewing','inside');
       os.querySelector('.osView').hidden=true;gset=null;
       const st=os.querySelector('.osStage');st.classList.remove('opening','diving','inside','surfacing');
       os.querySelector('.osGridV').hidden=true;view='stage';setHow();};

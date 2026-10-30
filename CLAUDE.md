@@ -900,7 +900,9 @@ into tweens.
         the neighbours;
       - zooms with wheel or pinch at the pointer, pans by drag, and flips
         fit ↔ 250% on a double-click or double-tap;
-      - drops the tube's scanlines so the work shows clean.
+      - drops the tube's scanlines so the work shows clean. So do the covers
+        and the photo grid (`.pcOS.inside`, his ask): no scanlines anywhere
+        his photos are; only the folder stage keeps them.
     - Esc goes up one level at a time.
     - **BACK** (`.osBack`, top-left of the stage — his marked spot) does the
       same as Esc, one level per press; dimmed on the folder stage. The header's

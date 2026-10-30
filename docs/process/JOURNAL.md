@@ -350,3 +350,9 @@ climbs one level per press (photo → grid → covers → folders), the same as
 Esc. On the folder stage there's nothing above, so it dims out rather than
 vanishing; the spot stays put. The header's `[X] EXIT` leaves the computer
 from any depth, even from inside a photo. Stills: `os-back`.
+
+**Clean photos (same night).** "could u remove the scanlines on the photos as
+well" → the tube's scanlines now drop the moment you're inside a folder
+(covers, photo grid, viewer), not only in the viewer. The folder stage keeps
+them, so the computer still feels like a computer until the work is up.
+Before: `os-back` (grid still lined). After: `os-clean-photos`.
