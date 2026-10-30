@@ -143,6 +143,7 @@ button{cursor:pointer;}
 @keyframes osFlash{0%{opacity:.9;}50%{opacity:.55;}100%{opacity:0;}}
 /* while the OS is up it owns the page: BACK steps aside for its EXIT */
 #sec-projects.osOpen .backBtn{display:none;}
+#sec-projects.osOpen{overflow:hidden;}
 /* ---- the chrome he kept ---- */
 .osTop{display:flex;justify-content:space-between;padding:.1em .9em;font-size:.95em;
   background:var(--os-acc);color:var(--os-ink);text-shadow:none;border-bottom:2px solid var(--os-ink);}
@@ -2261,6 +2262,7 @@ void main(){
       bits=null;return;
     }
     if(!bits){                                                     /* SNAP */
+      if(!wrapPts)buildWrap();                                     /* a stalled tab can skip every wrapped frame */
       brokeAt=now;bits=[];const rr=rng(Math.floor(now));
       wrapPts.forEach(L=>L.forEach((l,i)=>{const p=proj(l.p,yaw,ly),p2=proj(l.p.map((v,k)=>v+l.t[k]*.5),yaw,ly);
         const dx=p[0]-ctrX,dy=p[1]-ctrY,dl=Math.hypot(dx,dy)||1,sp=1700+rr()*2400;
@@ -2941,6 +2943,7 @@ void main(){
       bits=null;return;
     }
     if(!bits){                                                 /* SNAP */
+      if(!wrapPts)buildWrap();                                 /* a stalled tab can skip every wrapped frame */
       brokeAt=now;const ctr=project([0,0,0],q);bits=[];
       const rr=rng(Math.floor(now));
       wrapPts.forEach(L=>L.forEach((l,i)=>{const p=project(l.p,q),p2=project(l.p.map((v,k)=>v+l.t[k]*.02),q);
@@ -3232,10 +3235,20 @@ void main(){
      the photo set open inside a folder of sub-folders (FLUX → Magazine 02) */
   let gset=null,vi=0;
   const setOf=()=>gset||FOLDERS[cur].set;
+  /* focus a tile, scrolling only the grid: a plain focus() also scrolls the section under
+     the fullscreen OS, which slid the whole OS up off the screen on landscape phones */
+  function focusTile(t,reveal){
+    t.focus({preventScroll:true});if(!reveal)return;
+    const v=t.closest('.osGridV');if(!v)return;
+    const r=t.getBoundingClientRect(),vr=v.getBoundingClientRect();
+    if(r.top<vr.top)v.scrollTop+=r.top-vr.top-12;else if(r.bottom>vr.bottom)v.scrollTop+=r.bottom-vr.bottom+12;
+  }
   function fillGrid(focusK){
     const f=FOLDERS[cur],g=os.querySelector('.osGrid'),set=setOf(),P=set&&PHOTOS[set]||[];
     g.style.setProperty('--fc',f.ramp[1]);g.classList.toggle('photos',!!set);
-    g.classList.toggle('mags',!set&&f.items.length>0);g.style.setProperty('--n',Math.max(3,f.items.length));
+    g.classList.toggle('mags',!set&&f.items.length>0);
+    /* covers only: inline --n would beat the photo grid's own column count */
+    if(!set&&f.items.length)g.style.setProperty('--n',Math.max(3,f.items.length));else g.style.removeProperty('--n');
     const empty=`<div class="osEmpty"><b>[ EMPTY ]</b><p>${f.name} — work lands here soon.</p></div>`;
     const sw=k=>`background-image:url(${dither(f.ramp,24,24,1,k%2)})`;
     g.innerHTML=set?(P.map(([w,h],k)=>`<button class="osTile osPhoto${w>h?' wide':''}" style="--k:${Math.min(k,14)}" data-i="${k}">
@@ -3249,7 +3262,7 @@ void main(){
       if(b.dataset.set){gset=b.dataset.set;fillGrid();}else viewPhoto(+b.dataset.i);}));
     os.querySelector('.osGridV').scrollTop=0;
     const t=[...g.querySelectorAll('.osTile')];gsel=Math.min(focusK||0,Math.max(0,t.length-1));
-    if(t[gsel])t[gsel].focus({preventScroll:!focusK});
+    if(t[gsel])focusTile(t[gsel],!!focusK);
     setPath();setHow();
   }
   function setName(){const f=FOLDERS[cur],it=gset&&f.items.find(t=>t.set===gset);return it?it.name:f.name;}
@@ -3307,7 +3320,7 @@ void main(){
   function closeView(){
     if(view!=='viewer')return;
     os.querySelector('.osView').hidden=true;os.classList.remove('viewing');view='grid';
-    const t=os.querySelectorAll('.osTile')[vi];gsel=vi;if(t)t.focus();setHow();
+    const t=os.querySelectorAll('.osTile')[vi];gsel=vi;if(t)focusTile(t,true);setHow();
   }
   function back(then){
     if(view!=='grid')return;view='busy';gset=null;
@@ -3337,6 +3350,7 @@ void main(){
     if(!os)buildOS();
     placeOS();
     os.classList.remove('off');os.classList.add('on');os.hidden=false;host.classList.add('osOpen');
+    host.scrollTop=0;if(!host.__pin){host.__pin=1;host.addEventListener('scroll',()=>{if(host.classList.contains('osOpen')&&host.scrollTop)host.scrollTop=0;});}   /* nothing scrolls the page under the OS */
     tick();clearInterval(clock);clock=setInterval(tick,10000);
     later(()=>{if(mode==='os'&&!os.hidden)full(true);},300);    /* the tube is lit: now it fills the page */
   }
@@ -3388,7 +3402,7 @@ void main(){
       }else if(view==='grid'){
         const t=[...os.querySelectorAll('.osTile')];
         if(t.length&&/Arrow(Right|Down|Left|Up)/.test(e.key)){e.preventDefault();
-          gsel=(gsel+(/Right|Down/.test(e.key)?1:-1)+t.length)%t.length;t[gsel].focus();}
+          gsel=(gsel+(/Right|Down/.test(e.key)?1:-1)+t.length)%t.length;focusTile(t[gsel],true);}
         if(t.length&&(e.key==='Enter'||e.key===' ')){e.preventDefault();(document.activeElement.closest('.osTile')||t[gsel]).click();}
       }
       return true;

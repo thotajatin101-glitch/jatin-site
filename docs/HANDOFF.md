@@ -4,6 +4,16 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-10-30 (late) — cross-browser test (Playwright) + three fixes. NOT deployed
+- **His ask:** "a playwright and browser test for each version of a browser modern computers and phones use".
+- **Built:** `tests/browsers/run.mjs` (Playwright 1.64.1 pinned in `tests/browsers/package.json`, dev-only, never ships; `node_modules/` gitignored). 14 configs on the three engines every current browser runs on: Chromium (Chrome/Edge/Brave/Opera/Samsung/Android), WebKit (Safari Mac + every iPhone/iPad browser), Firefox. Desktops 1440×900, 1280×800, 1440×700, 1920×1080; iPhone 17 Pro / Pro Max / SE / 17 Pro landscape; Pixel 9; Galaxy S24; iPad Pro 11; iPad Mini. Each walks it like a visitor (taps on touch): intro → PROJECTS → tap the computer → covers → every grid → viewer + zoom → EXIT. It fails on collapsed tiles, broken images, sideways overflow, console errors or failed requests. Stills in `docs/process/stills/2026-10-30-browsers/`. `CPU=6` slows Chromium; `ONLY=` picks configs; a URL arg tests the live site.
+- **Fixes it found (in `site/index.html`, uncommitted until his OK / committed with this entry):**
+  1. **Photo grid was stuck at 3 columns everywhere.** The covers' inline `--n` leaked onto the photo grid. Now it's set for covers only, so 1440 desktop shows 6 columns again.
+  2. **Crash on a busy machine.** If the frame clock skipped past the computer's landing, the chain snap ran before the chains were built and threw on every frame for ~.6s, so the snap went missing. Now it builds them first. Repro: `MonitorFX.hold(1200)` right after enter; the old build threw 18 times, the new one none. The dormant card twin got the same guard.
+  3. **Landscape phones: the OS slid up off the screen.** Focusing a tile scrolled `#sec-projects` under the fullscreen OS by 75px. Now `focusTile()` scrolls only the grid, `#sec-projects.osOpen` is `overflow:hidden`, and a scroll guard pins it at 0.
+- **Next:** deploy on his word (also carries the Safari dots fix 2d2725f).
+- **Watch out:** headless WebGL ran on all three engines here; a real old device without WebGL won't get the computer.
+
 ## 2026-10-30 (night) — DEPLOYED (his word: "push it github repo and make it public live")
 - **Live:** https://thotajatin101-glitch.github.io/jatin-site/ (GitHub Pages via `.github/workflows/pages.yml` on push to main). Commit 9deb8e6; the previous live version was dedbfb3. **Rollback:** `git revert 9deb8e6 && git push`, or re-run the dedbfb3 deploy in Actions.
 - `tests/check.mjs <live url>` and `NET=4g tests/load.mjs <live url>` both passed against the live site.

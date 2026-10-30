@@ -4,3 +4,6 @@ reference/*.mov
 
 # raw, unshipped material (source footage, references, captures)
 .local/
+
+# dev-only test tooling
+node_modules/

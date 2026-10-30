@@ -30,6 +30,8 @@ ships. No build step, so "build" below means "the exact files that go out".
    (real Chrome, empty cache, 4G + slow 4G: every grid, every photo in the
    viewer, zoom/drag, fullscreen, phone). Both also take the live URL after
    deploying: `node tests/check.mjs https://…` checks the live copies match.
+   Layout changes: also `cd tests/browsers && node run.mjs` (Chromium, WebKit,
+   Firefox; desktops, phones, tablets).
 4. **Route tests** — every key route loads with its key content (list below).
 5. **Record first:** write the current live version id and its exact rollback
    command into the hand-off entry *before* running the deploy.

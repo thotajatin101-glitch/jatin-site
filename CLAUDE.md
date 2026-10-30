@@ -905,6 +905,10 @@ into tweens.
   - **Tests:** `tests/check.mjs` covers every photo file (case, EXIF, budgets,
     live copy current). `tests/load.mjs` runs real Chrome throttled to 4G and
     slow 4G over every grid and photo, plus zoom/drag, fullscreen and phone.
+    `tests/browsers/run.mjs` (Playwright, dev-only) walks it on Chromium,
+    WebKit and Firefox across 14 desktop/phone/tablet configs; run it before
+    any deploy that touches layout. Focus tiles with `focusTile()`, never a
+    bare `focus()`: that scrolls the section under the fullscreen OS.
 - Full keyboard nav, like a game: arrows to move, Enter to select, Esc to back.
 
 ## Apply mode + REVERT MAIN (2026-10-30)
