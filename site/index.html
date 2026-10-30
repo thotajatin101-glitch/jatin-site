@@ -146,13 +146,14 @@ button{cursor:pointer;}
 /* ---- the chrome he kept ---- */
 .osTop{display:flex;justify-content:space-between;padding:.1em .9em;font-size:.95em;
   background:var(--os-acc);color:var(--os-ink);text-shadow:none;border-bottom:2px solid var(--os-ink);}
-.osHead{display:flex;align-items:center;justify-content:space-between;padding:.35em .9em;background:var(--os-ink);}
+.osHead{display:flex;flex-direction:row-reverse;align-items:center;justify-content:space-between;   /* EXIT left, wordmark right (his call) */
+  padding:.35em .9em;background:var(--os-ink);}
 .osTitle{font-family:var(--font-menu);font-weight:400;font-size:2.3em;letter-spacing:var(--track);line-height:1;color:var(--os-paper);}
 .osTitle em{font-style:normal;color:var(--os-acc);}
-.osBtns{display:flex;gap:.45em;align-items:center;}
-.pcOS .osChip,.pcOS .osExit{all:unset;cursor:pointer;background:var(--os-acc);color:var(--os-ink);text-shadow:none;padding:.1em .6em;font-size:1.15em;}
-.pcOS .osExit{background:var(--os-paper);margin-left:.6em;}
-.pcOS .osChip:hover,.pcOS .osChip:focus-visible,.pcOS .osExit:hover,.pcOS .osExit:focus-visible{background:var(--acid);}
+.osBtns{display:flex;flex-direction:row-reverse;gap:.45em;align-items:center;}
+.pcOS .osExit{all:unset;cursor:pointer;background:var(--os-acc);color:var(--os-ink);text-shadow:none;padding:.1em .6em;font-size:1.15em;}
+.pcOS .osExit{background:var(--os-paper);margin-right:.6em;}
+.pcOS .osExit:hover,.pcOS .osExit:focus-visible{background:var(--acid);}
 .osBtns i{width:1.4em;height:1.4em;background:var(--os-acc);display:block;}
 .osBtns i+i{background:var(--acid);}
 .osNav{display:flex;align-items:center;gap:.55em;padding:.25em .9em;background:var(--os-grey);color:var(--os-ink);
@@ -305,7 +306,7 @@ button{cursor:pointer;}
 .pcOS ::-webkit-scrollbar-track{background:var(--os-grey);border-left:2px solid var(--os-ink);}
 .pcOS ::-webkit-scrollbar-thumb{background:#fff;border:2px solid var(--os-ink);}
 @media (max-width:760px){
-  .osPath,.osChip,.osBtns i{display:none;}
+  .osPath,.osBtns i{display:none;}
   .osGrid.mags{flex-wrap:wrap;gap:1.4em;}                     /* phone: two covers a row, scrolls */
   .osGrid.mags .osTile.mag{width:calc(50% - .7em);font-size:1.1em;}
   .osGrid.mags .osTile.mag i b{font-size:3.2em;}
@@ -2695,9 +2696,9 @@ void main(){
     sx.textAlign='right';sx.fillText(String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'),SW-56,52);
     sx.fillStyle=INK;sx.fillRect(0,66,SW,74);
     sx.textAlign='left';sx.font='58px "Cyberway Riders",sans-serif';sx.lineJoin='round';
-    const a=sx.measureText('JATIN').width;sx.fillStyle=PH;sx.fillText('JATIN',56,104);sx.fillStyle='#ff2e88';sx.fillText('SPACE',56+a,104);
-    sx.fillStyle='#ff2e88';sx.fillRect(SW-250,88,120,32);sx.fillStyle='#e8ff00';sx.fillRect(SW-118,88,32,32);sx.fillStyle='#ff2e88';sx.fillRect(SW-80,88,32,32);
-    sx.fillStyle=INK;sx.font=VT(24);sx.fillText('DAILY CUT',SW-240,105);
+    const a=sx.measureText('JATIN').width,xw=SW-56-a-sx.measureText('SPACE').width;   /* wordmark right, like the OS header */
+    sx.fillStyle=PH;sx.fillText('JATIN',xw,104);sx.fillStyle='#ff2e88';sx.fillText('SPACE',xw+a,104);
+    sx.fillStyle='#e8ff00';sx.fillRect(48,88,32,32);sx.fillStyle='#ff2e88';sx.fillRect(86,88,32,32);
     sx.fillStyle='#9b968c';sx.fillRect(0,140,SW,40);sx.fillStyle=INK;sx.fillRect(0,180,SW,4);
     sx.font=VT(28);sx.fillText('FLUX  |  OUTSTATION',56,161);
     sx.fillStyle='#bdb9ad';sx.fillRect(0,662,SW,40);sx.fillStyle=INK;sx.fillRect(0,658,SW,4);
@@ -3104,7 +3105,7 @@ void main(){
       return `<i class="bgF z${z}" style="left:${x}%;top:${y}%;--r:${(i*29%40)-20}deg;background-image:url(${dither(f.ramp,z===0?16:z===1?24:32,z===0?12:z===1?18:24,z===0?3:2,0)})"></i>`;}).join('');
     os.innerHTML=`<div class="osTop"><span>LAST UPDATED: ${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}</span><span class="osClock"></span></div>
       <header class="osHead"><b class="osTitle">JATIN<em>SPACE</em></b>
-        <span class="osBtns"><button class="osChip" data-go="0">DAILY CUT</button><i></i><i></i><button class="osExit" aria-label="Exit JATIN OS">[X] EXIT</button></span></header>
+        <span class="osBtns"><i></i><i></i><button class="osExit" aria-label="Exit JATIN OS">[X] EXIT</button></span></header>
       <nav class="osNav">${FOLDERS.map((f,i)=>`<a href="#" data-go="${i}"><u>${f.name[0]}</u>${f.name.slice(1)}</a>`).join('<span>|</span>')}
         <span class="osPath">JATINSPACE / <b>${FOLDERS[0].name}</b></span>
         <label class="osSearch"><input type="text" placeholder="search the noise..." aria-label="Search folders" spellcheck="false"><span aria-hidden="true">⌕</span></label></nav>
