@@ -7,7 +7,8 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 
 
-## 2026-10-31 (night) — DEPLOYING 025698f (his word: "deploy")
+## 2026-10-31 (night) — DEPLOYED a3cc3b5 (his word: "deploy")
+- **Live:** Pages run 41129161818, success. Checked live: every route served, release strings present in index.html, `tests/check.mjs <live>` pass, `NET=4g tests/load.mjs <live>` pass. Not checked: a real Chrome tab by eye.
 - **Going live:** 8 commits since ff559b4: FLUX straight onto photos + PHOTOS/EDITS tabs, OS menu plates, his 8 edits (~233MB video), EXIT removed, both first-user QA rounds.
 - **Rollback (recorded before the push):** previous live is ff559b4 (docs 8054cd6). `git revert --no-edit ff559b4..025698f && git push`, or re-run the ff559b4 Pages deploy in Actions.
 - Pre-flight on this exact tree: `tests/check.mjs` pass, `tests/browsers` 14/14, `NET=4g tests/load.mjs` pass.
