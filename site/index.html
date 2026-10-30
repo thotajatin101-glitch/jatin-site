@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JATIN — Visual & Creative Director</title>
+<meta name="description" content="Jatin — visual &amp; creative director, Beyond the Noise Studio, Hyderabad. Editorial shoots, video editing and creative direction.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JATIN — Visual &amp; Creative Director">
+<meta property="og:description" content="Editorial shoots, video editing and creative direction from Beyond the Noise Studio, Hyderabad.">
+<meta property="og:url" content="https://thotajatin101-glitch.github.io/jatin-site/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Cpath d='M31 2 3 16l28 14z' fill='%23e8ff00'/%3E%3Cpath d='M31 2 17 9l14 5z' fill='%23ff2e88'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -143,6 +148,7 @@ button{cursor:pointer;}
 @keyframes osFlash{0%{opacity:.9;}50%{opacity:.55;}100%{opacity:0;}}
 /* while the OS is up it owns the page: the section BACK steps aside for the OS's own BACK */
 #sec-projects.osOpen .backBtn{display:none;}
+body.apply #menuHint{display:none;}   /* menu keys that do nothing in apply mode */
 #sec-projects.osOpen{overflow:hidden;}
 /* ---- the chrome he kept ---- */
 .osTop{display:flex;justify-content:space-between;padding:.1em .9em;font-size:.95em;
@@ -152,7 +158,7 @@ button{cursor:pointer;}
 .osTitle{font-family:var(--font-menu);font-weight:400;font-size:2.3em;letter-spacing:var(--track);line-height:1;color:var(--os-paper);}
 .osTitle em{font-style:normal;color:var(--os-acc);}
 .osBtns{display:flex;flex-direction:row-reverse;gap:.45em;align-items:center;}
-.osBtns i{width:1.4em;height:1.4em;background:var(--os-acc);display:block;}
+.osBtns i{width:1.4em;height:1.4em;background:var(--os-acc);display:block;cursor:default;}
 .osBtns i+i{background:var(--acid);}
 .osNav{display:flex;align-items:center;gap:.55em;padding:.25em .9em;background:var(--os-grey);color:var(--os-ink);
   text-shadow:none;font-size:1.25em;border-bottom:3px solid var(--os-ink);}
@@ -168,6 +174,7 @@ button{cursor:pointer;}
 .osSearch input{all:unset;width:9em;padding:0 .4em;font-size:.85em;color:var(--os-ink);}
 .osSearch input::placeholder{color:#6d685f;}
 .osSearch span{background:var(--os-ink);color:var(--os-paper);padding:0 .35em;}
+.osSearch.miss{border-color:var(--pink);}.osSearch.miss span{background:var(--pink);color:var(--os-ink);}
 .osInfo{flex:none;background:#bdb9ad;color:var(--os-ink);text-shadow:none;padding:.35em .9em;text-align:center;font-size:1.15em;
   border-top:3px solid var(--os-ink);}
 .osInfo b{font-weight:400;margin-right:.6em;}
@@ -372,6 +379,12 @@ button{cursor:pointer;}
 .pcOS ::-webkit-scrollbar{width:.85em;}
 .pcOS ::-webkit-scrollbar-track{background:var(--os-grey);border-left:2px solid var(--os-ink);}
 .pcOS ::-webkit-scrollbar-thumb{background:#fff;border:2px solid var(--os-ink);}
+/* fingers: the small OS controls keep their look, an invisible pad gives them a ~44px reach */
+@media (hover:none) and (pointer:coarse){
+  .osNav a,.pcOS .osPath button,.pcOS .osZoom button,.pcOS .osViewX,.osSearch{position:relative;}
+  .osNav a::after,.pcOS .osPath button::after,.pcOS .osZoom button::after,.pcOS .osViewX::after,.osArrow::after,.osSearch::after{
+    content:"";position:absolute;inset:-14px -6px;}
+}
 @media (max-width:760px){
   .osPath,.osBtns i{display:none;}
   .osPlate{font-size:1.25em;}
@@ -1195,9 +1208,17 @@ body.apply #sec-projects .backBtn{display:none;}
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01s !important;transition-duration:.01s !important;}
 }
+/* first paint on a slow connection: the page is one big file and the intro can't start until all of it
+   has arrived (13s on slow 3G). This line shows as soon as <body> starts; the script removes it */
+#boot{position:fixed;inset:0;z-index:70;display:grid;place-items:center;background:#000;color:var(--acid);
+  font:clamp(1.1rem,2.4vw,1.6rem)/1 'VT323','IBM Plex Mono',monospace;letter-spacing:.16em;}
+#boot span{display:inline-block;width:0;overflow:hidden;vertical-align:bottom;animation:bootDots 1.2s steps(4,end) infinite;}
+@keyframes bootDots{to{width:4ch}}
+@media (prefers-reduced-motion:reduce){#boot span{animation:none;width:3ch;}}
 </style>
 </head>
 <body>
+<div id="boot" aria-hidden="true">LOADING<span>...</span></div>
 
 
 <!-- persistent shatter background -->
@@ -2679,7 +2700,10 @@ void main(){
   const st={yaw:.5,pitch:.06,lift:0},par={x:0,y:0},parT={x:0,y:0};
   const REST_YAW=.5,REST_PITCH=.06;   /* three-quarter view onto the LEFT side, like the reference */
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const TOUCH=matchMedia('(hover:none) and (pointer:coarse)');   /* phones + tablets: hints say tap/swipe, not keys */
+  const TOUCH=matchMedia('(hover:none) and (pointer:coarse)');
+  /* LAST UPDATED: the page's own Last-Modified (the deploy), not the visitor's clock */
+  const UPDATED=(()=>{const d=new Date(document.lastModified),M=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    return isNaN(d)?'':`${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}`;})();   /* phones + tablets: hints say tap/swipe, not keys */
   /* ---- state: enter → idle (screen intro, then CLICK ME!!) → zoomIn → os → zoomOut → idle */
   let mode='idle',zt0=0,scrKey='',os=null,sel=0,lastHover=0;
   const ZOOM_MS=620;
@@ -2760,7 +2784,7 @@ void main(){
     const d=new Date(),M=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
     sx.textAlign='left';sx.textBaseline='middle';
     sx.fillStyle='#ff2e88';sx.fillRect(0,36,SW,30);
-    sx.fillStyle=INK;sx.font=VT(24);sx.fillText(`LAST UPDATED: ${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}`,56,52);
+    sx.fillStyle=INK;sx.font=VT(24);sx.fillText(`LAST UPDATED: ${UPDATED}`,56,52);
     sx.textAlign='right';sx.fillText(String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'),SW-56,52);
     sx.fillStyle=INK;sx.fillRect(0,66,SW,74);
     sx.textAlign='left';sx.font='58px "Cyberway Riders",sans-serif';sx.lineJoin='round';
@@ -2770,7 +2794,7 @@ void main(){
     sx.fillStyle='#9b968c';sx.fillRect(0,140,SW,40);sx.fillStyle=INK;sx.fillRect(0,180,SW,4);
     sx.font=VT(28);sx.fillText('FLUX  |  OUTSTATION',56,161);
     sx.fillStyle='#bdb9ad';sx.fillRect(0,662,SW,40);sx.fillStyle=INK;sx.fillRect(0,658,SW,4);
-    sx.textAlign='center';sx.font=VT(24);sx.fillText(TOUCH.matches?'[ HOW TO USE ]  tap the computer to switch it on':'[ HOW TO USE ]  click the computer · or press return',CX,683);
+    sx.textAlign='center';sx.font=VT(24);sx.fillText(TOUCH.matches?'[ HOW TO USE ]  tap the computer to switch it on':'[ HOW TO USE ]  click the computer · or press enter',CX,683);
     /* the stage between: dark, with the dot grid */
     sx.fillStyle='#0b0c10';sx.fillRect(0,184,SW,474);
     sx.fillStyle='rgba(239,233,220,.07)';for(let y=190;y<656;y+=12)for(let x=6;x<SW;x+=12)sx.fillRect(x,y,2,2);
@@ -2897,14 +2921,19 @@ void main(){
     document.fonts&&Promise.all([document.fonts.load('30px VT323'),document.fonts.load('60px "Cyberway Riders"')]).then(upload,upload);   /* canvas text never triggers a webfont load — ask for both, then repaint */
     addEventListener('pointermove',e=>{parT.x=e.clientX/innerWidth-.5;parT.y=e.clientY/innerHeight-.5;},{passive:true});
     /* the computer is the button */
-    cv.addEventListener('click',e=>{if(mode==='idle'&&ready()&&hit(e))open();});
+    cv.addEventListener('click',e=>{if(mode==='idle'&&hit(e))ready()?open():queue();});
     cv.addEventListener('pointermove',e=>{
       const now=performance.now();if(now-lastHover<90)return;lastHover=now;
-      cv.style.cursor=(mode==='idle'&&ready()&&hit(e))?'pointer':'';
+      cv.style.cursor=(mode==='idle'&&hit(e))?'pointer':'';
     },{passive:true});
     return true;
   }
   function ready(){return performance.now()>t0+1100;}   /* after the chains break */
+  /* a press while it's still breaking out of its chains opens it the moment it's free —
+     a first-timer clicks as soon as they see it, and a dropped click reads as broken */
+  let queued=false;
+  function queue(){if(queued)return;queued=true;
+    later(()=>{queued=false;if(mode==='idle'&&host&&host.classList.contains('active'))open();},Math.max(0,t0+1100-performance.now()));}
   /* PERF: the big moves (the entrance spin, the dolly) render at 55%
      resolution — nobody reads detail mid-whip — and the settled frame is
      re-rendered crisp. Parallax and the screen intro stay full-res. */
@@ -3181,12 +3210,12 @@ void main(){
     /* scattered background folders: three depth bands, pixelated by distance */
     const bg=Array.from({length:14},(_,i)=>{const f=FOLDERS[i%FOLDERS.length],z=i%3,x=(i*37%100),y=(i*53%86)+4;
       return `<i class="bgF z${z}" style="left:${x}%;top:${y}%;--r:${(i*29%40)-20}deg;background-image:url(${dither(f.ramp,z===0?16:z===1?24:32,z===0?12:z===1?18:24,z===0?3:2,0)})"></i>`;}).join('');
-    os.innerHTML=`<div class="osTop"><span>LAST UPDATED: ${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}</span><span class="osClock"></span></div>
+    os.innerHTML=`<div class="osTop"><span>LAST UPDATED: ${UPDATED}</span><span class="osClock"></span></div>
       <header class="osHead"><b class="osTitle">JATIN<em>SPACE</em></b>
-        <span class="osBtns"><i></i><i></i></span></header>
+        <span class="osBtns" aria-hidden="true"><i></i><i></i></span></header>
       <nav class="osNav">${FOLDERS.map((f,i)=>`<a href="#" data-go="${i}"><u>${f.name[0]}</u>${f.name.slice(1)}</a>`).join('<span>|</span>')}
         <span class="osPath"></span>
-        <label class="osSearch"><input type="text" placeholder="search the noise..." aria-label="Search folders" spellcheck="false"><span aria-hidden="true">⌕</span></label></nav>
+        <label class="osSearch"><input type="text" placeholder="search folders..." aria-label="Search folders" spellcheck="false"><span aria-hidden="true">⌕</span></label></nav>
       <div class="osStage">
         <div class="osBg">${bg}</div>
         <span class="osPlate back off"><button class="osBack" aria-label="Back one level" disabled><i>◀</i><span>BACK</span></button></span>
@@ -3254,9 +3283,14 @@ void main(){
       if(view==='viewer')closeView();
       if(view==='grid')back(()=>goTo(+a.dataset.go,true));else goTo(+a.dataset.go,true);}));
     const q=os.querySelector('.osSearch input');            /* typing jumps to the first match */
-    q.addEventListener('input',()=>{const v=q.value.trim().toLowerCase();if(!v)return;
-      const i=FOLDERS.findIndex(f=>(f.name+' '+f.tag+' '+f.tabs.map(t=>t.name).join(' ')).toLowerCase().includes(v));
-      if(i>=0&&i!==cur&&view==='stage')swap(i>cur?1:-1,i);});
+    const find=()=>{const v=q.value.trim().toLowerCase();
+      const i=v?FOLDERS.findIndex(f=>(f.name+' '+f.tag+' '+f.tabs.map(t=>t.name).join(' ')).toLowerCase().includes(v)):-1;
+      const miss=!!v&&i<0;q.parentNode.classList.toggle('miss',miss);q.setAttribute('aria-invalid',miss);
+      q.parentNode.querySelector('span').textContent=miss?'NO MATCH':'⌕';return i;};
+    q.addEventListener('input',()=>{const i=find();if(i>=0&&i!==cur&&view==='stage')swap(i>cur?1:-1,i);});
+    q.addEventListener('keydown',e=>{if(e.key!=='Enter')return;e.preventDefault();const i=find();if(i<0)return;   /* Enter opens the match */
+      q.blur();if(view==='viewer')closeView();
+      if(view==='grid')back(()=>goTo(i,true));else if(view==='stage')goTo(i,true);});
     /* wheel + swipe browse the stage */
     let wheelT=0;
     os.querySelector('.osStage').addEventListener('wheel',e=>{if(view!=='stage')return;const now=performance.now();
@@ -3272,13 +3306,13 @@ void main(){
     const T=TOUCH.matches,tabs=FOLDERS[cur].tabs.length>1,none=view==='grid'&&!shots().length,
       ed=view==='grid'&&(shots()[0]||{}).vid,thing=ed?'an edit':'a photo',verb=ed?'play it':'view it';
     os.querySelector('.osHow').textContent=view==='stage'
-    ?(T?'swipe or ◀ ▶ to browse · tap the folder to open · BACK leaves':'◀ ▶ browse · return or click to open · esc or BACK leaves')
+    ?(T?'swipe or ◀ ▶ to browse · tap the folder to open · BACK leaves':'◀ ▶ browse · enter or click to open · esc or BACK leaves')
     :isVid()?(T?'tap the picture for controls · ◀ ▶ next edit · BACK closes':'space plays / pauses · ◀ ▶ next edit · esc back')
-    :view==='viewer'?(T?'swipe for next · pinch to zoom · double-tap to fit · swipe down to close'
-      :'◀ ▶ next · scroll to zoom · drag to move · double-click to fit · esc back')
+    :view==='viewer'?(T?'swipe for next · pinch to zoom · double-tap to zoom · swipe down to close'
+      :'◀ ▶ next · scroll to zoom · drag to move · double-click to zoom · esc back')
     :none?(T?'tap PHOTOS to go back to the work · BACK goes up':'1 or click PHOTOS for the work · esc or BACK goes up')
     :T?(tabs?'tap a tab to switch · tap '+thing+' to '+verb+' · BACK goes up':'tap '+thing+' to '+verb+' · BACK goes up')
-      :(tabs?'1 / 2 or click to switch tabs · ':'')+'arrows move · return or click to '+verb+' · esc or BACK goes up';}
+      :(tabs?'1 / 2 or click to switch tabs · ':'')+'arrows move · enter or click to '+verb+' · esc or BACK goes up';}
   if(TOUCH.addEventListener)TOUCH.addEventListener('change',()=>{if(os)setHow();});
   function paintHero(dir){
     const f=FOLDERS[cur],st=os.querySelector('.osStage');
@@ -3393,11 +3427,11 @@ void main(){
       setHow();return;
     }
     lo.src=photoUrl(set,k,1);hi.classList.remove('ok');hi.alt=setName()+' — photo '+(vi+1)+' of '+L.length;
-    hi.onload=()=>hi.classList.add('ok');hi.src=photoUrl(set,k,0);if(hi.complete&&hi.naturalWidth)hi.classList.add('ok');
+    const ahead=()=>[1,-1].forEach(d=>{const n=L[(vi+d+L.length)%L.length];if(!n.vid)new Image().src=photoUrl(n.set,n.k,0);});
+    hi.onload=()=>{hi.classList.add('ok');ahead();};hi.src=photoUrl(set,k,0);if(hi.complete&&hi.naturalWidth){hi.classList.add('ok');ahead();}
     shot.classList.remove('in-l','in-r');if(dir){void shot.offsetWidth;shot.classList.add(dir>0?'in-r':'in-l');}
     v.querySelector('.osViewBar b').textContent=setName().toUpperCase();
     v.querySelector('.osViewN').textContent=pad2(vi+1)+' / '+pad2(L.length);
-    [1,-1].forEach(d=>{const n=L[(vi+d+L.length)%L.length];if(!n.vid)new Image().src=photoUrl(n.set,n.k,0);});
     setHow();
   }
   /* zoom state: scale + pan (CSS px, from the shot's centre) */
@@ -3467,7 +3501,23 @@ void main(){
     host.scrollTop=0;if(!host.__pin){host.__pin=1;host.addEventListener('scroll',()=>{if(host.classList.contains('osOpen')&&host.scrollTop)host.scrollTop=0;});}   /* nothing scrolls the page under the OS */
     tick();clearInterval(clock);clock=setInterval(tick,10000);
     later(()=>{if(mode==='os'&&!os.hidden)full(true);},300);    /* the tube is lit: now it fills the page */
+    arm();
   }
+  /* the browser / phone Back button: while the OS is up one extra history entry sits on top.
+     Popping it climbs one level (photo → photos → folders → the computer) and re-arms, so Back
+     never throws a visitor off the site. Leaving through the UI takes the entry back off. */
+  let armed=false,dropPop=false;
+  function arm(){if(armed||mode!=='os')return;armed=true;history.pushState(Object.assign({},history.state,{os:1}),'',location.href);}
+  function disarm(){if(!armed)return;armed=false;dropPop=true;history.back();}
+  addEventListener('popstate',()=>{
+    if(dropPop){dropPop=false;return;}
+    if(!armed)return;armed=false;
+    const step=()=>{if(mode!=='os'||closing)return;
+      if(view==='busy'){later(step,120);return;}
+      if(view==='viewer')closeView();else if(view==='grid')up();else{close();return;}
+      arm();};
+    step();
+  });
   /* FLIP between the glass and the page: switch layout once, then play a
      transform from the old box to the new — compositor only */
   function full(on){
@@ -3488,7 +3538,7 @@ void main(){
     later(reset,200);
   }
   function open(){if(mode!=='idle')return;mode='zoomIn';zt0=performance.now();cv.style.cursor='';dirty=true;}
-  function close(){if(mode!=='os'||closing)return;closing=true;
+  function close(){if(mode!=='os'||closing)return;closing=true;disarm();
     const fullNow=os.classList.contains('full');full(false);               /* back onto the glass first */
     later(()=>{hideOS();later(()=>{closing=false;mode='zoomOut';zt0=performance.now();dirty=true;},190);},fullNow&&!reduce?230:0);}
   let closing=false;
@@ -3523,7 +3573,7 @@ void main(){
       }
       return true;
     }
-    if(e.key==='Enter'&&ready()){e.preventDefault();open();return true;}   /* Return opens the computer */
+    if(e.key==='Enter'){e.preventDefault();ready()?open():queue();return true;}   /* Return opens the computer */
     return false;
   }
   return {enter,key,isOpen:()=>mode!=='idle',close,
@@ -5481,6 +5531,7 @@ document.addEventListener('keydown',e=>{
   else if(e.key==='Enter'&&selIndex>=0)openSection(items[selIndex].dataset.target);
 });
 
+document.getElementById('boot').remove();          /* everything has arrived: the intro takes over */
 /* reduced motion: skip the strobe entirely, land straight on the menu */
 if(matchMedia('(prefers-reduced-motion: reduce)').matches){
   rollShards();
