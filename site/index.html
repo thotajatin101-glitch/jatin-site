@@ -381,9 +381,11 @@ body.apply #menuHint{display:none;}   /* menu keys that do nothing in apply mode
 .pcOS ::-webkit-scrollbar-thumb{background:#fff;border:2px solid var(--os-ink);}
 /* fingers: the small OS controls keep their look, an invisible pad gives them a ~44px reach */
 @media (hover:none) and (pointer:coarse){
-  .osNav a,.pcOS .osPath button,.pcOS .osZoom button,.pcOS .osViewX,.osSearch{position:relative;}
-  .osNav a::after,.pcOS .osPath button::after,.pcOS .osZoom button::after,.pcOS .osViewX::after,.osArrow::after,.osSearch::after{
-    content:"";position:absolute;inset:-14px -6px;}
+  .osNav{padding-block:0;}
+  .osNav a{padding:.6em .45em;}                               /* the row itself is the target: taller links, no pad under the stage */
+  .osSearch input{padding:.55em .4em;}
+  .pcOS .osZoom button,.pcOS .osViewX{position:relative;}
+  .pcOS .osZoom button::after,.pcOS .osViewX::after,.osArrow::after{content:"";position:absolute;inset:-14px -6px;}
 }
 @media (max-width:760px){
   .osPath,.osBtns i{display:none;}
@@ -2933,7 +2935,7 @@ void main(){
      a first-timer clicks as soon as they see it, and a dropped click reads as broken */
   let queued=false;
   function queue(){if(queued)return;queued=true;
-    later(()=>{queued=false;if(mode==='idle'&&host&&host.classList.contains('active'))open();},Math.max(0,t0+1100-performance.now()));}
+    later(()=>{if(!queued)return;queued=false;if(mode==='idle'&&host&&host.classList.contains('active'))open();},Math.max(0,t0+1100-performance.now()));}
   /* PERF: the big moves (the entrance spin, the dolly) render at 55%
      resolution — nobody reads detail mid-whip — and the settled frame is
      re-rendered crisp. Parallax and the screen intro stay full-res. */
@@ -3270,6 +3272,7 @@ void main(){
       if(!g0||g0.x0==null||pts.size){g0=pts.size?g0:null;return;}
       const dx=e.clientX-g0.x0,dy=e.clientY-g0.y0,still=Math.hypot(dx,dy)<8&&performance.now()-g0.t<300;g0=null;
       if(still){const now=performance.now(),[px,py]=rel(e);
+        if(now-openedAt<300&&openXY&&Math.hypot(e.clientX-openXY[0],e.clientY-openXY[1])<30){lastTap=0;return;}   /* leftovers of the clicks that opened it (same spot), not a double-click */
         if(now-lastTap<320&&tapAt&&Math.hypot(px-tapAt[0],py-tapAt[1])<30){lastTap=0;zs>1?zoomTo(1,0,0,true):zoomTo(2.5,px,py,true);}
         else{lastTap=now;tapAt=[px,py];}return;}
       if(zs<=1&&view==='viewer'&&Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))viewPhoto(vi+(dx<0?1:-1),dx<0?1:-1);
@@ -3289,7 +3292,7 @@ void main(){
       q.parentNode.querySelector('span').textContent=miss?'NO MATCH':'⌕';return i;};
     q.addEventListener('input',()=>{const i=find();if(i>=0&&i!==cur&&view==='stage')swap(i>cur?1:-1,i);});
     q.addEventListener('keydown',e=>{if(e.key!=='Enter')return;e.preventDefault();const i=find();if(i<0)return;   /* Enter opens the match */
-      q.blur();if(view==='viewer')closeView();
+      q.blur();q.value='';find();if(view==='viewer')closeView();
       if(view==='grid')back(()=>goTo(i,true));else if(view==='stage')goTo(i,true);});
     /* wheel + swipe browse the stage */
     let wheelT=0;
@@ -3303,16 +3306,17 @@ void main(){
     paintHero(0);
   }
   function setHow(){const k=os.querySelector('.osBack');k.disabled=view==='busy';k.parentNode.classList.toggle('off',k.disabled);setPath();
+    const B='◀ '+k.querySelector('span').textContent;          /* the plate's own label, so the words match the screen */
     const T=TOUCH.matches,tabs=FOLDERS[cur].tabs.length>1,none=view==='grid'&&!shots().length,
       ed=view==='grid'&&(shots()[0]||{}).vid,thing=ed?'an edit':'a photo',verb=ed?'play it':'view it';
     os.querySelector('.osHow').textContent=view==='stage'
-    ?(T?'swipe or ◀ ▶ to browse · tap the folder to open · BACK leaves':'◀ ▶ browse · enter or click to open · esc or BACK leaves')
-    :isVid()?(T?'tap the picture for controls · ◀ ▶ next edit · BACK closes':'space plays / pauses · ◀ ▶ next edit · esc back')
-    :view==='viewer'?(T?'swipe for next · pinch to zoom · double-tap to zoom · swipe down to close'
-      :'◀ ▶ next · scroll to zoom · drag to move · double-click to zoom · esc back')
-    :none?(T?'tap PHOTOS to go back to the work · BACK goes up':'1 or click PHOTOS for the work · esc or BACK goes up')
-    :T?(tabs?'tap a tab to switch · tap '+thing+' to '+verb+' · BACK goes up':'tap '+thing+' to '+verb+' · BACK goes up')
-      :(tabs?'1 / 2 or click to switch tabs · ':'')+'arrows move · enter or click to '+verb+' · esc or BACK goes up';}
+    ?(T?'swipe or ◀ ▶ to browse · tap the folder to open · '+B+' to the computer':'◀ ▶ browse · enter or click to open · esc or '+B+' to the computer')
+    :isVid()?(T?'tap the picture for controls · ◀ ▶ next edit · '+B+' closes it':'space plays / pauses · ◀ ▶ next edit · esc or '+B+' closes it')
+    :view==='viewer'?(T?'swipe for next · pinch or double-tap to zoom · swipe down or '+B+' to close'
+      :'◀ ▶ next · scroll or double-click to zoom · drag to move · esc or '+B+' to close')
+    :none?(T?'tap PHOTOS to go back to the work · '+B+' goes back':'key 1 or click PHOTOS for the work · esc or '+B+' goes back')
+    :T?(tabs?'tap a tab to switch · tap '+thing+' to '+verb+' · '+B+' goes back':'tap '+thing+' to '+verb+' · '+B+' goes back')
+      :(tabs?'keys 1 · 2 or click to switch tabs · ':'')+'arrows move · enter or click to '+verb+' · esc or '+B+' goes back';}
   if(TOUCH.addEventListener)TOUCH.addEventListener('change',()=>{if(os)setHow();});
   function paintHero(dir){
     const f=FOLDERS[cur],st=os.querySelector('.osStage');
@@ -3374,12 +3378,12 @@ void main(){
     g.classList.toggle('photos',L.length>0&&!vids);g.classList.toggle('videos',vids);
     g.innerHTML=L.map(({set,k,w,h,dur,title,vid},n)=>vid
       ?`<button class="osTile osEdit" style="--k:${Math.min(n,14)}" data-i="${n}">
-          <i style="${sw(n)}"><img src="${photoUrl(set,k,1)}" width="${w}" height="${h}" loading="lazy" decoding="async" alt="">
+          <i style="${sw(n)}"><img src="${photoUrl(set,k,1)}" width="${w}" height="${h}" loading="lazy" decoding="async"${n>11?' fetchpriority="low"':''} alt="">
             <em aria-hidden="true">▶</em><s>${mmss(dur)}</s></i><b>${pad2(n+1)}</b><span>${title}</span></button>`
       :`<button class="osTile osPhoto${w>h?' wide':''}" style="--k:${Math.min(n,14)}" data-i="${n}">
-          <i style="${sw(n)}"><img src="${photoUrl(set,k,1)}" width="${w}" height="${h}" loading="lazy" decoding="async"
+          <i style="${sw(n)}"><img src="${photoUrl(set,k,1)}" width="${w}" height="${h}" loading="lazy" decoding="async"${n>11?' fetchpriority="low"':''}
             alt="${setName()} — photo ${n+1} of ${L.length}"></i></button>`).join('')||empty;
-    g.querySelectorAll('.osTile').forEach(b=>b.addEventListener('click',()=>{if(view==='grid')viewPhoto(+b.dataset.i);}));
+    g.querySelectorAll('.osTile').forEach(b=>b.addEventListener('click',e=>{if(view==='grid'&&performance.now()-closedAt>350){viewPhoto(+b.dataset.i);openXY=[e.clientX,e.clientY];}}));   /* not the second half of a double-click on CLOSE */
     os.querySelector('.osGridV').scrollTop=0;
     const t=[...g.querySelectorAll('.osTile')];gsel=Math.min(focusK||0,Math.max(0,t.length-1));
     if(t[gsel])focusTile(t[gsel],!!focusK);
@@ -3410,9 +3414,9 @@ void main(){
      neighbours are fetched ahead so ◀ ▶ never waits */
   function viewPhoto(i,dir){
     const L=shots();if(!L.length)return;
-    vi=(i+L.length)%L.length;view='viewer';
+    vi=(i+L.length)%L.length;view='viewer';openedAt=performance.now();
     const v=os.querySelector('.osView'),shot=v.querySelector('.osShot'),[lo,hi]=shot.querySelectorAll('img'),{set,k,w,h}=L[vi];
-    v.hidden=false;os.classList.add('viewing');
+    v.hidden=false;os.classList.add('viewing');os.querySelector('.osGridV').inert=true;
     shot.style.setProperty('--ar',w+'/'+h);
     zs=1;zx=zy=0;applyPan();const zm=shot.querySelector('.zm');zm.classList.remove('ok');zm.removeAttribute('src');
     const vd=shot.querySelector('.vd'),it=L[vi];stopVid();
@@ -3428,14 +3432,14 @@ void main(){
     }
     lo.src=photoUrl(set,k,1);hi.classList.remove('ok');hi.alt=setName()+' — photo '+(vi+1)+' of '+L.length;
     const ahead=()=>[1,-1].forEach(d=>{const n=L[(vi+d+L.length)%L.length];if(!n.vid)new Image().src=photoUrl(n.set,n.k,0);});
-    hi.onload=()=>{hi.classList.add('ok');ahead();};hi.src=photoUrl(set,k,0);if(hi.complete&&hi.naturalWidth){hi.classList.add('ok');ahead();}
+    hi.fetchPriority='high';hi.onload=()=>{hi.classList.add('ok');ahead();};hi.src=photoUrl(set,k,0);if(hi.complete&&hi.naturalWidth){hi.classList.add('ok');ahead();}
     shot.classList.remove('in-l','in-r');if(dir){void shot.offsetWidth;shot.classList.add(dir>0?'in-r':'in-l');}
     v.querySelector('.osViewBar b').textContent=setName().toUpperCase();
     v.querySelector('.osViewN').textContent=pad2(vi+1)+' / '+pad2(L.length);
     setHow();
   }
   /* zoom state: scale + pan (CSS px, from the shot's centre) */
-  let zs=1,zx=0,zy=0;
+  let zs=1,zx=0,zy=0,openedAt=0,closedAt=0,openXY=null;
   const ZMAX=4;
   /* pointer position relative to the shot's centre */
   function rel(e){const r=os.querySelector('.osShot').getBoundingClientRect();return [e.clientX-r.left-r.width/2,e.clientY-r.top-r.height/2];}
@@ -3468,6 +3472,7 @@ void main(){
   function closeView(){
     if(view!=='viewer')return;stopVid();
     os.querySelector('.osView').hidden=true;os.classList.remove('viewing');view='grid';
+    os.querySelector('.osGridV').inert=false;closedAt=performance.now();
     const t=os.querySelectorAll('.osTile')[vi];gsel=vi;if(t)focusTile(t,true);setHow();
   }
   function back(then){
@@ -3507,13 +3512,13 @@ void main(){
      Popping it climbs one level (photo → photos → folders → the computer) and re-arms, so Back
      never throws a visitor off the site. Leaving through the UI takes the entry back off. */
   let armed=false,dropPop=false;
-  function arm(){if(armed||mode!=='os')return;armed=true;history.pushState(Object.assign({},history.state,{os:1}),'',location.href);}
+  function arm(){if(armed||(mode!=='os'&&mode!=='zoomIn'))return;armed=true;history.pushState(Object.assign({},history.state,{os:1}),'',location.href);}
   function disarm(){if(!armed)return;armed=false;dropPop=true;history.back();}
   addEventListener('popstate',()=>{
     if(dropPop){dropPop=false;return;}
     if(!armed)return;armed=false;
-    const step=()=>{if(mode!=='os'||closing)return;
-      if(view==='busy'){later(step,120);return;}
+    const step=()=>{if((mode!=='os'&&mode!=='zoomIn')||closing)return;
+      if(view==='busy'||mode==='zoomIn'){later(step,120);return;}   /* mid-dolly: land, then step out */
       if(view==='viewer')closeView();else if(view==='grid')up();else{close();return;}
       arm();};
     step();
@@ -3530,14 +3535,14 @@ void main(){
   function hideOS(now){
     if(!os)return;clearInterval(clock);host.classList.remove('osOpen');
     const reset=()=>{os.hidden=true;os.classList.remove('on','off','full','viewing','inside');
-      os.querySelector('.osView').hidden=true;stopVid();gtab=0;os.querySelector('.osTabs').hidden=true;
+      os.querySelector('.osView').hidden=true;os.querySelector('.osGridV').inert=false;stopVid();gtab=0;os.querySelector('.osTabs').hidden=true;
       const st=os.querySelector('.osStage');st.classList.remove('opening','diving','inside','surfacing');
       os.querySelector('.osGridV').hidden=true;view='stage';setHow();};
     if(now){reset();return;}
     os.classList.remove('on');os.classList.add('off');
     later(reset,200);
   }
-  function open(){if(mode!=='idle')return;mode='zoomIn';zt0=performance.now();cv.style.cursor='';dirty=true;}
+  function open(){if(mode!=='idle')return;mode='zoomIn';zt0=performance.now();cv.style.cursor='';dirty=true;arm();}
   function close(){if(mode!=='os'||closing)return;closing=true;disarm();
     const fullNow=os.classList.contains('full');full(false);               /* back onto the glass first */
     later(()=>{hideOS();later(()=>{closing=false;mode='zoomOut';zt0=performance.now();dirty=true;},190);},fullNow&&!reduce?230:0);}
@@ -3573,6 +3578,7 @@ void main(){
       }
       return true;
     }
+    if(e.key==='Escape'&&queued){e.preventDefault();queued=false;return true;}   /* changed their mind before it was free */
     if(e.key==='Enter'){e.preventDefault();ready()?open():queue();return true;}   /* Return opens the computer */
     return false;
   }
