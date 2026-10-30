@@ -7,6 +7,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 
 
+## 2026-10-31 (night) — DEPLOYING 025698f (his word: "deploy")
+- **Going live:** 8 commits since ff559b4: FLUX straight onto photos + PHOTOS/EDITS tabs, OS menu plates, his 8 edits (~233MB video), EXIT removed, both first-user QA rounds.
+- **Rollback (recorded before the push):** previous live is ff559b4 (docs 8054cd6). `git revert --no-edit ff559b4..025698f && git push`, or re-run the ff559b4 Pages deploy in Actions.
+- Pre-flight on this exact tree: `tests/check.mjs` pass, `tests/browsers` 14/14, `NET=4g tests/load.mjs` pass.
+
 ## 2026-10-31 (night) — first-user QA: 5 personas, 2 fix rounds. NOT deployed
 - Did: 5 simulated first-time users (Playwright, real Chromium/WebKit) from intro to a full-size photo, findings ranked by how many hit them, fixed, all 5 re-run. Commits 5228ecc + fa6bc7d. Back button climbs the OS (one sentinel history entry while it's up: `arm`/`disarm` in MonitorFX), early computer clicks queued (`queue`, Esc cancels), `#boot` LOADING line, full photo `fetchPriority=high` then neighbours, `UPDATED` from `document.lastModified`, meta/OG, search NO MATCH + Enter, touch padding on the nav row, grid `inert` under the viewer, same-spot click guard on tile/CLOSE, help text names the plate (`B`). check, 14/14 browsers, NET=4g load all pass.
 - Open (his call / content): contact + about unreachable in apply mode and CONTACT still `[your@email.com]`; no credits on the work; no og:image; slow 3G is still ~14s to the prompt (one 380K file) and opening FLUX queues all 40 thumbs (Chrome's lazy threshold is huge on slow nets); PROJECTS canvas not focusable/readable by screen readers; `?frame=999` not clamped.
