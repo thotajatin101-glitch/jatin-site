@@ -372,3 +372,11 @@ around the files and computer easier" →
   straight up.
 - Swipe down on a photo closes it, the way phones expect.
 Stills: `os-touch-nav`.
+
+**Straight to the work (Oct 31).** "inside flux folder i think you should
+just remove folders show the photos directly. and add tabs on top … one tab
+photo and other being edits." → FLUX opens onto all 40 photos in one grid
+(Magazine 01 → 02 → 03), with PHOTOS and EDITS tabs beside BACK: the open
+one filled pink, the other outlined. EDITS shows [ EMPTY ] until his edits
+arrive. The magazine covers are cut; before: `os-covers-before-tabs`,
+after: `flux-tabs`.

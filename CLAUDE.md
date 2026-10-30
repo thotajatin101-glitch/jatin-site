@@ -856,8 +856,8 @@ into tweens.
         rise, then the camera **dives** into the folder (scale 2.6 + fade,
         240ms) and the contents arrive as a grid of tiles that pop in one by
         one.
-        FLUX holds Flux Magazine 01/02/03 as numbered dithered covers; BTN
-        and Outstation show a grey [ EMPTY ] box. Esc surfaces back out.
+        A folder opens straight onto its photos (no sub-folders, his call
+        Oct 31). An empty tab shows a grey [ EMPTY ] box. Esc surfaces out.
       - **Every gradient is the site's 4×4 Bayer dither**, generated on a
         canvas once per colour and size (`dither()`, cached data URLs)
         instead of the reference's film grain. Hero ≈ 3px cells like the
@@ -873,15 +873,19 @@ into tweens.
     before the power-off. This supersedes "glass ≈96% with the bezel kept"
     for the OS itself; the dolly is unchanged.
   - **His photos** (concept `docs/concepts/2026-10-30-os-gallery/`):
-    - FLUX → three magazine covers → photo grid; OUTSTATION → photo grid.
+    - **Folders open straight onto the photos, with tabs** (his ask, Oct 31:
+      "remove folders, show the photos directly … tabs on top, one PHOTOS and
+      the other EDITS"). `tabs:[{name,sets:[…]}]` in `FOLDERS`; a tab runs its
+      sets together as one grid (FLUX PHOTOS = flux-01 → 02 → 03, 40 photos),
+      and the viewer pages across the whole run. EDITS is empty until he
+      sends material: add its set(s) via `photos.mjs` and list them in the
+      tab. The tab bar (`.osTabs`, beside BACK; right-aligned on phones)
+      shows only when a folder has 2+ tabs; 1 / 2 switch on keyboards. The
+      Magazine 01/02/03 covers are gone (stills `2026-10-30-os-covers-before-tabs`).
       BTN is switched off (`off:true` in `FOLDERS`, his call Oct 30) until he
       has material; the CRT intro's nav row lists only FLUX | OUTSTATION.
       Colours swapped by his call: FLUX is the pink ramp, OUTSTATION the cyan
-      (the monitor's FLUX side sticker stays cyan). A cover is chosen per magazine with
-      `cover:N` in `FOLDERS`, numbered as the viewer counts. He picked photo
-      03 (the sunglasses close-up) for Magazine 02. Covers are tall 2:3
-      posters (his sketch): container-unit sized, as tall as the stage allows
-      and as wide as `--n` fit; two a row on phones.
+      (the monitor's FLUX side sticker stays cyan).
     - Files are `site/work/<set>/NN.jpg` (2000px), `NN-t.jpg` (640w thumb)
       and `NN-z.jpg` (3000px, fetched on first zoom).
     - All of it comes from `node docs/tools/photos.mjs "<his BEST folder>"`:

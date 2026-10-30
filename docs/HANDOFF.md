@@ -4,6 +4,12 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-10-31 — FLUX opens straight onto photos, PHOTOS / EDITS tabs. NOT deployed
+- **His ask** (screenshot, two boxes beside BACK): inside FLUX drop the magazine folders, show the photos directly, tabs on top: PHOTOS and EDITS. He'll upload the edits later.
+- **Did:** `FOLDERS[].tabs` replaces `items`/`set`/`cover`. `shots()` flattens a tab's sets; grid + viewer + zoom work on that list. `.osTabs` sits beside BACK (centred desktop, right on phones), hidden with 1 tab or while a photo is up. Crumbs JATINSPACE / FLUX / PHOTOS; viewer BACK = ◀ PHOTOS. Cover CSS/code removed. Hints mention tabs; empty tab points back to PHOTOS. Keys 1/2.
+- **Tests updated:** `tests/browsers/run.mjs` (FLUX photos, both tabs, viewer) and `tests/load.mjs` (no covers). check, 14/14 browsers, NET=4g load all pass. Stills `2026-10-31-flux-tabs`, before: `2026-10-30-os-covers-before-tabs`.
+- **Next:** his edits → `photos.mjs` (add a set, e.g. `flux-edits`) → list it in FLUX's EDITS tab. If "edits" are VIDEO, the viewer needs a video path — ask. Deploy on his word.
+
 ## 2026-10-30 (latest) — DEPLOYED ff559b4 (his word: "deploy")
 - **Live:** touch-aware hints + navigation (ff559b4). Pages run 41097529232, success.
 - **Rollback:** previous live c96fe32 (run 41093113739): `git revert ff559b4 && git push`.

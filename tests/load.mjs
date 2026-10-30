@@ -185,16 +185,11 @@ async function zoomTest(name, netLimit) {
   (good ? ok : bad)(`${name}: zoom ${z} (3000px frame in ${tz}ms) · drag moves it · double-click back to ${z2}`);
 }
 
-async function walkSet(folderIdx, magIdx, netLimit, zoomCheck, opened) {
-  // stage → folder (→ magazine) → grid; `opened`: the folder is already up
+async function walkSet(folderIdx, netLimit, zoomCheck, opened) {
+  // stage → folder → its photos (first tab); `opened`: the folder is already up
   if (!opened) {
     await js(`document.querySelectorAll('.osNav [data-go]')[${folderIdx}].click()`);
     await until(`!!document.querySelector('.osGrid .osTile')&&!document.querySelector('.osGridV').hidden`, 8000, 'folder grid');
-  }
-  if (magIdx != null) {
-    await sleep(300);
-    await js(`document.querySelectorAll('.osGrid .osTile.mag')[${magIdx}].click()`);
-    await until(`document.querySelector('.osGrid').classList.contains('photos')`, 4000, 'photo grid');
   }
   const name = await js(`document.querySelector('.osPath').textContent.replace('JATINSPACE / ','')`);
   const n = await js(`document.querySelectorAll('.osGrid img').length`);
@@ -227,8 +222,7 @@ async function walkSet(folderIdx, magIdx, netLimit, zoomCheck, opened) {
   const msg = `${name}: ${n} photos · first screen ${tFirst}ms · all thumbs ${tAll}ms (${kb(thumbs)}) · viewer first ${firstView}ms, next median ${med}ms, worst ${worst}ms`;
   worst > netLimit ? bad(msg + ` — over ${netLimit}ms`) : ok(msg);
   await key('Escape'); await sleep(250);              // viewer → grid
-  await key('Escape'); await sleep(500);              // grid → covers / stage
-  if (magIdx != null) { await key('Escape'); await sleep(500); }
+  await key('Escape'); await sleep(500);              // grid → stage
 }
 
 /* the folders, read from the page itself so the test follows the content */
@@ -244,17 +238,16 @@ try {
     const b = await boot();
     info(`first load ${b.tLoad}ms, ${kb(b.first)} · intro → PROJECTS ${(b.tProjects / 1000).toFixed(1)}s (includes the intro itself)`);
     b.early ? bad(`${b.early} photos fetched before any folder was opened`) : ok('no photos fetched until a folder is opened');
-    // FLUX: each magazine; OUTSTATION: itself. BTN is empty — just check it opens.
+    // every folder opens straight onto its photos (FLUX: the PHOTOS tab)
     const names = await folders();
     for (let f = 0; f < names.length; f++) {
       await js(`document.querySelectorAll('.osNav [data-go]')[${f}].click()`);
       await until(`!document.querySelector('.osGridV').hidden`, 8000, `${names[f]} contents`);
       await sleep(300);
-      const kind = await js(`(()=>{const g=document.querySelector('.osGrid');return g.classList.contains('photos')?'photos':g.querySelectorAll('.osTile.mag').length||'empty';})()`);
-      if (kind === 'photos') { await walkSet(f, null, net.limit, false, true); continue; }   // measure it now, before anything is cached
+      const photos = await js(`document.querySelector('.osGrid').classList.contains('photos')`);
+      if (photos) { await walkSet(f, net.limit, f === 0, true); continue; }   // measure it now, before anything is cached
       await key('Escape'); await sleep(700);
-      if (kind === 'empty') ok(`${names[f].trim()}: opens, empty`);
-      else for (let m = 0; m < kind; m++) await walkSet(f, m, net.limit, m === 0);
+      ok(`${names[f].trim()}: opens, empty`);
     }
     const all = [...reqs.values()];
     const failedReqs = all.filter((r) => r.error || (r.status && r.status >= 400));
@@ -269,10 +262,7 @@ try {
   problems.length = 0;
   await boot();
   await js(`document.querySelectorAll('.osNav [data-go]')[0].click()`);
-  await until(`!!document.querySelector('.osGrid .osTile.mag')`, 8000, 'covers');
-  await sleep(400);
-  await js(`document.querySelector('.osGrid .osTile.mag').click()`);
-  await until(`document.querySelector('.osGrid').classList.contains('photos')`, 4000, 'photo grid');
+  await until(`document.querySelector('.osGrid').classList.contains('photos')`, 8000, 'photo grid');
   await sleep(1500);
   const ph = await js(`(()=>{const v=document.querySelector('.osGridV'),o=document.querySelector('.pcOS').getBoundingClientRect();
     return {grid:v.scrollWidth-v.clientWidth,page:document.documentElement.scrollWidth-innerWidth,os:[Math.round(o.left),Math.round(o.right)],cols:getComputedStyle(document.querySelector('.osGrid')).gridTemplateColumns.split(' ').length};})()`);

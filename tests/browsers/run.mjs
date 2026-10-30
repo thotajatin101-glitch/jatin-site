@@ -11,7 +11,7 @@
 //          WebKit   = Safari on Mac AND every browser on iPhone/iPad.
 //          Firefox  = Firefox desktop.
 // Each config walks it like a visitor — taps on touch devices, clicks and
-// keys on desktop: intro → PROJECTS → the computer → covers → every photo
+// keys on desktop: intro → PROJECTS → the computer → FLUX photos + tabs → every photo
 // grid → the viewer (+ zoom) → EXIT. Fails on collapsed tiles (the Safari
 // "dots"), broken images, sideways overflow, console errors, failed requests.
 // Screenshots land in docs/process/stills/<date>-browsers/.
@@ -102,28 +102,22 @@ async function walk(name, engine, opts, base) {
     await sleep(500);
     const os = await page.locator('.pcOS').boundingBox();
     if (!os || Math.abs(os.width - opts.viewport.width) > 2) fail(`OS not fullscreen (${os && Math.round(os.width)}px wide)`);
-    // FLUX → covers
+    // FLUX → straight onto its PHOTOS tab
     await tapOrClick('.osFolder');
-    await page.waitForSelector('.osGrid.mags .osTile.mag', { timeout: 6000 });
-    await sleep(900);
-    const covers = await page.$$eval('.osTile.mag i', (els) => els.map((e) => { const b = e.getBoundingClientRect(), i = e.querySelector('img'); return [Math.round(b.width), Math.round(b.height), !!(i && i.complete && i.naturalWidth)]; }));
-    r.covers = covers.map((c) => `${c[0]}×${c[1]}`).join(' ');
-    covers.forEach((c, k) => { if (c[1] < 80 || c[0] < 50) fail(`cover ${k + 1} collapsed (${c[0]}×${c[1]})`); if (!c[2]) fail(`cover ${k + 1} image not loaded`); });
-    await shot('2-covers');
-    // every magazine
-    const nMags = covers.length;
-    r.grids = [];
-    for (let m = 0; m < nMags; m++) {
-      if (m > 0) {                                             // back to the covers: Esc on desktop, the FLUX link on touch
-        if (touch) await tapOrClick('.osNav [data-go="0"]'); else await page.keyboard.press('Escape');
-        await page.waitForSelector('.osGrid.mags .osTile.mag', { timeout: 6000 }); await sleep(700);
-      }
-      await page.locator('.osTile.mag').nth(m)[touch ? 'tap' : 'click']();
+    await page.waitForSelector('.osGrid.photos .osPhoto', { timeout: 6000 }); await sleep(900);
+    r.grids = [await checkGrid(page, 'flux photos', fail)];
+    await shot('2-flux');
+    // EDITS tab, then back to PHOTOS
+    const tabs = await page.$$eval('.osTab', (t) => t.map((b) => b.textContent.trim().split(/\s+/)[0]));
+    if (tabs.join() !== 'PHOTOS,EDITS') fail(`FLUX tabs are ${tabs.join() || 'missing'}`);
+    else {
+      await tapOrClick('.osTab[data-tab="1"]'); await sleep(500);
+      if (!(await page.evaluate(() => !!document.querySelector('.osEmpty') || document.querySelector('.osGrid.photos')))) fail('EDITS tab shows nothing');
+      await shot('3-edits');
+      await tapOrClick('.osTab[data-tab="0"]');
       await page.waitForSelector('.osGrid.photos .osPhoto', { timeout: 6000 }); await sleep(700);
-      r.grids.push(await checkGrid(page, `mag ${m + 1}`, fail));
-      if (m === 0) await shot('3-grid');
-      if (m === 1) await viewer(page, touch, r, fail, shot);
     }
+    await viewer(page, touch, r, fail, shot);
     // OUTSTATION
     await tapOrClick('.osNav [data-go="1"]');
     await page.waitForSelector('.osGrid.photos .osPhoto', { timeout: 8000 }); await sleep(700);
