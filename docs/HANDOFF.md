@@ -4,6 +4,12 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-10-30 (latest) — JATIN OS: BACK button, EXIT leaves the computer. NOT deployed
+- **His ask** (screenshot with the top-left of the stage boxed): a back button there to go folder to folder; top EXIT exits the computer directly.
+- **Did:** `.osBack` in `.osStage` (top-left, folder colour, z4 so it sits over grid and viewer). One level per press: viewer → grid → covers → stage, same path as Esc (`closeView`/`up`). Disabled (dimmed) on the stage and while a move is in flight; state is set in `setHow()`. Grid top padding grew so tiles clear it. EXIT unchanged in code (`close()` already hides from any depth) and verified from inside the viewer.
+- **Checked:** BACK walk + EXIT-from-viewer on Chromium 1440×900 and WebKit iPhone 17 Pro; `tests/check.mjs` and `tests/browsers` (1440, iPhone 17 Pro, iPad Mini) pass. Stills `2026-10-30-os-back`.
+- **Next:** deploy on his word.
+
 ## 2026-10-30 (late) — cross-browser test (Playwright) + three fixes. NOT deployed
 - **His ask:** "a playwright and browser test for each version of a browser modern computers and phones use".
 - **Built:** `tests/browsers/run.mjs` (Playwright 1.64.1 pinned in `tests/browsers/package.json`, dev-only, never ships; `node_modules/` gitignored). 14 configs on the three engines every current browser runs on: Chromium (Chrome/Edge/Brave/Opera/Samsung/Android), WebKit (Safari Mac + every iPhone/iPad browser), Firefox. Desktops 1440×900, 1280×800, 1440×700, 1920×1080; iPhone 17 Pro / Pro Max / SE / 17 Pro landscape; Pixel 9; Galaxy S24; iPad Pro 11; iPad Mini. Each walks it like a visitor (taps on touch): intro → PROJECTS → tap the computer → covers → every grid → viewer + zoom → EXIT. It fails on collapsed tiles, broken images, sideways overflow, console errors or failed requests. Stills in `docs/process/stills/2026-10-30-browsers/`. `CPU=6` slows Chromium; `ONLY=` picks configs; a URL arg tests the live site.

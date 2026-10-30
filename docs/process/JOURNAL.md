@@ -341,3 +341,12 @@ have some freedom." → the tube powers on on the glass, then grows off it to
 fill the page; EXIT shrinks it back first. The viewer zooms where you point
 (scroll, pinch, double-click) and drags, loading a 3000px frame on first zoom.
 Stills: `os-gallery`.
+
+**BACK and EXIT (Oct 30, late).** His note, with a box drawn at the stage's
+top-left: "add a back button at the place i outlined … so the users can go
+back from folder to folder and making the top exit button as exiting the
+computer directly." → a `◀ BACK` plate in the folder's colour sits there and
+climbs one level per press (photo → grid → covers → folders), the same as
+Esc. On the folder stage there's nothing above, so it dims out rather than
+vanishing; the spot stays put. The header's `[X] EXIT` leaves the computer
+from any depth, even from inside a photo. Stills: `os-back`.

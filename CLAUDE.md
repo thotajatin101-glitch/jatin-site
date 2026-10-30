@@ -902,6 +902,9 @@ into tweens.
         fit ↔ 250% on a double-click or double-tap;
       - drops the tube's scanlines so the work shows clean.
     - Esc goes up one level at a time.
+    - **BACK** (`.osBack`, top-left of the stage — his marked spot) does the
+      same as Esc, one level per press; dimmed on the folder stage. The header's
+      **[X] EXIT** leaves the computer from any depth.
   - **Tests:** `tests/check.mjs` covers every photo file (case, EXIF, budgets,
     live copy current). `tests/load.mjs` runs real Chrome throttled to 4G and
     slow 4G over every grid and photo, plus zoom/drag, fullscreen and phone.

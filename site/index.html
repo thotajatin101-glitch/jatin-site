@@ -209,6 +209,12 @@ button{cursor:pointer;}
 .osArrow{all:unset;cursor:pointer;position:absolute;top:50%;z-index:3;transform:translateY(-50%);
   font-size:2.4em;padding:.2em .45em;color:var(--fc);background:rgba(5,6,8,.65);border:2px solid var(--fc);text-shadow:none;}
 .osArrow.l{left:1.2em;}.osArrow.r{right:1.2em;}
+/* BACK: one level up (photo → grid → covers → folders), top-left of the stage
+   (his mark). EXIT in the header leaves the computer from any depth */
+.pcOS .osBack{all:unset;cursor:pointer;position:absolute;z-index:4;left:1.2em;top:1em;padding:.15em .7em;font-size:1.25em;
+  color:var(--fc);background:rgba(5,6,8,.75);border:2px solid var(--fc);text-shadow:none;box-shadow:.2em .2em 0 var(--fc);}
+.pcOS .osBack:hover,.pcOS .osBack:focus-visible{background:var(--fc);color:var(--os-ink);}
+.pcOS .osBack:disabled{cursor:default;opacity:.3;box-shadow:none;background:rgba(5,6,8,.75);color:var(--fc);}
 .osArrow:hover,.osArrow:focus-visible{background:var(--fc);color:var(--os-ink);}
 /* browse: quick slide-out, the next one slams in with a little overshoot.
    Smooth eases (the stepped version read as lag) and ONLY transform +
@@ -233,7 +239,7 @@ button{cursor:pointer;}
 @keyframes surface{from{transform:scale(2.6) translateY(4%);opacity:0;}to{transform:none;opacity:1;}}
 .osStage.inside .osHero,.osStage.inside .osBg,.osStage.inside .osArrow{visibility:hidden;}
 /* ---- inside a folder: the contents grid ---- */
-.osGridV{position:absolute;inset:0;overflow-y:auto;padding:2.2em 3em;container-type:size;
+.osGridV{position:absolute;inset:0;overflow-y:auto;padding:4.2em 3em 2.2em;container-type:size;
   scrollbar-width:auto;scrollbar-color:var(--os-paper) var(--os-ink);}
 .osGridV[hidden]{display:none;}
 .osGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(11em,1fr));gap:2em;--fc:#00f0d8;}
@@ -320,7 +326,8 @@ button{cursor:pointer;}
   .osGrid.mags .osTile.mag i b{font-size:3.2em;}
   .osSearch input{width:6em;}
   .osArrow{font-size:1.7em;}.osArrow.l{left:.3em;}.osArrow.r{right:.3em;}
-  .osGridV{padding:1.4em 1.2em;}
+  .osGridV{padding:3.4em 1.2em 1.4em;}
+  .pcOS .osBack{left:.5em;top:.6em;}
 }
 #shardbg svg{
   position:absolute;left:-36%;top:-36%;
@@ -3121,6 +3128,7 @@ void main(){
         <label class="osSearch"><input type="text" placeholder="search the noise..." aria-label="Search folders" spellcheck="false"><span aria-hidden="true">⌕</span></label></nav>
       <div class="osStage">
         <div class="osBg">${bg}</div>
+        <button class="osBack" aria-label="Back one level" disabled>◀ BACK</button>
         <button class="osArrow l" aria-label="Previous folder">◀</button><button class="osArrow r" aria-label="Next folder">▶</button>
         <div class="osHero">
           <div class="osLabel"><b></b><span></span></div>
@@ -3177,6 +3185,7 @@ void main(){
     shotEl.addEventListener('pointerup',lift);shotEl.addEventListener('pointercancel',lift);
     os.querySelector('.osFolder').addEventListener('click',openFolder);
     os.querySelector('.osExit').addEventListener('click',close);
+    os.querySelector('.osBack').addEventListener('click',()=>{if(view==='viewer')closeView();else if(view==='grid')up();});
     os.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();
       if(view==='viewer')closeView();
       if(view==='grid')back(()=>goTo(+a.dataset.go,true));else goTo(+a.dataset.go,true);}));
@@ -3195,7 +3204,8 @@ void main(){
       if(view==='stage'&&Math.abs(dx)>50)swap(dx<0?1:-1);});
     paintHero(0);
   }
-  function setHow(){os.querySelector('.osHow').textContent=view==='stage'
+  function setHow(){os.querySelector('.osBack').disabled=view==='stage'||view==='busy';
+    os.querySelector('.osHow').textContent=view==='stage'
     ?'◀ ▶ browse · return or click to open · esc exits'
     :view==='viewer'?'◀ ▶ next · scroll or pinch to zoom · drag to move · double-click to fit · esc back'
     :setOf()?'arrows move · return or click to view · esc goes back':'arrows move · return or click to open · esc goes back';}
@@ -3228,7 +3238,7 @@ void main(){
     later(()=>{st.classList.add('diving');},260);           /* camera dives into the folder */
     later(()=>{
       gset=null;fillGrid();
-      os.querySelector('.osGridV').hidden=false;st.classList.add('inside');view='grid';
+      os.querySelector('.osGridV').hidden=false;st.classList.add('inside');view='grid';setHow();
     },520);
   }
   /* what's inside: sub-folders as covers, or a photo set as a grid. gset is
