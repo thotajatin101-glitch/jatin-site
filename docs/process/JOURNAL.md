@@ -387,3 +387,13 @@ button design something similar." The outlined boxes (FOLDERS, PHOTOS, EDITS)
 were swapped for the menu's slanted black plates: Cyberway, glitch split,
 numbered, dithered, flooding the folder colour on select with the menu's
 chroma burst. Stills: `stills/2026-10-31-os-plates/`.
+
+## 2026-10-31 — his edits go into the computer
+His ask: "this folder contains all the video edits there is also an outstation
+video that i want in the outstation folder ofc." Seven FLUX films go under
+FLUX › EDITS and the outstation film under a new OUTSTATION › EDITS tab. Poster
+grid with pink play plates and run times; tapping one plays it in the viewer
+with sound. Encoded down to 1080 for the web (233MB for all eight). Caught in
+testing: Safari drew the posters at a third of their width, and wouldn't play
+video from the local test server (needs byte ranges) — both fixed.
+Stills: `stills/2026-10-31-os-edits/`.

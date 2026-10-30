@@ -15,10 +15,10 @@
 // a viewer photo slower than the network's limit, or the OS overflowing
 // sideways on a phone.
 
-import http from 'node:http';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { serve as serveSite } from './serve.mjs';
 import { spawn } from 'node:child_process';
 
 const SITE = path.resolve(import.meta.dirname, '..', 'site');
@@ -33,17 +33,7 @@ const ok = (msg) => console.log('  ok   ' + msg);
 const bad = (msg) => { failed++; console.log('  FAIL ' + msg); };
 const info = (msg) => console.log('       ' + msg);
 
-function serve() {
-  const TYPES = { '.html': 'text/html', '.png': 'image/png', '.jpg': 'image/jpeg' };
-  const srv = http.createServer((req, res) => {
-    const rel = decodeURIComponent(req.url.split('?')[0]);
-    const file = path.join(SITE, rel === '/' ? 'index.html' : rel);
-    if (!file.startsWith(SITE) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404).end(); return; }
-    res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
-    res.end(fs.readFileSync(file));
-  });
-  return new Promise((r) => srv.listen(0, '127.0.0.1', () => r(srv)));
-}
+const serve = () => serveSite('127.0.0.1');   // range-aware, like GitHub Pages: tests/serve.mjs
 
 const BROWSERS = [
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',

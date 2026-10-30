@@ -77,3 +77,28 @@ with ink type, scales up 1.09 and fires the menu's chroma burst (`osBurst`).
 On the dark stage each plate carries a hard drop in the folder colour (paper
 when lit) so the black plate reads at all. The grid moved down a little so a
 lit plate never touches the first row. Stills: `2026-10-31-os-plates`.
+
+## Round 7 — his edits (2026-10-31)
+**His ask:** "this folder contains all the video edits there is also an
+outstation video that i want in the outstation folder ofc." (`FLux best work`)
+**Built:**
+- `docs/tools/videos.mjs`, the twin of photos.mjs: each master → H.264/AAC MP4,
+  long edge ≤1920 / short ≤1080 (4K and 2160² masters come down), CRF 23 capped
+  at 5Mbps, faststart, no metadata; a poster from a typical frame ~⅓ in, plus a
+  640w poster thumb. Rewrites the `VIDEOS` block. 8 edits, 233MB (largest: Taj
+  Falaknuma, 2:23, 55MB — GitHub's file cap is 100MB).
+- FLUX › EDITS: Flux Teaser, Flux Issue 03, Cover, Fashion Edit · Issue 03,
+  Event · Issue 03, Natyam, Taj Falaknuma. OUTSTATION gained the same
+  PHOTOS / EDITS tabs; its EDITS holds the outstation film.
+- Grid: 16:9 poster tiles (3 across, 2 on tablets, 1 on phones) with a pink
+  play plate, running time, number and title.
+- Player: the same viewer frame; the edit starts on the tap that opened it
+  (sound on), native controls, ◀ ▶ next edit, space plays/pauses, Esc / BACK
+  closes and the stream is dropped (nothing keeps playing behind the grid).
+  No zoom on video.
+**Watch out:** Safari only plays video from a server that answers byte ranges,
+so the local servers are now one shared `tests/serve.mjs` (GitHub Pages already
+does this). And the Safari sizing trap again: a sized poster box drew at a
+third of its column — tiles are built like the photo tiles, the row sets the
+size and the poster is pinned to the tile's edges.
+Stills: `2026-10-31-os-edits`.

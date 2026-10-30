@@ -5,6 +5,12 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 ---
 
 
+
+## 2026-10-31 (later) — EDITS: his videos in the OS. NOT deployed
+- Did: `docs/tools/videos.mjs` (8 edits → site/work/flux-edits, outstation-edits; VIDEOS block), FLUX › EDITS + OUTSTATION › EDITS, poster grid + video player in the viewer. Shared range-aware `tests/serve.mjs` for check/load/browsers + .claude/serve.js. check.mjs checks edits (faststart, ≤95MB, posters, 206 on Range); site budget 100→500MB. Browser walk plays the first edit: 14/14 pass.
+- Next: he says "deploy" → push (adds ~233MB; GitHub Pages limit 1GB site / 100MB file).
+- Watch out: Playwright Firefox has no H.264 (real Firefox does) — the walk only checks the player opens there. Re-encode by re-running videos.mjs, never by hand.
+
 ## 2026-10-31 — OS buttons as menu plates. NOT deployed
 - Did: FOLDERS/BACK + PHOTOS/EDITS restyled as menu plates (`.osPlate` wrapper carries drop + fringe; `osBurst`; `.osBack`/`.osTab` added to DitherFX SEL; its registry is a WeakMap now since tabs are rebuilt per folder). Grid top padding up. Browser walk reads tab names without the numbers. 6 configs pass.
 - Next: he says "deploy" → ship 2d2725f, 4bef897, d8557f7 and this.

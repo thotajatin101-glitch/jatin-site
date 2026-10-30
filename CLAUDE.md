@@ -908,6 +908,15 @@ into tweens.
         and the photo grid (`.pcOS.inside`, his ask): no scanlines anywhere
         his photos are; only the folder stage keeps them.
     - Esc goes up one level at a time.
+    - **His edits** (Oct 31): `node docs/tools/videos.mjs "<FLux best work>"`
+      makes `site/work/<set>/NN.mp4` (H.264, ≤1920×1080, faststart, ≤95MB),
+      `NN.jpg` poster and `NN-t.jpg` thumb, and rewrites the `VIDEOS` block
+      (`[w,h,seconds,title]`; order + titles live in the tool's SETS). Each
+      folder's EDITS tab lists its video set. Tiles are 16:9 posters built like
+      the photo tiles (row sets the size, poster pinned to the edges — a sized
+      box drew at ⅓ width in Safari). The viewer plays them with native
+      controls, no zoom; closing drops the stream. Safari needs byte ranges:
+      every local server is `tests/serve.mjs`.
     - **Hints follow the device** (his ask): `TOUCH` (hover:none + coarse
       pointer) switches HOW TO USE and the click screen to tap/swipe wording.
       BACK is labelled with where it goes (◀ FLUX); the desktop path is

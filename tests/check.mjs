@@ -15,9 +15,9 @@
 // the page — motion and console errors are checked in a real browser
 // (docs/VERIFY.md); loading under a slow network is tests/load.mjs.
 
-import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
+import { serve as serveSite } from './serve.mjs';
 import vm from 'node:vm';
 
 const SITE = path.resolve(import.meta.dirname, '..', 'site');
@@ -55,17 +55,7 @@ const ROUTES = [
   ['/jatin-cutout.png', 'image/png', []],
 ];
 
-function serve() {
-  const TYPES = { '.html': 'text/html', '.png': 'image/png', '.jpg': 'image/jpeg' };
-  const srv = http.createServer((req, res) => {
-    const rel = decodeURIComponent(req.url.split('?')[0]);
-    const file = path.join(SITE, rel === '/' ? 'index.html' : rel);
-    if (!file.startsWith(SITE) || !fs.existsSync(file)) { res.writeHead(404).end(); return; }
-    res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
-    res.end(fs.readFileSync(file));
-  });
-  return new Promise((r) => srv.listen(0, () => r(srv)));
-}
+const serve = () => serveSite();   // range-aware, like GitHub Pages: tests/serve.mjs
 
 const live = process.argv[2];
 const srv = live ? null : await serve();
@@ -91,7 +81,7 @@ for (const [route, type, checks] of ROUTES) {
 // budgets: what a phone on a mid connection can pull without stalling.
 // A grid opens ~20 thumbs at once; the viewer pulls one full + two neighbours;
 // a zoom file only loads when someone zooms into that one photo.
-const BUDGET = { thumb: 180 * 1024, full: 750 * 1024, zoom: 1.8 * 1048576, site: 100 * 1048576, html: 2 * 1048576 };
+const BUDGET = { thumb: 180 * 1024, full: 750 * 1024, zoom: 1.8 * 1048576, site: 500 * 1048576, mp4: 95 * 1048576, poster: 400 * 1024, html: 2 * 1048576 };
 const block = html.match(/const PHOTOS=(\{[\s\S]*?\});/);
 const PHOTOS = block ? new Function(`return ${block[1]}`)() : null;
 console.log('photos');
@@ -135,7 +125,43 @@ else {
     ok(`${set}: ${list.length} photos, ${n} files, ${kb(weight)}`);
   }
   const sets = fs.existsSync(path.join(SITE, 'work')) ? fs.readdirSync(path.join(SITE, 'work')).filter((d) => !d.startsWith('.')) : [];
-  sets.filter((d) => !PHOTOS[d]).forEach((d) => bad(`work/${d} is not in the PHOTOS block`));
+  // edits: VIDEOS block → NN.mp4 (H.264 in an MP4, moov before mdat so it
+  // plays while loading, under GitHub's 100MB file cap) + NN.jpg / NN-t.jpg posters
+  const vblock = html.match(/const VIDEOS=(\{[\s\S]*?\});/);
+  const VIDEOS = vblock ? new Function(`return ${vblock[1]}`)() : {};
+  const mp4s = [];
+  for (const [set, list] of Object.entries(VIDEOS)) {
+    const dir = path.join(SITE, 'work', set), names = fs.existsSync(dir) ? fs.readdirSync(dir) : [], mine = [];
+    let weight = 0;
+    list.forEach(([w, h, dur, title], i) => {
+      const n = String(i + 1).padStart(2, '0');
+      for (const name of [`${n}.mp4`, `${n}.jpg`, `${n}-t.jpg`]) {
+        const rel = `work/${set}/${name}`;mine.push(name);
+        if (!names.includes(name)) { bad(`${rel} missing (or wrong case)`); continue; }
+        const buf = fs.readFileSync(path.join(dir, name));weight += buf.length;
+        if (name.endsWith('.mp4')) {
+          mp4s.push(rel);
+          if (buf.toString('latin1', 4, 8) !== 'ftyp') bad(`${rel} is not an MP4`);
+          const moov = buf.indexOf('moov'), mdat = buf.indexOf('mdat');
+          if (moov < 0 || mdat < 0 || moov > mdat) bad(`${rel} has its index at the end (no faststart) — it can't play until fully loaded`);
+          if (buf.length > BUDGET.mp4) bad(`${rel} ${(buf.length / 1048576).toFixed(1)}MB, over GitHub's file cap margin`);
+        } else {
+          files.push(rel);
+          const j = jpeg(buf);
+          if (!j.jpeg) bad(`${rel} is not a JPEG`);
+          if (j.exif) bad(`${rel} carries EXIF`);
+          if (buf.length > BUDGET.poster) bad(`${rel} ${kb(buf.length)} over the poster budget`);
+        }
+      }
+      if (!title) bad(`${set}/${n} has no title`);
+    });
+    const stray = names.filter((f) => !mine.includes(f) && !f.startsWith('.'));
+    if (stray.length) bad(`work/${set}: files not in the VIDEOS block: ${stray.join(', ')}`);
+    ok(`${set}: ${list.length} edits, ${(weight / 1048576).toFixed(1)}MB`);
+  }
+  sets.filter((d) => !PHOTOS[d] && !VIDEOS[d]).forEach((d) => bad(`work/${d} is in neither the PHOTOS nor the VIDEOS block`));
+  for (const m of html.matchAll(/sets:\[([^\]]*)\]/g)) for (const id of m[1].match(/'[^']+'/g) || [])
+    if (!PHOTOS[id.slice(1, -1)] && !VIDEOS[id.slice(1, -1)]) bad(`a folder tab points at set ${id}, which doesn't exist`);
   // every set a folder points at must exist
   for (const m of html.matchAll(/set:'([^']+)'/g)) if (!PHOTOS[m[1]]) bad(`a folder points at set '${m[1]}', which has no photos`);
   const du = (d) => fs.readdirSync(d, { withFileTypes: true }).reduce((a, e) => a + (e.isDirectory() ? du(path.join(d, e.name)) : fs.statSync(path.join(d, e.name)).size), 0);
@@ -155,7 +181,21 @@ else {
       served++;
     } catch (e) { bad(`${rel} → ${e.message}`); }
   }));
-  served === files.length ? ok(`all ${served} photo files served as image/jpeg`) : bad(`${served}/${files.length} photo files served`);
+  served === files.length ? ok(`all ${served} photo + poster files served as image/jpeg`) : bad(`${served}/${files.length} photo files served`);
+  // edits: headers only (no 300MB download) — type, length, and a byte range answered with 206, which Safari needs to play
+  let vids = 0;
+  await Promise.all(mp4s.map(async (rel) => {
+    try {
+      const res = await fetch(`${base}/${rel}?${bust}`, { headers: { Range: 'bytes=0-1' } });
+      await res.arrayBuffer();
+      const ct = res.headers.get('content-type') || '', total = +(res.headers.get('content-range') || '').split('/')[1];
+      if (res.status !== 206) return bad(`${rel} → ${res.status} to a byte-range request (Safari won't play it)`);
+      if (!ct.includes('video/mp4')) return bad(`${rel} → content-type ${ct}`);
+      if (total !== fs.statSync(path.join(SITE, rel)).size) return bad(`${rel} live copy differs from local (stale deploy?)`);
+      vids++;
+    } catch (e) { bad(`${rel} → ${e.message}`); }
+  }));
+  if (mp4s.length) vids === mp4s.length ? ok(`all ${vids} edits served as video/mp4 with byte ranges`) : bad(`${vids}/${mp4s.length} edits served`);
 }
 srv?.close();
 

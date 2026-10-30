@@ -16,9 +16,9 @@
 // "dots"), broken images, sideways overflow, console errors, failed requests.
 // Screenshots land in docs/process/stills/<date>-browsers/.
 
-import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
+import { serve as serveSite } from '../serve.mjs';
 import { chromium, firefox, webkit, devices } from 'playwright';
 
 const REPO = path.resolve(import.meta.dirname, '..', '..');
@@ -44,17 +44,7 @@ const CONFIGS = [
   ['ipad-mini', webkit, devices['iPad Mini']],
 ].filter(([n]) => !process.env.ONLY || process.env.ONLY.split(',').some((o) => n.includes(o)));
 
-function serve() {
-  const TYPES = { '.html': 'text/html', '.png': 'image/png', '.jpg': 'image/jpeg' };
-  const srv = http.createServer((req, res) => {
-    const rel = decodeURIComponent(req.url.split('?')[0]);
-    const file = path.join(SITE, rel === '/' ? 'index.html' : rel);
-    if (!file.startsWith(SITE) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404).end(); return; }
-    res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
-    res.end(fs.readFileSync(file));
-  });
-  return new Promise((r) => srv.listen(0, '127.0.0.1', () => r(srv)));
-}
+const serve = () => serveSite('127.0.0.1');   // range-aware, like GitHub Pages: tests/serve.mjs
 
 async function walk(name, engine, opts, base) {
   const r = { name, engine: engine.name(), fails: [], notes: [] };
@@ -64,9 +54,9 @@ async function walk(name, engine, opts, base) {
   const page = await ctx.newPage();
   if (process.env.CPU && engine === chromium) await (await ctx.newCDPSession(page)).send('Emulation.setCPUThrottlingRate', { rate: +process.env.CPU });   // CPU=6: a slow laptop
   const touch = !!opts.hasTouch;
-  page.on('console', (m) => { if (m.type() === 'error') fail('console: ' + m.text().slice(0, 140)); });
+  page.on('console', (m) => { if (m.type() === 'error' && !/Button failed to load, iconName/.test(m.text())) fail('console: ' + m.text().slice(0, 140)); });   // that one is Playwright WebKit missing its own player icons
   page.on('pageerror', (e) => fail('exception: ' + String(e.message).slice(0, 140) + ' @ ' + (String(e.stack).split('\n').find((l) => /index\.html:\d+/.test(l)) || '').trim().replace(/^at /, '').replace(/https?:\/\/[^/]+\//, '')));
-  page.on('requestfailed', (q) => { if (!/favicon/.test(q.url())) fail(`request failed: ${q.url().split('/').slice(-2).join('/')} ${q.failure()?.errorText}`); });
+  page.on('requestfailed', (q) => { if (!/favicon/.test(q.url()) && !(/\.mp4/.test(q.url()) && /ABORTED|cancelled/i.test(q.failure()?.errorText || ''))) fail(`request failed: ${q.url().split('/').slice(-2).join('/')} ${q.failure()?.errorText}`); });
   page.on('response', (q) => { if (q.status() >= 400) fail(`HTTP ${q.status()}: ${q.url().split('/').slice(-2).join('/')}`); });
   const shot = (tag) => page.screenshot({ path: path.join(OUT, `${name}-${tag}.jpg`), type: 'jpeg', quality: 80 }).catch(() => {});
   const tapOrClick = async (sel) => { const el = page.locator(sel).first(); touch ? await el.tap() : await el.click(); };
@@ -112,8 +102,13 @@ async function walk(name, engine, opts, base) {
     if (tabs.join() !== 'PHOTOS,EDITS') fail(`FLUX tabs are ${tabs.join() || 'missing'}`);
     else {
       await tapOrClick('.osTab[data-tab="1"]'); await sleep(500);
-      if (!(await page.evaluate(() => !!document.querySelector('.osEmpty') || document.querySelector('.osGrid.photos')))) fail('EDITS tab shows nothing');
+      await page.waitForSelector('.osGrid.videos .osEdit', { timeout: 6000 }).catch(() => fail('EDITS tab shows no edits'));
+      await sleep(900);
+      r.edits = await page.evaluate(() => { const t = [...document.querySelectorAll('.osEdit')], i = t[0] && t[0].querySelector('img');
+        return { n: t.length, w: i ? Math.round(i.getBoundingClientRect().width) : 0, h: i ? Math.round(i.getBoundingClientRect().height) : 0, loaded: t.filter((x) => x.querySelector('img').naturalWidth > 0).length }; });
+      if (r.edits.w < 120 || r.edits.h < 60) fail(`edit tiles collapsed to ${r.edits.w}×${r.edits.h}`);
       await shot('3-edits');
+      await play(page, touch, r, fail, shot, engine === firefox);
       await tapOrClick('.osTab[data-tab="0"]');
       await page.waitForSelector('.osGrid.photos .osPhoto', { timeout: 6000 }); await sleep(700);
     }
@@ -152,6 +147,23 @@ async function checkGrid(page, label, fail) {
   return `${label} ${t.length} tiles ${t[0]?.[0]}×${t[0]?.[1]} ${cols}col`;
 }
 
+// open the first edit: it must start playing (Playwright's Firefox ships without
+// H.264 — real Firefox plays it through the OS — so there it only checks the player opened)
+async function play(page, touch, r, fail, shot, noH264) {
+  const first = page.locator('.osEdit').first();
+  touch ? await first.tap() : await first.click();
+  await page.waitForSelector('.osView:not([hidden]) .osShot.isVid', { timeout: 4000 }).catch(() => fail('edit did not open the player'));
+  await sleep(2500);
+  const v = await page.evaluate(() => { const d = document.querySelector('.osShot .vd');
+    return { t: +d.currentTime.toFixed(1), ready: d.readyState, err: d.error && d.error.code, w: d.videoWidth, box: Math.round(d.getBoundingClientRect().width) }; });
+  r.play = noH264 ? `player ${v.box}px (no H.264 in this build)` : `plays ${v.t}s in · ${v.w}px source in a ${v.box}px player`;
+  if (!noH264 && !(v.t > 0.3)) fail(`edit did not play (time ${v.t}, readyState ${v.ready}, error ${v.err})`);
+  if (v.box < 150) fail(`player is only ${v.box}px wide`);
+  await shot('3b-play');
+  await page.keyboard.press('Escape'); await sleep(300);
+  if (await page.evaluate(() => { const d = document.querySelector('.osShot .vd'); return !!d.getAttribute('src') || !d.paused; })) fail('edit kept playing after closing');
+}
+
 async function viewer(page, touch, r, fail, shot) {
   await page.locator('.osGrid .osPhoto').nth(2)[touch ? 'tap' : 'click']();
   await page.waitForFunction(() => { const h = document.querySelector('.osShot .hi'); return h.classList.contains('ok') && h.naturalWidth > 0; }, null, { timeout: 10000 })
@@ -187,6 +199,7 @@ for (const [name, engine, opts] of CONFIGS) {
   const r = await walk(name, engine, opts, base);
   results.push(r);
   console.log(r.fails.length ? `FAIL (${r.fails.length})` : 'ok', `· webgl ${r.webgl ? 'yes' : 'NO'} · intro ${r.intro || '-'} · tap opens computer ${r.tapOpens ? 'yes' : 'no'} · viewer ${r.viewer || '-'} · zoom ${r.zoom || '-'}`);
+  if (r.edits) console.log(' '.repeat(28) + `edits ${r.edits.n} tiles ${r.edits.w}×${r.edits.h} (${r.edits.loaded} posters loaded) · ${r.play || 'not played'}`);
   for (const g of r.grids || []) console.log(' '.repeat(28) + g);
   for (const n of r.notes) console.log(' '.repeat(28) + 'note: ' + n);
   for (const f of [...new Set(r.fails)]) console.log(' '.repeat(28) + 'FAIL ' + f);
