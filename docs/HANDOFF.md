@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-10-30 (latest) — DEPLOYED ff559b4 (his word: "deploy")
+- **Live:** touch-aware hints + navigation (ff559b4). Pages run 41097529232, success.
+- **Rollback:** previous live c96fe32 (run 41093113739): `git revert ff559b4 && git push`.
+- **Checked live:** `tests/check.mjs <live>` passed; `tests/browsers` on the live URL passed (desktop 1440, iPhone 17 Pro, Pixel 9, iPad Mini).
+
 ## 2026-10-30 (latest) — JATIN OS: touch-aware hints + easier navigation. NOT deployed
 - **His ask:** hints only make sense on a laptop; change them per device; make getting around the folders and computer easier.
 - **Did (`site/index.html`, MonitorFX):** `TOUCH = matchMedia('(hover:none) and (pointer:coarse)')` (live; re-hints on change). `setHow()` has touch + key wording per level; the click-screen canvas hint too. `setPath()` now builds `.osPath` as clickable crumbs (`climb('top'|'folder')`) and labels BACK with its destination (◀ FOLDERS / ◀ FLUX / ◀ MAGAZINE 01). Swipe down (>80px, mostly vertical, at fit) closes the viewer. Phone grid top padding 4.2em so BACK clears the first tile.
