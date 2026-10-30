@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-10-30 (night) — DEPLOYED (his word: "push it github repo and make it public live")
+- **Live:** https://thotajatin101-glitch.github.io/jatin-site/ (GitHub Pages via `.github/workflows/pages.yml` on push to main). Commit 9deb8e6; the previous live version was dedbfb3. **Rollback:** `git revert 9deb8e6 && git push`, or re-run the dedbfb3 deploy in Actions.
+- `tests/check.mjs <live url>` and `NET=4g tests/load.mjs <live url>` both passed against the live site.
+- Not pushed: ~390MB of process stills (untracked, local only), the `revert-main-2026-10-30` tag.
+
 ## 2026-10-30 (evening) — his photos in JATIN OS, fullscreen, zoom, hosting tests
 - **Did:** `docs/tools/photos.mjs` built `site/work/`: 46 photos from his `BEST` folder, three sizes each, sRGB, stripped, 39MB. FLUX → Mag 1/2/3 covers → grid; OUTSTATION → grid; viewer with zoom/drag/pinch/double-click. The OS goes fullscreen after the dolly. Favicon added (data-URI wedge; the 404 showed up in the load test). Concept: `docs/concepts/2026-10-30-os-gallery/`.
 - **Tests:** `tests/check.mjs` gained a photos section; new `tests/load.mjs` (real Chrome, empty cache, 4G + slow 4G + phone). See the final run in this entry's session report.
