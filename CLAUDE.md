@@ -888,7 +888,13 @@ into tweens.
       sRGB conversion, no EXIF/GPS, lower-case names. It also rewrites the
       `PHOTOS` block in the page. Never hand-edit that block or drop files in
       by hand.
-    - In the grid, landscapes span two columns.
+    - In the grid, landscapes span two columns. Rows are a fixed 2:3 of the
+      column width (`grid-auto-rows` from container units, `--n` columns per
+      container query) and tiles fill their cell absolutely. **Never size a
+      tile with `height:100%` / `aspect-ratio` against a content-sized row:**
+      Chrome forgives it, Safari collapses every tile to its 2px border
+      (his friend saw "dots" on the live site, Oct 30). Check layout changes
+      in Safari, not only in Chrome.
     - The viewer:
       - shows the thumb instantly, fades the full photo over it, and prefetches
         the neighbours;

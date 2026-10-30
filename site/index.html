@@ -268,11 +268,18 @@ button{cursor:pointer;}
 .osGrid.mags .osTile.mag span{font-size:max(1em,calc(var(--ch)*.068));letter-spacing:.04em;
   text-shadow:.08em .08em 0 var(--os-ink);}
 .osGrid.mags .osTile.mag:focus-visible span{text-shadow:none;}
-.osGrid.photos{grid-template-columns:repeat(auto-fill,minmax(9em,1fr));gap:1.1em;grid-auto-flow:dense;align-items:stretch;}
-.osPhoto{display:block;font-size:1em;}
-.osPhoto i{display:block;aspect-ratio:2/3;height:100%;}
+/* photo grid: n columns, every row a fixed 2:3 of the column width (from
+   container units), tiles fill their cell absolutely. No height:100% or
+   aspect-ratio guesswork — Safari collapsed that version to bare corner
+   dots (a % height against a row sized by its own content) */
+.osGrid.photos{--n:6;--g:1.1em;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:var(--g);grid-auto-flow:dense;
+  grid-auto-rows:calc((100cqw - (var(--n) - 1)*var(--g))/var(--n)*1.5);}
+@container (max-width:1150px){.osGrid.photos{--n:5;}}
+@container (max-width:900px){.osGrid.photos{--n:4;}}
+@container (max-width:620px){.osGrid.photos{--n:3;}}
+.osPhoto{display:block;position:relative;font-size:1em;}
+.osPhoto i{position:absolute;inset:0;width:auto;aspect-ratio:auto;}
 .osPhoto.wide{grid-column:span 2;}
-.osPhoto.wide i{aspect-ratio:4/3;}
 .osView{position:absolute;inset:0;z-index:3;background:#030304;display:flex;align-items:center;justify-content:center;
   animation:viewIn .2s cubic-bezier(.15,.9,.25,1.1) both;}
 .osView[hidden]{display:none;}
