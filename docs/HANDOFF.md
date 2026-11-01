@@ -4,6 +4,12 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-01 — domain: justjatin.thotahub.in (his call). No code deployed
+- **Did:** Cloudflare (his brother's account, `cf` CLI signed in): added CNAME `justjatin.thotahub.in` → `thotajatin101-glitch.github.io`, DNS only. GitHub Pages custom domain set to `justjatin.thotahub.in`. Old github.io link 301s there (checked). thotahub.in's own records (Namecheap parking + email forwarding MX/SPF) and thotahub.com (empty) left untouched, free for later.
+- **In flight:** HTTPS certificate — GitHub issues it in ~15–60 min; then `gh api -X PUT repos/thotajatin101-glitch/jatin-site/pages -F https_enforced=true`.
+- **Next:** `og:url` in index.html still says the github.io address — change to `https://justjatin.thotahub.in/` and ship with the next "deploy". Optional: verify thotahub.in under GitHub account Settings → Pages (TXT record) against domain takeover.
+- **Watch out:** never set the `justjatin` record to proxied (orange) — breaks GitHub's HTTPS. Removing the Pages custom domain breaks every old github.io link already sent to clients. Undo: `gh api -X PUT repos/thotajatin101-glitch/jatin-site/pages -F cname=` and delete the record.
+
 
 
 

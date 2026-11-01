@@ -5,8 +5,11 @@ photos in `site/work/<set>/` (built by `docs/tools/photos.mjs`). The
 `site/` folder is the deploy folder. Nothing else
 ships. No build step, so "build" below means "the exact files that go out".
 
-> **Status (2026-10-26): no host chosen yet.** The deploy and rollback commands
-> below are placeholders until Jatin picks one. Recommendation: **Cloudflare
+> **Status (2026-11-01): GitHub Pages at `https://justjatin.thotahub.in`.**
+> DNS is Cloudflare (thotahub.in zone, record `justjatin` CNAME →
+> `thotajatin101-glitch.github.io`, DNS only — never proxy it or GitHub can't
+> renew HTTPS). The old `thotajatin101-glitch.github.io/jatin-site/` link
+> 301s to it as long as the Pages custom domain stays set. Earlier note: Recommendation: **Cloudflare
 > Pages** — every deploy gets its own version id and a one-command rollback,
 > which the "record first" rule needs. GitHub Pages can't do that (rollback =
 > revert a commit and wait for a rebuild).
@@ -66,17 +69,19 @@ the URL) and show its key content:
 - Merge `release` back into `main`. Push `release`.
 - Hand-off entry: version id, what went live, what was checked, rollback command.
 
-## Commands (fill in once the host is chosen)
+## Commands
 
 ```text
-deploy:    <tbd>
-list:      <tbd — how to read the current live version id>
-rollback:  <tbd>
+deploy:    git push origin main   (.github/workflows/pages.yml publishes site/)
+list:      gh run list --workflow pages.yml --limit 5   (live = newest success)
+rollback:  git revert --no-edit <bad>..<head> && git push, or re-run the last
+           good Pages run in Actions
+domain:    gh api repos/thotajatin101-glitch/jatin-site/pages   (cname, https_enforced)
 ```
 
 ## Gaps — to set up before the first deploy
 
-- Host + domain (his call).
+- ~~Host + domain~~ done 2026-11-01 (GitHub Pages, justjatin.thotahub.in).
 - A zero-dependency check script in `tests/` (Node, no packages): syntax-checks
   the inline scripts and asserts the routes above. A real-browser version needs
   Playwright as a **dev-only** tool — it never ships, but it's still his OK.
