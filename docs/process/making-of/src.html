@@ -1,0 +1,557 @@
+<title>JATIN — The Making Of</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+@font-face{font-family:"Cyberway Riders";src:url(data:font/ttf;base64,__FONT__) format("truetype");font-display:swap}
+/* Layout: one long reel. A sticky chapter strip on top, each chapter a "scene" —
+   slate (number, date, title), his notes, what was built, stills in a contact-sheet grid. */
+:root{
+  color-scheme:dark;
+  --ink:#050506; --panel:#101014; --rule:#26262e; --paper:#f2f2ee; --dim:#9a9aa6;
+  --acid:#e8ff00; --cyan:#00f0d8; --mag:#c81ee0; --purple:#7a12b0; --green:#39e639; --pink:#ff2e88;
+  --display:"Cyberway Riders","Impact","Arial Black",sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --track:.14em;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--ink);color:var(--paper);font:16px/1.65 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--ink)}
+a{color:var(--cyan)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto}
+.disp{font-family:var(--display);letter-spacing:var(--track);font-weight:400;line-height:1.02}
+.glitch{text-shadow:-2px 0 var(--cyan),2px 0 var(--pink),4px 4px 0 #000}
+.mono{font-family:var(--mono)}
+
+/* ---- hero ---- */
+.hero{position:relative;padding-block:56px 40px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-40% -20%;z-index:-1;
+  background:conic-gradient(from 200deg at 70% 45%,var(--cyan) 0 8deg,transparent 8deg 22deg,var(--pink) 22deg 30deg,transparent 30deg 51deg,var(--acid) 51deg 56deg,transparent 56deg 80deg,var(--mag) 80deg 92deg,transparent 92deg 140deg,var(--green) 140deg 146deg,transparent 146deg 200deg,var(--purple) 200deg 218deg,transparent 218deg 360deg);
+  opacity:.22}
+.eyebrow{font:600 12px/1.4 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--acid)}
+.hero h1{font-size:clamp(3rem,11vw,8.2rem);margin:.2em 0 .1em;transform:rotate(-3deg);transform-origin:left}
+.hero h1 span{display:block;font-size:.42em;color:var(--cyan)}
+.lede{max-width:64ch;font-size:1.13rem;color:#d9d9e0;text-wrap:pretty}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:26px;font:13px/1.4 var(--mono);color:var(--dim)}
+.facts b{display:block;color:var(--paper);font:400 1.5rem/1.1 var(--display);letter-spacing:var(--track)}
+
+/* ---- sticky strip ---- */
+.strip{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ink);border-block:1px solid var(--rule);
+  margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding:8px max(16px,env(safe-area-inset-left,0px))}
+.strip nav{max-width:1180px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.strip nav::-webkit-scrollbar{display:none}
+.strip a{flex:none;text-decoration:none;color:var(--dim);font:600 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  padding:7px 10px 7px 8px;border:1px solid var(--rule);clip-path:polygon(0 0,100% 0,calc(100% - 7px) 100%,0 100%)}
+.strip a i{font-style:normal;color:var(--acid);margin-right:6px}
+.strip a:hover{color:var(--ink);background:var(--acid)}
+.strip a:hover i{color:var(--ink)}
+
+/* ---- palette ---- */
+.palette{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;margin-top:22px}
+.sw{padding:46px 10px 8px;font:12px/1.3 var(--mono);color:#000;font-weight:600}
+.sw.dk{color:var(--paper)}
+
+/* ---- chapters ---- */
+.ch{padding-block:64px 8px;border-top:1px solid var(--rule);scroll-margin-top:56px}
+.slate{display:grid;grid-template-columns:auto 1fr;gap:4px 22px;align-items:end;margin-bottom:26px}
+.num{font:400 clamp(3.4rem,9vw,6rem)/.85 var(--display);letter-spacing:var(--track);color:transparent;-webkit-text-stroke:1.5px var(--c,var(--acid))}
+.slate h2{font-size:clamp(1.8rem,4.6vw,3.2rem);margin:0;transform:rotate(-2deg);transform-origin:left;color:var(--paper);text-wrap:balance}
+.slate .when{grid-column:2;font:600 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--c,var(--acid))}
+.cols{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px 44px}
+@media (max-width:860px){.cols{grid-template-columns:1fr}}
+.cols>*{min-width:0}
+h3{font:600 12px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:28px 0 10px}
+h3:first-child{margin-top:0}
+p{margin:0 0 14px;max-width:68ch}
+ul{margin:0 0 14px;padding-left:1.1em;max-width:68ch}
+li{margin-bottom:7px}
+li::marker{color:var(--c,var(--acid))}
+strong{color:#fff}
+
+/* his words */
+.said{margin:0 0 14px;padding:12px 16px 12px 18px;background:var(--panel);border-left:4px solid var(--c,var(--acid));
+  font:15px/1.6 var(--mono);color:#fff;max-width:68ch}
+.said::before{content:"HIS NOTE";display:block;font:600 10px/1 var(--mono);letter-spacing:.2em;color:var(--c,var(--acid));margin-bottom:7px}
+.said.ask::before{content:"HIS ASK"}
+.said.call::before{content:"HIS CALL"}
+
+/* rounds list */
+.rounds{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:10px;max-width:none}
+.rounds li{display:grid;grid-template-columns:3.2em 1fr;gap:12px;margin:0;padding:10px 0;border-bottom:1px dashed var(--rule)}
+.rounds li>b{font:600 12px/1.6 var(--mono);color:var(--c,var(--acid))}
+.rounds q{font-family:var(--mono);font-size:.93em;color:#fff;quotes:"“" "”"}
+.rounds span{display:block;color:#c9c9d2}
+
+/* stills */
+.reel{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px;margin:26px 0 10px}
+.reel.two{grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr))}
+figure{margin:0;min-width:0}
+figure .fr{position:relative;background:#000;border:1px solid var(--rule)}
+figure img{display:block;width:100%;height:auto;max-width:100%}
+figure.tall .fr{display:flex;justify-content:center}
+figure.tall img{width:auto;max-height:420px}
+figcaption{font:12.5px/1.5 var(--mono);color:var(--dim);padding-top:7px}
+figcaption b{color:var(--paper);font-weight:600}
+.tag{position:absolute;top:8px;left:8px;font:400 12px/1 var(--display);letter-spacing:var(--track);padding:6px 9px 5px;color:#000;background:var(--acid);transform:rotate(-4deg);box-shadow:3px 3px 0 #000}
+.tag.cut{background:var(--pink);color:#fff}
+.tag.ref{background:var(--cyan)}
+.tag.now{background:var(--green)}
+
+/* cut table */
+.tbl{overflow-x:auto;margin:10px 0 14px}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:14.5px}
+th{font:600 11px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule)}
+td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+td:first-child{font-weight:600;color:#fff;white-space:nowrap}
+td.q{font-family:var(--mono);color:var(--acid)}
+
+/* timing bar */
+.timing{display:grid;gap:6px;margin:12px 0 18px;font:12px/1.2 var(--mono)}
+.trow{display:grid;grid-template-columns:5.5em 1fr;gap:10px;align-items:center}
+.bar{height:18px;background:var(--rule);position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--dim)}
+.bar i.on{background:var(--acid)}
+.bar em{position:absolute;right:6px;top:2px;font-style:normal;color:#fff}
+
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:12px;margin-top:20px}
+.rule{background:var(--panel);padding:16px 18px;border-top:3px solid var(--c)}
+.rule h4{margin:0 0 6px;font:400 1.1rem/1.15 var(--display);letter-spacing:var(--track);color:var(--c)}
+.rule p{margin:0;font-size:14.5px;color:#d4d4dc}
+.next{list-style:none;padding:0;display:grid;gap:8px;max-width:none}
+.next li{background:var(--panel);padding:12px 16px;margin:0;border-left:3px solid var(--rule)}
+.next li b{color:var(--acid);font:600 12px var(--mono);letter-spacing:.1em;margin-right:8px}
+footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);border-top:1px solid var(--rule);margin-top:60px}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <div class="eyebrow">Beyond the Noise Studio · justjatin.thotahub.in · Part one, as of 2 Nov 2026</div>
+  <h1 class="disp glitch">JATIN<span>The making of</span></h1>
+  <p class="lede">A portfolio built like a game, not a website. A title sequence, then a menu, then screens that slam open over it. This is the visual journey so far: where each piece came from, what Jatin asked for in his own words, what was tried and cut, and the rules that came out of it. Written as notes from the edit, in order.</p>
+  <div class="facts">
+    <div><b>10 days</b>first commit 24 Oct → 2 Nov</div>
+    <div><b>128</b>snapshot sets of the work in progress</div>
+    <div><b>27</b>rounds on one skill card</div>
+    <div><b>1 file</b>no framework, no build, no libraries</div>
+  </div>
+</header>
+
+<div class="strip"><nav aria-label="Chapters">
+  <a href="#brief"><i>00</i>Brief</a><a href="#draft"><i>01</i>First draft</a><a href="#look"><i>02</i>The look</a><a href="#menu"><i>03</i>Menu</a><a href="#depth"><i>04</i>Depth</a><a href="#intro"><i>05</i>Intro</a><a href="#trans"><i>06</i>Transitions</a><a href="#chains"><i>07</i>Chains</a><a href="#about"><i>08</i>About</a><a href="#skills"><i>09</i>Skills</a><a href="#projects"><i>10</i>Projects</a><a href="#work"><i>11</i>The work</a><a href="#rules"><i>12</i>His rules</a><a href="#next"><i>13</i>Still to come</a>
+</nav></div>
+
+<!-- 00 -->
+<section class="ch" id="brief" style="--c:var(--acid)">
+  <div class="slate"><div class="num">00</div><h2 class="disp glitch">The brief</h2><div class="when">August 2026 · two references, merged on purpose</div></div>
+  <div class="cols">
+    <div>
+      <p>The concept was never "a portfolio site". It was a deliberate merge of two things Jatin already loved.</p>
+      <h3>Reference 1 · his own JATIN logo animation</h3>
+      <p>His intro logo, cut in DaVinci Resolve and Fusion, supplies the <strong>entire visual language</strong>: loud saturated colour on pure black, shards radiating from screen centre with thick black strokes, a fine halftone screen, a chromatic glitch split on the type, and a soft dark blob that hugs the wordmark.</p>
+      <h3>Reference 2 · a Persona 5 Royal game menu</h3>
+      <p>Supplies the <strong>interaction and layout</strong>. One landing screen. Items you select. Sections that slam open over it. Hard cuts, not fades. Type that is always tilted, never level.</p>
+      <h3>The rule that came from merging them</h3>
+      <p>Not a scrolling website. A title sequence, then a menu. Everything should feel like it came out of the logo video, and behave like a game.</p>
+    </div>
+    <div>
+      <div class="reel two" style="margin-top:0">
+        <figure><div class="fr"><img src="img/ref-burst.jpg" alt="Frame from Jatin's logo animation: shards bursting from centre in acid, cyan and magenta" loading="lazy"><span class="tag ref">REF</span></div><figcaption><b>His logo video.</b> The shard burst. Palette, geometry and energy all start here.</figcaption></figure>
+        <figure><div class="fr"><img src="img/ref-persona.jpg" alt="Persona 5 Royal style game menu with stacked slanted labels" loading="lazy"><span class="tag ref">REF</span></div><figcaption><b>Persona 5 Royal menu.</b> Stacked, slanted, typographic. The model for how you move around.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+  <h3>The palette, straight from the video</h3>
+  <div class="palette">
+    <div class="sw" style="background:#e8ff00">ACID #e8ff00</div>
+    <div class="sw" style="background:#00f0d8">CYAN #00f0d8</div>
+    <div class="sw dk" style="background:#c81ee0">MAGENTA #c81ee0</div>
+    <div class="sw dk" style="background:#7a12b0">PURPLE #7a12b0</div>
+    <div class="sw" style="background:#39e639">GREEN #39e639</div>
+    <div class="sw" style="background:#ff2e88">PINK #ff2e88</div>
+    <div class="sw dk" style="background:#000;border:1px solid var(--rule)">BLACK, and plenty of it</div>
+  </div>
+  <p style="margin-top:14px;color:var(--dim);font-size:14px">Loud and clashing on purpose. The black shards between the colour are part of the look, not empty space. The typeface is his own, Cyberway Riders, used for the wordmark and every heading (including this document).</p>
+</section>
+
+<!-- 01 -->
+<section class="ch" id="draft" style="--c:var(--cyan)">
+  <div class="slate"><div class="num">01</div><h2 class="disp glitch">The first draft</h2><div class="when">24 October 2026 · the foundation</div></div>
+  <div class="cols">
+    <div>
+      <p>His framing of it: <strong>the first draft is the foundation everything after was built on top of.</strong> Not a throwaway. The palette, the shard field, the menu model, the big accent wedge and the portrait all start here, and every chapter after this reworks one of these pieces.</p>
+      <ul>
+        <li><strong>Intro:</strong> a beat-for-beat recreation of his logo video. Shard field strobing, wordmark centre.</li>
+        <li><strong>Menu:</strong> five plates (ABOUT, PROJECTS, SKILLS, EXPERIENCE, CONTACT) beside a giant accent wedge with the selected word slammed across it.</li>
+        <li><strong>Sections:</strong> tilted headings over two clashing colour bands, with cards.</li>
+        <li><strong>ABOUT:</strong> his photo, background removed, pushed to high-contrast black and white.</li>
+      </ul>
+    </div>
+    <div>
+      <p style="color:var(--dim)">What changed later: the intro was rebuilt from new references, EXPERIENCE was removed, the clashing two-band sections became one accent wedge per screen, and ABOUT became a poster.</p>
+    </div>
+  </div>
+  <div class="reel">
+    <figure><div class="fr"><img src="img/draft-intro.jpg" alt="First draft intro: raw shard field in cyan, purple and acid" loading="lazy"></div><figcaption><b>Intro, 1.6s.</b> The shard strobe, recreated from his video.</figcaption></figure>
+    <figure><div class="fr"><img src="img/draft-menu.jpg" alt="First draft menu: five cyan plates and a big ABOUT wedge" loading="lazy"></div><figcaption><b>Menu.</b> Five items and the wedge. The wedge survives to today.</figcaption></figure>
+    <figure><div class="fr"><img src="img/draft-about.jpg" alt="First draft ABOUT: WHO AM I heading, portrait, name slab" loading="lazy"></div><figcaption><b>ABOUT.</b> "Who am I?", the portrait and a name slab.</figcaption></figure>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="ch" id="look" style="--c:var(--pink)">
+  <div class="slate"><div class="num">02</div><h2 class="disp glitch">Getting the look right</h2><div class="when">October 2026 · mostly by cutting things</div></div>
+  <p>The texture of the site was found by taking things away. Each line below is something that was built, looked at, and cut on his note. Together they are the reason the site looks printed rather than filtered.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>What was tried</th><th>His note</th><th>Why it went, and what replaced it</th></tr></thead>
+    <tbody>
+      <tr><td>Vignette</td><td class="q">removed it, explicitly</td><td>His video stays bright to the edges. The frame never darkens. This became a permanent rule: no vignette, ever.</td></tr>
+      <tr><td>Grunge, distressed type</td><td class="q">cut</td><td>Texture should come from the glitch shadow, not from eroded letters.</td></tr>
+      <tr><td>Animated glitch, grain jumps</td><td class="q">"looks like a problem with a TV"</td><td>Idle motion read as a broken screen. The glitch split is now static and only moves on input.</td></tr>
+      <tr><td>Scanlines</td><td class="q">cut entirely</td><td>Fine lines moiréd against the halftone dots and read as noise.</td></tr>
+      <tr><td>Halftone as holes punched in black</td><td class="q">rejected</td><td>Read as a layer on top of everything, even over the black shards. Now ink dots printed on the colour, which vanish into the blacks like real screenprint.</td></tr>
+      <tr><td>Big 14px square dots</td><td class="q">"some pattern"</td><td>Now 5px dots turned 23°. A fine print screen that never resolves into a visible grid.</td></tr>
+      <tr><td>Tight letter spacing</td><td class="q">PROJECTS "reading as one blob"</td><td>Cyberway Riders has long swashes that fuse. Tested side by side at three settings; one setting won and is now used on every heading.</td></tr>
+    </tbody>
+  </table></div>
+  <p>What stayed: a <strong>static chromatic split</strong> on display type (cyan left, pink right, hard black drop), headings always tilted a few degrees, light static film grain, and the halftone as a fine print screen.</p>
+</section>
+
+<!-- 03 -->
+<section class="ch" id="menu" style="--c:var(--pink)">
+  <div class="slate"><div class="num">03</div><h2 class="disp glitch">The menu becomes Persona 5</h2><div class="when">October 2026 · from his sketch</div></div>
+  <div class="cols">
+    <div>
+      <div class="said ask">a Persona-5-Royal system menu, with my palette as the twist</div>
+      <ul>
+        <li><strong>Staircase plates, from his sketch.</strong> Each plate bleeds off the left edge, each one down is shorter, and the right ends are cut on one continuous diagonal down the stack.</li>
+        <li><strong>The selected plate floods</strong> with its accent colour on a hard cut, type flips to black, and it pushes out to the right. No fades anywhere.</li>
+        <li><strong>A chromatic burst on every selection.</strong> The red and cyan channels rip apart and snap back in under half a second. It is the only glitch that moves, and only on input.</li>
+        <li><strong>The giant wedge is the signature.</strong> A huge triangle in the selected colour fills the right of the screen, with the item's name slammed across it.</li>
+        <li><strong>The wedge heading is measured, not guessed.</strong> He asked twice for it to fill the space; the first attempts left half the wedge empty on wide screens.</li>
+      </ul>
+      <div class="said call">EXPERIENCE removed.</div>
+      <p>Four items, four colours, carried through every screen after: <strong style="color:var(--cyan)">ABOUT cyan</strong>, <strong style="color:var(--pink)">PROJECTS pink</strong>, <strong style="color:var(--green)">SKILLS green</strong>, <strong style="color:var(--acid)">CONTACT acid</strong>.</p>
+    </div>
+    <div>
+      <h3>The wedge comes alive · three rounds</h3>
+      <ol class="rounds">
+        <li><b>R1</b><div><q>not too harsh</q><span>A flowing gradient inside the triangle, kept gentle.</span></div></li>
+        <li><b>R2</b><div><q>too subtle, more motion and contrast, keep the smooth blend</q><span>Wider colour range, faster flow.</span></div></li>
+        <li><b>R3</b><div><q>bands too narrow, make them flowy and wider, add a small dither</q><span>Wide swaying bands and a pixel dither between colour steps: print texture, never a smear.</span></div></li>
+        <li><b>+</b><div><q>give it some personality</q><span>The same moving dither now runs inside every solid shape on the site: plates, bands, cards, buttons.</span></div></li>
+      </ol>
+    </div>
+  </div>
+  <div class="reel">
+    <figure><div class="fr"><img src="img/menu-26.jpg" alt="Menu with PROJECTS selected: pink wedge, staircase plates, chain" loading="lazy"></div><figcaption><b>PROJECTS selected.</b> Plate floods pink, the whole world re-tints.</figcaption></figure>
+    <figure><div class="fr"><img src="img/menu-final.jpg" alt="Menu with ABOUT selected on a cyan wedge" loading="lazy"><span class="tag now">NOW</span></div><figcaption><b>ABOUT selected, 28 Oct.</b> The black panel behind the plates now fades out instead of ending on a hard edge.</figcaption></figure>
+    <figure class="tall"><div class="fr"><img src="img/menu-phone.jpg" alt="Phone menu: wedge word on top, plates along the bottom" loading="lazy"></div><figcaption><b>Phone.</b> Wedge word up top, plates along the bottom, wedge kept bright.</figcaption></figure>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="ch" id="depth" style="--c:var(--cyan)">
+  <div class="slate"><div class="num">04</div><h2 class="disp glitch">Depth</h2><div class="when">October 2026 · from Spider-Verse references</div></div>
+  <div class="cols">
+    <div>
+      <div class="said ask">more depth, intentionality and personality</div>
+      <p>His references were Spider-Verse style frames. What makes those read as a space rather than a flat poster was broken down and rebuilt:</p>
+      <ul>
+        <li>One <strong>vanishing point</strong> everything radiates from or recedes into.</li>
+        <li>A glowing <strong>perspective grid</strong> floor and ceiling flowing toward the viewer.</li>
+        <li><strong>Light streaks</strong> with white-hot cores, and dark <strong>ink streaks</strong> cutting the bright field.</li>
+        <li>Layers that <strong>move at different depths</strong> with the pointer (parallax).</li>
+        <li>On every selection the whole world eases to that item's colour, with a burst of streaks.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What was kept out</h3>
+      <p>Motion stays to four coherent moves: <strong>flow, turn, parallax, burst on input.</strong> No twinkle, no flicker, nothing that moves on its own for the sake of it. The sky only brightens toward the point; edges are never darkened.</p>
+      <h3>The shards changed with it</h3>
+      <p>Fewer and narrower, starting further out, dissolving as they recede into the light source, and turning slowly around it. The gaps between them now show the sky.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="ch" id="intro" style="--c:var(--acid)">
+  <div class="slate"><div class="num">05</div><h2 class="disp glitch">The intro, rebuilt</h2><div class="when">October 2026 · eleven rounds on the opening alone</div></div>
+  <div class="cols">
+    <div>
+      <p>New references from him: two pop-art explosion title intros. The brief: <strong>explosive composition, electric colour, comic print textures (halftone, stripes, ASCII dithering), chromatic aberration, glitching, shapes expanding and shattering frame by frame, motion aggressive and rhythmic.</strong></p>
+      <p>The cadence is the look. It runs on a 24fps clock, and every shape re-rolls <strong>on twos</strong>, so each drawing holds for two frames. That stepped timing is what makes it hit like hand-drawn impact frames. It is never smoothed into tweens.</p>
+      <h3>The opening took three tries</h3>
+      <ol class="rounds">
+        <li><b>1</b><div><q>empty and random, no intention</q><span>Random sparks on a HUD. Cut.</span></div></li>
+        <li><b>2</b><div><q>after the break I don't want the name to disappear, continue with the chaos</q><span>A neon outline build left a black screen with lines. Cut.</span></div></li>
+        <li><b>3</b><div><q>JATIN chained, then the aggressive break unleashes the animation</q><span>The chained lock-up. The tension is the intention; the snap is what releases everything after it.</span></div></li>
+      </ol>
+    </div>
+    <div>
+      <h3>Then it went 3D</h3>
+      <ol class="rounds">
+        <li><b>3D</b><div><q>I want the chains and name logo to be 3D</q><span>JATIN became a solid slab; the chains became real links that pass in front of and behind it.</span></div></li>
+        <li><b>keep</b><div><q>I do like logo being chained up, don't remove that</q><span>The two X straps stay. Shape first like the 2D chain, then texture: dithering instead of halftone, colours untouched.</span></div></li>
+        <li><b>hug</b><div><q>the chains are bulging, it should be closer to the logo as it is stuck to it</q><span>Straps pulled tight to the slab.</span></div></li>
+        <li><b>float</b><div><q>the chains float like zero gravity, then suddenly and quickly tighten up</q><span>Slack drifting curves, then a one-frame yank.</span></div></li>
+        <li><b>weight</b><div><q>a bit too flowy … the pull needs more weight … a small shake to add impact</q><span>Slower float, harder yank, a damped thud through camera, word and chains.</span></div></li>
+        <li><b>horns</b><div><q>why is there extra chain spiking up around the logo?</q><span>Strap ends poked past the J and N. Flattened to stay inside the word.</span></div></li>
+      </ol>
+    </div>
+  </div>
+  <div class="reel">
+    <figure><div class="fr"><img src="img/chains-bulge.jpg" alt="3D JATIN slab with chains bulging away from it" loading="lazy"><span class="tag cut">CUT</span></div><figcaption><b>The bulge.</b> Straps standing off the logo. Rejected.</figcaption></figure>
+    <figure><div class="fr"><img src="img/intro-float.jpg" alt="JATIN slab floating in chains with drifting slack" loading="lazy"><span class="tag now">NOW</span></div><figcaption><b>Zero-g float.</b> Waits here for the viewer: CLICK ANY BUTTON.</figcaption></figure>
+    <figure><div class="fr"><img src="img/intro-snap.jpg" alt="The snap: shockwave ring, links flung outward, white flash" loading="lazy"></div><figcaption><b>The snap.</b> Flash, shockwave, every link flung toward the lens.</figcaption></figure>
+    <figure><div class="fr"><img src="img/intro-slam.jpg" alt="Fan slam: bold colour wedges and JATIN centred" loading="lazy"></div><figcaption><b>The fan slam.</b> The name holds centre through the chaos.</figcaption></figure>
+    <figure><div class="fr"><img src="img/intro-hold.jpg" alt="Hold: JATIN over a black crumpled star on a colour field" loading="lazy"></div><figcaption><b>The hold.</b> Logo slammed over a crumpled star, beat every 8 frames (180bpm).</figcaption></figure>
+  </div>
+  <h3>Finding the length of the burst · snap to menu</h3>
+  <p>He tried five lengths before settling. The opening float was never touched; only the explosion after it.</p>
+  <div class="timing" role="img" aria-label="Burst length tried: 2.33s, 2.5s, 2.0s, 1.5s, 2.5s, settled on 1.85s">
+    <div class="trow"><span>start</span><div class="bar"><i style="width:93%"></i><em>2.33s</em></div></div>
+    <div class="trow"><span>round 3</span><div class="bar"><i style="width:100%"></i><em>2.5s</em></div></div>
+    <div class="trow"><span>round 4</span><div class="bar"><i style="width:80%"></i><em>2.0s</em></div></div>
+    <div class="trow"><span>round 5</span><div class="bar"><i style="width:60%"></i><em>1.5s</em></div></div>
+    <div class="trow"><span>round 6</span><div class="bar"><i style="width:100%"></i><em>2.5s</em></div></div>
+    <div class="trow"><span>final</span><div class="bar"><i class="on" style="width:74%"></i><em style="color:#000">1.85s</em></div></div>
+  </div>
+  <div class="said">let's actually keep it at 1.85 secs, the sweet spot</div>
+  <div class="said ask">keep the first 3D floating part floating until the user clicks any button … with a click-any-button text underneath the logo with a subtle blink like video games</div>
+  <p>The prompt is set in a crisp pixel face, small, blinking softly between full and half brightness. His follow-up: <q class="mono">text a bit smaller, and the blinking subtler</q>.</p>
+</section>
+
+<!-- 06 -->
+<section class="ch" id="trans" style="--c:var(--mag)">
+  <div class="slate"><div class="num">06</div><h2 class="disp glitch">Transitions</h2><div class="when">October 2026 · half a second, symmetric</div></div>
+  <div class="cols">
+    <div>
+      <ol class="rounds">
+        <li><b>1</b><div><q>just a slide</q><span>A sliding colour-band wipe. Cut.</span></div></li>
+        <li><b>2</b><div><q>matching outlines, more impact, shorter</q><span>A shatter version. Cut in favour of the next one.</span></div></li>
+        <li><b>3</b><div><span><strong>The intro's opening in miniature.</strong> Neon outlines whip in, one white impact frame, the fills slam, and everything retracts the way it came. The screen swaps underneath at 240ms, fully covered.</span></div></li>
+      </ol>
+      <p>Every screen change on the site uses it. When the intro hands over to the menu, the logo moves to the corner <strong>behind the slam</strong> as an instant cut, never a visible slide.</p>
+    </div>
+    <div class="reel two" style="margin-top:0">
+      <figure><div class="fr"><img src="img/trans-trace.jpg" alt="Transition at 90ms: neon outlines tracing in" loading="lazy"></div><figcaption><b>90ms · trace.</b> Outlines whip in along their own axis.</figcaption></figure>
+      <figure><div class="fr"><img src="img/trans-slam.jpg" alt="Transition at 228ms: solid colour plates slammed in" loading="lazy"></div><figcaption><b>228ms · slam.</b> Fills land oversized with a wide RGB split.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="ch" id="chains" style="--c:var(--green)">
+  <div class="slate"><div class="num">07</div><h2 class="disp glitch">Chains</h2><div class="when">October 2026 · from his red-line sketches</div></div>
+  <div class="cols">
+    <div>
+      <p>The chains are made from the site's own pixel "puzzle pieces", not real chain links: stepped pixel rings and bars, with the two gradients from his logo video (acid to green, cyan to deep).</p>
+      <h3>The menu chain · four rounds</h3>
+      <ol class="rounds">
+        <li><b>1</b><div><q>slowly come out transparency</q><span>A slow spiral fading links in and out. Rejected.</span></div></li>
+        <li><b>2</b><div><span>A flat ring around the wedge.</span></div></li>
+        <li><b>3</b><div><q>crooked</q><span>Traced from his first sketch. Wobbly, and it started on the wrong edge.</span></div></li>
+        <li><b>4</b><div><span><strong>Now:</strong> one smooth curve through six points of his second sketch, from behind the triangle, looping behind the plates and sweeping toward the viewer, growing from far to near the whole way. Nothing fades.</span></div></li>
+      </ol>
+    </div>
+    <div>
+      <h3>Texture</h3>
+      <div class="said">the halftone on the chains looks too much like overlay rather than a texture, and it's a bit too big</div>
+      <p>The dots were halved, printed into each link's face only, and made tonal: they swell in the shade and disappear in the highlight.</p>
+      <h3>Where they appear</h3>
+      <p>The menu chain recolours with every selection and follows into PROJECTS, SKILLS and CONTACT. The intro is held in them. The computer and the skill card both arrive chained up and break free.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section class="ch" id="about" style="--c:var(--cyan)">
+  <div class="slate"><div class="num">08</div><h2 class="disp glitch">About becomes a poster</h2><div class="when">26 – 27 October 2026 · “Have you seen this DIRECTOR?”</div></div>
+  <div class="cols">
+    <div>
+      <p>ABOUT went through two complete designs. First a Persona 5 collage modelled on a "KREFTON" poster he sent. Then he brought a new reference and a new night photo.</p>
+      <div class="said ask">I want the about page designed like this but obviously keeping my design language. Particularly observe the text placement, how it is scaled and the perspective changes. And replace my image with the one I uploaded.</div>
+      <p>The reference was a "Have you seen this MAN?" poster. Its banners are wedges, so the headline grows as it travels across them. That became <strong>HAVE YOU SEEN THIS DIRECTOR?</strong> on top and his own line turned into the punchline at the bottom: <strong>if it doesn't cut through the noise… IT DOESN'T SHIP.</strong></p>
+    </div>
+    <div>
+      <h3>The rounds</h3>
+      <ol class="rounds">
+        <li><b>R2</b><div><q>my photo feels too small with all the big bars … just remove all the text so we can figure out the alignment</q><span>Text out, bars thinner, portrait bigger.</span></div></li>
+        <li><b>R3</b><div><q>you are leaving a lot of empty space in the boxes</q><span>From his marked-up screenshot: photo above the top bar, below the bottom one.</span></div></li>
+        <li><b>R4</b><div><q>the crop looks very unnatural … the outline looks like a sketch pen, make it fade outwards using cyan and hot pink</q><span>New hair matte; a neon halo replaced the stamped outline.</span></div></li>
+        <li><b>R5</b><div><q>keep 2D chains along the path with infinite motion</q><span>Straight chains along the banner edges, scrolling forever.</span></div></li>
+        <li><b>glow</b><div><q>a dither animation going outwards for that glow</q><span>The halo became a pixel dither flowing away from the figure, soft, behind the bubble.</span></div></li>
+        <li><b>text</b><div><q>Remove text, I changed mind</q><span>After a name ramp, a print version and a return, the banners carry no text. Final.</span></div></li>
+      </ol>
+    </div>
+  </div>
+  <div class="reel">
+    <figure><div class="fr"><img src="img/about-kreften.jpg" alt="ABOUT as a Persona 5 collage: WHO AM I, portrait, JATIN slab" loading="lazy"><span class="tag cut">CUT</span></div><figcaption><b>The KREFTON collage.</b> Replaced by the poster.</figcaption></figure>
+    <figure><div class="fr"><img src="img/about-poster-v1.jpg" alt="Poster v1: HAVE YOU SEEN THIS DIRECTOR? and IT DOESN'T SHIP." loading="lazy"></div><figcaption><b>Poster, round 1.</b> Headline ramp and punchline.</figcaption></figure>
+    <figure><div class="fr"><img src="img/about-notext.jpg" alt="Poster with all text removed to judge alignment" loading="lazy"></div><figcaption><b>Round 2.</b> Text stripped to judge the layout.</figcaption></figure>
+    <figure><div class="fr"><img src="img/about-before-glow.jpg" alt="Poster with a hard stamped outline round the portrait" loading="lazy"><span class="tag cut">CUT</span></div><figcaption><b>The "sketch pen" outline.</b></figcaption></figure>
+    <figure><div class="fr"><img src="img/about-name-ramp.jpg" alt="Poster with THOTA JATIN across the top banner" loading="lazy"><span class="tag cut">CUT</span></div><figcaption><b>The name ramp.</b> Tried, brought back, then removed for good.</figcaption></figure>
+    <figure><div class="fr"><img src="img/about-final.jpg" alt="Final ABOUT: clean pink and purple banners with chains, glowing portrait" loading="lazy"><span class="tag now">NOW</span></div><figcaption><b>Final, 27 Oct.</b> No text on the bars; chains and dither glow.</figcaption></figure>
+  </div>
+</section>
+
+<!-- 09 -->
+<section class="ch" id="skills" style="--c:var(--green)">
+  <div class="slate"><div class="num">09</div><h2 class="disp glitch">Skills: the trading card</h2><div class="when">28 – 29 October 2026 · 27 rounds on one card</div></div>
+  <div class="cols">
+    <div>
+      <div class="said ask">inside skills I want a card themed section where each card has a skill that I honed and worked on, with a description of the skill</div>
+      <p>The reference was a screen recording of a neon trading card that flips in 3D. The card arrives the same way the computer does: wrapped in chains, then it snaps free. This was the most iterated piece of the site so far, and it is mostly a story about <strong>material</strong>: how foil, chrome and metal should feel.</p>
+      <h3>Surface and weight</h3>
+      <ol class="rounds">
+        <li><b>R2</b><div><q>something like the screenshot</q><span>Iridescent pastel foil, glitter, topographic lines. Card centred, side boxes removed.</span></div></li>
+        <li><b>R3</b><div><q>the card feels flat even if it's 3D because it has no weight to it</q><span>A real thick slab, a swinging shadow, springy tilt. Art became a pixel scene of him editing at his desk.</span></div></li>
+        <li><b>R4</b><div><q>I don't like the dusty look … add the shiny iridescent gradient theme back</q><span>Whole card turned to foil, secret-rare style.</span></div></li>
+        <li><b>R5</b><div><q>make the card edges into frosted chrome … they look like plastic sticking out</q><span>Frosted chrome bevel, no coloured edge strips.</span></div></li>
+        <li><b>R7</b><div><q>more liquid metal look … change black stripes to our chain design</q><span>Mirror-chrome frame; chain rays on the back.</span></div></li>
+        <li><b>R8–13</b><div><q>black silver metal … the chain colours are overshadowing the logo</q><span>Silver chains meeting at the centre, a gold wordmark and gold heading, metal wrap.</span></div></li>
+      </ol>
+    </div>
+    <div>
+      <h3>The case, the art, the stage</h3>
+      <ol class="rounds">
+        <li><b>R15</b><div><q>a chrome liquid metal casing for the card that acts as an outer frame</q><span>From a chrome "SAVAGE" wordmark: thorn crests top and bottom.</span></div></li>
+        <li><b>R16</b><div><q>looks flat and vector … make them 3D</q><span>Rebuilt as real relief: round tubes, liquid joins, needle tips.</span></div></li>
+        <li><b>R17</b><div><q>too wide … looks blunt and requires a lot more shine … too liquidy and blobby</q><span>Thinner, sharper, more intentional points.</span></div></li>
+        <li><b>R18–19</b><div><q>I do like the corner edge part of the case tho, so keep that only</q><span>Side ornaments removed, corners kept.</span></div></li>
+        <li><b>R21</b><div><q>a computer floating in a gradient themed background looks amazing, go for that</q><span>Art became a 3D computer on a rainbow slab in deep space with floating shapes.</span></div></li>
+        <li><b>R22</b><div><q>no, revert to the before version</q><span>A glossy finish was tried; matte shine stays.</span></div></li>
+        <li><b>R23–26</b><div><span>OLED-black space, a real keyboard and a mouse, tab moved to the top centre, darker text plate.</span></div></li>
+        <li><b>R27</b><div><q>the animation placements in the video are exactly how I want them</q><span>From the Persona 5 Confidant intro: card left, info banner right, a plate menu mirrored from the main menu to deal new cards.</span></div></li>
+      </ol>
+    </div>
+  </div>
+  <div class="reel">
+    <figure><div class="fr"><img src="img/skills-before.jpg" alt="SKILLS before the card: text boxes What I Do / What I Use" loading="lazy"><span class="tag cut">BEFORE</span></div><figcaption><b>Before.</b> Two text boxes.</figcaption></figure>
+    <figure><div class="fr"><img src="img/skills-v3.jpg" alt="First card: VIDEO EDITING with dithered art" loading="lazy"></div><figcaption><b>Round 1.</b> The first card, chained in.</figcaption></figure>
+    <figure><div class="fr"><img src="img/skills-holo.jpg" alt="Card with holographic foil art" loading="lazy"></div><figcaption><b>Round 2.</b> Holographic foil, centred.</figcaption></figure>
+    <figure><div class="fr"><img src="img/skills-pixel.jpg" alt="Card with pixel art of him editing at a desk at sunset" loading="lazy"><span class="tag cut">CUT</span></div><figcaption><b>Round 3.</b> Pixel scene, later replaced.</figcaption></figure>
+    <figure><div class="fr"><img src="img/skills-rare.jpg" alt="Whole card in iridescent foil" loading="lazy"></div><figcaption><b>Round 4.</b> Secret-rare foil everywhere.</figcaption></figure>
+    <figure><div class="fr"><img src="img/skills-chainback.jpg" alt="Card back: JATIN wordmark with chain rays from the centre" loading="lazy"></div><figcaption><b>The back.</b> Chains as rays, wordmark centre.</figcaption></figure>
+    <figure><div class="fr"><img src="img/skills-relief.jpg" alt="Card in a thick liquid chrome case" loading="lazy"><span class="tag cut">CUT</span></div><figcaption><b>Round 16.</b> "Blunt", "blobby".</figcaption></figure>
+    <figure><div class="fr"><img src="img/skills-sharp.jpg" alt="Card in a sharper thinner chrome case" loading="lazy"></div><figcaption><b>Round 17.</b> Sharper, thinner, more shine.</figcaption></figure>
+    <figure><div class="fr"><img src="img/skills-space.jpg" alt="Card art: 3D computer floating on a rainbow slab in space" loading="lazy"></div><figcaption><b>Round 21.</b> The floating computer.</figcaption></figure>
+    <figure><div class="fr"><img src="img/skills-stage.jpg" alt="Card tilted left, info banner and plate menu right" loading="lazy"><span class="tag now">NOW</span></div><figcaption><b>Round 27.</b> The Persona Confidant stage.</figcaption></figure>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="ch" id="projects" style="--c:var(--pink)">
+  <div class="slate"><div class="num">10</div><h2 class="disp glitch">Projects: the computer</h2><div class="when">October 2026 · a retro monitor, built without a 3D library</div></div>
+  <div class="cols">
+    <div>
+      <p>He gave a rendered reference: a soft beige vintage monitor with a deep bezel on a flat desktop base with two knobs. It is drawn by one shader so the site stays one file.</p>
+      <h3>Shaping it · his notes in order</h3>
+      <ol class="rounds">
+        <li><b>1</b><div><q>edges too rounded</q></div></li>
+        <li><b>2</b><div><q>sides should align with the base</q></div></li>
+        <li><b>3</b><div><q>knobs are pointy, they should be flat-topped cylinders, like buttons</q></div></li>
+        <li><b>4</b><div><q>too plain</q><span>Vents, a green power LED, two floppy drives.</span></div></li>
+        <li><b>5</b><div><q>a little curved, not too heavy</q><span>The glass bulges just enough.</span></div></li>
+        <li><b>6</b><div><span>A cinematic lighting reference replaced the print look: cool key light, deep cool shadows, bright rims on every bevel. FLUX and BTN stickers on the side, which he kept.</span></div></li>
+      </ol>
+    </div>
+    <div>
+      <h3>Then it came alive</h3>
+      <ul>
+        <li>It arrives <strong>chained up and breaks out</strong>. His note: <q class="mono">more aggressive, with motion and a flash</q> → white flash, shockwave, speed lines, links flung at the camera, a shake.</li>
+        <li>The screen boots in the site's language and lands on a big pink <strong>CLICK ME!!</strong>. Click, and the camera dollies into the glass.</li>
+        <li>Inside is <strong>JATIN OS</strong>: a small operating system with his folders. Folders browse with smooth eases; stepped motion here read to him as lag.</li>
+        <li>He reported the loading as laggy, so the heavy parts now only work where the computer actually is on screen.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="reel">
+    <figure><div class="fr"><img src="img/pc-landed.jpg" alt="Beige retro computer landed in PROJECTS on a pink field" loading="lazy"></div><figcaption><b>Landed.</b> Three-quarter view, chain still around it.</figcaption></figure>
+    <figure><div class="fr"><img src="img/pc-break.jpg" alt="Computer screen showing a pink CLICK ME button" loading="lazy"></div><figcaption><b>CLICK ME!!</b> The screen's idle state.</figcaption></figure>
+    <figure><div class="fr"><img src="img/os-first.jpg" alt="JATIN OS: a FLUX folder centre stage inside the monitor" loading="lazy"></div><figcaption><b>JATIN OS, first version.</b> One hero folder, others scattered behind.</figcaption></figure>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="ch" id="work" style="--c:var(--pink)">
+  <div class="slate"><div class="num">11</div><h2 class="disp glitch">The work goes on the computer</h2><div class="when">30 October – 2 November 2026 · for a Vogue application</div></div>
+  <div class="cols">
+    <div>
+      <div class="said ask">keep the intro video and rather than opening the menu screen, go directly to projects, to show my work immediately</div>
+      <p>A position at Vogue opened, so the site was switched into an apply mode: the intro's last slam cuts straight to PROJECTS. Nothing was deleted; one phrase from him, <strong>"REVERT MAIN"</strong>, brings the full menu site back.</p>
+      <ol class="rounds">
+        <li><b>photos</b><div><span>His best FLUX magazine and OUTSTATION photos went into the folders, colour-converted and stripped of camera and GPS data.</span></div></li>
+        <li><b>full</b><div><q>make the computer screen fullscreen when it comes close so it's easier for people to view my work … zoom into the photos and drag</q></div></li>
+        <li><b>clean</b><div><q>could you remove the scanlines on the photos as well</q><span>The tube look stays on the folders, but steps aside wherever his work is shown.</span></div></li>
+        <li><b>phone</b><div><q>these commands only work for laptop or PC … change based on the device</q><span>Phones get tap and swipe wording; BACK names where it goes.</span></div></li>
+        <li><b>tabs</b><div><q>remove folders, show the photos directly, and add tabs on top: photos and edits</q></div></li>
+        <li><b>plates</b><div><q>I don't like these button designs, make something with our menu button design</q><span>The OS buttons became the menu's slanted plates.</span></div></li>
+        <li><b>edits</b><div><span>Eight video edits added: seven FLUX films and the Outstation film, played with sound.</span></div></li>
+        <li><b>exit</b><div><q>remove exit altogether and let the back button exit the monitor, that's better and simple</q></div></li>
+      </ol>
+    </div>
+    <div>
+      <h3>Five strangers try it</h3>
+      <p>Before launch, five first-time visitors were simulated, each a different person: an impatient skimmer, a sceptical recruiter, someone on a phone with slow data, a literal non-native reader, and someone trying to break it.</p>
+      <ul>
+        <li>All of them hit two things: <strong>no way to contact him</strong> (his call: leave it for now) and the browser Back button throwing them off the site (fixed).</li>
+        <li>Also fixed: a LOADING line during the long black wait on slow data, the full photo loading first, search saying NO MATCH, touch targets on phones.</li>
+        <li>Left as his decisions: contact and about inside the OS, credits on the work, the intro not being skippable.</li>
+      </ul>
+      <h3>Live</h3>
+      <p>Deployed on his word on 31 October, then moved to <strong>justjatin.thotahub.in</strong>, with thotahub.com forwarding to it.</p>
+    </div>
+  </div>
+  <div class="reel">
+    <figure><div class="fr"><img src="img/os-grid.jpg" alt="Fullscreen photo grid inside JATIN OS" loading="lazy"></div><figcaption><b>Photo grid, 30 Oct.</b> Fullscreen, no scanlines.</figcaption></figure>
+    <figure><div class="fr"><img src="img/os-zoom.jpg" alt="Photo viewer zoomed into a portrait" loading="lazy"></div><figcaption><b>Viewer.</b> Zoom where you point, drag to pan.</figcaption></figure>
+    <figure><div class="fr"><img src="img/os-plates.jpg" alt="FLUX photos with menu-style plate buttons FOLDERS, PHOTOS, EDITS" loading="lazy"></div><figcaption><b>Menu plates as buttons, 31 Oct.</b></figcaption></figure>
+    <figure><div class="fr"><img src="img/os-edits.jpg" alt="EDITS tab: grid of video posters with pink play plates" loading="lazy"></div><figcaption><b>His edits.</b> Posters, run times, play plates.</figcaption></figure>
+    <figure><div class="fr"><img src="img/qa-after.jpg" alt="FLUX photos grid after first-user QA fixes" loading="lazy"><span class="tag now">NOW</span></div><figcaption><b>After QA.</b> What a first visitor sees.</figcaption></figure>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="ch" id="rules" style="--c:var(--acid)">
+  <div class="slate"><div class="num">12</div><h2 class="disp glitch">What he was specific about</h2><div class="when">The rules that came out of the notes</div></div>
+  <p>Read across all the rounds, his notes keep landing on the same few principles. These are the ones that now govern every new piece.</p>
+  <div class="rules">
+    <div class="rule" style="--c:var(--acid)"><h4>Motion only on intent</h4><p>Nothing twitches on its own. Idle glitch read as "a problem with a TV". Glitch fires on input, once, then settles.</p></div>
+    <div class="rule" style="--c:var(--cyan)"><h4>Stepped where it hits, smooth where it travels</h4><p>The intro's explosion holds each drawing for two frames, like hand-drawn impact. But the float, the folders and the opening are smooth; stepped motion there "reads as lag".</p></div>
+    <div class="rule" style="--c:var(--pink)"><h4>Print, not filter</h4><p>Texture is a screenprint: small angled ink dots and pixel dither on the colour. No grunge, no scanlines over the work, no overlays that sit on top.</p></div>
+    <div class="rule" style="--c:var(--green)"><h4>Never darken the frame</h4><p>No vignette, ever. The only darkness is the soft blob behind the name and the black shards themselves.</p></div>
+    <div class="rule" style="--c:var(--mag)"><h4>Weight and impact</h4><p>"No weight to it", "the pull needs more weight", "more aggressive, with a flash". Things should land: a yank, a thud, a shake, then stillness.</p></div>
+    <div class="rule" style="--c:var(--cyan)"><h4>Intention over decoration</h4><p>"Empty and random, no intention" killed a whole intro. Every element has to set something up or pay something off.</p></div>
+    <div class="rule" style="--c:var(--acid)"><h4>Fill the space</h4><p>"Leaving a lot of empty space", "fill the wedge". He asked twice for the wedge heading to fill its room; the poster bars were reshaped to his lines.</p></div>
+    <div class="rule" style="--c:var(--pink)"><h4>Material has to be believable</h4><p>Chrome that looks like plastic, a dusty foil, edges "too liquidy and blobby": the card took 27 rounds because surfaces had to feel real.</p></div>
+    <div class="rule" style="--c:var(--green)"><h4>The work comes first</h4><p>Fullscreen photos, zoom and drag, scanlines off his photos, one BACK button. When it is his work on screen, the style steps aside.</p></div>
+    <div class="rule" style="--c:var(--mag)"><h4>Simple beats clever</h4><p>"Remove exit altogether … that's better and simple." One way out, labelled with where it goes.</p></div>
+    <div class="rule" style="--c:var(--cyan)"><h4>It's all one world</h4><p>Each section wears its menu colour, carries the same wedge and chain, and buttons inside the OS borrow the menu plates. Continuity across every screen.</p></div>
+    <div class="rule" style="--c:var(--acid)"><h4>Keep what he likes</h4><p>"I do like the logo being chained up, don't remove that." "Keep the corner edge part only." Changes are surgical; the parts he liked stay put.</p></div>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="ch" id="next" style="--c:var(--dim)">
+  <div class="slate"><div class="num" style="--c:var(--paper)">13</div><h2 class="disp glitch">Still to come</h2><div class="when">This is part one · the rest gets written when the site is finished</div></div>
+  <ul class="next">
+    <li><b>CONTACT</b>Real links, email and handles. The one thing every test visitor looked for.</li>
+    <li><b>SKILLS</b>More cards beyond Video Editing, each with its own art and his own copy.</li>
+    <li><b>LOGO</b>Swap the font approximation for his real exported logo, the biggest fidelity win left.</li>
+    <li><b>BTN</b>The studio folder in JATIN OS, once there's material for it.</li>
+    <li><b>MENU</b>Turn apply mode off and bring the full menu site back when the application is done.</li>
+    <li><b>SOUND</b>A menu blip and an impact hit would suit the game framing. His call.</li>
+  </ul>
+</section>
+
+<footer>
+  JATIN · Beyond the Noise Studio, Hyderabad. Compiled 2 November 2026 from the project journal, concept notes and 128 snapshot sets taken during the build. Quotes are Jatin's notes as given during the work, lightly tidied for spelling.
+</footer>
+</div>

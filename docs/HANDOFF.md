@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-02 — making-of document, part one (his ask)
+- **Did:** a visual journey document of the build so far: references, every round of his notes in his words, what was cut, 39 stills, and the rules his notes add up to. Published as a private artifact: https://claude.ai/artifact/9vkQ3GiZtP5aj2mN44TBtP. Source in `docs/process/making-of/` (`src.html` has a `__FONT__` placeholder for the base64 Cyberway Riders; `img/` are 1400px copies of stills).
+- **Next:** he'll ask for part two when every menu is done: add CONTACT, the remaining skill cards, the real logo, and the apply-mode → full-site return. Update the same artifact URL.
+- **Watch out:** no site code touched. Quotes are tidied for spelling only.
+
 ## 2026-11-02 — every thotahub name forwards to the site (his ask)
 - **Did:** thotahub.in `@` and `www` moved off Namecheap parking (was A 162.255.119.238 / CNAME parkingpage.namecheap.com) to proxied placeholders (A 192.0.2.1 / CNAME thotahub.in); MX + SPF email forwarding untouched. New .in Redirect Rule: thotahub.in, www.thotahub.in → 301 `https://justjatin.thotahub.in` + path. thotahub.com: added proxied CNAME `justjatin` and the host to the .com rule. `justjatin.thotahub.in` itself stays DNS-only (GitHub Pages) and is not in any rule.
 - **Checked:** http + https on thotahub.in, www.thotahub.in, thotahub.com, www.thotahub.com → 301 to the site; justjatin.thotahub.in 200. justjatin.thotahub.com was briefly NXDOMAIN (negative cache from a lookup before the record existed, 1800s SOA min).
