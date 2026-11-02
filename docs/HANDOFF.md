@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-02 — every thotahub name forwards to the site (his ask)
+- **Did:** thotahub.in `@` and `www` moved off Namecheap parking (was A 162.255.119.238 / CNAME parkingpage.namecheap.com) to proxied placeholders (A 192.0.2.1 / CNAME thotahub.in); MX + SPF email forwarding untouched. New .in Redirect Rule: thotahub.in, www.thotahub.in → 301 `https://justjatin.thotahub.in` + path. thotahub.com: added proxied CNAME `justjatin` and the host to the .com rule. `justjatin.thotahub.in` itself stays DNS-only (GitHub Pages) and is not in any rule.
+- **Checked:** http + https on thotahub.in, www.thotahub.in, thotahub.com, www.thotahub.com → 301 to the site; justjatin.thotahub.in 200. justjatin.thotahub.com was briefly NXDOMAIN (negative cache from a lookup before the record existed, 1800s SOA min).
+- **Watch out:** a redirect only moves visitors, it doesn't add any — it catches people who type the wrong ending.
+
 ## 2026-11-02 — thotahub.com forwards to justjatin.thotahub.in (his ask)
 - **Did:** thotahub.com zone: A `@` → 192.0.2.1 and CNAME `www` → thotahub.com, both proxied (placeholders). Redirect Rule (zone ruleset phase `http_request_dynamic_redirect`; `cf` has no command for it, so set via the API with cf's own OAuth token): host thotahub.com / www.thotahub.com → 301 `https://justjatin.thotahub.in` + path, query kept. Checked http/https/www and a deep path: all 301 to the right place, final 200.
 - **Watch out:** the placeholder records must stay proxied (orange) — grey sends visitors to a dead IP. thotahub.in's root still shows the Namecheap parking page (untouched by his choice).
