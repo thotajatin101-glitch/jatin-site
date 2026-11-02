@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-02 — thotahub.com forwards to justjatin.thotahub.in (his ask)
+- **Did:** thotahub.com zone: A `@` → 192.0.2.1 and CNAME `www` → thotahub.com, both proxied (placeholders). Redirect Rule (zone ruleset phase `http_request_dynamic_redirect`; `cf` has no command for it, so set via the API with cf's own OAuth token): host thotahub.com / www.thotahub.com → 301 `https://justjatin.thotahub.in` + path, query kept. Checked http/https/www and a deep path: all 301 to the right place, final 200.
+- **Watch out:** the placeholder records must stay proxied (orange) — grey sends visitors to a dead IP. thotahub.in's root still shows the Namecheap parking page (untouched by his choice).
+
 ## 2026-11-01 — domain: justjatin.thotahub.in (his call). No code deployed
 - **Did:** Cloudflare (his brother's account, `cf` CLI signed in): added CNAME `justjatin.thotahub.in` → `thotajatin101-glitch.github.io`, DNS only. GitHub Pages custom domain set to `justjatin.thotahub.in`. Old github.io link 301s there (checked). thotahub.in's own records (Namecheap parking + email forwarding MX/SPF) and thotahub.com (empty) left untouched, free for later.
 - **HTTPS:** certificate issued within ~2 min; Enforce HTTPS on. Checked: `/`, cache-busted `/`, `/jatin-cutout.png` all 200 over https.
