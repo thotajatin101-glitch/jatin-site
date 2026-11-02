@@ -11,7 +11,7 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ## 2026-11-02 — every thotahub name forwards to the site (his ask)
 - **Did:** thotahub.in `@` and `www` moved off Namecheap parking (was A 162.255.119.238 / CNAME parkingpage.namecheap.com) to proxied placeholders (A 192.0.2.1 / CNAME thotahub.in); MX + SPF email forwarding untouched. New .in Redirect Rule: thotahub.in, www.thotahub.in → 301 `https://justjatin.thotahub.in` + path. thotahub.com: added proxied CNAME `justjatin` and the host to the .com rule. `justjatin.thotahub.in` itself stays DNS-only (GitHub Pages) and is not in any rule.
-- **Checked:** http + https on thotahub.in, www.thotahub.in, thotahub.com, www.thotahub.com → 301 to the site; justjatin.thotahub.in 200. justjatin.thotahub.com was briefly NXDOMAIN (negative cache from a lookup before the record existed, 1800s SOA min).
+- **Checked:** http + https on thotahub.in, www.thotahub.in, thotahub.com, www.thotahub.com → 301 to the site; justjatin.thotahub.in 200. justjatin.thotahub.com was briefly NXDOMAIN (negative cache from a lookup before the record existed, 1800s SOA min); Cloudflare's nameservers served it after ~14 min and it 301s correctly (http + https, deep path kept).
 - **Watch out:** a redirect only moves visitors, it doesn't add any — it catches people who type the wrong ending.
 
 ## 2026-11-02 — thotahub.com forwards to justjatin.thotahub.in (his ask)
