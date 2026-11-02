@@ -422,3 +422,17 @@ send them all back in.
 - Left as his decisions: contact/about, credits on the work, "CLICK ANY
   BUTTON", the BTN sticker, the intro can't be skipped.
 Stills: `stills/2026-10-31-first-user-qa/` (before and after).
+
+## 2026-11-02 — his name, not the studio's
+His note: "i dont want you to use BTN for everything btn is a seperate brand
+that i work and my portfolio." The site had been speaking as Beyond the Noise
+Studio: the link-preview text, the tagline under JATIN, the opening of the
+ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
+- Now it speaks as him: "Visual & Creative Director — Hyderabad" under the
+  name, the ABOUT bubble opens "Hey, I'm Jatin — a visual & creative
+  director out of Hyderabad…", and the menu line and previews match.
+- BTN stays where it's one piece of his work: the BTN folder (still off),
+  the BTN side sticker, the studio link in CONTACT.
+- Copy only: nothing moved. In apply mode only the link preview is visible
+  to visitors; the rest shows when the full site comes back.
+Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.

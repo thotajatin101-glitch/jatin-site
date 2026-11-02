@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-02 — BTN taken off the portfolio's identity (his ask). NOT deployed
+- **Did:** his note: BTN is a separate brand, the site is his. Rewrote the meta + OG description, `#logoSub` ("Visual & Creative Director — Hyderabad"), the ABOUT bubble ("Hey, I'm Jatin" + "A visual & creative director out of Hyderabad…") and the menu ABOUT `data-desc`/`#wedgeDesc`. Kept: BTN folder (`off`), BTN sticker, CONTACT "Studio — [Beyond the Noise links]". Rule saved in CLAUDE.md "Who this is for" and memory. Stills `2026-11-02-btn-copy-full*` (APPLY flipped to false only for the shoot; it's `true` again).
+- **Next:** ships with his next "deploy" (with the `og:url` fix noted below).
+- **Watch out:** `snap.mjs` adds the date itself; pass the label without one. In apply mode the snaps can't reach the menu or ABOUT.
+
 ## 2026-11-02 — making-of document, part one (his ask)
 - **Did:** a visual journey document of the build so far: references, every round of his notes in his words, what was cut, 39 stills, and the rules his notes add up to. Published as a private artifact: https://claude.ai/artifact/9vkQ3GiZtP5aj2mN44TBtP. Source in `docs/process/making-of/` (`src.html`; `img/` are 1400px copies of stills). His note on v1: "make the design simple, you don't need to apply website design" → v2 is a plain reading document (light/dark, Plex Sans, no glitch, no tilts, no Cyberway). Keep it plain for part two.
 - **Next:** he'll ask for part two when every menu is done: add CONTACT, the remaining skill cards, the real logo, and the apply-mode → full-site return. Update the same artifact URL.
