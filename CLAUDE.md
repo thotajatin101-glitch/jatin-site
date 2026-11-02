@@ -2,9 +2,15 @@
 
 ## Who this is for
 
-Jatin. Visual & creative director, runs **Beyond the Noise Studio** (independent
-creative studio, Hyderabad). Disciplines: video editing, editorial shoots,
-visual/creative direction. Primary tools: DaVinci Resolve + Fusion, where he
+Jatin. Visual & creative director, Hyderabad. Disciplines: video editing,
+editorial shoots, visual/creative direction.
+
+**This is HIS portfolio, not BTN's** (his note, 2026-11-02: "i dont want you
+to use BTN for everything btn is a seperate brand that i work and my
+portfolio"). BTN / Beyond the Noise Studio is a separate brand he works on.
+It appears only as one piece of his work (the BTN folder in JATIN OS, the
+side sticker, a studio link in CONTACT), never in the site's titles,
+taglines, meta/OG text, bio or new copy unless he asks. Primary tools: DaVinci Resolve + Fusion, where he
 builds his own reusable macros.
 
 He is a **director, not a developer**. Talk about this project in editing and
