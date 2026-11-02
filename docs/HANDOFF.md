@@ -5,7 +5,7 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 ---
 
 ## 2026-11-02 — making-of document, part one (his ask)
-- **Did:** a visual journey document of the build so far: references, every round of his notes in his words, what was cut, 39 stills, and the rules his notes add up to. Published as a private artifact: https://claude.ai/artifact/9vkQ3GiZtP5aj2mN44TBtP. Source in `docs/process/making-of/` (`src.html` has a `__FONT__` placeholder for the base64 Cyberway Riders; `img/` are 1400px copies of stills).
+- **Did:** a visual journey document of the build so far: references, every round of his notes in his words, what was cut, 39 stills, and the rules his notes add up to. Published as a private artifact: https://claude.ai/artifact/9vkQ3GiZtP5aj2mN44TBtP. Source in `docs/process/making-of/` (`src.html`; `img/` are 1400px copies of stills). His note on v1: "make the design simple, you don't need to apply website design" → v2 is a plain reading document (light/dark, Plex Sans, no glitch, no tilts, no Cyberway). Keep it plain for part two.
 - **Next:** he'll ask for part two when every menu is done: add CONTACT, the remaining skill cards, the real logo, and the apply-mode → full-site return. Update the same artifact URL.
 - **Watch out:** no site code touched. Quotes are tidied for spelling only.
 

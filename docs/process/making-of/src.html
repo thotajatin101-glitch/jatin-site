@@ -1,138 +1,97 @@
 <title>JATIN — The Making Of</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
-@font-face{font-family:"Cyberway Riders";src:url(data:font/ttf;base64,__FONT__) format("truetype");font-display:swap}
-/* Layout: one long reel. A sticky chapter strip on top, each chapter a "scene" —
-   slate (number, date, title), his notes, what was built, stills in a contact-sheet grid. */
+/* Layout: a plain reading document. One centred column, quiet headings,
+   stills in a simple grid. No site styling. */
 :root{
-  color-scheme:dark;
-  --ink:#050506; --panel:#101014; --rule:#26262e; --paper:#f2f2ee; --dim:#9a9aa6;
-  --acid:#e8ff00; --cyan:#00f0d8; --mag:#c81ee0; --purple:#7a12b0; --green:#39e639; --pink:#ff2e88;
-  --display:"Cyberway Riders","Impact","Arial Black",sans-serif;
+  --bg:#ffffff; --fg:#1d1d1f; --muted:#6b6b72; --line:#e4e4e8; --soft:#f5f5f7; --accent:#2f5bd3;
   --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
-  --track:.14em;
 }
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141416;--fg:#ececef;--muted:#9a9aa3;--line:#2c2c31;--soft:#1d1d21;--accent:#8aa8ff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141416;--fg:#ececef;--muted:#9a9aa3;--line:#2c2c31;--soft:#1d1d21;--accent:#8aa8ff;color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--ink);color:var(--paper);font:16px/1.65 var(--body);
+body{background:var(--bg);color:var(--fg);font:16px/1.65 var(--body);
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--ink)}
-a{color:var(--cyan)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
-.wrap{max-width:1180px;margin:0 auto}
-.disp{font-family:var(--display);letter-spacing:var(--track);font-weight:400;line-height:1.02}
-.glitch{text-shadow:-2px 0 var(--cyan),2px 0 var(--pink),4px 4px 0 #000}
-.mono{font-family:var(--mono)}
-
-/* ---- hero ---- */
-.hero{position:relative;padding-block:56px 40px;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:-40% -20%;z-index:-1;
-  background:conic-gradient(from 200deg at 70% 45%,var(--cyan) 0 8deg,transparent 8deg 22deg,var(--pink) 22deg 30deg,transparent 30deg 51deg,var(--acid) 51deg 56deg,transparent 56deg 80deg,var(--mag) 80deg 92deg,transparent 92deg 140deg,var(--green) 140deg 146deg,transparent 146deg 200deg,var(--purple) 200deg 218deg,transparent 218deg 360deg);
-  opacity:.22}
-.eyebrow{font:600 12px/1.4 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--acid)}
-.hero h1{font-size:clamp(3rem,11vw,8.2rem);margin:.2em 0 .1em;transform:rotate(-3deg);transform-origin:left}
-.hero h1 span{display:block;font-size:.42em;color:var(--cyan)}
-.lede{max-width:64ch;font-size:1.13rem;color:#d9d9e0;text-wrap:pretty}
-.facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:26px;font:13px/1.4 var(--mono);color:var(--dim)}
-.facts b{display:block;color:var(--paper);font:400 1.5rem/1.1 var(--display);letter-spacing:var(--track)}
-
-/* ---- sticky strip ---- */
-.strip{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ink);border-block:1px solid var(--rule);
-  margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding:8px max(16px,env(safe-area-inset-left,0px))}
-.strip nav{max-width:1180px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
-.strip nav::-webkit-scrollbar{display:none}
-.strip a{flex:none;text-decoration:none;color:var(--dim);font:600 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
-  padding:7px 10px 7px 8px;border:1px solid var(--rule);clip-path:polygon(0 0,100% 0,calc(100% - 7px) 100%,0 100%)}
-.strip a i{font-style:normal;color:var(--acid);margin-right:6px}
-.strip a:hover{color:var(--ink);background:var(--acid)}
-.strip a:hover i{color:var(--ink)}
-
-/* ---- palette ---- */
-.palette{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;margin-top:22px}
-.sw{padding:46px 10px 8px;font:12px/1.3 var(--mono);color:#000;font-weight:600}
-.sw.dk{color:var(--paper)}
-
-/* ---- chapters ---- */
-.ch{padding-block:64px 8px;border-top:1px solid var(--rule);scroll-margin-top:56px}
-.slate{display:grid;grid-template-columns:auto 1fr;gap:4px 22px;align-items:end;margin-bottom:26px}
-.num{font:400 clamp(3.4rem,9vw,6rem)/.85 var(--display);letter-spacing:var(--track);color:transparent;-webkit-text-stroke:1.5px var(--c,var(--acid))}
-.slate h2{font-size:clamp(1.8rem,4.6vw,3.2rem);margin:0;transform:rotate(-2deg);transform-origin:left;color:var(--paper);text-wrap:balance}
-.slate .when{grid-column:2;font:600 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--c,var(--acid))}
-.cols{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px 44px}
-@media (max-width:860px){.cols{grid-template-columns:1fr}}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:900px;margin:0 auto}
+.hero{padding-block:56px 28px}
+.eyebrow{font:500 12px/1.4 var(--mono);letter-spacing:.06em;color:var(--muted)}
+.hero h1{font-size:clamp(2rem,5vw,2.8rem);line-height:1.15;margin:.3em 0 .4em;font-weight:600;text-wrap:balance}
+.hero h1 span{display:block;font-size:.55em;font-weight:400;color:var(--muted)}
+.lede{max-width:65ch;font-size:1.08rem}
+.facts{display:flex;flex-wrap:wrap;gap:10px 32px;margin-top:22px;font-size:13px;color:var(--muted)}
+.facts b{display:block;color:var(--fg);font-size:1.3rem;font-weight:600;font-variant-numeric:tabular-nums}
+.strip{border-block:1px solid var(--line);padding-block:12px}
+.strip nav{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:14px}
+.strip a{text-decoration:none}
+.strip a:hover{text-decoration:underline}
+.strip a i{font-style:normal;color:var(--muted);margin-right:4px;font-variant-numeric:tabular-nums}
+.palette{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:12px}
+.sw{padding:34px 8px 6px;font:11px/1.3 var(--mono);color:#000;border-radius:4px}
+.sw.dk{color:#fff}
+.ch{padding-block:48px 8px;border-top:1px solid var(--line);margin-top:40px}
+.slate{margin-bottom:20px}
+.num{font:500 13px/1 var(--mono);color:var(--muted)}
+.slate h2{font-size:1.65rem;line-height:1.25;margin:.35em 0 .2em;font-weight:600;text-wrap:balance}
+.slate .when{font-size:14px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr;gap:8px}
 .cols>*{min-width:0}
-h3{font:600 12px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:28px 0 10px}
-h3:first-child{margin-top:0}
+h3{font-size:1.02rem;font-weight:600;margin:26px 0 8px}
+h3:first-child{margin-top:8px}
 p{margin:0 0 14px;max-width:68ch}
-ul{margin:0 0 14px;padding-left:1.1em;max-width:68ch}
-li{margin-bottom:7px}
-li::marker{color:var(--c,var(--acid))}
-strong{color:#fff}
-
-/* his words */
-.said{margin:0 0 14px;padding:12px 16px 12px 18px;background:var(--panel);border-left:4px solid var(--c,var(--acid));
-  font:15px/1.6 var(--mono);color:#fff;max-width:68ch}
-.said::before{content:"HIS NOTE";display:block;font:600 10px/1 var(--mono);letter-spacing:.2em;color:var(--c,var(--acid));margin-bottom:7px}
-.said.ask::before{content:"HIS ASK"}
-.said.call::before{content:"HIS CALL"}
-
-/* rounds list */
-.rounds{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:10px;max-width:none}
-.rounds li{display:grid;grid-template-columns:3.2em 1fr;gap:12px;margin:0;padding:10px 0;border-bottom:1px dashed var(--rule)}
-.rounds li>b{font:600 12px/1.6 var(--mono);color:var(--c,var(--acid))}
-.rounds q{font-family:var(--mono);font-size:.93em;color:#fff;quotes:"“" "”"}
-.rounds span{display:block;color:#c9c9d2}
-
-/* stills */
-.reel{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px;margin:26px 0 10px}
-.reel.two{grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr))}
+ul,ol{margin:0 0 14px;padding-left:1.2em;max-width:68ch}
+li{margin-bottom:6px}
+.said{margin:0 0 14px;padding:4px 0 4px 16px;border-left:3px solid var(--line);font-style:italic;max-width:68ch}
+.said::before{content:"His note — ";font-style:normal;color:var(--muted);font-size:14px}
+.said.ask::before{content:"His ask — "}
+.said.call::before{content:"His call — "}
+.rounds{list-style:none;padding:0;margin:0 0 14px;max-width:none}
+.rounds li{display:grid;grid-template-columns:3.4em 1fr;gap:10px;margin:0;padding:8px 0;border-bottom:1px solid var(--line)}
+.rounds li>b{font:500 12.5px/1.75 var(--mono);color:var(--muted)}
+.rounds q{font-style:italic}
+.rounds span{display:block;color:var(--muted)}
+.reel{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:14px;margin:22px 0 8px}
+.reel.two{grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr))}
 figure{margin:0;min-width:0}
-figure .fr{position:relative;background:#000;border:1px solid var(--rule)}
+figure .fr{position:relative;background:var(--soft);border:1px solid var(--line);border-radius:4px;overflow:hidden}
 figure img{display:block;width:100%;height:auto;max-width:100%}
 figure.tall .fr{display:flex;justify-content:center}
-figure.tall img{width:auto;max-height:420px}
-figcaption{font:12.5px/1.5 var(--mono);color:var(--dim);padding-top:7px}
-figcaption b{color:var(--paper);font-weight:600}
-.tag{position:absolute;top:8px;left:8px;font:400 12px/1 var(--display);letter-spacing:var(--track);padding:6px 9px 5px;color:#000;background:var(--acid);transform:rotate(-4deg);box-shadow:3px 3px 0 #000}
-.tag.cut{background:var(--pink);color:#fff}
-.tag.ref{background:var(--cyan)}
-.tag.now{background:var(--green)}
-
-/* cut table */
+figure.tall img{width:auto;max-height:380px}
+figcaption{font-size:13px;line-height:1.5;color:var(--muted);padding-top:6px}
+figcaption b{color:var(--fg);font-weight:600}
+.tag{position:absolute;top:6px;left:6px;font:600 10.5px/1 var(--mono);letter-spacing:.05em;padding:4px 6px;border-radius:3px;background:#fff;color:#1d1d1f}
+.tag.cut{background:#1d1d1f;color:#fff}
 .tbl{overflow-x:auto;margin:10px 0 14px}
-table{border-collapse:collapse;width:100%;min-width:620px;font-size:14.5px}
-th{font:600 11px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule)}
-td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
-td:first-child{font-weight:600;color:#fff;white-space:nowrap}
-td.q{font-family:var(--mono);color:var(--acid)}
-
-/* timing bar */
-.timing{display:grid;gap:6px;margin:12px 0 18px;font:12px/1.2 var(--mono)}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:14.5px}
+th{font-size:13px;font-weight:600;text-align:left;padding:8px 10px;border-bottom:2px solid var(--line);color:var(--muted)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{font-weight:600;white-space:nowrap}
+td.q{font-style:italic}
+.timing{display:grid;gap:5px;margin:12px 0 18px;font-size:12.5px;max-width:560px}
 .trow{display:grid;grid-template-columns:5.5em 1fr;gap:10px;align-items:center}
-.bar{height:18px;background:var(--rule);position:relative}
-.bar i{position:absolute;inset:0 auto 0 0;background:var(--dim)}
-.bar i.on{background:var(--acid)}
-.bar em{position:absolute;right:6px;top:2px;font-style:normal;color:#fff}
-
-/* rules */
-.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:12px;margin-top:20px}
-.rule{background:var(--panel);padding:16px 18px;border-top:3px solid var(--c)}
-.rule h4{margin:0 0 6px;font:400 1.1rem/1.15 var(--display);letter-spacing:var(--track);color:var(--c)}
-.rule p{margin:0;font-size:14.5px;color:#d4d4dc}
-.next{list-style:none;padding:0;display:grid;gap:8px;max-width:none}
-.next li{background:var(--panel);padding:12px 16px;margin:0;border-left:3px solid var(--rule)}
-.next li b{color:var(--acid);font:600 12px var(--mono);letter-spacing:.1em;margin-right:8px}
-footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);border-top:1px solid var(--rule);margin-top:60px}
+.bar{height:16px;background:var(--soft);position:relative;border-radius:2px}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--line);border-radius:2px}
+.bar i.on{background:var(--accent)}
+.bar em{position:absolute;right:6px;top:0;font-style:normal;font-variant-numeric:tabular-nums}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px 24px;margin-top:16px}
+.rule{padding:12px 0;border-top:1px solid var(--line)}
+.rule h4{margin:0 0 4px;font-size:15px;font-weight:600}
+.rule p{margin:0;font-size:14.5px;color:var(--muted)}
+.next{max-width:68ch}
+.next li b{font-weight:600;margin-right:6px}
+footer{padding-block:40px 60px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:50px}
 </style>
 
 <div class="wrap">
 <header class="hero">
   <div class="eyebrow">Beyond the Noise Studio · justjatin.thotahub.in · Part one, as of 2 Nov 2026</div>
-  <h1 class="disp glitch">JATIN<span>The making of</span></h1>
+  <h1>JATIN<span>The making of</span></h1>
   <p class="lede">A portfolio built like a game, not a website. A title sequence, then a menu, then screens that slam open over it. This is the visual journey so far: where each piece came from, what Jatin asked for in his own words, what was tried and cut, and the rules that came out of it. Written as notes from the edit, in order.</p>
   <div class="facts">
     <div><b>10 days</b>first commit 24 Oct → 2 Nov</div>
@@ -147,8 +106,8 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
 </nav></div>
 
 <!-- 00 -->
-<section class="ch" id="brief" style="--c:var(--acid)">
-  <div class="slate"><div class="num">00</div><h2 class="disp glitch">The brief</h2><div class="when">August 2026 · two references, merged on purpose</div></div>
+<section class="ch" id="brief">
+  <div class="slate"><div class="num">00</div><h2>The brief</h2><div class="when">August 2026 · two references, merged on purpose</div></div>
   <div class="cols">
     <div>
       <p>The concept was never "a portfolio site". It was a deliberate merge of two things Jatin already loved.</p>
@@ -160,9 +119,9 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
       <p>Not a scrolling website. A title sequence, then a menu. Everything should feel like it came out of the logo video, and behave like a game.</p>
     </div>
     <div>
-      <div class="reel two" style="margin-top:0">
-        <figure><div class="fr"><img src="img/ref-burst.jpg" alt="Frame from Jatin's logo animation: shards bursting from centre in acid, cyan and magenta" loading="lazy"><span class="tag ref">REF</span></div><figcaption><b>His logo video.</b> The shard burst. Palette, geometry and energy all start here.</figcaption></figure>
-        <figure><div class="fr"><img src="img/ref-persona.jpg" alt="Persona 5 Royal style game menu with stacked slanted labels" loading="lazy"><span class="tag ref">REF</span></div><figcaption><b>Persona 5 Royal menu.</b> Stacked, slanted, typographic. The model for how you move around.</figcaption></figure>
+      <div class="reel two">
+        <figure><div class="fr"><img src="img/ref-burst.jpg" alt="Frame from Jatin's logo animation: shards bursting from centre in acid, cyan and magenta" loading="lazy"><span class="tag">REFERENCE</span></div><figcaption><b>His logo video.</b> The shard burst. Palette, geometry and energy all start here.</figcaption></figure>
+        <figure><div class="fr"><img src="img/ref-persona.jpg" alt="Persona 5 Royal style game menu with stacked slanted labels" loading="lazy"><span class="tag">REFERENCE</span></div><figcaption><b>Persona 5 Royal menu.</b> Stacked, slanted, typographic. The model for how you move around.</figcaption></figure>
       </div>
     </div>
   </div>
@@ -174,14 +133,14 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
     <div class="sw dk" style="background:#7a12b0">PURPLE #7a12b0</div>
     <div class="sw" style="background:#39e639">GREEN #39e639</div>
     <div class="sw" style="background:#ff2e88">PINK #ff2e88</div>
-    <div class="sw dk" style="background:#000;border:1px solid var(--rule)">BLACK, and plenty of it</div>
+    <div class="sw dk" style="background:#000">BLACK, and plenty of it</div>
   </div>
-  <p style="margin-top:14px;color:var(--dim);font-size:14px">Loud and clashing on purpose. The black shards between the colour are part of the look, not empty space. The typeface is his own, Cyberway Riders, used for the wordmark and every heading (including this document).</p>
+  <p style="margin-top:12px;color:var(--muted);font-size:14px">Loud and clashing on purpose. The black shards between the colour are part of the look, not empty space. The typeface is his own, Cyberway Riders, used for the wordmark and every heading.</p>
 </section>
 
 <!-- 01 -->
-<section class="ch" id="draft" style="--c:var(--cyan)">
-  <div class="slate"><div class="num">01</div><h2 class="disp glitch">The first draft</h2><div class="when">24 October 2026 · the foundation</div></div>
+<section class="ch" id="draft">
+  <div class="slate"><div class="num">01</div><h2>The first draft</h2><div class="when">24 October 2026 · the foundation</div></div>
   <div class="cols">
     <div>
       <p>His framing of it: <strong>the first draft is the foundation everything after was built on top of.</strong> Not a throwaway. The palette, the shard field, the menu model, the big accent wedge and the portrait all start here, and every chapter after this reworks one of these pieces.</p>
@@ -193,7 +152,7 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
       </ul>
     </div>
     <div>
-      <p style="color:var(--dim)">What changed later: the intro was rebuilt from new references, EXPERIENCE was removed, the clashing two-band sections became one accent wedge per screen, and ABOUT became a poster.</p>
+      <p style="color:var(--muted)">What changed later: the intro was rebuilt from new references, EXPERIENCE was removed, the clashing two-band sections became one accent wedge per screen, and ABOUT became a poster.</p>
     </div>
   </div>
   <div class="reel">
@@ -204,8 +163,8 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
 </section>
 
 <!-- 02 -->
-<section class="ch" id="look" style="--c:var(--pink)">
-  <div class="slate"><div class="num">02</div><h2 class="disp glitch">Getting the look right</h2><div class="when">October 2026 · mostly by cutting things</div></div>
+<section class="ch" id="look">
+  <div class="slate"><div class="num">02</div><h2>Getting the look right</h2><div class="when">October 2026 · mostly by cutting things</div></div>
   <p>The texture of the site was found by taking things away. Each line below is something that was built, looked at, and cut on his note. Together they are the reason the site looks printed rather than filtered.</p>
   <div class="tbl"><table>
     <thead><tr><th>What was tried</th><th>His note</th><th>Why it went, and what replaced it</th></tr></thead>
@@ -223,8 +182,8 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
 </section>
 
 <!-- 03 -->
-<section class="ch" id="menu" style="--c:var(--pink)">
-  <div class="slate"><div class="num">03</div><h2 class="disp glitch">The menu becomes Persona 5</h2><div class="when">October 2026 · from his sketch</div></div>
+<section class="ch" id="menu">
+  <div class="slate"><div class="num">03</div><h2>The menu becomes Persona 5</h2><div class="when">October 2026 · from his sketch</div></div>
   <div class="cols">
     <div>
       <div class="said ask">a Persona-5-Royal system menu, with my palette as the twist</div>
@@ -236,7 +195,7 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
         <li><strong>The wedge heading is measured, not guessed.</strong> He asked twice for it to fill the space; the first attempts left half the wedge empty on wide screens.</li>
       </ul>
       <div class="said call">EXPERIENCE removed.</div>
-      <p>Four items, four colours, carried through every screen after: <strong style="color:var(--cyan)">ABOUT cyan</strong>, <strong style="color:var(--pink)">PROJECTS pink</strong>, <strong style="color:var(--green)">SKILLS green</strong>, <strong style="color:var(--acid)">CONTACT acid</strong>.</p>
+      <p>Four items, four colours, carried through every screen after: <strong>ABOUT cyan, PROJECTS pink, SKILLS green, CONTACT acid</strong>.</p>
     </div>
     <div>
       <h3>The wedge comes alive · three rounds</h3>
@@ -250,14 +209,14 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
   </div>
   <div class="reel">
     <figure><div class="fr"><img src="img/menu-26.jpg" alt="Menu with PROJECTS selected: pink wedge, staircase plates, chain" loading="lazy"></div><figcaption><b>PROJECTS selected.</b> Plate floods pink, the whole world re-tints.</figcaption></figure>
-    <figure><div class="fr"><img src="img/menu-final.jpg" alt="Menu with ABOUT selected on a cyan wedge" loading="lazy"><span class="tag now">NOW</span></div><figcaption><b>ABOUT selected, 28 Oct.</b> The black panel behind the plates now fades out instead of ending on a hard edge.</figcaption></figure>
+    <figure><div class="fr"><img src="img/menu-final.jpg" alt="Menu with ABOUT selected on a cyan wedge" loading="lazy"><span class="tag">NOW</span></div><figcaption><b>ABOUT selected, 28 Oct.</b> The black panel behind the plates now fades out instead of ending on a hard edge.</figcaption></figure>
     <figure class="tall"><div class="fr"><img src="img/menu-phone.jpg" alt="Phone menu: wedge word on top, plates along the bottom" loading="lazy"></div><figcaption><b>Phone.</b> Wedge word up top, plates along the bottom, wedge kept bright.</figcaption></figure>
   </div>
 </section>
 
 <!-- 04 -->
-<section class="ch" id="depth" style="--c:var(--cyan)">
-  <div class="slate"><div class="num">04</div><h2 class="disp glitch">Depth</h2><div class="when">October 2026 · from Spider-Verse references</div></div>
+<section class="ch" id="depth">
+  <div class="slate"><div class="num">04</div><h2>Depth</h2><div class="when">October 2026 · from Spider-Verse references</div></div>
   <div class="cols">
     <div>
       <div class="said ask">more depth, intentionality and personality</div>
@@ -280,8 +239,8 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
 </section>
 
 <!-- 05 -->
-<section class="ch" id="intro" style="--c:var(--acid)">
-  <div class="slate"><div class="num">05</div><h2 class="disp glitch">The intro, rebuilt</h2><div class="when">October 2026 · eleven rounds on the opening alone</div></div>
+<section class="ch" id="intro">
+  <div class="slate"><div class="num">05</div><h2>The intro, rebuilt</h2><div class="when">October 2026 · eleven rounds on the opening alone</div></div>
   <div class="cols">
     <div>
       <p>New references from him: two pop-art explosion title intros. The brief: <strong>explosive composition, electric colour, comic print textures (halftone, stripes, ASCII dithering), chromatic aberration, glitching, shapes expanding and shattering frame by frame, motion aggressive and rhythmic.</strong></p>
@@ -307,7 +266,7 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
   </div>
   <div class="reel">
     <figure><div class="fr"><img src="img/chains-bulge.jpg" alt="3D JATIN slab with chains bulging away from it" loading="lazy"><span class="tag cut">CUT</span></div><figcaption><b>The bulge.</b> Straps standing off the logo. Rejected.</figcaption></figure>
-    <figure><div class="fr"><img src="img/intro-float.jpg" alt="JATIN slab floating in chains with drifting slack" loading="lazy"><span class="tag now">NOW</span></div><figcaption><b>Zero-g float.</b> Waits here for the viewer: CLICK ANY BUTTON.</figcaption></figure>
+    <figure><div class="fr"><img src="img/intro-float.jpg" alt="JATIN slab floating in chains with drifting slack" loading="lazy"><span class="tag">NOW</span></div><figcaption><b>Zero-g float.</b> Waits here for the viewer: CLICK ANY BUTTON.</figcaption></figure>
     <figure><div class="fr"><img src="img/intro-snap.jpg" alt="The snap: shockwave ring, links flung outward, white flash" loading="lazy"></div><figcaption><b>The snap.</b> Flash, shockwave, every link flung toward the lens.</figcaption></figure>
     <figure><div class="fr"><img src="img/intro-slam.jpg" alt="Fan slam: bold colour wedges and JATIN centred" loading="lazy"></div><figcaption><b>The fan slam.</b> The name holds centre through the chaos.</figcaption></figure>
     <figure><div class="fr"><img src="img/intro-hold.jpg" alt="Hold: JATIN over a black crumpled star on a colour field" loading="lazy"></div><figcaption><b>The hold.</b> Logo slammed over a crumpled star, beat every 8 frames (180bpm).</figcaption></figure>
@@ -320,7 +279,7 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
     <div class="trow"><span>round 4</span><div class="bar"><i style="width:80%"></i><em>2.0s</em></div></div>
     <div class="trow"><span>round 5</span><div class="bar"><i style="width:60%"></i><em>1.5s</em></div></div>
     <div class="trow"><span>round 6</span><div class="bar"><i style="width:100%"></i><em>2.5s</em></div></div>
-    <div class="trow"><span>final</span><div class="bar"><i class="on" style="width:74%"></i><em style="color:#000">1.85s</em></div></div>
+    <div class="trow"><span>final</span><div class="bar"><i class="on" style="width:74%"></i><em style="color:#fff">1.85s</em></div></div>
   </div>
   <div class="said">let's actually keep it at 1.85 secs, the sweet spot</div>
   <div class="said ask">keep the first 3D floating part floating until the user clicks any button … with a click-any-button text underneath the logo with a subtle blink like video games</div>
@@ -328,8 +287,8 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
 </section>
 
 <!-- 06 -->
-<section class="ch" id="trans" style="--c:var(--mag)">
-  <div class="slate"><div class="num">06</div><h2 class="disp glitch">Transitions</h2><div class="when">October 2026 · half a second, symmetric</div></div>
+<section class="ch" id="trans">
+  <div class="slate"><div class="num">06</div><h2>Transitions</h2><div class="when">October 2026 · half a second, symmetric</div></div>
   <div class="cols">
     <div>
       <ol class="rounds">
@@ -339,7 +298,7 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
       </ol>
       <p>Every screen change on the site uses it. When the intro hands over to the menu, the logo moves to the corner <strong>behind the slam</strong> as an instant cut, never a visible slide.</p>
     </div>
-    <div class="reel two" style="margin-top:0">
+    <div class="reel two">
       <figure><div class="fr"><img src="img/trans-trace.jpg" alt="Transition at 90ms: neon outlines tracing in" loading="lazy"></div><figcaption><b>90ms · trace.</b> Outlines whip in along their own axis.</figcaption></figure>
       <figure><div class="fr"><img src="img/trans-slam.jpg" alt="Transition at 228ms: solid colour plates slammed in" loading="lazy"></div><figcaption><b>228ms · slam.</b> Fills land oversized with a wide RGB split.</figcaption></figure>
     </div>
@@ -347,8 +306,8 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
 </section>
 
 <!-- 07 -->
-<section class="ch" id="chains" style="--c:var(--green)">
-  <div class="slate"><div class="num">07</div><h2 class="disp glitch">Chains</h2><div class="when">October 2026 · from his red-line sketches</div></div>
+<section class="ch" id="chains">
+  <div class="slate"><div class="num">07</div><h2>Chains</h2><div class="when">October 2026 · from his red-line sketches</div></div>
   <div class="cols">
     <div>
       <p>The chains are made from the site's own pixel "puzzle pieces", not real chain links: stepped pixel rings and bars, with the two gradients from his logo video (acid to green, cyan to deep).</p>
@@ -371,8 +330,8 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
 </section>
 
 <!-- 08 -->
-<section class="ch" id="about" style="--c:var(--cyan)">
-  <div class="slate"><div class="num">08</div><h2 class="disp glitch">About becomes a poster</h2><div class="when">26 – 27 October 2026 · “Have you seen this DIRECTOR?”</div></div>
+<section class="ch" id="about">
+  <div class="slate"><div class="num">08</div><h2>About becomes a poster</h2><div class="when">26 – 27 October 2026 · “Have you seen this DIRECTOR?”</div></div>
   <div class="cols">
     <div>
       <p>ABOUT went through two complete designs. First a Persona 5 collage modelled on a "KREFTON" poster he sent. Then he brought a new reference and a new night photo.</p>
@@ -397,13 +356,13 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
     <figure><div class="fr"><img src="img/about-notext.jpg" alt="Poster with all text removed to judge alignment" loading="lazy"></div><figcaption><b>Round 2.</b> Text stripped to judge the layout.</figcaption></figure>
     <figure><div class="fr"><img src="img/about-before-glow.jpg" alt="Poster with a hard stamped outline round the portrait" loading="lazy"><span class="tag cut">CUT</span></div><figcaption><b>The "sketch pen" outline.</b></figcaption></figure>
     <figure><div class="fr"><img src="img/about-name-ramp.jpg" alt="Poster with THOTA JATIN across the top banner" loading="lazy"><span class="tag cut">CUT</span></div><figcaption><b>The name ramp.</b> Tried, brought back, then removed for good.</figcaption></figure>
-    <figure><div class="fr"><img src="img/about-final.jpg" alt="Final ABOUT: clean pink and purple banners with chains, glowing portrait" loading="lazy"><span class="tag now">NOW</span></div><figcaption><b>Final, 27 Oct.</b> No text on the bars; chains and dither glow.</figcaption></figure>
+    <figure><div class="fr"><img src="img/about-final.jpg" alt="Final ABOUT: clean pink and purple banners with chains, glowing portrait" loading="lazy"><span class="tag">NOW</span></div><figcaption><b>Final, 27 Oct.</b> No text on the bars; chains and dither glow.</figcaption></figure>
   </div>
 </section>
 
 <!-- 09 -->
-<section class="ch" id="skills" style="--c:var(--green)">
-  <div class="slate"><div class="num">09</div><h2 class="disp glitch">Skills: the trading card</h2><div class="when">28 – 29 October 2026 · 27 rounds on one card</div></div>
+<section class="ch" id="skills">
+  <div class="slate"><div class="num">09</div><h2>Skills: the trading card</h2><div class="when">28 – 29 October 2026 · 27 rounds on one card</div></div>
   <div class="cols">
     <div>
       <div class="said ask">inside skills I want a card themed section where each card has a skill that I honed and worked on, with a description of the skill</div>
@@ -442,13 +401,13 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
     <figure><div class="fr"><img src="img/skills-relief.jpg" alt="Card in a thick liquid chrome case" loading="lazy"><span class="tag cut">CUT</span></div><figcaption><b>Round 16.</b> "Blunt", "blobby".</figcaption></figure>
     <figure><div class="fr"><img src="img/skills-sharp.jpg" alt="Card in a sharper thinner chrome case" loading="lazy"></div><figcaption><b>Round 17.</b> Sharper, thinner, more shine.</figcaption></figure>
     <figure><div class="fr"><img src="img/skills-space.jpg" alt="Card art: 3D computer floating on a rainbow slab in space" loading="lazy"></div><figcaption><b>Round 21.</b> The floating computer.</figcaption></figure>
-    <figure><div class="fr"><img src="img/skills-stage.jpg" alt="Card tilted left, info banner and plate menu right" loading="lazy"><span class="tag now">NOW</span></div><figcaption><b>Round 27.</b> The Persona Confidant stage.</figcaption></figure>
+    <figure><div class="fr"><img src="img/skills-stage.jpg" alt="Card tilted left, info banner and plate menu right" loading="lazy"><span class="tag">NOW</span></div><figcaption><b>Round 27.</b> The Persona Confidant stage.</figcaption></figure>
   </div>
 </section>
 
 <!-- 10 -->
-<section class="ch" id="projects" style="--c:var(--pink)">
-  <div class="slate"><div class="num">10</div><h2 class="disp glitch">Projects: the computer</h2><div class="when">October 2026 · a retro monitor, built without a 3D library</div></div>
+<section class="ch" id="projects">
+  <div class="slate"><div class="num">10</div><h2>Projects: the computer</h2><div class="when">October 2026 · a retro monitor, built without a 3D library</div></div>
   <div class="cols">
     <div>
       <p>He gave a rendered reference: a soft beige vintage monitor with a deep bezel on a flat desktop base with two knobs. It is drawn by one shader so the site stays one file.</p>
@@ -480,8 +439,8 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
 </section>
 
 <!-- 11 -->
-<section class="ch" id="work" style="--c:var(--pink)">
-  <div class="slate"><div class="num">11</div><h2 class="disp glitch">The work goes on the computer</h2><div class="when">30 October – 2 November 2026 · for a Vogue application</div></div>
+<section class="ch" id="work">
+  <div class="slate"><div class="num">11</div><h2>The work goes on the computer</h2><div class="when">30 October – 2 November 2026 · for a Vogue application</div></div>
   <div class="cols">
     <div>
       <div class="said ask">keep the intro video and rather than opening the menu screen, go directly to projects, to show my work immediately</div>
@@ -514,33 +473,33 @@ footer{padding-block:60px 70px;color:var(--dim);font:12.5px/1.6 var(--mono);bord
     <figure><div class="fr"><img src="img/os-zoom.jpg" alt="Photo viewer zoomed into a portrait" loading="lazy"></div><figcaption><b>Viewer.</b> Zoom where you point, drag to pan.</figcaption></figure>
     <figure><div class="fr"><img src="img/os-plates.jpg" alt="FLUX photos with menu-style plate buttons FOLDERS, PHOTOS, EDITS" loading="lazy"></div><figcaption><b>Menu plates as buttons, 31 Oct.</b></figcaption></figure>
     <figure><div class="fr"><img src="img/os-edits.jpg" alt="EDITS tab: grid of video posters with pink play plates" loading="lazy"></div><figcaption><b>His edits.</b> Posters, run times, play plates.</figcaption></figure>
-    <figure><div class="fr"><img src="img/qa-after.jpg" alt="FLUX photos grid after first-user QA fixes" loading="lazy"><span class="tag now">NOW</span></div><figcaption><b>After QA.</b> What a first visitor sees.</figcaption></figure>
+    <figure><div class="fr"><img src="img/qa-after.jpg" alt="FLUX photos grid after first-user QA fixes" loading="lazy"><span class="tag">NOW</span></div><figcaption><b>After QA.</b> What a first visitor sees.</figcaption></figure>
   </div>
 </section>
 
 <!-- 12 -->
-<section class="ch" id="rules" style="--c:var(--acid)">
-  <div class="slate"><div class="num">12</div><h2 class="disp glitch">What he was specific about</h2><div class="when">The rules that came out of the notes</div></div>
+<section class="ch" id="rules">
+  <div class="slate"><div class="num">12</div><h2>What he was specific about</h2><div class="when">The rules that came out of the notes</div></div>
   <p>Read across all the rounds, his notes keep landing on the same few principles. These are the ones that now govern every new piece.</p>
   <div class="rules">
-    <div class="rule" style="--c:var(--acid)"><h4>Motion only on intent</h4><p>Nothing twitches on its own. Idle glitch read as "a problem with a TV". Glitch fires on input, once, then settles.</p></div>
-    <div class="rule" style="--c:var(--cyan)"><h4>Stepped where it hits, smooth where it travels</h4><p>The intro's explosion holds each drawing for two frames, like hand-drawn impact. But the float, the folders and the opening are smooth; stepped motion there "reads as lag".</p></div>
-    <div class="rule" style="--c:var(--pink)"><h4>Print, not filter</h4><p>Texture is a screenprint: small angled ink dots and pixel dither on the colour. No grunge, no scanlines over the work, no overlays that sit on top.</p></div>
-    <div class="rule" style="--c:var(--green)"><h4>Never darken the frame</h4><p>No vignette, ever. The only darkness is the soft blob behind the name and the black shards themselves.</p></div>
-    <div class="rule" style="--c:var(--mag)"><h4>Weight and impact</h4><p>"No weight to it", "the pull needs more weight", "more aggressive, with a flash". Things should land: a yank, a thud, a shake, then stillness.</p></div>
-    <div class="rule" style="--c:var(--cyan)"><h4>Intention over decoration</h4><p>"Empty and random, no intention" killed a whole intro. Every element has to set something up or pay something off.</p></div>
-    <div class="rule" style="--c:var(--acid)"><h4>Fill the space</h4><p>"Leaving a lot of empty space", "fill the wedge". He asked twice for the wedge heading to fill its room; the poster bars were reshaped to his lines.</p></div>
-    <div class="rule" style="--c:var(--pink)"><h4>Material has to be believable</h4><p>Chrome that looks like plastic, a dusty foil, edges "too liquidy and blobby": the card took 27 rounds because surfaces had to feel real.</p></div>
-    <div class="rule" style="--c:var(--green)"><h4>The work comes first</h4><p>Fullscreen photos, zoom and drag, scanlines off his photos, one BACK button. When it is his work on screen, the style steps aside.</p></div>
-    <div class="rule" style="--c:var(--mag)"><h4>Simple beats clever</h4><p>"Remove exit altogether … that's better and simple." One way out, labelled with where it goes.</p></div>
-    <div class="rule" style="--c:var(--cyan)"><h4>It's all one world</h4><p>Each section wears its menu colour, carries the same wedge and chain, and buttons inside the OS borrow the menu plates. Continuity across every screen.</p></div>
-    <div class="rule" style="--c:var(--acid)"><h4>Keep what he likes</h4><p>"I do like the logo being chained up, don't remove that." "Keep the corner edge part only." Changes are surgical; the parts he liked stay put.</p></div>
+    <div class="rule"><h4>Motion only on intent</h4><p>Nothing twitches on its own. Idle glitch read as "a problem with a TV". Glitch fires on input, once, then settles.</p></div>
+    <div class="rule"><h4>Stepped where it hits, smooth where it travels</h4><p>The intro's explosion holds each drawing for two frames, like hand-drawn impact. But the float, the folders and the opening are smooth; stepped motion there "reads as lag".</p></div>
+    <div class="rule"><h4>Print, not filter</h4><p>Texture is a screenprint: small angled ink dots and pixel dither on the colour. No grunge, no scanlines over the work, no overlays that sit on top.</p></div>
+    <div class="rule"><h4>Never darken the frame</h4><p>No vignette, ever. The only darkness is the soft blob behind the name and the black shards themselves.</p></div>
+    <div class="rule"><h4>Weight and impact</h4><p>"No weight to it", "the pull needs more weight", "more aggressive, with a flash". Things should land: a yank, a thud, a shake, then stillness.</p></div>
+    <div class="rule"><h4>Intention over decoration</h4><p>"Empty and random, no intention" killed a whole intro. Every element has to set something up or pay something off.</p></div>
+    <div class="rule"><h4>Fill the space</h4><p>"Leaving a lot of empty space", "fill the wedge". He asked twice for the wedge heading to fill its room; the poster bars were reshaped to his lines.</p></div>
+    <div class="rule"><h4>Material has to be believable</h4><p>Chrome that looks like plastic, a dusty foil, edges "too liquidy and blobby": the card took 27 rounds because surfaces had to feel real.</p></div>
+    <div class="rule"><h4>The work comes first</h4><p>Fullscreen photos, zoom and drag, scanlines off his photos, one BACK button. When it is his work on screen, the style steps aside.</p></div>
+    <div class="rule"><h4>Simple beats clever</h4><p>"Remove exit altogether … that's better and simple." One way out, labelled with where it goes.</p></div>
+    <div class="rule"><h4>It's all one world</h4><p>Each section wears its menu colour, carries the same wedge and chain, and buttons inside the OS borrow the menu plates. Continuity across every screen.</p></div>
+    <div class="rule"><h4>Keep what he likes</h4><p>"I do like the logo being chained up, don't remove that." "Keep the corner edge part only." Changes are surgical; the parts he liked stay put.</p></div>
   </div>
 </section>
 
 <!-- 13 -->
-<section class="ch" id="next" style="--c:var(--dim)">
-  <div class="slate"><div class="num" style="--c:var(--paper)">13</div><h2 class="disp glitch">Still to come</h2><div class="when">This is part one · the rest gets written when the site is finished</div></div>
+<section class="ch" id="next">
+  <div class="slate"><div class="num">13</div><h2>Still to come</h2><div class="when">This is part one · the rest gets written when the site is finished</div></div>
   <ul class="next">
     <li><b>CONTACT</b>Real links, email and handles. The one thing every test visitor looked for.</li>
     <li><b>SKILLS</b>More cards beyond Video Editing, each with its own art and his own copy.</li>
