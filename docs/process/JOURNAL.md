@@ -444,6 +444,8 @@ His note on the Confidant entrance:
 
 He drew the page as it should sit *after* the animation. Two chains stay once the card breaks free: a thin far one behind the card and a fat near one sagging in a V under it. They arrive with the binding chains, survive the break with a jolt, and keep drifting. The banner no longer flies in beside the card; it slides out from behind the card's right edge, angled up, as if it is part of the card. Concept round 29; stills `2026-11-06-skills-rig-banner`.
 
+Then three quick notes on stillness. The card stopped following the pointer ("i only want the art/photo on card to react to my curser"); it got a resting lean toward the top-right ("looks too flat"), first too strong and then softened ("it's bit much i wanted it to be subtle"); and the whole background stopped following the pointer ("i don't want that"). The world now moves only on its own clock and on input, never with the cursor.
+
 ## 2026-11-06 — the skill card enters like the Confidant card
 His note: "right now the card is just floating up but angle i want you to
 analyze the refrence video … the chains come in and break and skill card

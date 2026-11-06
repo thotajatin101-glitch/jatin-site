@@ -10,7 +10,10 @@ to use BTN for everything btn is a seperate brand that i work and my
 portfolio"). BTN / Beyond the Noise Studio is a separate brand he works on.
 It appears only as one piece of his work (the BTN folder in JATIN OS, the
 side sticker, a studio link in CONTACT), never in the site's titles,
-taglines, meta/OG text, bio or new copy unless he asks. Primary tools: DaVinci Resolve + Fusion, where he
+taglines, meta/OG text, bio or new copy unless he asks. The same goes for
+anything spun off from the site's style (Resolve macros, DCTLs, render packs,
+graphic posts): those are his personal brand **justjatin** and are named
+JATIN, never BTN (his second note, same day). Primary tools: DaVinci Resolve + Fusion, where he
 builds his own reusable macros.
 
 He is a **director, not a developer**. Talk about this project in editing and
@@ -157,8 +160,11 @@ Everything comes from his logo animation. Do not soften or "clean up" this look.
   different depths. Built as:
   - `DepthFX` — one canvas (`#fxCv`, ~1ms/frame of lines) at z17: over the
     wedge, under the black panel, plates and type. Grid flows toward the
-    viewer, streaks turn with the shard field (180s), sparkles sit fixed, and
-    every layer parallaxes with the pointer at its own depth. On a selection:
+    viewer, streaks turn with the shard field (180s), sparkles sit fixed. **Nothing in the world follows the
+    pointer** (his note, 2026-11-06: "the whole websites background is
+    reacting to the curser i don't want that"): the old per-depth pointer
+    parallax is gone, and the SKILLS card holds its pose too (only the art
+    inside it reacts). On a selection:
     streak burst + the whole world eases to that item's accent (`--world`,
     a registered `@property` so the sky transitions too). It is re-parented
     INTO a section when one opens (between its bands and its dot screen /
@@ -169,7 +175,7 @@ Everything comes from his logo animation. Do not soften or "clean up" this look.
     the light source; they dissolve as they recede into it (radial
     destination-out in `BgRaster.split`). Gaps stay transparent so the sky
     (`#shardbg::before`, glow pooled at the point) reads through.
-  - Motions are few and coherent — flow, turn, parallax, burst-on-input. No
+  - Motions are few and coherent — flow, turn, burst-on-input. No
     twinkle, no flicker, no vignette (the sky only brightens toward the
     point; edges are never darkened).
   - The intro speaks the same language (`pGrid`, `lightStreaks`,
