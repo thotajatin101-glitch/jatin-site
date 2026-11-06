@@ -164,6 +164,11 @@ The red box: the info banner should come out of the card's right edge at mid-hei
 
 So the card no longer tilts, and its foil and drop shadow no longer move, with the pointer. It holds its resting tilt. Only the art inside the window (the 3D scene's parallax) and the back's JATIN mark still follow the pointer; the foil keeps its slow idle breathing.
 
+**His third note, same round:**
+> "looks better but i want the card to be tilted towards the top right corner. looks too flat right now"
+
+The card now rests turned in 3D to face the top-right (`RYAW=.55`, `RPITCH=.3` on top of its -.15 roll): its top and right edges fall away from you. A first pass at .34 / .2 still read flat in stills. When flipped, the back shows the mirror turn. Stills `2026-11-06-skills-card-turn`.
+
 **Stills:** `docs/process/stills/2026-11-06-skills-rig-banner/` (+ `-phone`). The before is round 28's `2026-11-06-skills-confidant-entrance`.
 
 **Not judged yet:** the jolt and the banner slide in a real tab.
