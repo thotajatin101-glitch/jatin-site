@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-06 — SKILLS card entrance = the Confidant recording (his ask). NOT deployed, site/ uncommitted
+- **Did:** `SkillFX` entrance rebuilt beat for beat from `Screen Recording 2026-10-28 at 9.00.21 PM.mov`: tumble-in on the spot → hold → six chains whip in at three depths → strain → acid slash → break into extruded chunks → banner. Concept round 28, JOURNAL chapter. `snap.mjs`: `SNAP_SITE=<folder>` shoots another copy; SKILLS_HOLDS re-timed. `.local/menu-preview/` = site with `APPLY=false` (regenerate: `sed 's/^const APPLY=true;/const APPLY=false;/' site/index.html > .local/menu-preview/index.html`), served by launch config `jatin-menu` (port 5179). `tests/check.mjs` passes.
+- **In flight:** his read on the motion in a real tab (localhost:5179 → SKILLS).
+- **Watch out:** chain depth scales are in px (not screen-relative) — the fat near chains are heavy on a phone; tune `CHAINS` scales if he says so. The menu-preview copy goes stale on every site edit — regenerate it.
+
 ## 2026-11-02 — BTN taken off the portfolio's identity (his ask). NOT deployed
 - **Did:** his note: BTN is a separate brand, the site is his. Rewrote the meta + OG description, `#logoSub` ("Visual & Creative Director — Hyderabad"), the ABOUT bubble ("Hey, I'm Jatin" + "A visual & creative director out of Hyderabad…") and the menu ABOUT `data-desc`/`#wedgeDesc`. Kept: BTN folder (`off`), BTN sticker, CONTACT "Studio — [Beyond the Noise links]". Rule saved in CLAUDE.md "Who this is for" and memory. Stills `2026-11-02-btn-copy-full*` (APPLY flipped to false only for the shoot; it's `true` again).
 - **Next:** ships with his next "deploy" (with the `og:url` fix noted below).

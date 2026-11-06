@@ -436,3 +436,28 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
 - Copy only: nothing moved. In apply mode only the link preview is visible
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
+
+## 2026-11-06 — the skill card enters like the Confidant card
+His note: "right now the card is just floating up but angle i want you to
+analyze the refrence video … the chains come in and break and skill card
+shows. analyze the video and replicate it using our design language."
+Read frame by frame (30fps, 1.7s): the reference card never travels — it
+tumbles in on its own spot, holds alone, THEN chains shoot in from
+off-frame, hold, a slash rips across, the chains break into solid chunks
+and the banner slams in. Ours had it backwards: rising from below, already
+wrapped, spinning a full turn.
+- Card: appears big and turned ~40° on its resting spot with a slight flip,
+  spins down onto its tilt in 200ms, lands with the thud. No rise.
+- Chains: six straight runs of our chrome pixel-piece links whip in along
+  their own length (160ms each, staggered over 170ms, RGB split while
+  moving, a small overshoot that locks), at three depths — thin far ones
+  behind the card, fat near ones across it.
+- Hold ~0.7s; the last quarter-second trembles and pulls taut (card too).
+- Acid slash at 1.33s, break at 1.47s: flash, shockwave, speed lines,
+  bursts; every link becomes an extruded chunk (stacked dark-metal sides
+  that tumble with it, chrome face) flung outward and at the lens. Banner
+  and plate menu on the break.
+- Cut: a red/cyan fringe on every extrusion layer — read as stripes; the
+  sides are flat dark metal now.
+Stills: `stills/2026-11-06-skills-entrance-before/` (the old rise, kept),
+`2026-11-06-skills-confidant-entrance/` and `-phone/`.

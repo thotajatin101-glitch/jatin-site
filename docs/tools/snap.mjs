@@ -7,6 +7,7 @@
 //   node docs/tools/snap.mjs <label> --only menu,about    just those scenes
 //   node docs/tools/snap.mjs <label> --film intro         + a frame-accurate film
 //   node docs/tools/snap.mjs <label> --rev 94ab34d        an older commit, out of git
+//   SNAP_SITE=.local/menu-preview node docs/tools/snap.mjs <label>   a menu-on copy (apply mode hides the menu)
 //
 // Scenes: intro, menu, transition, one per section (about, projects, ...),
 //         phone. Default: all of them.
@@ -64,11 +65,13 @@ const PROJECTS_HOLDS = [
   [1300, 'the break: links fly at the lens'],
 ];
 const SKILLS_HOLDS = [
-  [360, 'chained up, turning edge-on (slab thickness)'],
-  [500, 'chained up, mid-spin (the back is showing)'],
-  [1030, 'strain, then the snap: flash and shockwave'],
-  [1120, 'the break: links fly at the lens'],
-  [1400, 'debris clearing, card jolting'],
+  [60, 'tumble-in: big, turned ~45°, on its own spot'],
+  [280, 'landed, alone (the hold)'],
+  [470, 'chains shooting in from off-frame'],
+  [1000, 'chained: the hold'],
+  [1420, 'strain + the slash ripping across'],
+  [1500, 'the break: flash, shockwave, extruded links'],
+  [1700, 'banner in, debris clearing'],
 ];
 const SETTLE = { about: 2600, projects: 3400, skills: 3000 };   /* ms after the swap; others 2000 */
 
@@ -96,6 +99,8 @@ const want = (scene) => !args.only || args.only.includes(scene);
 
 // --- what to shoot: the working tree, or a commit pulled out of git --------
 function source() {
+  if (process.env.SNAP_SITE)   /* SNAP_SITE=<folder>: shoot another copy, e.g. the menu-on preview in .local/menu-preview */
+    return { root: path.resolve(process.env.SNAP_SITE), date: today(), commit: git('rev-parse', '--short', 'HEAD') + ' + ' + process.env.SNAP_SITE };
   if (!args.rev) {
     const dirty = git('status', '--porcelain', '--', 'site').length > 0;
     return { root: path.join(REPO, 'site'), date: today(),

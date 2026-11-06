@@ -142,3 +142,18 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - Deal (the recording's slam, ~570ms): old card spins away (150ms), swap, new card tumbles in from big and sideways with overshoot (420ms), banner re-slams, acid slash sweeps behind. Frame-drop safe (the swap can't be skipped). Always arrives face up.
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
+
+## Round 28 — the entrance, re-read from the Confidant recording (2026-11-06)
+**His note** (same `Screen Recording 2026-10-28 at 9.00.21 PM.mov`): "right now the card is just floating up but angle i want you to analyze the refrence video. and you will notice that there is similar chain theme to it as well where the chains come in and break and skill card shows. analyze the video and replicate it using our design language."
+**Frame read (30fps, 52 frames, 1.73s)** — key frames in `ref-confidant-keys.png`:
+- f1–6 (0–.2s) **tumble-in at its spot**: the card appears already where it will rest, big and turned ~45° (diamond), and spins/shrinks onto its −9° tilt in five frames. It never travels up from below.
+- f7–11 (.2–.37s) **hold**: card alone, still.
+- f12–17 (.37–.57s) **chains shoot in** from off-frame along straight diagonals, staggered (bottom-right, bottom-left, then down from the top), two depths: thin far chains behind, fat near chains in front, crossing over the card. They arrive, not wrapped round it.
+- f18–39 (.6–1.3s) **hold, chained**: the tension beat. Nothing moves much.
+- f40–43 **slash**: a red Z-bolt wedge rips across from top-right.
+- f44–47 **break**: links turn into chunky extruded pieces (dark sides), flung outward and at the lens, silhouetted on the slash.
+- f45–48 **banner slams** on the card's right; the big numeral pops; stars.
+- f48–52 debris drifts out; settled.
+**Ours today:** the card rises from 62% down the section, spins one full turn already wrapped in chains, snaps on landing. Wrong order: the chains should come after the card lands, and the card shouldn't rise.
+**Built (his "Yes, build it"):** `SkillFX` entrance rewritten — `ENTRY=200` tumble-in on the spot (ease-out spin from +.85rad, scale 1.75→1, yaw −1.1→0, tiny overshoot), `CHAINS` table (anchor in card half-sizes, travel angle, depth scale, front/back, delay) fired at `CHAIN=370`, `WHIP=160`, `STRAIN=260` tremble + pull-taut, `SLASH=1330` (`fireSlash`), `SNAP=1470` break with extruded chunks (`DARK`/`SIDE` flat mono palettes, no fringe) and banner + plates (`restage`). Deals unchanged. `hold(ms)` stills are deterministic now (break seeded, `brokeAt=t0+SNAP`). Stills `2026-11-06-skills-entrance-before`, `-confidant-entrance`, `-confidant-entrance-phone`.
+**Not yet judged:** motion in a real tab (the preview pane was hidden; timing checked by stills and code). Hold stills show the banner early — it's left over from the live entrance before `hold()`; live, it lands on the break.
