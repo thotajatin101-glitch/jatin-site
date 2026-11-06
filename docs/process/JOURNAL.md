@@ -437,6 +437,13 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-06 (later) — the chains that stay
+
+His note on the Confidant entrance:
+> "looks better still needs work … white line indicate chains thickness thinner mean a bit far thickers means closer and red outline is the video editing box that comes out of the card so it looks attached."
+
+He drew the page as it should sit *after* the animation. Two chains stay once the card breaks free: a thin far one behind the card and a fat near one sagging in a V under it. They arrive with the binding chains, survive the break with a jolt, and keep drifting. The banner no longer flies in beside the card; it slides out from behind the card's right edge, angled up, as if it is part of the card. Concept round 29; stills `2026-11-06-skills-rig-banner`.
+
 ## 2026-11-06 — the skill card enters like the Confidant card
 His note: "right now the card is just floating up but angle i want you to
 analyze the refrence video … the chains come in and break and skill card

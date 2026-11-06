@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-06 (later) — SKILLS round 29: chains that stay + banner out of the card. NOT deployed, site/ uncommitted
+- **Did:** `RIG` chains in `SkillFX` (his sketch: thin far run behind the card, fat near V under it). They survive the break, jolt, then drift at 30fps while SKILLS is open. The info banner is tucked under the card's right edge and slides out from it (clip + translate, -9°). BACK z9 in SKILLS. Phone V at 55%. Concept round 29, JOURNAL. `tests/check.mjs` passes.
+- **In flight:** his read in a real tab (localhost:5179 → SKILLS).
+- **Watch out:** the hold stills can catch a stale chain canvas if the frame hasn't run yet (one run showed the rig at 60ms; a reshoot was clean). Regenerate `.local/menu-preview/` after site edits.
+
 ## 2026-11-06 — SKILLS card entrance = the Confidant recording (his ask). NOT deployed, site/ uncommitted
 - **Did:** `SkillFX` entrance rebuilt beat for beat from `Screen Recording 2026-10-28 at 9.00.21 PM.mov`: tumble-in on the spot → hold → six chains whip in at three depths → strain → acid slash → break into extruded chunks → banner. Concept round 28, JOURNAL chapter. `snap.mjs`: `SNAP_SITE=<folder>` shoots another copy; SKILLS_HOLDS re-timed. `.local/menu-preview/` = site with `APPLY=false` (regenerate: `sed 's/^const APPLY=true;/const APPLY=false;/' site/index.html > .local/menu-preview/index.html`), served by launch config `jatin-menu` (port 5179). `tests/check.mjs` passes.
 - **In flight:** his read on the motion in a real tab (localhost:5179 → SKILLS).

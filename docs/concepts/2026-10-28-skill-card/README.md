@@ -143,6 +143,26 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 29 — the chains that stay, and the banner out of the card (2026-11-06)
+
+**His note** (on round 28, with a marked-up screenshot `round29-his-sketch.webp`):
+> "Hmm looks better still needs work. so after the animation the screenshots show how i want the page to look like white line indicate chains thickness thinner mean a bit far thickers means closer and red outline is the video editing box that comes out of the card so it looks attached."
+
+**Read:** the entrance stays; his white lines are chains that are still on the page *after* the break. Two of them:
+- a thin, far run behind the card, from high on the left edge to low on the right;
+- a fat, near chain sagging in a V whose point sits on the bottom edge just under the card, one arm to the left edge, one to the right.
+
+The red box: the info banner should come out of the card's right edge at mid-height, angled up to the right, so it reads as attached.
+
+**Built:**
+- `RIG` in `SkillFX`: those chains, defined in card half-sizes like `CHAINS`, plus a `half` flag (the V's arms start at its point). They whip in with the binding chains, tremble in the strain, don't break, jolt on the break (damped kick plus a split), then scroll slowly (0.9 links/s) for as long as SKILLS is open, redrawn at 30fps. The thin one is behind the card; the V is in front. Only the six binding chains shatter.
+- The V's point is pinned to the frame's bottom edge on every screen. On a phone the V is drawn at 55% so it doesn't bury BACK and the plates. BACK sits over the chains in SKILLS (z9).
+- Banner: z5, under the card. Its left end is tucked behind the card's right edge at mid-height (`top:56vh`), turned -9°. It slides out along its own angle while a clip holds its left edge at the card, so it is pulled out from behind the card, never flown in. The SKILL tag moves right so it clears the card.
+
+**Stills:** `docs/process/stills/2026-11-06-skills-rig-banner/` (+ `-phone`). The before is round 28's `2026-11-06-skills-confidant-entrance`.
+
+**Not judged yet:** the jolt and the banner slide in a real tab.
+
 ## Round 28 — the entrance, re-read from the Confidant recording (2026-11-06)
 **His note** (same `Screen Recording 2026-10-28 at 9.00.21 PM.mov`): "right now the card is just floating up but angle i want you to analyze the refrence video. and you will notice that there is similar chain theme to it as well where the chains come in and break and skill card shows. analyze the video and replicate it using our design language."
 **Frame read (30fps, 52 frames, 1.73s)** — key frames in `ref-confidant-keys.png`:
