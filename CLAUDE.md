@@ -582,7 +582,7 @@ into tweens.
     bottom banner** — if you move/scale the portrait, check that. Accent rim
     is baked by `bakeCutout` in `--acc`.
   - Speech bubble left (`.cgBubble`) with the studio paragraph, behind the
-    portrait (z4 < z5); tags JATIN and DIRECT · SHOOT · CUT; three acid
+    portrait (z4 < z5); tags JATIN (big, across his chest on the bottom banner's edge over its chain, z9, his sketch 2026-11-06) and DIRECT · SHOOT · CUT; three acid
     sparkles (`.spark-a/b/c` — a sits BELOW the bubble, never over its copy);
     credit bottom-left, BACK bottom-right (z10). ABOUT chains still slam in
     (`ChainFX.slam`) but run behind the portrait into the bottom banner.

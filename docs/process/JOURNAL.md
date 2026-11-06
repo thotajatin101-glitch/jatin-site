@@ -446,6 +446,8 @@ He drew the page as it should sit *after* the animation. Two chains stay once th
 
 Then three quick notes on stillness. The card stopped following the pointer ("i only want the art/photo on card to react to my curser"); it got a resting lean toward the top-right ("looks too flat"), first too strong and then softened ("it's bit much i wanted it to be subtle"); and the whole background stopped following the pointer ("i don't want that"). The world now moves only on its own clock and on input, never with the cursor.
 
+ABOUT got a note in the same screenshot round: he drew an arrow moving the JATIN sticker from beside his shoulder to a big slot across his chest, sitting on the bottom banner's chain. Done as drawn, bigger and nearly level (-3°). Stills `2026-11-06-about-name-on-bar`.
+
 ## 2026-11-06 — the skill card enters like the Confidant card
 His note: "right now the card is just floating up but angle i want you to
 analyze the refrence video … the chains come in and break and skill card

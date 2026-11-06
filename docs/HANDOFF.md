@@ -6,6 +6,7 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ## 2026-11-06 (later) — SKILLS round 29: chains that stay + banner out of the card. NOT deployed, site/ uncommitted
 - **Did:** `RIG` chains in `SkillFX` (his sketch: thin far run behind the card, fat near V under it). They survive the break, jolt, then drift at 30fps while SKILLS is open. The info banner is tucked under the card's right edge and slides out from it (clip + translate, -9°). BACK z9 in SKILLS. Phone V at 55%. The card no longer follows the pointer (his note); only its art does. The menu/section background (DepthFX) no longer follows the pointer either (his note). It rests turned subtly toward the top-right (`RYAW=.3`/`RPITCH=.16`; .55/.3 was too much for him). Concept round 29, JOURNAL. `tests/check.mjs` passes.
+- **ABOUT:** the JATIN sticker moved onto the bottom bar across his chest, big (his sketch). Audited 1440×900, 1440×700, 1280×800, 375×812.
 - **In flight:** his read in a real tab (localhost:5179 → SKILLS).
 - **Watch out:** the hold stills can catch a stale chain canvas if the frame hasn't run yet (one run showed the rig at 60ms; a reshoot was clean). Regenerate `.local/menu-preview/` after site edits.
 

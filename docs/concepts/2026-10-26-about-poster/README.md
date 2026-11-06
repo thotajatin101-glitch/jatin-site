@@ -132,3 +132,11 @@ hung 0.3 pitch outside the bar so the headline stays clear. Same whip-in on
 entry (second chain whips the opposite way), then endless scroll (~0.9 links/s).
 Stills: `about-edge-chains`, `-short`.
 
+## Round — the name moves onto the bottom bar (2026-11-06)
+
+**His note** (with a marked-up screenshot, `2026-11-06-his-name-sketch.webp`: an arrow from the JATIN tag to a yellow box over his chest and the bottom banner's chain):
+> "the screenshots contains a change for about me page as well"
+
+**Built:** the JATIN sticker moved from beside his shoulder (left of the portrait, -7°) to across his chest. It straddles the bottom banner's top edge over its chain, and it is much bigger: about 6vw type, capped by height. It sits at z9, in front of the portrait, the bars and the chains, and under BACK. Tilt -3°, deeper ink drop. On a phone it sits at the bottom right, over the bar.
+
+**Stills:** before `2026-11-06-about-before-name-move`; after `2026-11-06-about-name-on-bar` (+ `-short`, `-laptop`, `-phone`).
