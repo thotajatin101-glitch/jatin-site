@@ -159,6 +159,11 @@ The red box: the info banner should come out of the card's right edge at mid-hei
 - The V's point is pinned to the frame's bottom edge on every screen. On a phone the V is drawn at 55% so it doesn't bury BACK and the plates. BACK sits over the chains in SKILLS (z9).
 - Banner: z5, under the card. Its left end is tucked behind the card's right edge at mid-height (`top:56vh`), turned -9°. It slides out along its own angle while a clip holds its left edge at the card, so it is pulled out from behind the card, never flown in. The SKILL tag moves right so it clears the card.
 
+**His second note, same round:**
+> "i dont want the card models to reacting to the curser but i only want the art/photo on card to react to my curser and keep card model in the same position like in screenshot"
+
+So the card no longer tilts, and its foil and drop shadow no longer move, with the pointer. It holds its resting tilt. Only the art inside the window (the 3D scene's parallax) and the back's JATIN mark still follow the pointer; the foil keeps its slow idle breathing.
+
 **Stills:** `docs/process/stills/2026-11-06-skills-rig-banner/` (+ `-phone`). The before is round 28's `2026-11-06-skills-confidant-entrance`.
 
 **Not judged yet:** the jolt and the banner slide in a real tab.
