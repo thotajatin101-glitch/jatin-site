@@ -168,6 +168,7 @@ So the card no longer tilts, and its foil and drop shadow no longer move, with t
 > "looks better but i want the card to be tilted towards the top right corner. looks too flat right now"
 
 The card now rests turned in 3D to face the top-right (`RYAW=.55`, `RPITCH=.3` on top of its -.15 roll): its top and right edges fall away from you. A first pass at .34 / .2 still read flat in stills. When flipped, the back shows the mirror turn. Stills `2026-11-06-skills-card-turn`.
+Then: "it's bit much i wanted it to be subtle". Settled at `RYAW=.3`, `RPITCH=.16`: a light lean you feel more than see. Stills `2026-11-06-skills-card-turn-subtle`; the too-strong version is `2026-11-06-skills-card-turn`.
 
 **Stills:** `docs/process/stills/2026-11-06-skills-rig-banner/` (+ `-phone`). The before is round 28's `2026-11-06-skills-confidant-entrance`.
 
