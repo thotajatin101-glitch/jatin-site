@@ -4,6 +4,17 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r1) — ABOUT rebuilt as the handycam projector (CamFX + AboutFX). NOT deployed, site/ uncommitted
+- **Hooks:**
+  - `AboutFX.layout()` derives everything from the lens point: band clip-paths, the beam, the light / burst canvases,
+    the chain paths, `--lens`.
+  - `CamFX.place(lens,size)`; `CamFX.hold(ms)` scrubs the swing-in.
+  - The chain canvases read `data-path`.
+- **Watch out:**
+  - The old poster page lives only in `.local/snapshots/2026-11-08-phone-round26-index.html`.
+  - The portrait's cut arm must stay on the frame's right edge.
+- **Next:** his notes on the composition and the camera, then motion polish (the projector "on" beat).
+
 ## 2026-11-08 (phone r27) — CONTACT: click 1 flips the lid open and that bursts the chains; it buzzes open with CLICK AGAIN!; click 2 brings it close. Pop-ups are tapering RING! bursts. NOT deployed, site/ uncommitted
 - **Hooks:**
   - `breakChains()` sets `SNAP=c1`; `answer()` opens the dolly at once.

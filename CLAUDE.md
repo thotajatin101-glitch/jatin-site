@@ -169,7 +169,7 @@ Everything comes from his logo animation. Do not soften or "clean up" this look.
     a registered `@property` so the sky transitions too). It is re-parented
     INTO a section when one opens (between its bands and its dot screen /
     copy) and back to the body for the menu. `SECTION_WORLD` sets each
-    section's vanishing point + tint (ABOUT points behind the portrait).
+    section's vanishing point + tint (ABOUT's is the handycam's lens).
   - Shards are sparse now (`sparse:true`: narrower, starting further out) and
     the bitmap is centred on the vanishing point, so the slow turn pivots on
     the light source; they dissolve as they recede into it (radial
@@ -548,52 +548,52 @@ into tweens.
   - Plates tile with 3px overlap (no seams). Draw rides rAF; `mid`/cleanup
     ride `setTimeout`. `TransFX.peek(ms)` freezes it for checking. Reduced
     motion skips it.
-- **ABOUT is a "Have you seen this DIRECTOR?" poster** (`.collage`, Oct 2026;
-  concept: `docs/concepts/2026-10-26-about-poster/`). Rebuilt from his
-  reference ("Have you seen this MAN?"), replacing the earlier KREFTON P5
-  collage (stills: `2026-10-26-about-p5-kreften`). His brief: copy the **text
-  placement, scale ramp and perspective**, in his language, with his new
-  night photo. The composition IS the design; don't reflow it into a grid:
-  - **Two banners** frame the portrait: `.cgTop` is a pink wedge (thin at the
-    left, tall at the right) and `.cgBot` a purple one rising to the right.
-    Kinked edges (a notch each), ink drop, white rule, `DitherFX` inside.
-  - **No text on the banners — final** (his call, Oct 27, and he reversed it
-    twice: HAVE-YOU-SEEN ramp → name-only ramp in Anton with a printed dot
-    screen → cut all text → brought the name back → "Remove text i changed
-    mind"). Treat it as settled: the bars are shorter, pushed toward the screen
-    edges (top 31vh at `top:-8vh`, bottom 27vh at `bottom:-7vh`; phone 22vh / 15vh at -5vh) and carry only the chains.
-    The name-ramp code (per-letter height = bar height at its x, Anton, skewed
-    along the edge, slide-right fit) is not in the page; the look is in stills
-    `2026-10-27-about-name-*` if he ever wants it back.
-  - **The portrait's glow is a dither that flows outward** (`CutGlow`, his ask,
-    Oct 27: "a dither animation going outwards for that glow"). `bakeCutout`
-    keeps only a crisp cyan/pale rim; the wide glow is a second canvas behind
-    the portrait: a chamfer distance field from the silhouette (built once,
-    4 baked px per cell), bands travelling away from the figure, 4×4 Bayer
-    between a 5-step ramp (deep purple → magenta → hot pink → cyan → pale),
-    ink dots thinning to nothing at the far edge. ~30fps on a 333×358 buffer
-    scaled up unsmoothed; loop runs only while ABOUT is open (`CutGlow.start`
-    from `openSection`), static frame under reduced motion. Cyan is kept to the
-    inner third so pink stays the wide colour. It sits in its own `.glowWrap` twin of `.cutWrap` at z3: above the wedge and streaks, under the bubble, tags, sparks and bars (his note: it clashed on top). Soft by his note: 3px cells, alpha 170, slow wide bands. Stills `2026-10-27-about-dither-glow`.
-  - **Portrait** (the new photo, `jatin-cutout.png`: `docs/tools/cutout.swift`
-    → `docs/tools/grade.swift`, B&W with lifted shadows, γ.78) sits right of
-    centre (`--ph:min(88vh,74vw)`, head ≈56% across, bottom −5vh). **His right
-    arm is cut by the photo's edge, so the cut must stay hidden behind the
-    bottom banner** — if you move/scale the portrait, check that. Accent rim
-    is baked by `bakeCutout` in `--acc`.
-  - Speech bubble left (`.cgBubble`) with the studio paragraph, behind the
-    portrait (z4 < z5); tags JATIN (big, across his chest on the bottom banner's edge over its chain, z9, his sketch 2026-11-06) and DIRECT · SHOOT · CUT; three acid
-    sparkles (`.spark-a/b/c` — a sits BELOW the bubble, never over its copy);
-    credit bottom-left, BACK bottom-right (z10). ABOUT chains still slam in
-    (`ChainFX.slam`) but run behind the portrait into the bottom banner.
-  - Small type (`.hey`, `.sm`) uses a 1px glitch split — the 4px split
-    doubled the letterforms.
-  - Phone (<760px): headline stacks (lead-in / HAVE YOU SEEN THIS / big
-    DIRECTOR?), bubble above the portrait, BACK shrinks so the punchline
-    clears it (punchline 8vw).
-  - Audited at 1440×900, 1440×700, 1280×800, 375×812. `snap.mjs` takes
-    `SNAP_W`/`SNAP_H` for odd sizes; the label must be lower-case-with-dashes
-    (no `1440x700`).
+- **ABOUT is the handycam projector** (2026-11-08, his reference + drawing; concept
+  `docs/concepts/2026-11-08-about-handycam/`). It replaces the "Have you seen this DIRECTOR?" poster (stills
+  `2026-11-08-about-before-handycam`; that page is in `.local/snapshots/2026-11-08-phone-round26-index.html`). His
+  words: a camera "makes a projection from it's lens", the stripes "angled like in the refrence with a similar 3d
+  handycam"; his drawing put his photo in the beam (blue) and two chains across it (green). The composition IS the
+  design:
+  - **Everything hangs off one point, the lens** (`AboutFX.layout`, JS, not CSS). Desktop: the lens is at
+    (.28W, .25H); the beam's top edge runs out to (W, .69H) and its bottom edge to (.49W, H). Phone: the lens is at
+    (.4W, .165H), the top edge runs to (W, .36H) and the bottom edge to (0, .6H). The beam is the section's own
+    triangle (`.secBand`, cyan, dithered), clipped between the edges, so the menu's colour carries.
+  - **The old banners ARE the beam's edges**: pink along the top edge, purple along the bottom. Each is thin at the
+    lens and widens outward (`band()`). They keep the ink drop, the paper rule, a notch two thirds out, the red/cyan
+    edge and `DitherFX`. There is no text on them; his "no text on the banners" call stands.
+  - **At the lens** (`.cgLight`, `.cgDeco`): a white light fan in Bayer steps inside the beam, a misregistered
+    palette halftone burst, a magenta glitter flare and an acid bolt off the top band. All of it is drawn once per
+    layout; nothing idles.
+  - **The camera is `CamFX`**, raymarched like the phone (one shader, no library):
+    - lavender pearl metal, with the site's ink dots printed on the model in object space;
+    - the body flows into the lens barrel; ribbed focus ring, chrome trim, a body-coloured hood with a black rim,
+      coated glass;
+    - a closed flip-out screen carrying a raised pink enamel heart (the reference's heart);
+    - viewfinder with eyecup, zoom rocker, a red REC lamp.
+    `place(lens,size)` pins the hood's mouth on the lens point. Pose `REST` faces down-right into the beam with the
+    near (heart) side showing. It holds still after landing; no cursor follow (world rule).
+  - **Entrance:** the camera swings in from off the top-left (700ms, ease-out quart). At .6s the projector comes
+    on: the beam, the bands and the light scale out of the lens (`beamOn`, `transform-origin: --lens`). At .74s he
+    lands in the light (a bright flash on `cutIn`). The chains whip in at .82s, then the words pop.
+  - **Portrait:** his right arm leaves the photo at its right edge, so that edge sits on the frame's right edge
+    (the photo hangs off it). Desktop `--ph:min(55vw,96vh)`, head ≈69vw, its top about 31vh, poking above the top
+    band like his drawing. Phone: head ≈62vw, bottom −4vh. If you move or scale it, keep the cut off-screen. Accent
+    rim baked by `bakeCutout` in `--acc`.
+  - **The portrait's glow is a dither that flows outward** (`CutGlow`, his ask, Oct 27): unchanged, in `.glowWrap`
+    at z6, just under the portrait.
+  - **Chains (his green lines):** each chain canvas carries its own path in `data-path` (fractions of the section,
+    Catmull-Rom smoothed in `ChainFX.drawPaths`).
+    - Chain A (z8) sweeps up across the bottom, in FRONT of him.
+    - Chain B (z4) comes out from under the purple band, rises behind his neck and arcs off right.
+    - Same slam and scroll as before.
+  - **Layers:** beam z1 < light z2 < print screen z3 < chain B z4 < bands z5 < flare and glow z6 < portrait z7 <
+    chain A, bubble and sparkles z8 < tags and camera z9 < BACK z10.
+  - **Copy and layout:** speech bubble left, under the camera, with its spike poking across the purple band into
+    the beam. JATIN across his chest over chain A; DIRECT · SHOOT · CUT right of his head; BACK in the default
+    bottom-left spot. The DepthFX vanishing point is the lens (`SECTION_WORLD`), so the streaks radiate out of the
+    camera.
+  - Small type uses a 1px glitch split; the 4px split doubled the letterforms.
+  - Audited at 1440×900, 1440×700, 1280×800 and 375×812.
 - **Pixel-piece chains** (`ChainFX`, his ask from the same poster): chains
   built from the site's own pixel "puzzle pieces" (the stepped stickers on the
   background field) instead of real chain links. Each link is a stepped pixel
@@ -646,16 +646,10 @@ into tweens.
       section (`.inSection`, z4, right after `.secWedge`, so the heading,
       cards and BACK paint over it) and back to the body for the menu. ABOUT
       has its poster chains instead, drawn in its accent.
-  - **ABOUT: appears aggressively, then static.** `.cgChains` canvas (z7,
-    under the banner) draws two chains running from off-frame into the
-    banner. On entry (`ChainFX.slam`, 480ms in, landing with the banner) they
-    whip in along their own length in three hard steps on 2s (83ms): whip,
-    overshoot, lock, each with a wide RGB split collapsing to none. Then they
-    **keep scrolling** (his ask: passive scrolling throughout, same
-    position) — links run in from the frame edge and vanish under the
-    banner, ~0.9 links/s. The scroll offset wraps at two links so ring/bar
-    parity never flips. The loop stops itself when ABOUT closes. Reduced
-    motion draws them static.
+  - **ABOUT: whips in, then scrolls.** Two `.cgPath` canvases follow his drawn lines (see ABOUT). On entry
+    (`ChainFX.slam`, 820ms in, as the light lands) they whip in along their own length in three hard steps on 2s
+    (83ms), each with a wide RGB split collapsing to none. Then they keep scrolling, ~0.9 links/s. The offset wraps
+    at two links, so ring/bar parity never flips. The loop stops when ABOUT closes; reduced motion draws them static.
 - **PROJECTS has a 3D retro computer** (`MonitorFX`, `.pcCv`). He gave a
   rendered reference: a stylised vintage monitor with a soft rounded beige
   plastic shell and a deep bezel, resting on a flat desktop base station

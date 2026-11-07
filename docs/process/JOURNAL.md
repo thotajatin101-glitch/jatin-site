@@ -530,6 +530,18 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — ABOUT becomes a projector
+
+> "alright now it's to work on the about page. the refrence showcase a camera kind of makes a projection from it's lens and around it u can see the same similar stripes like what have in the about page on top bottom but i want them to be angle like in the refrence with a similar 3d handycam. one is the base screenshot refrence and the other is my drawing. where i drew where my photo is going which is blue outline and chains are the green outline. (yes we are redoing the desing of the about page"
+
+The poster is gone. A 3D handycam in the top-left throws the light, and the old pink and purple banners are now
+the beam's two edges, thin at the lens and opening out. He stands in the beam with his head breaking out over its
+top edge. The chains follow the green lines he drew, one in front and one behind. At the lens sit a white light
+fan, a halftone burst, a glitter flare and a bolt. The world's streaks radiate out of the camera.
+The entrance: the camera swings in, the projector comes on, he lands in the light.
+The first camera read as CCTV (black grip, black hood, dark metal); it was lightened before he saw it.
+Stills: `stills/2026-11-08-about-handycam-round1/`; concept `concepts/2026-11-08-about-handycam/`.
+
 ## 2026-11-08 — the lid breaks the chains
 
 > "i want sticker to be shapped like this. and change to the arrow shape to something similar to this as well. and when i said chains breaks opens i meant it breaks open from the flip phone opening and after that the click it appears again to bring the phone closer" (with a close-up of the reference's RING! balloon, his green arrows on its long point and its tails)
