@@ -4,6 +4,9 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (eye 3) — SKILLS round 46: EyeFX is now a flight through depth layers (eye / shatter frames / 3D spheres and cubes), no lashes. NOT deployed, site/ uncommitted
+- **Next:** his read. Measure the card's frame cost in a real tab (11 layers × 3 passes). Remove the retired chair from Space.
+
 ## 2026-11-07 (eye 2) — SKILLS round 45: eye centred in the art window and rebuilt in the site's language (shatter world, star catchlight, ink drop). NOT deployed, site/ uncommitted
 - **Watch out:** the card's art window is the top 64% and wider than tall. Render films at about 600×560, not portrait.
 

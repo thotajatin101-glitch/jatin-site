@@ -143,6 +143,27 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 46 — a flight through layers, with 3D objects; no lashes (2026-11-07)
+
+**His note:**
+> "ok so there is a huge difference between this and the reference here is why. in reference u can tell by like that it feels like the camera is moving through multiple layers and there are some 3d objects here and there as well the current one is not like so work on that. and can u remove the eye lashes as well"
+
+**Why the old one read flat:** a Droste zoom scales everything by the same amount, so nothing moves against anything else. The reference reads as depth because its layers move at different speeds.
+
+**Rebuilt as a flight:**
+- **The camera moves forward through layers spaced one unit apart, 0.42s a layer.** Each layer is drawn at 1/z, so near layers rush past and far ones creep: real parallax. The camera drifts and rolls slightly so the layers slide against each other. Drawn front to back; the first solid layer wins.
+- **The layers, in a cycle of six:**
+  - **The eye.** Lids with the plates' ink drop, paper, a shatter iris and a star catchlight. The pupil is a hole you fly through, and the next eye is already waiting further in. One eye every 2.5s.
+  - **Shatter frames.** 10–16 shards with straight sides come in from the edges and point at the centre, each with a thick black stroke. A fifth of them are missing, so you see through the gaps to the layers behind (the site's sparse shards, with air between). Some carry the yellow→green and cyan→dark gradients.
+  - **3D objects, on two layers in six.** Toon-shaded spheres with a star highlight, and tumbling cubes (exact ray–box hits, three tones, black ink on every edge). They sit off-centre so they sail past.
+- **Behind everything:** a far wall of the shatter at 22%. Far layers step down into black, so new ones appear without a pop.
+- **No lashes.**
+- **Kept:** the palette, ink dots, red/cyan split and centring in the art window.
+
+Stills: `docs/process/stills/2026-11-07-skills-eye-flight`. Film: `round46-eye-flight.mp4` + sheet.
+
+**Not measured yet:** frame cost on his machine. That's 11 layers × 3 colour passes.
+
 ## Round 45 — the eye, centred, in the site's language (2026-11-07)
 
 **His note:**
