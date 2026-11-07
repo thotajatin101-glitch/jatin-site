@@ -530,6 +530,20 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the phone rings: chained, CLICK IT!, CLICK AGAIN!
+
+> "alright now intro animaiton for flip phone i want the phone to be chained up when arriving but it doesnt open automatically it stays chained and has ringing shake animation with comic pop up right outside next to the phone similar to refrence saying Click it but i want the same font like the refrence for this. once the use clicks then the chain break happens and there will be another arrow type of comic pop up that says click again but this time only click it and notification vibration as well."
+
+**The phone no longer opens on its own.** The sequence now:
+1. It arrives chained shut and rings in shake bursts, with a comic "CLICK IT!" balloon beside it.
+2. The first click breaks the chains with the computer's snap.
+3. It buzzes like a text coming in, with a comic "CLICK AGAIN!" arrow.
+4. The second click flips it open and brings it straight up to the chat.
+
+The lettering is Permanent Marker, after his references' brush lettering. The outer display tells the story
+(INCOMING CALL, then 1 NEW MESSAGE).
+Stills: `stills/2026-11-08-contact-phone-round25/`; concept round 25.
+
 ## 2026-11-08 — the phone picks up: get in touch on the LCD
 
 > "where once u click the phone i comes close to you and ask for details from the user if the want to get in touch … something simpler that gives me and user a gist of what's happening"

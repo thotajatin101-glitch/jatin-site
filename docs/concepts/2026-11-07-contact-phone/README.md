@@ -490,3 +490,34 @@ Before/after: `r23-hinge-before.png`, `r23-hinge-pods.png`. Round 22's page: `.l
 A .0065 rule turned the thin sparkles black.
 
 Close-ups: `r24-stickers-inner.png`, `r24-stickers-outer.png`. Round 23's page: `.local/snapshots/2026-11-08-phone-round23-index.html`.
+
+## Round 25 — 2026-11-08: chained, ringing, two clicks
+
+**His note** (references: a closed phone with a spiky "RING!" balloon, `r25-ref-ring.webp`, and a comic
+exclamation burst, `r25-ref-burst.png`):
+> "alright now intro animaiton for flip phone i want the phone to be chained up when arriving but it doesnt open automatically it stays chained and has ringing shake animation with comic pop up right outside next to the phone similar to refrence saying Click it but i want the same font like the refrence for this. once the use clicks then the chain break happens and there will be another arrow type of comic pop up that says click again but this time only click it and notification vibration as well."
+
+**Built (`PhoneFX`):**
+- **Arrives chained and shut.** Three loops of the section's pixel chain (a band and an X) live in the closed
+  phone's own space, so they rise and turn with it, each link in front of or behind by depth.
+- **Rings.** Two shake bursts and a breath every 1.7s (roll, yaw and lift at 15–27Hz). The outer display reads
+  INCOMING CALL. A comic balloon, **CLICK IT!**, sits on the phone's upper-left edge and punches on every ring.
+- **Click 1** (the phone, the balloon or Return): 70ms of strain, then the computer's snap: a flash frame, a
+  shockwave, speed lines, impact bursts and links flying with smears, plus a shake punch. It stays SHUT.
+- **Then it buzzes like a text coming in:** two short pulses every 2s, a lateral jitter. The outer display reads
+  1 NEW MESSAGE. A pink comic arrow, **CLICK AGAIN!**, points in from the right with a white starburst on its tail,
+  and jolts on each buzz.
+- **Click 2 answers:** the lid snaps open (the old entrance beat, now on the click), the screen comes on, and it
+  comes straight up into the chat. The buzz was a message, and the chat opens on "new message:". After EXIT it
+  rests open, floating, and a click brings the chat back.
+
+**Lettering:** Permanent Marker (Google Fonts, loaded with the existing non-blocking link), the nearest free face to
+the references' brush lettering.
+
+**On phones,** the arrow comes from above, tilted down at the top of the phone, because there's no room beside it.
+Reduced motion skips the chains and pop-ups and rests open as before.
+
+**My call:** click 2 goes straight into the chat, instead of only opening the lid and needing a third click.
+
+Stills: `r25-two-clicks-sheet.png` (rise, ring, strain, flash, debris, buzz, open, lit, chat), `r25-pops-close.png`,
+`r25-375.png`. Round 24's page with the chat: `.local/snapshots/2026-11-08-phone-round24-chat-index.html`.

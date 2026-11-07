@@ -4,6 +4,15 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r25) — CONTACT intro: chained + ringing (CLICK IT!), click breaks chains, buzz (CLICK AGAIN!), click answers into the chat. NOT deployed, site/ uncommitted
+- **Hooks:**
+  - `stage()`, `ringEnv`/`buzzEnv`, `breakChains`/`answer`, `wrap()` (chains + snap), `pops()` (DOM SVG pop-ups).
+  - `hold(ms,c1,c2)` scrubs any beat.
+  - SNAP/BOOT are now set by the second click.
+- **Watch out:**
+  - Anything that scripts CONTACT has to press Return twice (or click) before the lid opens.
+  - Judge the shake in a real tab.
+
 ## 2026-11-08 (contact chat) — CONTACT step 2 built: click the phone, it dollies in, the LCD asks 4 questions. NOT deployed, site/ uncommitted
 - **Did:** PhoneFX open/close/key/hit + `.phChat` DOM layer; `worker/contact-mail` (cf Worker, send_email locked to thotajatin.work@gmail.com).
 - **In flight:** Cloudflare setup, which waits for the release (his call, 2026-11-08: "once we got done with website and are going update the hosted site with it"):
