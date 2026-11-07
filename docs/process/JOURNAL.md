@@ -530,6 +530,15 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the keypad as he drew it
+
+> "this is a drawn overlay over the current keypad to show u how i want the button to be shapped like. and the frame around the lcd screen i meant outside the chrome ring area as well"
+
+He drew the keys straight over a still. The caps now tile the whole keypad: no black gaps, just thin chrome grooves
+between them, on the same wavy rows. Up top, a tall oval nav ring holds the pink stone, and the four corner keys wrap
+round it. The panel round the screen is clean out to the rim; the stones below keep their dots.
+Stills: `stills/2026-11-08-contact-phone-round11/` (+ `-short`, `-375`).
+
 ## 2026-11-08 — a clean screen
 
 > "i dont want the dither to on the lcd screen and the frame around it tho i like to keep it for the rest phone tho"

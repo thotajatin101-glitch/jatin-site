@@ -246,3 +246,20 @@ of Bayer cells. The halftone skips the chrome bezel round the LCD (material 13 o
 the earpiece ring, studs and every other surface keep their dots. The LCD's pixel lines stay (they are the panel, not
 dither). Close-up: `r10-clean-lcd.png`. Stills: `process/stills/2026-11-08-contact-phone-round10` (+ `-375`). Round 9's
 page: `.local/snapshots/2026-11-08-phone-round9-index.html`.
+
+## Round 11 — 2026-11-08: the keypad tiled to his drawing, the screen panel clean
+
+**His note** (his drawing over the keypad, `r11-note-keypad.webp`; the frame, `r11-note-frame.webp`):
+> "this is a drawn overlay over the current keypad to show u how i want the button to be shapped like. and the frame around the lcd screen i meant outside the chrome ring area as well"
+
+**Built:**
+- `keys()` rewritten as a tiling. The 3×4 grid fills the well below `YT` (−.305) on the wavy rows (`RH` .134, `CW`
+  .15), and the outer columns and bottom row run to the well's walls. Above it: a nav oval (half .074×.092 at
+  (0,−.2)) with a chrome ring and the pink stone, plus four corner keys split at y −.2 that wrap round the oval. Each
+  cap is the cell minus a .0045 groove, clipped to the well; the chrome sides read as the dividers. Label ids are
+  unchanged (1–12 grid, 12–15 corners).
+- Halftone off on the lid's inner panel round the screen (`sdR2(...,(.242,.295),.06)`, out to the rim), as well as
+  on the chrome bezel. The stones below keep their dots.
+
+Close-up: `r11-keypad-tiled.png`. Stills: `process/stills/2026-11-08-contact-phone-round11` (+ `-short`, `-375`).
+Round 10's page: `.local/snapshots/2026-11-08-phone-round10-index.html`.

@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r11) — CONTACT round 11: tiled keypad (his drawing), clean screen panel. NOT deployed, site/ uncommitted
+- **Did:** `keys()` is a tiling (grid + oval nav + four corner keys, grooves only). The halftone skips the lid panel round the LCD. Round 10's page: `.local/snapshots/2026-11-08-phone-round10-index.html`.
+- **Next:** his notes; frame cost in a real tab; step 2 (the keys work).
+
 ## 2026-11-08 (phone r10) — CONTACT round 10: clean LCD, no dots on its frame. NOT deployed, site/ uncommitted
 - **Did:** `smooth()` replaces `bayer()` for the LCD backlight; the halftone skips the LCD bezel by region. Round 9's page: `.local/snapshots/2026-11-08-phone-round9-index.html`.
 - **Next:** his notes; frame cost in a real tab; step 2.
