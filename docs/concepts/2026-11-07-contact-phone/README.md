@@ -394,3 +394,19 @@ Entrance sheet: `r18-case-entrance.png`. Stills: `process/stills/2026-11-08-cont
 Close-ups: `r19-clips-close.png`. Entrance: `r19-clips-entrance.png`. Stills:
 `process/stills/2026-11-08-contact-phone-round19` (+ `-short`, `-375`). Round 18's page:
 `.local/snapshots/2026-11-08-phone-round18-index.html`.
+
+## Round 20 — 2026-11-08: the clips wrap over the edge
+
+**His note** (`r20-note-wrap.png`):
+> "i want them coming in wrapped from over the phone as well." (crop of the shut phone from behind, the clips only underneath)
+
+**Built (`clipAt`):**
+- The ornament is mirrored through the half's mid-plane (`abs(z−zm)`), so it sits on both faces.
+- The back copy is smaller (.6 vs .82): the front is the ornament, the back is its grip.
+- A rounded chrome spine (`sdR2` box through the full thickness) crosses the rim and joins the two, blended in.
+
+**Watch:** shut, both halves' clips meet at the same corners (the lid's top corners land on the body's bottom
+corners), so the rise shows a busy chrome cluster there. If he flags it, stagger the lid clips along the edge.
+Close-ups: `r20-wrap-close.png`. Entrance: `r20-wrap-entrance.png`. Stills:
+`process/stills/2026-11-08-contact-phone-round20` (+ `-375`). Round 19's page:
+`.local/snapshots/2026-11-08-phone-round19-index.html`.

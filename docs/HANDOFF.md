@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r20) — CONTACT round 20: clips wrap the edge (front + smaller back + spine). NOT deployed, site/ uncommitted
+- **Watch out:** shut, the lid's and body's clips stack at the same corners during the rise.
+- **Next:** his notes; frame cost in a real tab; step 2.
+
 ## 2026-11-08 (phone r19) — CONTACT round 19: tribal corner clips, plain chrome (bumper + bands gone). NOT deployed, site/ uncommitted
 - **Did:** `caseD` = 4 clips (`clipAt`/`clip2`/`blade`), domed profile; material 16 = plain mirror chrome.
 - **Next:** his notes; measure the frame cost in a real tab (lighter than round 18); step 2.

@@ -530,6 +530,15 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the clips wrap the edge
+
+> "i want them coming in wrapped from over the phone as well." (crop of the shut phone from behind, the clips only underneath)
+
+The clips only sat on the front faces, so from behind they poked out from underneath. Each clip now wraps the edge:
+the ornament on the front, a smaller copy gripping the back, and a chrome spine over the rim joining them. When the
+phone is shut, the two halves' clips stack at the same corners for a beat during the rise.
+Stills: `stills/2026-11-08-contact-phone-round20/` (+ `-375`).
+
 ## 2026-11-08 — chrome clips, not a case
 
 > "you can see that chrome is too thick and shine to overlayed cause this layered look on it. my refrence provide the right thickens and look that i want for the chrome to look like. basically right the texture looks wrapped. but i want them to have simple chrome metal finish like the refrence and dont the case itself to be so thick. it's not a case per say but clip like case around the edges of the phone the refrences explains that well visually"
