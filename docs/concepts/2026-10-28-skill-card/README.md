@@ -143,6 +143,29 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 37 — only the detach, in our world (2026-11-07)
+
+**His note:**
+> "ok so just keep the camera detaching part and don't need anything else and making the animation themed around are design and background as well"
+
+The film is cut to the detach alone, 4.2s a loop:
+- **0–1.0s:** it sits.
+- **1.0s BURST:** a one-frame white impact, then speed lines out of the camera in white, pink and cyan. The parts blow apart in .12s (quint out) and the shot dollies back with the blast, with a short jolt.
+- **1.0–2.9s:** it hangs and drifts.
+- **2.9s SNAP back:** together in .18s (cubic in), a second white hit, the catchlight pops, lines and a jolt.
+- **Then:** hold, and loop.
+
+Cut: the orbit, the macro push, the front-on hold and the whip.
+
+**Themed to our world, not a studio:**
+- the card's own sky (the computer card's warm galaxy band and starfield) and the same rainbow slab the computer stands on;
+- the insides that fly out wear the palette: a green board, a violet sensor, and discs and beads in the card's rainbow foil;
+- the camera itself stays real black, with the pink rim calmed so it doesn't go magenta.
+
+Fixed on the way: the slab never drew, because the body overwrote it in the model. Stills `round37-camera-detach-sheet.jpg`; video `round37-camera-detach.mp4` (3 loops, not committed).
+
+**Not judged yet:** in a real tab.
+
 ## Round 36 — the camera, modelled and lit for real, and its product film (2026-11-07)
 
 **His note:**

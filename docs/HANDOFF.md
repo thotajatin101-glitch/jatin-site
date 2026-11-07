@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (evening) — SKILLS round 37: camera film = the detach only, in the card's world. NOT deployed, site/ uncommitted
+- **Did:** CamFilm is now a 4.2s loop (sit → burst → hang → snap → hold) on the card's sky and rainbow slab, with white impact frames and speed lines. Palette insides.
+- **Next:** his read; then wire the three cards into the deck.
+- **Render a film:** the scratch `render-cam.mjs` drives `.local/menu-preview/cam.html?film=1` in headless Chromium (Comet is the installed one) and cuts an mp4.
+
 ## 2026-11-07 (later) — SKILLS round 36: CamFilm, a realistic camera + product-film loop. NOT deployed, site/ uncommitted
 - **Did:** the camera has its own renderer (`CamFilm`, used when `Space.kind===1`): measured model, real materials and lighting, 8.9s orbit → macro → burst → hang → snap → hold → whip loop. No name on the body. The old toy camera is removed from the shared shader.
 - **Next:** his read; then wire the three cards into the deck (`kind` per card).
