@@ -143,6 +143,20 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 34 — the deck, and art for the new cards (2026-11-07)
+
+Deck agreed (his notes): three cards, VISUAL DIRECTION, PHOTOGRAPHY, VIDEO EDITING. "not creative directon but visual direction", editorial shoots sit under photography, and colour + Fusion macros sit under video editing. Order: DIRECT · SHOOT · CUT, the same as the ABOUT tagline.
+
+**His note:**
+> "well keep visual direction and photography we dont need to show video editing cuz it's already there."
+
+Art stills for the two new cards, in the same raymarched scene as the computer (`Space`, new uniform `uK`: 0 computer, 1 camera, 2 chair; `SkillFX.art(k)` switches it for checking):
+- **PHOTOGRAPHY — a toy SLR**: beige top and bottom plates, a black leather band with a fine grain, a dark grip and shutter, a dial, strap lugs, a big knurled lens facing you, and deep glass with a rainbow coating sheen and a white catchlight. Scaled 1.25× and sat on the slab.
+- **VISUAL DIRECTION — a director's chair**: beige crossed-leg frame, black canvas seat and back, and a foil megaphone (same rainbow as the tumbling shapes) lying on the slab. I picked it over a viewfinder because at card size a viewfinder reads as a telescope; the chair says "director" at a glance. Scaled .9× so it clears the SKILL tab.
+Not wired to the deck yet: the cards still have one entry, with VIDEO EDITING copy. Stills `round34-art-*.jpg`, full frames in `2026-11-07-skills-art-camera` / `-chair`.
+
+**Waiting on:** his read of the two stills.
+
 ## Round 33 — the menu's SKILLS goes chrome too (2026-11-07)
 
 **His note:**

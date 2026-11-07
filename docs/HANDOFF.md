@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (night) — SKILLS round 34: deck = VISUAL DIRECTION · PHOTOGRAPHY · VIDEO EDITING; art stills. NOT deployed, site/ uncommitted
+- **Did:** camera and director's chair modelled into the card's `Space` shader (`uK`), stills in the concept folder.
+- **Next:** on his yes, add the two cards to `CARDS` with their copy, `art` kind per card, and switch `Space.kind` on the deal.
+
 ## 2026-11-07 (later still) — SKILLS round 32: whole page in the card's chrome. NOT deployed, site/ uncommitted
 - **Did:** SKILLS accent → steel, world tint → dark steel, DitherFX chrome ramps (`CHROME` on the bolt, `CHROME_LT` on small plates) for anything inside `#sec-skills`, acid details on the plates/banner → `var(--acc)`.
 - **Then (round 33, his ask):** the menu's SKILLS is chrome too. The living wedge blends to the mirror ramp for grey accents; CLAUDE.md's accent list updated.

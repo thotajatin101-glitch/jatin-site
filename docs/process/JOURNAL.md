@@ -437,6 +437,17 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (night) — a camera and a director's chair
+
+Deck agreed (his notes): three cards, VISUAL DIRECTION, PHOTOGRAPHY, VIDEO EDITING. "not creative directon but visual direction", editorial shoots sit under photography, and colour + Fusion macros sit under video editing. Order: DIRECT · SHOOT · CUT, the same as the ABOUT tagline.
+
+> "well keep visual direction and photography we dont need to show video editing cuz it's already there."
+
+Art stills for the two new cards, in the same raymarched scene as the computer (`Space`, new uniform `uK`: 0 computer, 1 camera, 2 chair; `SkillFX.art(k)` switches it for checking):
+- **PHOTOGRAPHY — a toy SLR**: beige top and bottom plates, a black leather band with a fine grain, a dark grip and shutter, a dial, strap lugs, a big knurled lens facing you, and deep glass with a rainbow coating sheen and a white catchlight. Scaled 1.25× and sat on the slab.
+- **VISUAL DIRECTION — a director's chair**: beige crossed-leg frame, black canvas seat and back, and a foil megaphone (same rainbow as the tumbling shapes) lying on the slab. I picked it over a viewfinder because at card size a viewfinder reads as a telescope; the chair says "director" at a glance. Scaled .9× so it clears the SKILL tab.
+Not wired to the deck yet: the cards still have one entry, with VIDEO EDITING copy. Stills `round34-art-*.jpg`, full frames in `2026-11-07-skills-art-camera` / `-chair`.
+
 ## 2026-11-07 (last) — the menu's SKILLS goes chrome
 
 > "ok now in main menu as well switch the skils theme"
