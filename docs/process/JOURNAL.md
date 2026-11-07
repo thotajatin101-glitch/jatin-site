@@ -503,6 +503,14 @@ Stills: `stills/2026-11-07-contact-phone-round5/` (+ `-short`, `-375`).
 The lean and the tip-back were each eased halfway back.
 Stills: `stills/2026-11-07-contact-phone-round5b/` (+ `-375`).
 
+## 2026-11-07 — sitting back
+
+> "u havent rolled back enough at all. it feels like the head of phone is in front and bottom in the back. just angled it in a sitting angle."
+
+The last two rounds had the tilt the wrong way round: the top of the phone was coming at you. Now it sits back like a
+phone propped on a desk. The top recedes, the keypad comes forward, and the lid folds toward you less.
+Stills: `stills/2026-11-07-contact-phone-round6/` (+ `-short`, `-375`).
+
 ## 2026-11-07 — the camera looks at you
 
 > "there are times in the background u see black stripes i dont want spaces like that. and can make the camera react to the cursers so it looks at wherever the curser moves."

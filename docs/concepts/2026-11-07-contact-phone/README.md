@@ -162,3 +162,18 @@ Stills: `process/stills/2026-11-07-contact-phone-round5` (+ `-short`, `-375`).
 
 The lean and the tip-back are each eased halfway back toward round 4: roll .3 → .22, pitch .34 → .25. Yaw .3 is kept.
 Stills: `process/stills/2026-11-07-contact-phone-round5b` (+ `-375`).
+
+## Round 6 — 2026-11-07: a sitting angle
+
+**His note** (with round 5b's still, `r6-note-head-in-front.webp`):
+> "u havent rolled back enough at all. it feels like the head of phone is in front and bottom in the back. just angled it in a sitting angle."
+
+**What went wrong:** in rounds 5 and 5b the pitch had the wrong sign. Positive pitch brings the lid's head TOWARD the
+viewer, so "tipped back" came out as tipped forward, and easing it halfway only softened the wrong direction. The lid
+folding toward the viewer (`TH` .24) added to it.
+
+**Built:** pitch −.38 (the top goes away, the bottom comes near: a phone sitting back), fold `TH` .24 → .12, roll .22,
+yaw .3. I compared −.2 and −.38 side by side and took the stronger, since he said it hadn't gone back enough. The
+lime is a touch more saturated (`.95,1.08,.36`), because the new angle reflects more of the bright front fill.
+
+Stills: `process/stills/2026-11-07-contact-phone-round6` (+ `-short`, `-375`).
