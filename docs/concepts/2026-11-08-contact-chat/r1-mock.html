@@ -1,0 +1,100 @@
+<!doctype html><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{--d:#0a1670;--b:#1b3fd0;--m:#2a66f0;--c:#1fb4f0;--t:#00f0d8;--ink:#f2fffd;--pk:#ff2e88;--ac:#e8ff00}
+body{margin:0;background:#111;display:flex;gap:28px;padding:28px;flex-wrap:wrap;font-family:VT323,monospace}
+.scr{width:400px;height:480px;position:relative;background:var(--b);color:var(--ink);overflow:hidden;
+  background-image:linear-gradient(rgba(10,22,112,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(10,22,112,.35) 1px,transparent 1px);background-size:4px 4px}
+.scr::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 40%,rgba(0,240,216,.22),transparent 60%);pointer-events:none}
+.top{display:flex;align-items:center;justify-content:space-between;padding:10px 14px 4px;font-size:44px;line-height:1;text-shadow:3px 3px 0 var(--d)}
+.top b{font-weight:normal;letter-spacing:.06em;color:var(--ink)}
+.box{border:3px solid var(--d);box-shadow:inset 0 0 0 3px var(--c),inset 0 0 0 6px var(--d);background:var(--m);margin:6px 12px;padding:12px 14px}
+.in{white-space:normal;border:3px solid var(--d);box-shadow:inset 0 0 0 2px var(--t);background:#3a7cf6;padding:10px 12px;font-size:30px;line-height:1.05;text-shadow:2px 2px 0 var(--d)}
+.lbl{font-size:30px;line-height:1;text-shadow:2px 2px 0 var(--d)}
+.row{display:flex;align-items:center;gap:12px}
+.px{display:grid;flex:none}
+.px i{display:block}
+.opt{white-space:nowrap;font-size:28px;line-height:1;padding:5px 8px;margin:4px 0;text-shadow:2px 2px 0 var(--d)}
+.opt.sel{background:var(--ac);color:var(--d);text-shadow:none;box-shadow:3px 3px 0 var(--d)}
+.soft{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;padding:6px 14px;font-size:30px;background:var(--d);color:var(--t)}
+.step{position:absolute;left:0;right:0;bottom:54px;display:flex;justify-content:center;gap:8px;font-size:26px;color:var(--t);text-shadow:2px 2px 0 var(--d)}.step i{width:22px;height:14px;background:var(--d);box-shadow:inset 0 0 0 2px var(--t)}.step i.on{background:var(--ac)}
+.dim{color:#9fd8ff}
+.caret{display:inline-block;width:12px;height:24px;background:var(--ink);vertical-align:-3px}
+.cap{color:#888;font:12px monospace;margin-top:6px}
+.fld{background:var(--d);color:var(--ink);font-size:28px;padding:6px 8px;margin-top:8px;box-shadow:inset 0 0 0 2px var(--t)}
+.fld .ph{color:#5f86d8}
+</style>
+<script>
+const ART={
+ bars:["......#","....###","..#####","#######"],
+ bat:["#########.","#.##.##.##","#.##.##.##","#########."],
+ spk:["...#...","...#...","..###..","#######","..###..","...#...","...#..."],
+ heart:[".##.##.","#######","#######",".#####.","..###..","...#..."],
+ link:["..#########..",".##.......##.","##..#####..##","#..#.....#..#","##..#####..##",".##.......##.","..#########.."],
+ star:["....#....","...###...","#########",".#######.","..##.##..",".##...##."],
+ dn:["#####",".###.","..#.."]
+};
+function px(name,s,col){const a=ART[name];const d=document.createElement('span');d.className='px';d.style.gridTemplateColumns=`repeat(${a[0].length},${s}px)`;
+ for(const r of a)for(const ch of r){const i=document.createElement('i');i.style.height=s+'px';i.style.background=ch==='#'?col:'transparent';d.appendChild(i);}return d;}
+addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('[data-px]').forEach(e=>{const[n,s,c]=e.dataset.px.split(',');e.replaceWith(px(n,+s,c));});document.fonts.ready.then(()=>document.title='ready');});
+</script>
+<template id="top"></template>
+
+<!-- 0 home -->
+<div><div class="scr">
+ <div class="top"><span data-px="bars,5,#f2fffd"></span><span class="row"><span data-px="spk,4,#ff2e88"></span><b>JATIN</b><span data-px="spk,4,#ff2e88"></span></span><span data-px="bat,4,#f2fffd"></span></div>
+ <div class="box"><div class="row" style="margin-bottom:10px"><span data-px="link,6,#e8ff00"></span><span class="lbl">new<br>message:</span></div>
+  <div class="in">got a vision?<br>let's make it.&nbsp;<span data-px="heart,4,#ff2e88" style="display:inline-grid;vertical-align:-2px"></span></div></div>
+ <div class="box row"><span data-px="star,4,#e8ff00"></span><span class="lbl">status:</span><span class="fld" style="margin:0;flex:1;display:flex;justify-content:space-between;align-items:center">online <span data-px="dn,4,#00f0d8"></span></span></div>
+ <div class="soft"><span>EXIT</span><span>START ▸</span></div>
+</div><div class="cap">0 · after the zoom: the home screen</div></div>
+
+<!-- 1 vibe -->
+<div><div class="scr">
+ <div class="top"><span data-px="bars,5,#f2fffd"></span><span class="row"><span data-px="spk,4,#ff2e88"></span><b>JATIN</b><span data-px="spk,4,#ff2e88"></span></span><span data-px="bat,4,#f2fffd"></span></div>
+ <div class="step"><i class="on"></i><i></i><i></i><i></i></div>
+ <div class="box"><div class="lbl" style="margin-bottom:8px">what's the vibe?</div>
+  <div class="opt">1 edit my footage</div><div class="opt sel">2 shoot something</div><div class="opt">3 creative direction</div><div class="opt">4 just saying hi&nbsp;<span data-px="heart,3,#ff2e88" style="display:inline-grid"></span></div></div>
+ <div class="soft"><span>◂ BACK</span><span>PICK ▸</span></div>
+</div><div class="cap">1 · pick one (arrows / keypad 1–4 / tap)</div></div>
+
+<!-- 2 one line -->
+<div><div class="scr">
+ <div class="top"><span data-px="bars,5,#f2fffd"></span><span class="row"><span data-px="spk,4,#ff2e88"></span><b>JATIN</b><span data-px="spk,4,#ff2e88"></span></span><span data-px="bat,4,#f2fffd"></span></div>
+ <div class="step"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+ <div class="box"><div class="lbl dim" style="font-size:24px">vibe: shoot something</div>
+  <div class="lbl" style="margin-top:8px">the one-line version?</div>
+  <div class="fld">a music video for my<br>next single<span class="caret"></span></div></div>
+ <div class="box"><div class="lbl dim" style="font-size:24px">optional · skip if unsure</div></div>
+ <div class="soft"><span>◂ BACK</span><span>NEXT ▸</span></div>
+</div><div class="cap">2 · one line, optional</div></div>
+
+<!-- 3 name -->
+<div><div class="scr">
+ <div class="top"><span data-px="bars,5,#f2fffd"></span><span class="row"><span data-px="spk,4,#ff2e88"></span><b>JATIN</b><span data-px="spk,4,#ff2e88"></span></span><span data-px="bat,4,#f2fffd"></span></div>
+ <div class="step"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+ <div class="box"><div class="lbl">who's this?</div>
+  <div class="fld"><span class="ph">your name</span><span class="caret"></span></div></div>
+ <div class="box"><div class="lbl">where do i reply?</div>
+  <div class="fld"><span class="ph">email or @insta</span></div></div>
+ <div class="soft"><span>◂ BACK</span><span>NEXT ▸</span></div>
+</div><div class="cap">3 · name + where to reply (one screen)</div></div>
+
+<!-- 4 review -->
+<div><div class="scr">
+ <div class="top"><span data-px="bars,5,#f2fffd"></span><span class="row"><span data-px="spk,4,#ff2e88"></span><b>JATIN</b><span data-px="spk,4,#ff2e88"></span></span><span data-px="bat,4,#f2fffd"></span></div>
+ <div class="step"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+ <div class="box"><div class="lbl" style="margin-bottom:8px">send this?</div>
+  <div class="in" style="font-size:26px">hey, it's maya <span class="dim">(@maya.wav)</span><br>shoot something:<br>a music video for my next single</div></div>
+ <div class="box row"><span data-px="star,4,#e8ff00"></span><span class="lbl">looks right?</span></div>
+ <div class="soft"><span>◂ EDIT</span><span>SEND ♥</span></div>
+</div><div class="cap">4 · the gist, read back before sending</div></div>
+
+<!-- 5 sent -->
+<div><div class="scr">
+ <div class="top"><span data-px="bars,5,#f2fffd"></span><span class="row"><span data-px="spk,4,#ff2e88"></span><b>JATIN</b><span data-px="spk,4,#ff2e88"></span></span><span data-px="bat,4,#f2fffd"></span></div>
+ <div class="box"><div class="row" style="margin-bottom:10px"><span data-px="link,6,#e8ff00"></span><span class="lbl">message<br>sent!</span></div>
+  <div class="in">got it, maya.<br>i'll hit you back<br>within 2 days.&nbsp;<span data-px="heart,4,#ff2e88" style="display:inline-grid;vertical-align:-2px"></span></div></div>
+ <div class="box row"><span data-px="star,4,#e8ff00"></span><span class="lbl">status:</span><span class="fld" style="margin:0;flex:1;display:flex;justify-content:space-between;align-items:center">away <span data-px="dn,4,#00f0d8"></span></span></div>
+ <div class="soft"><span>EXIT</span><span>NEW ▸</span></div>
+</div><div class="cap">5 · sent: status flips to away</div></div>
