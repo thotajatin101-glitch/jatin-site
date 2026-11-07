@@ -143,6 +143,17 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 43 — the camera stays whole (2026-11-07)
+
+**His note:**
+> "actually could u just keep the camera itself without the camera detach animation i think i would prefer that"
+
+- **The detach is cut.** The camera stays whole and turns gently: yaw ±.08 on an 8s sway, with a slight pitch breath. The palette shards keep flowing behind it.
+- **The framing** is the closer rest shot from round 42 (distance 5.9), with no pull-back.
+- **The exploded parts** are still in the model behind `uE` (always 0 now). The detach films (rounds 37, 39, 42) stay in this folder in case he wants it back.
+
+Still: `docs/process/stills/2026-11-07-skills-camera-whole`.
+
 ## Round 42 — shards to the centre, flowing gradients, no platform (2026-11-07)
 
 **His note:**

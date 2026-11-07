@@ -437,6 +437,16 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (close) — no detach after all
+
+> "actually could u just keep the camera itself without the camera detach animation i think i would prefer that"
+
+- **The detach is cut.** The camera stays whole and turns gently: yaw ±.08 on an 8s sway, with a slight pitch breath. The palette shards keep flowing behind it.
+- **The framing** is the closer rest shot from round 42 (distance 5.9), with no pull-back.
+- **The exploded parts** are still in the model behind `uE` (always 0 now). The detach films (rounds 37, 39, 42) stay in this folder in case he wants it back.
+
+Still: `docs/process/stills/2026-11-07-skills-camera-whole`.
+
 ## 2026-11-07 (final) — the shards fill in and start to flow
 
 > "ok but i also do want that space extend stripes to fill it and remove the platform for the camera and make camera a bit bigger and for the background strips make sure to add a gradient effect the shifts colours smoothly"

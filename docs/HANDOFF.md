@@ -4,6 +4,9 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (close) — SKILLS round 43: camera stays whole (no detach), gentle 8s sway over the flowing shards. NOT deployed, site/ uncommitted
+- **Next:** a world for VISUAL DIRECTION.
+
 ## 2026-11-07 (final) — SKILLS round 42: camera shards fill the centre, with flowing palette gradients; no platform; camera bigger. NOT deployed, site/ uncommitted
 - **Next:** a world for VISUAL DIRECTION.
 
