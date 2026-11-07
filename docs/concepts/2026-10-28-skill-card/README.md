@@ -143,6 +143,39 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 30 — the bolt breaks the chains (2026-11-07)
+
+**His note:**
+> "ok the card design is in order but now it's time to work on the motion and animation of the thing. i need you to analyze the video for motion timing and animation of the chains coming and breaking. and how it feels impactful, right now the animation feels flat no real impact. especially when the chains breaks you can notice how the just break out of nowhere but in the refrence u can see that the chains breaks because of the red stripe comes and breaks the chain. we could change the background for this page in way that instead of the back green triangle we can use green stripe similar to how it is in refrence video."
+
+**Frame read** (30fps; sheets `round30-ref-f00-17.png`, `-f18-35`, `-f36-51`):
+
+| Frames | Beat |
+|---|---|
+| 0–5 | card tumbles in |
+| 6–9 | card alone |
+| 10–17 | chains GROW in from the edges, thin far ones first; the fat near one slams across last and shoves the card |
+| 18–32 | dead-still hold (~0.5s): the tension |
+| 33 | red tip at the top-right corner |
+| 34–35 | a long wedge stabs down-left at the card |
+| 36 | the full Z band; it stays as the background |
+| 37–38 | the chains break two frames after the stripe lands, where it crosses them: it is the cause |
+| 39–51 | **speed ramp**: chunks blow at the lens for ~3 frames, then turn dull grey and hang in slow motion, drifting off; banner lands at f40 |
+
+What made ours flat: the break came from nowhere (the acid slash was decoration and passed before), the hold trembled instead of holding still, and the generic flash / shockwave / speed lines filled the moment with noise instead of a speed ramp.
+
+**Built:**
+- **The bolt.** SKILLS' triangle is gone. Its band is now a green Z bolt cut on the whole screen (`BOLT` in SkillFX, `#sec-skills .secBand`), hidden in the corner until STRIKE (1100ms), then on 2s: tip, wedge, full band (1167ms). It keeps the dither and the red/cyan edge, and stays as the background. The menu chain loop no longer follows into SKILLS (it lived on the triangle). The acid slash is deleted.
+- **Chains** grow in thin-first (330ms+), fat last; WHIP 110ms. The last fat one locking shoves the card (`kicks`).
+- **Hold** is dead still. The strain (tremble) starts when the bolt lands.
+- **The bolt landing shoves the card** harder, down-left along the bolt.
+- **Break at 1260ms**, two frames after the full bolt. A speed ramp: 130ms at full speed, then 12% speed. Chunks grow at the lens, turn dull grey (`GREY`) after 100ms and fade by 1.7s. No flash, shockwave, speed lines or bursts. The banner lands 60ms after the break.
+- The rig chains (round 29) still survive the break.
+
+**Stills:** before `2026-11-07-skills-before-bolt`; after `2026-11-07-skills-bolt` (+ `-phone`). `snap.mjs` SKILLS holds re-timed to the new beats.
+
+**Not judged yet:** the speed ramp and the shoves in a real tab.
+
 ## Round 29 — the chains that stay, and the banner out of the card (2026-11-06)
 
 **His note** (on round 28, with a marked-up screenshot `round29-his-sketch.webp`):

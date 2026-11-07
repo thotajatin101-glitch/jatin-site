@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 — SKILLS round 30: the bolt breaks the chains. NOT deployed, site/ uncommitted
+- **Did:** frame read of the Confidant recording (concept round 30). SKILLS triangle → green Z bolt that strikes at 1100ms and stays; chains grow thin-first, card shoved on lock and on strike; dead-still hold; break at 1260ms with a speed ramp into slow grey chunks; no flash/shockwave/speed lines; acid slash deleted; menu chain loop no longer in SKILLS. `snap.mjs` SKILLS holds re-timed. `tests/check.mjs` passes.
+- **In flight:** his read in a real tab (localhost:5179 → SKILLS).
+- **Watch out:** the bolt is driven per frame from SkillFX (`boltFrame`), so `SkillFX.hold(ms)` scrubs it; the CSS clip on `#sec-skills .secBand` is only the no-JS/reduced-motion state.
+
 ## 2026-11-06 (later) — SKILLS round 29: chains that stay + banner out of the card. NOT deployed, site/ uncommitted
 - **Did:** `RIG` chains in `SkillFX` (his sketch: thin far run behind the card, fat near V under it). They survive the break, jolt, then drift at 30fps while SKILLS is open. The info banner is tucked under the card's right edge and slides out from it (clip + translate, -9°). BACK z9 in SKILLS. Phone V at 55%. The card no longer follows the pointer (his note); only its art does. The menu/section background (DepthFX) no longer follows the pointer either (his note). It rests turned subtly toward the top-right (`RYAW=.3`/`RPITCH=.16`; .55/.3 was too much for him). Concept round 29, JOURNAL. `tests/check.mjs` passes.
 - **ABOUT:** the JATIN sticker moved onto the bottom bar across his chest, big (his sketch). Audited 1440×900, 1440×700, 1280×800, 375×812.

@@ -67,12 +67,14 @@ const PROJECTS_HOLDS = [
 const SKILLS_HOLDS = [
   [60, 'tumble-in: big, turned ~45°, on its own spot'],
   [280, 'landed, alone (the hold)'],
-  [470, 'chains shooting in from off-frame'],
-  [1000, 'chained: the hold'],
-  [1420, 'strain + the slash ripping across'],
-  [1500, 'the break: flash, shockwave, extruded links'],
-  [1700, 'banner in, debris clearing'],
-];
+  [420, 'thin far chains growing in from off-frame'],
+  [700, 'all chains locked; the fat one has shoved the card'],
+  [1000, 'chained: the dead-still hold'],
+  [1140, 'the bolt stabs in from the top-right'],
+  [1220, 'the bolt is in; the chains strain'],
+  [1320, 'the break: chunks blow at the lens'],
+  [1700, 'slow motion: grey chunks hang, banner in'],
+]
 const SETTLE = { about: 2600, projects: 3400, skills: 3000 };   /* ms after the swap; others 2000 */
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, Math.max(0, ms)));
