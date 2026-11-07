@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r21) — CONTACT round 21: clips as true rounded extrusions, pink stone, lid clips up the sides. NOT deployed, site/ uncommitted
+- **Watch out:** never fake a height off a 2D distance (`max(d2,|z|-h(d2))`): it isn't a distance field; rays exhaust and the ink rule paints them black. Use `ext()`.
+- **Next:** his notes; frame cost in a real tab; step 2.
+
 ## 2026-11-08 (phone r20) — CONTACT round 20: clips wrap the edge (front + smaller back + spine). NOT deployed, site/ uncommitted
 - **Watch out:** shut, the lid's and body's clips stack at the same corners during the rise.
 - **Next:** his notes; frame cost in a real tab; step 2.

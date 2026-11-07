@@ -530,6 +530,16 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — smooth clips with a stone
+
+> "it looks blacked out and weird need it to look smoother and the chrome needs to shaped better take a look at the refrence again" (crop of the shut phone's corner: a black mass with specks)
+
+The black mass was the renderer failing on stacked, knife-thin blades. The dome shape was a shortcut, not a true
+shape, so rays gave up and the outline ink filled them in. The clips are rebuilt as properly rounded chrome: fat at
+the root, long smooth tapers, a pink stone in each boss like the jewel in his reference, and a brighter silver. The
+lid's clips moved up its sides, so they no longer pile onto the bottom ones when the phone is shut.
+Stills: `stills/2026-11-08-contact-phone-round21/` (+ `-short`, `-375`).
+
 ## 2026-11-08 — the clips wrap the edge
 
 > "i want them coming in wrapped from over the phone as well." (crop of the shut phone from behind, the clips only underneath)

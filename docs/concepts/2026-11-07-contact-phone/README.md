@@ -410,3 +410,25 @@ corners), so the rise shows a busy chrome cluster there. If he flags it, stagger
 Close-ups: `r20-wrap-close.png`. Entrance: `r20-wrap-entrance.png`. Stills:
 `process/stills/2026-11-08-contact-phone-round20` (+ `-375`). Round 19's page:
 `.local/snapshots/2026-11-08-phone-round19-index.html`.
+
+## Round 21 — 2026-11-08: smooth, rounded clips with a stone
+
+**His note** (`r21-note-black.png`):
+> "it looks blacked out and weird need it to look smoother and the chrome needs to shaped better take a look at the refrence again" (crop of the shut phone's corner: a black mass with specks)
+
+**Cause:** round 19/20's domed profile (`max(d2, |z|−h(d2))·.6`) is not a distance field. On the stacked blades
+the march ran out of steps, and the ink rule (`dm`) painted those pixels black, with specks.
+
+**Built:**
+- `clipAt` returns (distance, material). The ornament is a true rounded extrusion, `ext(clip2+.003, zz, .002,
+  .0095)`, round in section.
+- Blade roots are fatter (w0 .032/.027/.028/.018), with `smin` fillets of .016.
+- Scale is 1.05 on the front and .72 on the back grip, plus the spine over the edge.
+- A pink stone (material 7) sits in the front boss.
+- The chrome is brighter: the camera-side darkening eases to .62, and reflections show from luminance .12.
+- **The lid's clips moved off the corners, up its sides** (u.y .74, outward (±1,.3)), so shut they no longer stack
+  on the body's bottom corners.
+
+Close-ups: `r21-clips-close.png`. Entrance: `r21-clips-entrance.png`. Stills:
+`process/stills/2026-11-08-contact-phone-round21` (+ `-short`, `-375`). Round 20's page:
+`.local/snapshots/2026-11-08-phone-round20-index.html`.
