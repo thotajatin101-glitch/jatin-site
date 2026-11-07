@@ -143,6 +143,30 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 49 — pupils that read, and real depth in the same print (2026-11-07)
+
+**His note:**
+> "great. ok love it but right the eye pupils are arent exactly visible due to overwhelming amount stuff going is it possible to make it bit brighter. and could give this design more depth? maybe by making it 3d but i dont want a poorly modeled version i want the same design and textures but i want it to feel more immersive"
+
+**Direction:** no 3D model. A modelled eye would lose the print, so the illustration itself gets real form, lit and posterised into the same Bayer steps, ink dots and split.
+
+**Built:**
+- **The eyeball is a sphere** behind the lids.
+  - The iris is a cap on it, turned by the gaze, so it foreshortens into an ellipse as the eye glances.
+  - The catchlights and the reflection stay fixed to the light while the iris slides under them: the strongest cue that it's round.
+  - The sclera is lit as a sphere in three printed tones.
+  - The upper lid casts its shadow on the ball, and the lower lid occludes it.
+  - A thin wet rim along the lower lid gives the lid its thickness.
+- **The reflection is mapped off the surface normal**, so it squeezes toward the rim like a real cornea.
+- **The pupil and iris read through it:**
+  - the reflection drops to 55% over the iris and 22% over the pupil (it was full strength);
+  - the iris is brighter, hot pink at the collar falling to deep at a black limbal ring;
+  - a pale collar ring frames a solid black pupil.
+- **The face has form:** a height field (brow ridge, cheekbone, the socket sinking round the eye) lights the skin. Same five Bayer steps, now shaped.
+- **Parallax, not the cursor:** a slow camera drift and push (about 30s cycles). The brow's shadow moves most, the skin and lids next, the ball least, so the ball slides behind the lids.
+
+Stills: `docs/process/stills/2026-11-07-skills-eye-depth`. Film: `round49-eye-depth.mp4` (12.8s) + sheet. Before: round 48's film and stills.
+
 ## Round 48 — the eye goes through a lot of references (2026-11-07)
 
 **His note:**

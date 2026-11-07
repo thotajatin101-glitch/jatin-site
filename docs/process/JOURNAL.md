@@ -437,6 +437,19 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (eye, take 6) — depth without a model
+
+> "…the eye pupils are arent exactly visible … make it bit brighter. and could give this design more depth? maybe by making it 3d but i dont want a poorly modeled version i want the same design and textures but i want it to feel more immersive"
+
+Kept the illustration and gave it form instead of swapping in a model:
+- the ball is a real sphere whose iris turns with the gaze, sliding under fixed catchlights and reflections;
+- the lids shadow and occlude it;
+- the face is lit from a height field (brow, cheek, socket) but still printed in the five Bayer steps;
+- a slow camera drift moves the brow, the lids and the ball at different depths.
+
+The reflection backs off over the iris and pupil, and the iris is brighter with a pale collar, so the pupil reads through all the flicking.
+Stills: `stills/2026-11-07-skills-eye-depth/`.
+
 ## 2026-11-07 (eye, take 5) — the eye goes through a lot of references
 
 > "ok love this but can the reflection be something like going through alot of refrences?"

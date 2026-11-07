@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (eye 6) — SKILLS round 49: eye depth (sphere ball, gaze-turned iris, lit relief, depth parallax) and a readable pupil. NOT deployed, site/ uncommitted
+- **Did:** EyeFX `scene()` rewritten: `RB` sphere, `height()` relief, `uCam`/`uZ` drift (never the cursor), feed mapped off the normal. Reflection 55% on the iris, 22% on the pupil.
+- **Next:** his read. Frame cost in a real tab (3 colour passes × 3 height taps), then the retired chair in Space.
+
 ## 2026-11-07 (eye 5) — SKILLS round 48: the eye's reflection flicks through his own photos (browse → flicker → LOCKED with pulled swatches → moodboard). NOT deployed, site/ uncommitted
 - **Did:** EyeFX feed reads `PHOTOS` (moved to top level, markers intact) and lazy-loads the 46 thumbs when the card first draws. The harness `cam.html` sets `window.PHOTOS` and awaits `EyeFX.preload()`.
 - **Next:** his read. 3.2MB of thumbs load with card 02; trim the list if phones feel it. Remove the retired chair from Space.
