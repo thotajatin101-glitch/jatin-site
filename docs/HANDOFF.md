@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r19) — CONTACT round 19: tribal corner clips, plain chrome (bumper + bands gone). NOT deployed, site/ uncommitted
+- **Did:** `caseD` = 4 clips (`clipAt`/`clip2`/`blade`), domed profile; material 16 = plain mirror chrome.
+- **Next:** his notes; measure the frame cost in a real tab (lighter than round 18); step 2.
+
 ## 2026-11-08 (phone r18) — CONTACT round 18: thorned liquid-chrome case. NOT deployed, site/ uncommitted
 - **Did:** `caseD()` (bumper per half, open at the hinge, ten straight horns) as material 16, shaded with the card's hard chrome bands. The bounding box is −.52….52 x, −1.22…1.25 y, −.5…1.3 z.
 - **Watch out:** don't bend `thorn`'s axis (it broke the field: specks only). Frame cost is unmeasured and likely up; measure it in a real tab before deploy.

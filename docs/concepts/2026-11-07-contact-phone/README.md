@@ -363,3 +363,34 @@ bounding box is larger.
 
 Entrance sheet: `r18-case-entrance.png`. Stills: `process/stills/2026-11-08-contact-phone-round18` (+ `-short`,
 `-375`). Round 17's page: `.local/snapshots/2026-11-08-phone-round17-index.html`.
+
+## Round 19 — 2026-11-08: tribal chrome clips on the corners, plain mirror finish
+
+**His note** (two references of tribal chrome clips on a handheld, `r19-note-33/34.png`; round 18's banding,
+`r19-note-35.png`):
+> "you can see that chrome is too thick and shine to overlayed cause this layered look on it. my refrence provide the right thickens and look that i want for the chrome to look like. basically right the texture looks wrapped. but i want them to have simple chrome metal finish like the refrence and dont the case itself to be so thick. it's not a case per say but clip like case around the edges of the phone the refrences explains that well visually"
+
+**Dropped (round 18):**
+- The full bumper: too thick, a case, not a clip.
+- The card's hard band palette: it read as a texture wrapped over the metal.
+
+**Built:**
+- **Four corner clips** (`caseD`): the body's two bottom corners and the lid's two top corners, on the front faces.
+- **Each clip** (`clip2`, in the corner's own frame: x along the edge, y outward) is a round boss sitting on the rim,
+  with four tapered arc blades (`blade`, exact 2D arcs):
+  - a long sweep along the edge flicking out;
+  - a shorter sweep the other way;
+  - a horn curling back;
+  - a small barb hooking onto the face.
+
+  They are blended with `smin` fillets.
+- **Domed, not slabbed:** `.003 + .013·(1−(1−k)²)` off the 2D distance, so it is thick down each spine and knife-thin
+  at the edge.
+- **Finish:** plain mirror chrome. It reflects the studio, shows only the bright parts (`smoothstep(.3,1.1,lum)`),
+  goes half-desaturated, darkens where it faces the lens (the camera side), and has a white rim at grazing angles plus
+  a pin spec. No bands, no film.
+- The lid's clips sit on the inner face, so they appear as the lid snaps open.
+
+Close-ups: `r19-clips-close.png`. Entrance: `r19-clips-entrance.png`. Stills:
+`process/stills/2026-11-08-contact-phone-round19` (+ `-short`, `-375`). Round 18's page:
+`.local/snapshots/2026-11-08-phone-round18-index.html`.

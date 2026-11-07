@@ -530,6 +530,16 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — chrome clips, not a case
+
+> "you can see that chrome is too thick and shine to overlayed cause this layered look on it. my refrence provide the right thickens and look that i want for the chrome to look like. basically right the texture looks wrapped. but i want them to have simple chrome metal finish like the refrence and dont the case itself to be so thick. it's not a case per say but clip like case around the edges of the phone the refrences explains that well visually"
+
+His references were tribal chrome clips on a handheld's corners. The bumper and horns are gone. Each outer corner now
+has a cast chrome clip: a round boss on the rim with curved blades sweeping out past the edge, domed down the spine and
+knife-thin at the edge. The finish is plain mirror chrome, dark where it faces you and bright white along the turns,
+with no banding.
+Stills: `stills/2026-11-08-contact-phone-round19/` (+ `-short`, `-375`).
+
 ## 2026-11-08 — the phone gets a chrome case
 
 > "alright i want the phone to have metal chrome casing like how we did for skill cards as well. the refrence gives a better ideas on how it could wrap aroud the phone"
