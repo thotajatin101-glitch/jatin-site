@@ -530,6 +530,16 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the phone gets a chrome case
+
+> "alright i want the phone to have metal chrome casing like how we did for skill cards as well. the refrence gives a better ideas on how it could wrap aroud the phone"
+
+His reference was a phone in a thorned chrome bumper. Each half now wears one, in the SKILLS card's liquid chrome
+(hard black-to-white mirror bands, a thin white line where it turns away). Each bumper wraps the edge front and back
+and stays open at the hinge so the lid still folds. Straight horns stab out of the rim to needle points. The first
+curled horns broke up into floating specks, so they are straight for now.
+Stills: `stills/2026-11-08-contact-phone-round18/` (+ `-short`, `-375`).
+
 ## 2026-11-08 — the phone looks at you
 
 > "can u make the phone react to the curser similar to how the 3d computer reacts"

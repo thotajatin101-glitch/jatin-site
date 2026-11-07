@@ -338,3 +338,28 @@ This reverses the earlier "it never follows the cursor" rule, at his request.
 
 Sheet (pointer left, right, up, down): `r17-cursor-left-right-up-down.png`. Round 16's page:
 `.local/snapshots/2026-11-08-phone-round16-index.html`.
+
+## Round 18 — 2026-11-08: a chrome case, like the SKILLS card
+
+**His note** (reference `r18-ref-chrome-case.webp`, a phone in a spiked chrome bumper):
+> "alright i want the phone to have metal chrome casing like how we did for skill cards as well. the refrence gives a better ideas on how it could wrap aroud the phone"
+
+**Built (`caseD` in the shader, material 16):**
+- **Two C-shaped bumpers, one per half.** Each is an oval-section tube round the half's own outline, centred .012
+  outside the edge: .046 wide in plane, .1 (body) and .085 (lid) deep. It wraps the rim front and back and is cut
+  open at the hinge (`smax` at |y| .075), so the lid still folds.
+- **Ten horns, five per half,** on the sides, the crown and the bottom: straight tapered cones (`thorn`) to a .004
+  needle point, blended into the rim (`smin` .02).
+- **Shading:** the card's liquid chrome. A hard band palette, nearly half black, indexed by the reflection direction
+  so the bands slide as it turns; a thin white edge at grazing angles, a pin spec, and a light thin-film tint.
+- The march's bounding box grew to fit the horns.
+
+**Dropped:** curled horns. Bending the cone's axis broke the distance field: only the tips drew, as floating ink
+specks (`r18` first passes). Straight horns render cleanly; a real curve needs a proper bezier distance, not an
+offset axis.
+
+**Still to check:** the frame cost in a real tab. Every map call now also evaluates the case and ten cones, and the
+bounding box is larger.
+
+Entrance sheet: `r18-case-entrance.png`. Stills: `process/stills/2026-11-08-contact-phone-round18` (+ `-short`,
+`-375`). Round 17's page: `.local/snapshots/2026-11-08-phone-round17-index.html`.
