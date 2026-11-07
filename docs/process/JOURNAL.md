@@ -437,6 +437,27 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (night) — the SKILLS deck is dealt
+
+> "Looks good, wire cards"
+
+The deck is three cards now, in this order:
+- **01 VIDEO EDITING:** the computer. Tags RESOLVE · FUSION · COLOUR. Colour and Fusion macros live here, as he set out.
+- **02 VISUAL DIRECTION:** the director's chair. "One look, decided before the first frame. Palette, light, type and motion all answer to it." Tags CONCEPT · ART DIRECTION.
+- **03 PHOTOGRAPHY:** the camera's detach film. "Editorial shoots, built on set. Light, frame and moment are made before the shutter, not saved after." Tags EDITORIAL · LIGHTING.
+
+How it works:
+- Each `CARDS` entry carries `art` (0 computer, 1 camera film, 2 chair).
+- `fill()` sets `Space.kind` from it, so the art swaps on the deal's hidden frame, along with the copy.
+- VIDEO EDITING stays first because the chained entrance is built around it.
+
+Fixed on the way:
+- **The card title fits the card.** DIRECTION touched the frame and PHOTOGRAPHY was cut off, so the title now shrinks to the widest word. It measures layout widths, never the tilted box.
+- **A one-word title sits on the second line**, so it lands where a two-line title's last line would.
+- **Card 01's tags were shortened**, because a third tag wrapped onto the copy.
+
+Stills: `2026-11-07-skills-deck-card1/2/3` and `skills-deck-phone` (375×812). The copy is a first draft, his to rewrite.
+
 ## 2026-11-07 (evening) — just the detach, on our slab
 
 > "ok so just keep the camera detaching part and don't need anything else and making the animation themed around are design and background as well"

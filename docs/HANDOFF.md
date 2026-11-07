@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (night) — SKILLS round 38: three-card deck wired. NOT deployed, site/ uncommitted
+- **Did:** CARDS has VIDEO EDITING (computer), VISUAL DIRECTION (chair) and PHOTOGRAPHY (camera film). Each card's `art` switches `Space.kind` in `fill()`. The card title is fitted to the card.
+- **Next:** his read on the copy, and a real-tab pass of the deal between cards (the camera film starts mid-loop on a deal, since its clock is page time).
+- **Watch out:** the card copy is my draft, not his words.
+
 ## 2026-11-07 (evening) — SKILLS round 37: camera film = the detach only, in the card's world. NOT deployed, site/ uncommitted
 - **Did:** CamFilm is now a 4.2s loop (sit → burst → hang → snap → hold) on the card's sky and rainbow slab, with white impact frames and speed lines. Palette insides.
 - **Next:** his read; then wire the three cards into the deck.
