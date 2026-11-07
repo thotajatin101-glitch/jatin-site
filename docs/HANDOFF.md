@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r8) — CONTACT round 8: more contrast, hanging chain, JATIN tag. NOT deployed, site/ uncommitted
+- **Did:** darker env + harder key, front fill .5; metal `*mix(.38,1.2,dk*sh)`. The strap is a verlet rope (`ropeStep`/`ropeTo`, `pin(ms)` uses the new `angles(ms)` split out of `pose`), 4 links + `tag()` hang-tag. Round 7's page: `.local/snapshots/2026-11-07-phone-round7-index.html`.
+- **Next:** his notes; measure the frame cost in a real tab; step 2 (keys work, contacts on the LCD).
+- **Watch out:** the strand hangs behind the phone's left edge (that side leans away); anything wide on the end hides. `hold()` resets the rope and re-simulates from 0.
+
 ## 2026-11-07 (phone r7) — CONTACT round 7: halftone tone back, lid bent forward. NOT deployed, site/ uncommitted
 - **Did:** `TH=mix(pi,.3,uOpen)`. The env front fill is .8. The halftone uses `tone=smoothstep(1.,.12,lu)`.
 - **Watch out:** the halftone needs tone. If a light or pose change brightens the body toward white, the dots vanish; check the faces up close.

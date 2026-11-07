@@ -193,3 +193,25 @@ and went almost white, so no dots were left.
 - The lid folds toward the viewer a little more (`TH` .12 → .3) while the body keeps its sitting angle.
 
 Stills: `process/stills/2026-11-07-contact-phone-round7` (+ `-375`).
+
+## Round 8 — 2026-11-08: more contrast, a hanging chain, a JATIN tag
+
+**His note:**
+> "i want the light to create more contrast on the model. and chain link i dont want it looped just a chain hanging and make it have realistic movement. and all add a JATIN title tag to the end of the chain"
+
+**Built:**
+- **Light:** a darker room in `env()` (sky base .03 → .42), the bounce card halved, the key softbox up to 4.2, the
+  front fill down to .5 and falling off toward the lower right. Metal multiplies by `mix(.38,1.2,dk*sh)`, so the key
+  side reads lit and the far side drops. The halftone still shows (check it after any light change).
+- **Chain:** the loop is gone. A verlet rope in world space (`ropeStep`): 4 links of .072, gravity 11, fixed 120Hz
+  substeps, 14 constraint passes, the tag end heavier. Pinned to the hinge's left knuckle (`SA`, z .035 so it sits on
+  the near side of the knuckle) with the phone's lift included, so the rise, the turn and the lid's snap all move it.
+  A slow two-sine breeze after the snap keeps it from hanging dead. `hold()` re-simulates from zero, so stills are
+  exact; reduced motion hangs it still.
+- **Tag:** a tall black hang-tag (`tag()`): punched hole, acid rule, red/cyan offset, a Bayer sheen, JATIN up its
+  length in Cyberway Riders with the glitch split. It hangs off the last link, turned along it, and twists on the
+  chain (narrowing as it turns). Tall, not wide: the left side of the phone leans away, so the strand hangs just
+  behind the body's edge, and a wide plate disappeared behind it (round 8a).
+
+Stills: `process/stills/2026-11-08-contact-phone-round8` (+ `-short`, `-375`). Round 7's page:
+`.local/snapshots/2026-11-07-phone-round7-index.html`.

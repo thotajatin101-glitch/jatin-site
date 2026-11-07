@@ -520,6 +520,16 @@ so the dots had nothing to print on. Less front light and dots across the whole 
 The lid bends toward you a little.
 Stills: `stills/2026-11-07-contact-phone-round7/` (+ `-375`).
 
+## 2026-11-08 — harder light, a real chain, a name tag
+
+> "i want the light to create more contrast on the model. and chain link i dont want it looped just a chain hanging and make it have realistic movement. and all add a JATIN title tag to the end of the chain"
+
+The room around the phone went darker and the key light harder, so the lit side reads bright and the far side falls
+into shade; the halftone still prints across it. The strap loop is gone: one short strand hangs off the hinge and
+behaves like a real chain. The rise drags it, the turn whips it, the lid's snap kicks it, and it swings itself out
+under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
+Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
+
 ## 2026-11-07 — the camera looks at you
 
 > "there are times in the background u see black stripes i dont want spaces like that. and can make the camera react to the cursers so it looks at wherever the curser moves."
