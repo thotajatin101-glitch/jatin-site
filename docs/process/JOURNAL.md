@@ -437,6 +437,24 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (late night) — the camera, from a product film
+
+> "i want something like this for camea and use this as refrence for camera model analyze the video first"
+
+**Reference read** (`Screen Recording 2026-11-07 at 3.20.44 PM.mov`, 13s, vertical): a product film of a black full-frame mirrorless camera on an orange → deep-red gradient, with a glow behind the object. Sheets: `round35-ref-macro.jpg`, `round35-ref-explode.jpg` (4fps).
+- **0–1s, hero orbit:** a 3/4 view turning, with the lens swinging toward the lens of the shot.
+- **1–3s, macro push-ins** along the top plate in shallow focus: the knurled mode dial, the exposure dial, the buttons, the viewfinder hump with its brand, the print round the lens.
+- **~3s, mechanics:** the SD card slides out of the side door, then the body splits as a cutaway.
+- **~3.5–6s, exploded view:** the camera blows apart into a vertical column of parts (lens elements, rings, green boards, a violet sensor, the top plate) that hang and drift slowly for about 2.5s.
+- **~6s, snap back:** the parts slam together into a dead-front hero; catchlights pop in the glass; it holds about 1.5s.
+- **~12s, whip spin** to the back (the LCD), with motion blur and a chroma fringe, then it loops.
+- **What makes it work:** the speed contrast. Slow drifting holds are cut by hard snaps (explode, assemble, whip). It's the same S-curve "BAAM" language as the SKILLS break.
+- **Look:** black satin with a fine speckle, a pebbled grip, knurled metal dials, a thin copper ring at the lens mount, rim light on every bevel, a warm key from low right.
+
+The camera model is rebuilt from it: a wide flat black body, a deep grip jutting forward on the left, a viewfinder hump with sloped sides, a leaning front and a hot shoe, a knurled mode dial, an exposure dial, a shutter, strap lugs, a big lens hanging below the body with a hairline copper mount ring, a knurled zoom ring, white printed markings round the front, deep glass with a green/violet coating sheen and two catchlights. The reference's brand plate says **JATIN in a 4×5 pixel font** (the site's pixel-piece language), never a camera maker's name. It sits on the card's rainbow slab in its starfield, like the computer; the orange backdrop is the reference's, not ours. Dev harness: `.local/menu-preview/art.html?k=1` renders the art big (gitignored). Stills: `round35-camera-closeup.png`, `round35-camera-on-card.jpg`.
+
+**Proposed next (motion):** the reference's signature is the explode → hang → snap back. On the PHOTOGRAPHY card the camera would burst into its parts, hang them for a beat, then slam them together with the catchlights popping, on the same S-curve ramp as the break.
+
 ## 2026-11-07 (night) — a camera and a director's chair
 
 Deck agreed (his notes): three cards, VISUAL DIRECTION, PHOTOGRAPHY, VIDEO EDITING. "not creative directon but visual direction", editorial shoots sit under photography, and colour + Fusion macros sit under video editing. Order: DIRECT · SHOOT · CUT, the same as the ABOUT tagline.

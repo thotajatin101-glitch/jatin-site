@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (late night) — SKILLS round 35: camera rebuilt from his mirrorless reference. NOT deployed, site/ uncommitted
+- **Did:** reference analysed (concept round 35); `camera()` in the card's `Space` shader is now a black mirrorless with a JATIN pixel plate. `.local/menu-preview/art.html?k=1|2` renders the card art big for checking.
+- **Next:** his read; then the explode → hang → snap motion, and wiring the cards into the deck.
+- **Watch out:** hash textures need a 3D cell (`floor(z)*vec2(17,31)`) or they band on curves; knurl masks need both a min and a max radius.
+
 ## 2026-11-07 (night) — SKILLS round 34: deck = VISUAL DIRECTION · PHOTOGRAPHY · VIDEO EDITING; art stills. NOT deployed, site/ uncommitted
 - **Did:** camera and director's chair modelled into the card's `Space` shader (`uK`), stills in the concept folder.
 - **Next:** on his yes, add the two cards to `CARDS` with their copy, `art` kind per card, and switch `Space.kind` on the deal.
