@@ -177,3 +177,19 @@ yaw .3. I compared −.2 and −.38 side by side and took the stronger, since he
 lime is a touch more saturated (`.95,1.08,.36`), because the new angle reflects more of the bright front fill.
 
 Stills: `process/stills/2026-11-07-contact-phone-round6` (+ `-short`, `-375`).
+
+## Round 7 — 2026-11-07: the tone comes back, the lid bends forward
+
+**His note** (with a crop of round 5b's dotted lid, `r7-note-dither.png`):
+> "why is the gradient dither tone on the phone gone ? and bend the top part of the phone to the front a bit."
+
+**Why it went:** the halftone only printed below mid-grey. At round 6's angle the lime caught the bright front fill
+and went almost white, so no dots were left.
+
+**Built:**
+- The front fill is down to .8 (from 1.3), so the faces keep a tonal gradient.
+- The dots now run across the whole tonal range (`tone=smoothstep(1.,.12,lu)`): small in the light, swelling into the
+  shade.
+- The lid folds toward the viewer a little more (`TH` .12 → .3) while the body keeps its sitting angle.
+
+Stills: `process/stills/2026-11-07-contact-phone-round7` (+ `-375`).

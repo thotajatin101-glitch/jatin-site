@@ -511,6 +511,15 @@ The last two rounds had the tilt the wrong way round: the top of the phone was c
 phone propped on a desk. The top recedes, the keypad comes forward, and the lid folds toward you less.
 Stills: `stills/2026-11-07-contact-phone-round6/` (+ `-short`, `-375`).
 
+## 2026-11-07 — the dots come back
+
+> "why is the gradient dither tone on the phone gone ? and bend the top part of the phone to the front a bit."
+
+The halftone only printed in the darker tones. Sitting back, the phone caught so much light that it went almost white,
+so the dots had nothing to print on. Less front light and dots across the whole tonal range bring the gradient back.
+The lid bends toward you a little.
+Stills: `stills/2026-11-07-contact-phone-round7/` (+ `-375`).
+
 ## 2026-11-07 — the camera looks at you
 
 > "there are times in the background u see black stripes i dont want spaces like that. and can make the camera react to the cursers so it looks at wherever the curser moves."

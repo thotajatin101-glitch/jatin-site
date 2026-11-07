@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (phone r7) — CONTACT round 7: halftone tone back, lid bent forward. NOT deployed, site/ uncommitted
+- **Did:** `TH=mix(pi,.3,uOpen)`. The env front fill is .8. The halftone uses `tone=smoothstep(1.,.12,lu)`.
+- **Watch out:** the halftone needs tone. If a light or pose change brightens the body toward white, the dots vanish; check the faces up close.
+
 ## 2026-11-07 (phone r6) — CONTACT round 6: a sitting angle. NOT deployed, site/ uncommitted
 - **Did:** REST is yaw .3, pitch **−.38**, roll .22. `TH=mix(pi,.12,uOpen)`. The lime base is (.95,1.08,.36).
 - **Watch out:** in PhoneFX, NEGATIVE pitch sends the top away from the viewer. Rounds 5 and 5b used positive and tipped it toward him.
