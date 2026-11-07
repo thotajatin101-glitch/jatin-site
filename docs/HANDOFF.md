@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r9) — CONTACT round 9: surface-printed halftone, electric-blue LCD. NOT deployed, site/ uncommitted
+- **Did:** the halftone block after the tone map now works in object space (triplanar, lid frame on the lid), ink = a dark shade of the surface. `lcd()` uses the blue ramp with pale ink. Round 8's page: `.local/snapshots/2026-11-08-phone-round8-index.html`.
+- **Next:** his notes; measure the frame cost in a real tab; step 2.
+- **Watch out:** never go back to `gl_FragCoord` dots on a model; that is what read as an overlay. If the layout's `uS` changes, the dot pitch follows it.
+
 ## 2026-11-08 (phone r8) — CONTACT round 8: more contrast, hanging chain, JATIN tag. NOT deployed, site/ uncommitted
 - **Did:** darker env + harder key, front fill .5; metal `*mix(.38,1.2,dk*sh)`. The strap is a verlet rope (`ropeStep`/`ropeTo`, `pin(ms)` uses the new `angles(ms)` split out of `pose`), 4 links + `tag()` hang-tag. Round 7's page: `.local/snapshots/2026-11-07-phone-round7-index.html`.
 - **Next:** his notes; measure the frame cost in a real tab; step 2 (keys work, contacts on the LCD).

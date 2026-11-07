@@ -215,3 +215,23 @@ Stills: `process/stills/2026-11-07-contact-phone-round7` (+ `-375`).
 
 Stills: `process/stills/2026-11-08-contact-phone-round8` (+ `-short`, `-375`). Round 7's page:
 `.local/snapshots/2026-11-07-phone-round7-index.html`.
+
+## Round 9 — 2026-11-08: the dots on the surface, an electric-blue screen
+
+**His note:**
+> "the dither effect on the phone looks like an overlay but i want it integrated into the model itself properly. also could change the screen to electric blue that we use ?"
+
+**Why it read as an overlay:** the dots were a screen-space grid (`gl_FragCoord`), so they stayed put while the phone
+moved under them and never followed a curve.
+
+**Built:**
+- The halftone is printed in the half's own coordinates (the lid's via `lid()` when `p.y>.05`), projected on three
+  planes and blended by the normal (`w=|n|^4`), at 23°, pitch `5·uDpr/(.717·uS)` (~5px on the face at rest),
+  antialiased by `ndv`. Dots wrap the rims, foreshorten on the turned faces and ride with the model.
+- The ink is a deep, purple-shifted shade of the colour under it (`c·(.2,.13,.3)+(.035,0,.06)`), not a flat stamp.
+- The LCD is OUTSTATION's blue ramp (`#0a1670 → #1b3fd0 → #2a66f0 → #1fb4f0 → #00f0d8`) with pale type; the
+  shader's backlight tint is neutral now.
+
+Close-up: `r9-dots-before-after.png` (left round 8, right round 9). Stills:
+`process/stills/2026-11-08-contact-phone-round9` (+ `-short`, `-375`). Round 8's page:
+`.local/snapshots/2026-11-08-phone-round8-index.html`.

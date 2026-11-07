@@ -530,6 +530,15 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — dots printed on the phone, a blue screen
+
+> "the dither effect on the phone looks like an overlay but i want it integrated into the model itself properly. also could change the screen to electric blue that we use ?"
+
+The dots used to sit on the glass, a flat grid the phone moved under, so they read as an overlay. Now they are printed
+on the phone itself: they wrap round the rims, squeeze on the turned faces and move with it. Each dot is a darker shade
+of the colour under it, like ink on chrome. The LCD is the site's electric blue (deep blue → blue → cyan) with lit type.
+Stills: `stills/2026-11-08-contact-phone-round9/` (+ `-short`, `-375`); close-up before/after in the concept folder.
+
 ## 2026-11-07 — the camera looks at you
 
 > "there are times in the background u see black stripes i dont want spaces like that. and can make the camera react to the cursers so it looks at wherever the curser moves."
