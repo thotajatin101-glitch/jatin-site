@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (later still) — SKILLS round 40: PHOTOGRAPHY card in the site's world. NOT deployed, site/ uncommitted
+- **Did:** CamFilm's background is `siteWorld` (palette shards, black wedges, ink dots, glowing floor). The slab is a black plate with neon edges; the parts are palette plastic.
+- **Rule:** every card gets its own world. Space is VIDEO EDITING's alone.
+- **Next:** a world for VISUAL DIRECTION (the chair still uses the space scene).
+
 ## 2026-11-07 (late) — SKILLS round 39: camera detach glides (0.6s in-out each way), no hits. NOT deployed, site/ uncommitted
 - **Next:** his read in a real tab.
 

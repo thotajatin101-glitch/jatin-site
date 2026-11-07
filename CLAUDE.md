@@ -944,6 +944,7 @@ into tweens.
     WebKit and Firefox across 14 desktop/phone/tablet configs; run it before
     any deploy that touches layout. Focus tiles with `focusTile()`, never a
     bare `focus()`: that scrolls the section under the fullscreen OS.
+- **SKILLS: every card has its own world** (his note, 2026-11-07). The space sky, the rainbow slab and the foil shapes belong to VIDEO EDITING only. PHOTOGRAPHY's camera film stands in the site's own world (`siteWorld` in CamFilm: palette shards, black wedges and strokes, ink dots, a glowing floor). A new card never borrows another card's world.
 - Full keyboard nav, like a game: arrows to move, Enter to select, Esc to back.
 
 ## Apply mode + REVERT MAIN (2026-10-30)

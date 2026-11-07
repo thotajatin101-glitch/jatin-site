@@ -143,6 +143,28 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 40 — the camera in the site's world, not space (2026-11-07)
+
+**His note:**
+> "ok when i said our desing theme for camera i meant our website theme u see the one made video editing is soley for video editing so every card will have it's own theme. right now u are using the space theme bg which is only for video editing"
+
+**Rule from this note:** every card has its own world. The space sky, the rainbow slab and the foil belong to VIDEO EDITING alone.
+
+PHOTOGRAPHY now stands in the site's own world, drawn in the film's shader (`siteWorld`):
+- **Shards** radiate from a vanishing point behind the camera, in the logo's palette: yellow→green, cyan→dark, magenta, pink and purple, plus black wedges.
+- **Thick black strokes** between the shards. The shards are sparse and dissolve into a glow pooled at the point.
+- **The 23° ink-dot screen** sits on the colour and vanishes in the blacks.
+- **A cyan perspective floor** flows toward the viewer.
+- **No vignette.**
+
+The rainbow slab is now a black plate with neon edges: cyan on the top rim and a pink line round the side, the transition's outline language. The small parts that fly out are glossy acid, cyan, pink and green instead of rainbow foil.
+
+The background is composited after the tone curve, so the palette lands at full strength. The speed-line and flash code is gone.
+
+Not done: the chair card (VISUAL DIRECTION) still shares the space scene. By the same rule it needs its own world, which is his to brief.
+
+Stills: `round40-camera-site-world-open.jpg`, `docs/process/stills/2026-11-07-skills-camera-site-world`. Video: `round40-camera-site-world.mp4`.
+
 ## Round 39 — the detach glides, no snap (2026-11-07)
 
 **His note:**
