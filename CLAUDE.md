@@ -963,14 +963,13 @@ into tweens.
   - **Stickers are the site's marks** (round 24, his ask: "relatable to the website design"): the menu wedge, a pixel chain link, the acid sparkle, P5 stars, as raised enamel badges in flat palette colour lit in Bayer steps inside a black ink rule (`badge`, materials 20–24). No crystals or jelly charms from the Y2K references.
   - **Lid top:** a round crystal in a chrome ring, with chrome star studs in the corners. **The contact text box is gone on every screen** (his call; kept for screen readers). Entrance (round 25, his ask, 2026-11-08), gated on two clicks like a game:
     1. **It rises shut and CHAINED** (a band and an X of the section's pixel chain, in the closed phone's space).
-    2. **It RINGS:** smooth eased swing bursts (round 26: the jitter read "too shaky"), the outer display reads INCOMING CALL, and a comic **CLICK IT!** balloon punches
+    2. **It RINGS:** smooth eased swing bursts (round 26: the jitter read "too shaky"), the outer display reads INCOMING CALL, and a comic **CLICK IT!** burst punches
        on each ring.
-    3. **Click 1** (phone, balloon or Return) breaks the chains with the computer's snap; it stays shut.
-    4. **It BUZZES like a text:** two short pulses every 2s, 1 NEW MESSAGE on the outer display, and a yellow comic
-       **CLICK AGAIN!** arrow (from above on phones).
-    5. **Click 2** snaps the lid open and carries straight into the chat. After EXIT it rests open and floating.
+    3. **Click 1** (phone, pop-up or Return): **the lid flips open and that is the break** (round 27, his correction: "it breaks open from the flip phone opening"), with the computer's snap round it; the screen comes on.
+    4. **Open, it BUZZES like a text:** two short pulses every 2s, the LCD reads 1 NEW MESSAGE, and **CLICK AGAIN!** points in from the right (over the keypad's edge on phones).
+    5. **Click 2** brings it up close into the chat. After EXIT it rests open and floating.
 
-    The pop-ups copy his references (round 26): a golden spiky balloon with rim-dense purple dots and orange lettering, and a yellow dotted arrow with a black extrude and a white starburst. Both are lettered in **Permanent Marker**. `hold(ms,c1,c2)` scrubs it.
+    The pop-ups are **his RING! reference's shape** (round 27): a spiky crown tapering into long finger tails that point at the phone (`RINGP`, placed by its tip, kept on screen). CLICK IT! is in the reference's gold, purple dots and orange lettering; CLICK AGAIN! is the same shape mirrored in yellow, orange dots and black. Both are lettered in **Permanent Marker**. `hold(ms,c1,c2)` scrubs it.
     Reduced motion skips the chains and pop-ups and rests open. **It follows the cursor like the PROJECTS computer** (round 17, his ask, 2026-11-08: same ±.5 yaw / ±.18 pitch, eased; this reverses the earlier no-cursor rule for the phone). No glow round it.
   - **Step 2: the phone picks up** (his ask, 2026-11-08; concept `docs/concepts/2026-11-08-contact-chat/`).
     - **Open:** a click on the phone (a projected-hull hit test, no readback) or Return dollies it in square to the

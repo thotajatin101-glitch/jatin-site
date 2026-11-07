@@ -536,3 +536,28 @@ Stills: `r25-two-clicks-sheet.png` (rise, ring, strain, flash, debris, buzz, ope
 - **The LCD is the screen:** see chat round 4.
 
 Stills: `stills/2026-11-08-contact-phone-round26/`. Round 25's page: `.local/snapshots/2026-11-08-phone-round25-index.html`.
+
+
+## Round 27 (2026-11-08)
+
+> "i want sticker to be shapped like this. and change to the arrow shape to something similar to this as well. and when i said chains breaks opens i meant it breaks open from the flip phone opening and after that the click it appears again to bring the phone closer"
+
+**The flow, corrected:**
+1. Rise shut and chained, ringing, CLICK IT!.
+2. **Click 1:** 70ms of strain, then the lid snaps open (`SNAP=c1`), and the opening is the break. The computer's
+   snap plays round it: flash, shockwave, speed lines, links flying. The screen comes on 180ms later.
+3. **Open and buzzing:** two pulses every 2s. The inner LCD shows 1 NEW MESSAGE / from: JATIN / "got a vision?"
+   with Later / Read ▸, and CLICK AGAIN! is up.
+4. **Click 2** (phone, pop-up or Return) dollies it straight in to the chat.
+
+**Shape:** one path (`RINGP`) traced from his close-up, in an axis frame: crown on the left, the body tapering to the
+main tip at (540,0), with two finger tails under it split by rounded notches. Each pop-up is placed by its tip,
+with the tip as the transform origin, so the pop, punch and rotation pivot on the point touching the phone. The
+rotated box is then kept on screen, and on a phone the tip slides onto the phone's edge rather than off the
+frame.
+- CLICK IT!: gold gradient, purple outline, purple dots thick at the crown and fading down the tails, the
+  reference's purple stroke-and-dot along the top edge, orange lettering. Tilted 26°, 34° on phones.
+- CLICK AGAIN!: the same path mirrored, yellow with orange dots, black outline and extrude, black lettering, from
+  the right at −28° (−34° on phones). The block arrow and starburst are gone.
+
+Stills: `stills/2026-11-08-contact-phone-round27/`. Round 26's page: `.local/snapshots/2026-11-08-phone-round26-index.html`.

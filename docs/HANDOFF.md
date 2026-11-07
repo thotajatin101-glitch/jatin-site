@@ -4,6 +4,14 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r27) — CONTACT: click 1 flips the lid open and that bursts the chains; it buzzes open with CLICK AGAIN!; click 2 brings it close. Pop-ups are tapering RING! bursts. NOT deployed, site/ uncommitted
+- **Hooks:**
+  - `breakChains()` sets `SNAP=c1`; `answer()` opens the dolly at once.
+  - `hold(ms,c1,c2)`: SNAP follows c1.
+  - The LCD has a `'msg'` kind while notify.
+  - `RINGP`/`TIP`/`VB`: the burst path; `place()` pivots on the tip and keeps the burst on screen.
+- **Next:** his notes; judge the ring and buzz in a real tab.
+
 ## 2026-11-08 (phone r26) — CONTACT: smoother ring, reference-style pop-ups, the chat drawn ON the model's LCD (invisible DOM twin for input). NOT deployed, site/ uncommitted
 - **Hooks:**
   - `layout()` → `paintChat()` (texture) + `render()` (DOM twin); `repaint()` = texture only.

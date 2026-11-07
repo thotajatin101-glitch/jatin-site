@@ -530,6 +530,19 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the lid breaks the chains
+
+> "i want sticker to be shapped like this. and change to the arrow shape to something similar to this as well. and when i said chains breaks opens i meant it breaks open from the flip phone opening and after that the click it appears again to bring the phone closer" (with a close-up of the reference's RING! balloon, his green arrows on its long point and its tails)
+
+**I had read his flow wrong.** I had the chains snap first and the lid open on the second click. He meant the
+opening itself is the break: the first click flips the lid and it bursts the chains. The phone then lies open and
+buzzes, its LCD reading 1 NEW MESSAGE, with a second pop-up. The second click brings the phone up close into the
+chat.
+**The pop-ups take the reference's shape.** Each is a spiky crown that tapers into long finger tails, which point
+at the phone like the sound coming off it. CLICK IT! is in the reference's own colours. CLICK AGAIN! is the same
+shape mirrored, in yellow and black.
+Stills: `stills/2026-11-08-contact-phone-round27/`; concept round 27.
+
 ## 2026-11-08 — the phone's own screen talks back
 
 > "ok first of all the shake on the ringing is'nt exactly smooth bit too shaky and the sticker design i want it to be like refrence itself. now coming to the phone screen i can tell the when the phone comes closer that u dont use the actual lcd screen but an overlay over it the acts as screen and i dont like it i want the models LCD screen to be the screen itself ."
