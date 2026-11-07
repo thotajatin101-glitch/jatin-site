@@ -456,3 +456,19 @@ a piece placed at a point reads as pinned on.
 Close-ups: `r22-contour-close.png`. Entrance: `r22-contour-entrance.png`. Stills:
 `process/stills/2026-11-08-contact-phone-round22` (+ `-short`, `-375`). Round 21's page:
 `.local/snapshots/2026-11-08-phone-round21-index.html`.
+
+## Round 23 — 2026-11-08: leaf-pod hinge
+
+**His note** (with green lines drawn on the reference, `r23-note-hinge.webp`):
+> "alright now can we get the same shaped hinges from this refrence i drew with a green line so it can be easier for u to follow. i want it to be shaped kinda like this so yea"
+
+**Built:**
+- **The halves round into the joint.** The bottom corner radius on the lid and the top corner radius on the body go
+  from .05 to .17. The trays follow (.03 → .14), so the rim keeps its width.
+- **Knuckles are leaf pods** (`rcone`, an exact round cone). Each runs from a fat end by the barrel (r .07 at x .19)
+  to a narrow tip past the side (r .03 at x .272, dropped .05 toward the body).
+- The pods are body lime, printed like the body. The middle barrel is set back between them (half .15).
+
+**Dropped:** a first pass with egg pods in the old gunmetal read as two black balls bolted on.
+
+Before/after: `r23-hinge-before.png`, `r23-hinge-pods.png`. Round 22's page: `.local/snapshots/2026-11-08-phone-round22-index.html`.

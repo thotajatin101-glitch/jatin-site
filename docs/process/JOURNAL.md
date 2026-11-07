@@ -530,6 +530,17 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — leaf-pod hinge
+
+> "alright now can we get the same shaped hinges from this refrence i drew with a green line so it can be easier for u to follow. i want it to be shaped kinda like this so yea"
+
+He traced the reference's hinge in green: the halves curve in to the joint, with a fat rounded pod on each side.
+The old hinge was a straight bar with gunmetal knuckles. Now the lid's bottom corners and the body's top corners round
+off deeply, and each knuckle is a leaf-shaped pod in the body's lime. Each pod is fat beside the barrel and tapers
+out and down past the side, sitting in the notch the curves leave. A first pass with egg-shaped gunmetal pods read as
+two black balls bolted on, so it was cut.
+Stills: `stills/2026-11-08-contact-phone-round23/` (+ `-short`, `-375`).
+
 ## 2026-11-08 — chrome that follows the contour
 
 > "ok the it just looks like it broken and stuck into the pins of the phone right now. the case needs to look more intentin wrapped around the edges of the phone not like this"

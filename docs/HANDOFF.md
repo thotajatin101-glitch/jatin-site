@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r23) — CONTACT round 23: leaf-pod hinge from his drawing. NOT deployed, site/ uncommitted
+- **Did:** halves round into the joint (corner radii .17), knuckles are lime round-cone pods (`rcone`).
+- **Next:** his notes; frame cost in a real tab; step 2.
+
 ## 2026-11-08 (phone r22) — CONTACT round 22: chrome bands follow the outline + tribal flares. NOT deployed, site/ uncommitted
 - **Did:** `cornerChrome()` replaces the clips: band from the outline distance, tapered by the corner angle, plus hooked flares.
 - **Next:** his notes; frame cost in a real tab; step 2.
