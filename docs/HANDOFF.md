@@ -4,6 +4,18 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (phone r3) — CONTACT round 3: posture, sunk hinge, keypad well, bigger screen, site theme. NOT deployed, site/ uncommitted
+- **Did:**
+  - Open angle `TH=mix(pi,.24,uOpen)`. REST is yaw −.26, pitch .12, roll .42. The face bow is .07.
+  - Hinge barrel centred at z −.035: the middle is body pink (mat 1), the knuckles are mat 15 gunmetal.
+  - Keypad well: `well` in `map`, floor at z −.018, mat 14 black gloss. `keys()` heights are measured from the floor; the rows wave. Key sides are chrome (`n.z<.62`).
+  - LCD window is .2×.255. Canvases: `lcd()` (384×490) and `outer()` both use `shards()` and `glitch()`.
+  - Halftone ink is applied to the metal materials after the tone map. The ink rule comes from `dm`, the closest approach of each missed ray, in px.
+  - The strap frame is turned by `uRoll` (it hangs world-down) and sits off the left knuckle. The march box is ±.82 in x.
+  - Round 2 page saved at `.local/snapshots/2026-11-07-phone-round2-index.html`.
+- **Next:** his notes; measure the frame cost in a real tab; then step 2 (working keys, contacts on the LCD).
+- **Watch out:** the ink rule needs `dm` tracked inside the march loop. Anything that ends the march early, like a tighter box, thins the outline.
+
 ## 2026-11-07 (phone r2) — CONTACT round 2: the decorated chrome phone, text box gone. NOT deployed, site/ uncommitted
 - **Did:** PhoneFX shader rebuilt: both halves bow out on both faces (`p.z+=sign(p.z+mid)*.2*x²`; the shading re-applies the same bend before `keys()`), rolled rims with sunk trays, pearl thin film (`film()`), palette studio (`env()`), stones (`stone()` + `sdHeart`/`sdStar5`/`sdSpark`), lid stones in `deco(q,z,outer)`, bead strap `strap()` (box-gated), glints projected with the shader's camera after boot. Textures: LCD 384×464 (Bayer), key atlas (white print, handsets), outer display 256×296 (`uOut`). `#sec-contact .secBody` is visually hidden on every size; `rest()` starts at `.06W+2.6fs`. Round-1 page saved at `.local/snapshots/2026-11-07-phone-round1-index.html`.
 - **Next:** his notes; measure the frame cost in a real tab (much heavier per pixel than round 1); then step 2.

@@ -82,3 +82,37 @@ Stills: `process/stills/2026-11-07-contact-phone-round2` (+ `-short` at 1440×70
 `2026-11-07-contact-phone`. Entrance: `round2-entrance-sheet.jpg` (300, 600, 900, 1080, 1200ms, rest).
 
 **Not checked yet:** frame cost in a real tab. The shader does much more work per pixel now (stones, strap, glints).
+
+## Round 3 — 2026-11-07: posture, a sunk hinge, a real keypad compartment, the site's look
+
+**His note** (with his crop of the hinge, `r3-note-hinge.png`, and two references: `ref-r3-pink-posture.webp`,
+`ref-r3-hinge-keypad.png`):
+> "kinda better but still needs work. first of the phone is bending outwards too much look at the position from the refrence to understand the phones posture. and the and the middle compartment is buldging out like a sore thumb. and next look closely at the last refrence the refrences keypad that design is darker with a proper compartment type not just buttons coming out of the model. finally make the screen a bit bigger as well. i need the phone to have more of the website design theme it doesnt feel like that right now."
+
+**Built:**
+- **Posture, from the reference:** open just short of flat, so the lid tips slightly toward you (it used to lean back
+  past flat). The phone lies on a diagonal, top to the left, nearly face-on. The faces barely bow now (0.07 instead
+  of 0.2).
+- **Hinge:** set back into the joint, barely proud of the faces. The middle barrel is the body's pink and the end
+  knuckles are gunmetal chrome, as in his close-up reference. It no longer sticks out.
+- **Keypad:** a black gloss compartment sunk into the face, with a pink rim round it. Keys sit inside it, nearly flush,
+  in rows that wave like the reference's. They are black with chrome edges, and the edges read as the bright
+  dividers. The softkeys and the chrome nav ring with the pink stone sit inside it too. The C key is gone (the
+  reference has none). The chrome star studs sit on the rim below.
+- **Screen:** bigger (0.40 × 0.51, was 0.33 × 0.40) in a slimmer bezel. The stones were re-laid round it.
+- **The site's theme:**
+  - Both screens are black, like the reference's screen. Behind the words is the site's shatter: a fan of palette
+    shards out of a vanishing point, Bayer-dithered, with a dark hold behind the words like the one behind JATIN.
+  - The LCD reads SAY HI in Cyberway Riders with the glitch split (cyan left, pink right, black drop), with cyan and
+    acid VT323 lines. The outer display reads JATIN.
+  - The body is pink chrome (the reference's colour, and the site's pink). It carries the site's print screen:
+    small ink dots at 23° that swell into its shadows.
+  - A hard ink rule runs round the silhouette, like every sticker on the site, under the red/cyan fringe.
+- **Strap:** moved to the hinge's left end, and it hangs with gravity whatever the phone's tilt.
+
+**Cut:** the acid backlit LCD and the pastel outer display (off-theme); the C key; the pearl body (pink chrome now,
+with a little pearl at the edges); the pillow bow.
+
+Stills: `process/stills/2026-11-07-contact-phone-round3` (+ `-short`, `-375`). Round 2 kept in `-round2`, and its
+page in `.local/snapshots/2026-11-07-phone-round2-index.html`. Entrance: `round3-entrance-sheet.jpg`.
+**Not checked yet:** frame cost in a real tab.

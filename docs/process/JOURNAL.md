@@ -464,6 +464,21 @@ plain satin silver on flat faces, so it read as one grey colour.
 - The contact text box is gone; the phone owns the page.
 Stills: `stills/2026-11-07-contact-phone-round2/` (+ `-short`, `-375`); round 1 kept in `stills/2026-11-07-contact-phone/`.
 
+## 2026-11-07 — the phone joins the site
+
+> "kinda better but still needs work. first of the phone is bending outwards too much look at the position from the refrence to understand the phones posture. and the and the middle compartment is buldging out like a sore thumb. and next look closely at the last refrence the refrences keypad that design is darker with a proper compartment type not just buttons coming out of the model. finally make the screen a bit bigger as well. i need the phone to have more of the website design theme it doesnt feel like that right now."
+
+- It sits like his reference now: open just short of flat, lying on a diagonal. The faces barely curve.
+- The hinge is sunk into the joint: pink in the middle, gunmetal knuckles at the ends.
+- The keypad is a black compartment sunk into the body. The keys sit inside it with chrome edges, in wavy rows.
+- The screen is bigger.
+- The site's look is on the phone itself:
+  - both screens are black with the dithered shatter behind them;
+  - SAY HI is set in his font with the glitch split;
+  - the pink chrome carries the halftone ink dots in its shadows;
+  - an ink outline runs round the whole phone.
+Stills: `stills/2026-11-07-contact-phone-round3/` (+ `-short`, `-375`).
+
 ## 2026-11-07 — the camera looks at you
 
 > "there are times in the background u see black stripes i dont want spaces like that. and can make the camera react to the cursers so it looks at wherever the curser moves."
