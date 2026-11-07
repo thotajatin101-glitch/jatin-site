@@ -437,6 +437,48 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (later) — the camera gets real, and gets a film
+
+> "ok u dont need to keep a name on it. and the model is poorly modeled and i want you to analyze the textures the look very realistic. and i wanted you to go for that type of animation from the refrence as well ."
+
+**Texture read** (close frames of his reference): what makes it look real is
+- matte black with a fine scatter of light flecks;
+- tight chamfers, so every edge catches a crisp line of light;
+- pebbled leather on the grip that throws tiny highlights (a real bump, not a printed pattern);
+- diamond-knurled dials that sparkle;
+- matte ribbed rubber rings and a glossy barrel on the lens, with white print;
+- deep green-tinted glass with two hard softbox reflections;
+- everything bathed in the backdrop's colour: a warm key, a hot rim on the edges, big soft reflections on the planes.
+
+**Built:** the camera left the toy-scene shader and got its own renderer, `CamFilm`, inside the card art (`Space.kind=1`).
+- **Model:** proportions measured off his front-on frame:
+  - body 1.9 × 1.15 with a lower right shoulder, and a deep grip with a finger groove;
+  - a viewfinder hump with sloped sides, a leaning front and a hot shoe;
+  - a knurled mode dial with a lock button, an exposure dial, C buttons, and a shutter with an on/off collar and a front wheel;
+  - strap-lug rings;
+  - on the back, a screen and an eyecup;
+  - a 1.2-wide lens hanging below the body: mount, hairline copper ring, a ribbed zoom ring, a printed mid section, a focus ring, a glossy front barrel with print, and domed glass.
+- **No name on it** (his note).
+- **Materials:**
+  - flecked satin;
+  - a Voronoi-bumped leather grip;
+  - knurled metal with engraved rim marks;
+  - ribbed rubber (normal ribs);
+  - gloss black with print;
+  - copper and bright metal;
+  - coated glass;
+  - for the burst only: a green board with gold traces and a violet sensor.
+- **Lighting:** a white softbox up-left, a pink rim behind-right, a purple fill from below, and a studio environment in the reflections. ACES tone curve, display gamma (without it every dark tone crushed to black) and grain. The backdrop is the reference's glow in the site's pink → purple.
+- **The film, 8.9s a loop** (his reference's beats, cut for a card):
+  - 0–1.8s hero orbit in 3/4;
+  - 1.8–3.5s macro push along the top plate;
+  - 3.5s BURST, then a hang to 6.2s: the lens spreads along its own axis toward you with air between every ring (looking down a stacked column fused the rings into a tube), the top plate rises, the grip and screen pull away, the sensor, board and small parts float out;
+  - 6.2s SNAP together (cubic in) to a front-on, with the softbox catchlight popping and a jolt;
+  - hold to 8.4s;
+  - whip spin into the loop.
+- **Cost:** ~3–7ms a frame at full card resolution, measured in the throttled preview. Dev harness: `.local/menu-preview/cam.html?s=0.9,2.6,5,7.4` (gitignored) renders any moment.
+- **Stills:** `round36-camera-film-strip.png`, `round36-camera-on-card.jpg`.
+
 ## 2026-11-07 (late night) — the camera, from a product film
 
 > "i want something like this for camea and use this as refrence for camera model analyze the video first"

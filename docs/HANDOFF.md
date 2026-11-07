@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (later) — SKILLS round 36: CamFilm, a realistic camera + product-film loop. NOT deployed, site/ uncommitted
+- **Did:** the camera has its own renderer (`CamFilm`, used when `Space.kind===1`): measured model, real materials and lighting, 8.9s orbit → macro → burst → hang → snap → hold → whip loop. No name on the body. The old toy camera is removed from the shared shader.
+- **Next:** his read; then wire the three cards into the deck (`kind` per card).
+- **Watch out:** CamFilm needs display gamma (it's at the end of its FS). The burst spreads the lens along its own axis; a vertical stack fuses the rings. Reduced motion draws one frame (7.4s, the front-on hold).
+
 ## 2026-11-07 (late night) — SKILLS round 35: camera rebuilt from his mirrorless reference. NOT deployed, site/ uncommitted
 - **Did:** reference analysed (concept round 35); `camera()` in the card's `Space` shader is now a black mirrorless with a JATIN pixel plate. `.local/menu-preview/art.html?k=1|2` renders the card art big for checking.
 - **Next:** his read; then the explode → hang → snap motion, and wiring the cards into the deck.
