@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (eye 5) — SKILLS round 48: the eye's reflection flicks through his own photos (browse → flicker → LOCKED with pulled swatches → moodboard). NOT deployed, site/ uncommitted
+- **Did:** EyeFX feed reads `PHOTOS` (moved to top level, markers intact) and lazy-loads the 46 thumbs when the card first draws. The harness `cam.html` sets `window.PHOTOS` and awaits `EyeFX.preload()`.
+- **Next:** his read. 3.2MB of thumbs load with card 02; trim the list if phones feel it. Remove the retired chair from Space.
+
 ## 2026-11-07 (eye 4) — SKILLS round 47: EyeFX rebuilt from his new reference: one held eye, the look reflected in it. NOT deployed, site/ uncommitted
 - **Did:** `EyeFX` is a 2D eye shader + a 512×320 feed canvas (texture unit 2 on Space's GL), redrawn on 2s at 12fps, pure function of time (`P:6.4`). Harness `cam.html` now loads Cyberway + VT323 for the feed text.
 - **Next:** his read. Then remove the retired chair from Space.

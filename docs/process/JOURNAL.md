@@ -437,6 +437,13 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (eye, take 5) — the eye goes through a lot of references
+
+> "ok love this but can the reflection be something like going through alot of refrences?"
+
+The eye stays; what it sees changed. The reflection flicks through his own photos (FLUX, OUTSTATION): browsing, speeding up into a flicker, a white hit, then it LOCKS on one and pulls that photo's palette out as swatches; a quick 2×2 moodboard, and round again. A green HUD tags each one (REF 017 · LIGHT). That's the job of visual direction, shown in the eye. Cut: the round 47 feed (his spec typing, JATIN, the site palette), kept in its film.
+Stills: `stills/2026-11-07-skills-eye-references/`.
+
 ## 2026-11-07 (eye, take 4) — the eye that sees
 
 > "Ok let's switch it up check this refrence out this a better idea for representing it"

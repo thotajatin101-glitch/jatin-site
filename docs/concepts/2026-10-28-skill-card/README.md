@@ -143,6 +143,23 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 48 — the eye goes through a lot of references (2026-11-07)
+
+**His note:**
+> "ok love this but can the reflection be something like going through alot of refrences?"
+
+**Built:** the reflection now flicks through **his own photos**: all 46 FLUX and OUTSTATION thumbnails from `PHOTOS`, the same list JATIN OS uses. The eye, the datamosh and the glance from round 47 are unchanged. One 6.4s loop (77 steps on a 12fps clock):
+- **Browse:** a new reference every 3 steps, each easing in slightly. A green HUD over it reads `REF 0xx` and what he's reading it for (LIGHT, FRAME, COLOUR, SKIN, SHADOW, GRAIN, POSE…).
+- **Accelerate:** every 2 steps, then every step: the flick speeds up.
+- **Hit:** a white frame, datamosh, the pupil snaps small.
+- **Lock:** it stops on one. The image pushes in, `> LOCKED` blinks, and its palette is pulled out as five swatches, sampled from the photo itself.
+- **Board:** a 2×2 moodboard of four, then back to browsing.
+- Each loop picks different photos.
+
+**Loading:** the thumbs (640w, 3.2MB in all) load the first time the card draws, three at a time. Bokeh lights stand in until the first one arrives. The `PHOTOS` block moved to the top of the script, so PROJECTS and the eye share one list; `photos.mjs` finds it by its markers, so the move is safe. `tests/check.mjs` passes.
+
+Stills: `docs/process/stills/2026-11-07-skills-eye-references`. Film: `round48-eye-references.mp4` + sheet. The round 47 feed (lights / spec / JATIN / palette) is in `round47-eye-reflection.mp4`.
+
 ## Round 47 — the eye that sees: one held eye, the look reflected in it (2026-11-07)
 
 **His note** (with `Screen Recording 2026-11-07 at 8.12.00 PM.mov`, a 2.7s red close-up of one eye):
