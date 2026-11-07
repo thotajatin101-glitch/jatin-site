@@ -437,6 +437,13 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 — the camera looks at you
+
+> "there are times in the background u see black stripes i dont want spaces like that. and can make the camera react to the cursers so it looks at wherever the curser moves."
+
+The black wedges behind the camera are gone: every shard is colour now, with only the thin ink strokes left black. The camera turns its lens toward the cursor, left, right, up and down, with a little spring weight. The world behind still holds still; only the card's art reacts.
+Stills: `stills/2026-11-07-skills-camera-look/`.
+
 ## 2026-11-07 — stars out, gap closed, case on time
 
 > "remove the stars and close this gap as well. and i've noticed that every time i first load into the skills section the cards comes first and the metal chrome case comes in randomly later fix that as well"

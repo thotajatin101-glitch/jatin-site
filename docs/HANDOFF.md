@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (camera look) — PHOTOGRAPHY: no black wedges; the camera looks at the cursor. NOT deployed, site/ uncommitted
+- **Did:** `siteWorld` has no black shards (`sc=pcyc(...)` always). CamFilm `draw(W,H,T,px,py,still)` / `shot(s,px,py)`: yaw `.3-px*.62`, pitch `.26+py*.22`, plus a small sway. px/py are SkillFX's `par` (window-relative, tilt spring). The harness `cam.html` takes `?p=px:py,...` for one panel per pose.
+- **Next:** his read, in a real tab.
+
 ## 2026-11-07 (case) — SKILLS: stars removed, skirt closes the card/plate gap, chrome case built while the menu is up. NOT deployed, site/ uncommitted
 - **Did:** `SkillFX.prep()` (= `buildCase`) is called from `cascadeMenu()` +1.4s; `enter()` calls it as a fallback and `frame()` holds `t0` until `cas.ready` (max 1.6s). `.skInfoSkirt` is sized in `restage()`.
 - **Watch out:** anything that starts the SKILLS entrance must let the case finish first, or the case pops in late again.
