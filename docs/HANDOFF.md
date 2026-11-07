@@ -6,7 +6,7 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ## 2026-11-08 (contact chat) — CONTACT step 2 built: click the phone, it dollies in, the LCD asks 4 questions. NOT deployed, site/ uncommitted
 - **Did:** PhoneFX open/close/key/hit + `.phChat` DOM layer; `worker/contact-mail` (cf Worker, send_email locked to thotajatin.work@gmail.com).
-- **In flight:** Cloudflare setup needs his OK:
+- **In flight:** Cloudflare setup, which waits for the release (his call, 2026-11-08: "once we got done with website and are going update the hosted site with it"):
   1. Email Routing on the `mail.thotahub.in` subdomain. The apex has registrar MX forwarding; don't touch it.
   2. Verify the destination (he clicks the link Cloudflare sends).
   3. `cf deploy` the Worker and set `MAIL` in PhoneFX.

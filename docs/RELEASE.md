@@ -85,3 +85,11 @@ domain:    gh api repos/thotajatin101-glitch/jatin-site/pages   (cname, https_en
 - A zero-dependency check script in `tests/` (Node, no packages): syntax-checks
   the inline scripts and asserts the routes above. A real-browser version needs
   Playwright as a **dev-only** tool — it never ships, but it's still his OK.
+
+## Before the release that ships CONTACT's phone chat
+
+His call (2026-11-08): the mail side is set up at release time, not before. See `docs/concepts/2026-11-08-contact-chat/`.
+1. Turn on Email Routing for `mail.thotahub.in`, the subdomain only. The apex MX is his registrar forwarding.
+2. Add thotajatin.work@gmail.com as a destination. He clicks the verification link.
+3. `cf deploy` from `worker/contact-mail`, then set `MAIL` in PhoneFX to its URL.
+4. Send a real test message from the phone before pushing.
