@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r17) — CONTACT round 17: the phone follows the cursor like the computer. NOT deployed, site/ uncommitted
+- **Did:** `par`/`parT` in PhoneFX (window pointermove), eased in `frame()`, added in `angles()` × the float ramp. Memory `no-cursor-parallax` updated: the phone is now an exception like the computer.
+- **Next:** his notes; frame cost in a real tab; step 2.
+
 ## 2026-11-08 (phone r16) — CONTACT round 16: lid test reaches the hinge (last dotted line gone). NOT deployed, site/ uncommitted
 - **Did:** "on the lid" = `p.y>.05 || (lid(p).y>.02 && p.y>-.03)` in both the halftone and the gloss.
 - **Watch out:** if `TH` (the lid's fold) changes, recheck the strip next to the hinge up close.

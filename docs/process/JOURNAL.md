@@ -530,6 +530,14 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the phone looks at you
+
+> "can u make the phone react to the curser similar to how the 3d computer reacts"
+
+The phone now turns toward the pointer exactly like the PROJECTS computer: the same range, the same eased follow.
+It comes in after the entrance, and the chain stays on the hinge and swings with every turn.
+Sheet: `concepts/2026-11-07-contact-phone/r17-cursor-left-right-up-down.png`.
+
 ## 2026-11-08 — the last dotted line
 
 > "this outline of dots on the phone i dont want them" (arrows on the dotted line along the panel's bottom edge)

@@ -321,3 +321,20 @@ folded toward the viewer, the bottom of its panel sits below that, so a strip ne
 **Built:** both tests are now `p.y>.05 || (lid(p).y>.02 && p.y>-.03)`. Before/after: `r16-dots-before-after.png`.
 Stills: `process/stills/2026-11-08-contact-phone-round16` (+ `-375`). Round 15's page:
 `.local/snapshots/2026-11-08-phone-round15-index.html`.
+
+## Round 17 — 2026-11-08: it follows the cursor, like the computer
+
+**His note:**
+> "can u make the phone react to the curser similar to how the 3d computer reacts"
+
+This reverses the earlier "it never follows the cursor" rule, at his request.
+
+**Built:**
+- MonitorFX's parallax: yaw `+par.x·.5`, pitch `+par.y·.18`, where `par` is the pointer over the window, −.5….5.
+- It is eased time-based (`1−e^(−5dt)`, about the computer's .08/frame at 60fps) and faded in with the float after
+  the snap.
+- It lives inside `angles()`, so the chain's pin follows it and the strap swings off the turns.
+- `hold()` zeroes it, so stills stay exact.
+
+Sheet (pointer left, right, up, down): `r17-cursor-left-right-up-down.png`. Round 16's page:
+`.local/snapshots/2026-11-08-phone-round16-index.html`.
