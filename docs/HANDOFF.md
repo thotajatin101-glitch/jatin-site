@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (later) — SKILLS round 31: menu chain design in chrome, thicker near V. NOT deployed, site/ uncommitted
+- **Did:** METAL keeps its chrome bands but drops `mono`, so its links get the menu chain's fringe + ink screen; `sprite()` now reads colour stops off any palette. The rig's near V went from 1.55 to 2.15.
+- **In flight:** his read in a real tab.
+- **Watch out:** `mono` = no fringe, no dots (DARK/SIDE/GREY debris). Don't set it on METAL again.
+
 ## 2026-11-07 — SKILLS round 30: the bolt breaks the chains. NOT deployed, site/ uncommitted
 - **Did:** frame read of the Confidant recording (concept round 30). SKILLS triangle → green Z bolt that strikes at 1100ms and stays; chains grow thin-first, card shoved on lock and on strike; dead-still hold; break at 1260ms with a speed ramp into slow grey chunks; no flash/shockwave/speed lines; acid slash deleted; menu chain loop no longer in SKILLS. `snap.mjs` SKILLS holds re-timed. `tests/check.mjs` passes. Then (his note "BAAM!"): S-curve speed ramp, impact over in ~1s, then (his note) ONE very hard 0.5s card shake, only from the bolt; no other card shake.
 - **In flight:** his read in a real tab (localhost:5179 → SKILLS).

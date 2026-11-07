@@ -437,6 +437,12 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (later) — SKILLS chains in the menu's design
+
+> "ok now i want the two front chains to be thicker. and could change chains design to what in main menu ? colours should be the same as now but design i want that"
+
+The SKILLS links now use the menu chain's design, in the same chrome colours: the red/cyan offset fringe round every link, and the fine ink-dot screen printed into the face, which thickens toward the shaded end. Before this, the chrome palette switched both off (`mono`). Now `mono` only means "no fringe, no dots", and any palette can carry its own colour bands. The debris's dark sides and the grey hanging chunks stay mono, so the extrusion doesn't read as stripes. The near V that stays after the break went from 1.55 to 2.15× (×.55 on phones, as before). The card back's chain rays share the metal, so they picked up the design too. Stills `2026-11-07-skills-menu-chain-design`; the before set is `2026-11-07-skills-bolt-shake`.
+
 ## 2026-11-07 — the bolt breaks the chains
 
 His note: the entrance "feels flat no real impact … the just break out of nowhere but in the refrence u can see that the chains breaks because of the red stripe". Frame by frame, the recording's impact comes from three things ours didn't have: a dead-still hold, a cause (the stripe tears in and the chains snap two frames later), and a speed ramp (a few frames of blowout, then everything hangs in slow motion, gone grey). So the green triangle became a green bolt that strikes from the top-right corner and stays as the background, and the break rides it. My generic flash, shockwave and speed lines came out. Concept round 30; stills `2026-11-07-skills-bolt`.

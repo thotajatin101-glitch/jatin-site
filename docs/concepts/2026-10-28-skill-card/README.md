@@ -143,6 +143,15 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 31 — menu chain design, thicker near V (2026-11-07)
+
+**His note:**
+> "ok now i want the two front chains to be thicker. and could change chains design to what in main menu ? colours should be the same as now but design i want that"
+
+The SKILLS links now use the menu chain's design, in the same chrome colours: the red/cyan offset fringe round every link, and the fine ink-dot screen printed into the face, which thickens toward the shaded end. Before this, the chrome palette switched both off (`mono`). Now `mono` only means "no fringe, no dots", and any palette can carry its own colour bands. The debris's dark sides and the grey hanging chunks stay mono, so the extrusion doesn't read as stripes. The near V that stays after the break went from 1.55 to 2.15× (×.55 on phones, as before). The card back's chain rays share the metal, so they picked up the design too. Stills `2026-11-07-skills-menu-chain-design`; the before set is `2026-11-07-skills-bolt-shake`.
+
+**Not judged yet:** in a real tab.
+
 ## Round 30 — the bolt breaks the chains (2026-11-07)
 
 **His note:**
