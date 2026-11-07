@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (eye 4) — SKILLS round 47: EyeFX rebuilt from his new reference: one held eye, the look reflected in it. NOT deployed, site/ uncommitted
+- **Did:** `EyeFX` is a 2D eye shader + a 512×320 feed canvas (texture unit 2 on Space's GL), redrawn on 2s at 12fps, pure function of time (`P:6.4`). Harness `cam.html` now loads Cyberway + VT323 for the feed text.
+- **Next:** his read. Then remove the retired chair from Space.
+- **Watch out:** the feed texture lives on unit 2; Space itself uses none. If Space ever gains a texture, keep off unit 2.
+
 ## 2026-11-07 (eye 3) — SKILLS round 46: EyeFX is now a flight through depth layers (eye / shatter frames / 3D spheres and cubes), no lashes. NOT deployed, site/ uncommitted
 - **Next:** his read. Measure the card's frame cost in a real tab (11 layers × 3 passes). Remove the retired chair from Space.
 

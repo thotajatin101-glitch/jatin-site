@@ -437,6 +437,13 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (eye, take 4) — the eye that sees
+
+> "Ok let's switch it up check this refrence out this a better idea for representing it"
+
+His new reference holds the camera still on one eye; everything happens in its reflection (lights, code, glitch). That's the better metaphor for visual direction: the eye taking the look in. Rebuilt the card around it: a pink duotone eye in the site's print language (Bayer steps, ink dots, red/cyan split, hard liner, no lashes), and a reflection that cuts on 2s between lights, his own direction rules typing in green, the shatter with JATIN slammed after a white frame, and the palette swatches, with a datamosh on every cut. The eye glances by itself. Cut: the flight through layers (round 46, kept in stills `2026-11-07-skills-eye-flight`).
+Stills: `stills/2026-11-07-skills-eye-reflection/`.
+
 ## 2026-11-07 (eye, take 3) — flying through layers
 
 > "ok so there is a huge difference between this and the reference here is why. in reference u can tell by like that it feels like the camera is moving through multiple layers and there are some 3d objects here and there as well the current one is not like so work on that. and can u remove the eye lashes as well"

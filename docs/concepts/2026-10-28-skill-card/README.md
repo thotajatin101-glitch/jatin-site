@@ -143,6 +143,27 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 47 — the eye that sees: one held eye, the look reflected in it (2026-11-07)
+
+**His note** (with `Screen Recording 2026-11-07 at 8.12.00 PM.mov`, a 2.7s red close-up of one eye):
+> "Ok let's switch it up check this refrence out this a better idea for representing it"
+
+**Frame read** (sheet `ref-eye-reflection-sheet.jpg`): the camera never moves. A single stylised eye, red duotone on black, heavy shadow above, grain. All the motion is in the REFLECTION on the eyeball: soft lights and screen bars, then green terminal code, then datamosh blocks (magenta, green) tearing across it, cut hard every half-second or so.
+
+**Built** (`EyeFX` rewritten; the round 46 flight is kept in round46-eye-flight.mp4 and stills `2026-11-07-skills-eye-flight`):
+- **One eye, held.** Pink duotone face, posterised in 4×4 Bayer steps, the 23° ink dots, a red/cyan split, light static grain. Heavy black above (brow, socket), the soft black blob hugging the eye. Hard ink liner, heavy on top, thin below. Lid skin and crease. No lashes (his last note).
+- **The reflection is a feed**: a small canvas redrawn on 2s at 12fps and bent over the eyeball like a convex mirror, screened over the dark iris, a sheen on the white. A 6.4s loop:
+  1. lights: screen bars and bokeh drifting;
+  2. **his direction spec typing in green** (the reference's code, but it's his rules: palette hexes, CYBERWAY RIDERS +.14EM, 24FPS ON 2s, cyan left / pink right, ink dots @ 23°, VIGNETTE NONE. EVER.);
+  3. a white hit frame, then the site's shatter with JATIN slammed in Cyberway, the pupil snapping small;
+  4. the six palette swatches slamming in one per step;
+  5. the spec signs off: `> look locked_`.
+- **Every cut lands with a datamosh** for ~3 frames: block shifts tinted magenta/green, row tears.
+- **The eye glances** on its own in quick hops every 1.6s. Not the cursor.
+- Fitted to the art window's width, so both corners always show.
+
+Stills: `docs/process/stills/2026-11-07-skills-eye-reflection`. Film: `round47-eye-reflection.mp4` + sheet.
+
 ## Round 46 — a flight through layers, with 3D objects; no lashes (2026-11-07)
 
 **His note:**
