@@ -4,6 +4,9 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (late) — SKILLS round 39: camera detach glides (0.6s in-out each way), no hits. NOT deployed, site/ uncommitted
+- **Next:** his read in a real tab.
+
 ## 2026-11-07 (night) — SKILLS round 38: three-card deck wired. NOT deployed, site/ uncommitted
 - **Did:** CARDS has VIDEO EDITING (computer), VISUAL DIRECTION (chair) and PHOTOGRAPHY (camera film). Each card's `art` switches `Space.kind` in `fill()`. The card title is fitted to the card.
 - **Next:** his read on the copy, and a real-tab pass of the deal between cards (the camera film starts mid-loop on a deal, since its clock is page time).

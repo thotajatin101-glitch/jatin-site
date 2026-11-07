@@ -143,6 +143,24 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 39 — the detach glides, no snap (2026-11-07)
+
+**His note:**
+> "ok the camera animation is too cluncky like make it quick and smooth motion i don't want the camera opening up in a snap."
+
+The snap is gone. The loop is still 4.2s:
+- **0–1.0s:** it sits.
+- **1.0s, glide apart:** 0.6s on an in-out cubic.
+- **1.6–2.9s:** it floats, the parts easing apart another 4% and back.
+- **2.9s, glide back together:** 0.6s on the same ease.
+- **Then:** it sits, and loops.
+
+What came out: the white impact frames, the speed lines, the camera shake, the catchlight pop and the quint-out burst.
+
+The shot now eases back further while the camera is open (distance 14, target shifted left and up), because the slower open showed the lens and the top parts cropping off the frame edge.
+
+The rejected snap version is kept as `round37-camera-detach.mp4`. New: `round39-camera-glide.mp4` and its sheet.
+
 ## Round 38 — the deck: three cards, each with its own art (2026-11-07)
 
 **His note:**

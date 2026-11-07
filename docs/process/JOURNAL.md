@@ -437,6 +437,23 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (late) — the camera glides open
+
+> "ok the camera animation is too cluncky like make it quick and smooth motion i don't want the camera opening up in a snap."
+
+The snap is gone. The loop is still 4.2s:
+- **0–1.0s:** it sits.
+- **1.0s, glide apart:** 0.6s on an in-out cubic.
+- **1.6–2.9s:** it floats, the parts easing apart another 4% and back.
+- **2.9s, glide back together:** 0.6s on the same ease.
+- **Then:** it sits, and loops.
+
+What came out: the white impact frames, the speed lines, the camera shake, the catchlight pop and the quint-out burst.
+
+The shot now eases back further while the camera is open (distance 14, target shifted left and up), because the slower open showed the lens and the top parts cropping off the frame edge.
+
+The rejected snap version is kept as `round37-camera-detach.mp4`. New: `round39-camera-glide.mp4` and its sheet.
+
 ## 2026-11-07 (night) — the SKILLS deck is dealt
 
 > "Looks good, wire cards"
