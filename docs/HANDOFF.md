@@ -4,6 +4,9 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (last) — SKILLS round 41: camera world has no glow, hard edges only. NOT deployed, site/ uncommitted
+- **Next:** a world for VISUAL DIRECTION.
+
 ## 2026-11-07 (later still) — SKILLS round 40: PHOTOGRAPHY card in the site's world. NOT deployed, site/ uncommitted
 - **Did:** CamFilm's background is `siteWorld` (palette shards, black wedges, ink dots, glowing floor). The slab is a black plate with neon edges; the parts are palette plastic.
 - **Rule:** every card gets its own world. Space is VIDEO EDITING's alone.

@@ -437,6 +437,20 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (last) — the backlight goes
+
+> "i dont want the weird purple gradient backliht" (with a frame of the purple glow behind the open camera)
+
+What changed:
+- **The glow is gone.** The sky behind the shards is plain black.
+- **The shards' tips are cut clean** instead of fading into the point. The soft fade left a blurry dark halo once the purple went.
+- **The black strokes are pixel-sharp.**
+- **The smear in the top right is gone.** It came from the angle warp that gives the shards uneven widths: it was folding back on itself, which smeared a stroke into a soft diagonal shadow. The warp is calmer now (.13 / .035), and the stroke is measured against its slope, so it keeps one width.
+
+**Lesson:** no soft glows or gradient backlights in the card worlds. Hard edges only, like the rest of the site.
+
+`round41-camera-no-glow.jpg` / `.mp4`.
+
 ## 2026-11-07 (later still) — every card gets its own world
 
 > "ok when i said our desing theme for camera i meant our website theme u see the one made video editing is soley for video editing so every card will have it's own theme. right now u are using the space theme bg which is only for video editing"

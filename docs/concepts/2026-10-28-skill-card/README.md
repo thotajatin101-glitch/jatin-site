@@ -143,6 +143,21 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 41 — no backlight (2026-11-07)
+
+**His note:**
+> "i dont want the weird purple gradient backliht" (with a frame of the purple glow behind the open camera)
+
+What changed:
+- **The glow is gone.** The sky behind the shards is plain black.
+- **The shards' tips are cut clean** instead of fading into the point. The soft fade left a blurry dark halo once the purple went.
+- **The black strokes are pixel-sharp.**
+- **The smear in the top right is gone.** It came from the angle warp that gives the shards uneven widths: it was folding back on itself, which smeared a stroke into a soft diagonal shadow. The warp is calmer now (.13 / .035), and the stroke is measured against its slope, so it keeps one width.
+
+**Lesson:** no soft glows or gradient backlights in the card worlds. Hard edges only, like the rest of the site.
+
+`round41-camera-no-glow.jpg` / `.mp4`.
+
 ## Round 40 — the camera in the site's world, not space (2026-11-07)
 
 **His note:**
