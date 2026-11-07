@@ -437,6 +437,16 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 — CONTACT gets a flip phone
+
+> "alright now it's time work on the contact page. Similar to what we did to 3d computer i want to make 3d flip phone and here are the refrence for it."
+
+A silver clamshell (his first reference) with the second reference's backlit LCD, lit in CONTACT's acid. It rises in
+closed on one turn, the lid snaps open past its rest and settles, the screen flashes and comes on. Built like the
+computer: one shader, no library. The keys are modelled and printed; the screen reads "Got a vision? / LET'S MAKE IT."
+as placeholder. Next: the keys work and the LCD becomes the contacts list.
+Stills: `stills/2026-11-07-contact-phone/` (+ `-1440`, `-375`), before: `stills/2026-11-07-contact-before-phone/`.
+
 ## 2026-11-07 — the camera looks at you
 
 > "there are times in the background u see black stripes i dont want spaces like that. and can make the camera react to the cursers so it looks at wherever the curser moves."

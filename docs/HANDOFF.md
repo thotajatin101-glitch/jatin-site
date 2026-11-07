@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (phone) — CONTACT step 1: the 3D flip phone (PhoneFX). NOT deployed, site/ uncommitted
+- **Did:** `PhoneFX` (before `openSection`) raymarches a clamshell on `.phCv`; `openSection` calls `PhoneFX.enter(el,180)`. Lid angle `TH=mix(pi,-.26,uOpen)` about the hinge (x axis at the origin); keys via `keys()`; LCD from a 384×496 canvas (`lcd()`), key labels from a 512×256 atlas, both no mips. `PhoneFX.hold(ms)` freezes the entrance. Harness: `.local/menu-preview/phone.html` + `phone-shot.mjs` (copy into `tests/browsers` to run, it needs Playwright).
+- **Next:** his notes on the model; then step 2 (working keypad, contacts list on the LCD, card removed).
+- **Watch out:** the idle float redraws at 30fps for as long as CONTACT is open; measure in a real tab.
+
 ## 2026-11-07 (camera look) — PHOTOGRAPHY: no black wedges; the camera looks at the cursor. NOT deployed, site/ uncommitted
 - **Did:** `siteWorld` has no black shards (`sc=pcyc(...)` always). CamFilm `draw(W,H,T,px,py,still)` / `shot(s,px,py)`: yaw `.3-px*.62`, pitch `.26+py*.22`, plus a small sway. px/py are SkillFX's `par` (window-relative, tilt spring). The harness `cam.html` takes `?p=px:py,...` for one panel per pose.
 - **Next:** his read, in a real tab.
