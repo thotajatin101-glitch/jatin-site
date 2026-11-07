@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r10) — CONTACT round 10: clean LCD, no dots on its frame. NOT deployed, site/ uncommitted
+- **Did:** `smooth()` replaces `bayer()` for the LCD backlight; the halftone skips the LCD bezel by region. Round 9's page: `.local/snapshots/2026-11-08-phone-round9-index.html`.
+- **Next:** his notes; frame cost in a real tab; step 2.
+
 ## 2026-11-08 (phone r9) — CONTACT round 9: surface-printed halftone, electric-blue LCD. NOT deployed, site/ uncommitted
 - **Did:** the halftone block after the tone map now works in object space (triplanar, lid frame on the lid), ink = a dark shade of the surface. `lcd()` uses the blue ramp with pale ink. Round 8's page: `.local/snapshots/2026-11-08-phone-round8-index.html`.
 - **Next:** his notes; measure the frame cost in a real tab; step 2.

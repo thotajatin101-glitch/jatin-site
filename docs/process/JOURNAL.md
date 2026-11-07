@@ -530,6 +530,14 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — a clean screen
+
+> "i dont want the dither to on the lcd screen and the frame around it tho i like to keep it for the rest phone tho"
+
+The LCD's blue is a smooth backlight now, no dither steps, and its chrome frame carries no dots. The rest of the phone
+keeps its print.
+Stills: `stills/2026-11-08-contact-phone-round10/` (+ `-375`).
+
 ## 2026-11-08 — dots printed on the phone, a blue screen
 
 > "the dither effect on the phone looks like an overlay but i want it integrated into the model itself properly. also could change the screen to electric blue that we use ?"

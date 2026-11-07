@@ -235,3 +235,14 @@ moved under them and never followed a curve.
 Close-up: `r9-dots-before-after.png` (left round 8, right round 9). Stills:
 `process/stills/2026-11-08-contact-phone-round9` (+ `-short`, `-375`). Round 8's page:
 `.local/snapshots/2026-11-08-phone-round8-index.html`.
+
+## Round 10 — 2026-11-08: no dither on the screen or its frame
+
+**His note** (crop of the LCD, `r10-note-lcd.png`):
+> "i dont want the dither to on the lcd screen and the frame around it tho i like to keep it for the rest phone tho"
+
+**Built:** `lcd()` paints the blue ramp with `smooth()` (the same stops and falloff as `bayer()`, linearly blended) instead
+of Bayer cells. The halftone skips the chrome bezel round the LCD (material 13 on the lid inside |x|<.27, |y−.52|<.32);
+the earpiece ring, studs and every other surface keep their dots. The LCD's pixel lines stay (they are the panel, not
+dither). Close-up: `r10-clean-lcd.png`. Stills: `process/stills/2026-11-08-contact-phone-round10` (+ `-375`). Round 9's
+page: `.local/snapshots/2026-11-08-phone-round9-index.html`.
