@@ -143,6 +143,13 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 33 — the menu's SKILLS goes chrome too (2026-11-07)
+
+**His note:**
+> "ok now in main menu as well switch the skils theme"
+
+The menu's SKILLS item is chrome too (`#m-skills --acc:#c3cadf`). The living wedge blends its ramp toward the card's mirror ramp the greyer the accent is (`cr` in `livingWedge`), so SKILLS' triangle dithers black → steel → white and the coloured items are untouched. The selected SKILLS plate uses the light chrome ramp. Stars and the menu chain follow the steel accent. Before: `2026-11-07-menu-skills-green-before`. After: `2026-11-07-menu-skills-chrome` (+ `-phone`).
+
 ## Round 32 — the whole page in the card's chrome (2026-11-07)
 
 **His note:**

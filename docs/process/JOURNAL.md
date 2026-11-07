@@ -437,6 +437,12 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (last) — the menu's SKILLS goes chrome
+
+> "ok now in main menu as well switch the skils theme"
+
+The menu's SKILLS item is chrome too (`#m-skills --acc:#c3cadf`). The living wedge blends its ramp toward the card's mirror ramp the greyer the accent is (`cr` in `livingWedge`), so SKILLS' triangle dithers black → steel → white and the coloured items are untouched. The selected SKILLS plate uses the light chrome ramp. Stars and the menu chain follow the steel accent. Before: `2026-11-07-menu-skills-green-before`. After: `2026-11-07-menu-skills-chrome` (+ `-phone`).
+
 ## 2026-11-07 (later still) — SKILLS goes chrome
 
 > "can we give the whole skills page the same chrome theme that the card has ? right now it's green but i feel like there is so much going on that the card isnt getting that much attention"

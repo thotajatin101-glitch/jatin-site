@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-07",
+  "label": "menu-skills-chrome",
+  "shots": [
+    {
+      "file": "menu-01-about.jpg",
+      "caption": "Menu, ABOUT selected"
+    },
+    {
+      "file": "menu-02-projects.jpg",
+      "caption": "Menu, PROJECTS selected"
+    },
+    {
+      "file": "menu-03-skills.jpg",
+      "caption": "Menu, SKILLS selected"
+    },
+    {
+      "file": "menu-04-contact.jpg",
+      "caption": "Menu, CONTACT selected"
+    }
+  ],
+  "films": [],
+  "commit": "064e4d4 + .local/menu-preview",
+  "captured": "2026-11-07",
+  "browser": "Comet, Chrome 156.0.8078.48"
+}

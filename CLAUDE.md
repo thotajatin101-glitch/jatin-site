@@ -504,7 +504,7 @@ into tweens.
     flush-left again on mobile. `#wedgeText` uses `right:0` (not a fixed
     width) so those percentages resolve against the real available space.
   - P5 stars pop on each selection change; everything recolors to the accent.
-- Per-item accent: ABOUT cyan, PROJECTS pink, SKILLS green, CONTACT acid.
+- Per-item accent: ABOUT cyan, PROJECTS pink, SKILLS **chrome** (steel `#c3cadf`, his call 2026-11-07: the card's metal, so the card is the only colour on its page), CONTACT acid. A grey accent dithers through the card's mirror ramp (black → steel → white) on the wedge, the stripe and the plates, not the usual purple-shade ramp.
   Order is the section order, top to bottom. **EXPERIENCE was removed** (his
   call, Oct 2026) — menu item, section, accent and world entry all gone;
   numbering is 01–04.
@@ -516,7 +516,7 @@ into tweens.
   staggered cards.
 - **Every section wears its menu item's colour and the menu's layout** (his
   ask: continuity and balance). `#sec-*` set `--acc` to the item's accent
-  (ABOUT cyan, PROJECTS pink, SKILLS green, CONTACT acid), and everything
+  (ABOUT cyan, PROJECTS pink, SKILLS chrome, CONTACT acid), and everything
   "accent" inside reads `var(--acc)`: card titles, bullets, meta tags, chips,
   scrollbar, BACK, and the ABOUT poster details (title's small word, bubble
   highlight, name letters, banner glow, stars, the baked sticker rim). The
