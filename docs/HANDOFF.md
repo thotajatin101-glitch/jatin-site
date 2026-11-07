@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (eye) — SKILLS round 44: VISUAL DIRECTION = EyeFX, an endless dive into a psychedelic eye. NOT deployed, site/ uncommitted
+- **Did:** `EyeFX` (2D Droste shader, ×8 per 3.2s) before CamFilm; `Space` routes kind 3 to it; the card's `art` is 3.
+- **Harness:** `.local/menu-preview/cam.html?m=EyeFX`, and `M=EyeFX P=3.2` for the render script.
+- **Next:** his read. Then remove the retired chair from the Space shader.
+
 ## 2026-11-07 (close) — SKILLS round 43: camera stays whole (no detach), gentle 8s sway over the flowing shards. NOT deployed, site/ uncommitted
 - **Next:** a world for VISUAL DIRECTION.
 

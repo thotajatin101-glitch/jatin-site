@@ -143,6 +143,38 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 44 — VISUAL DIRECTION is an eye you fall into (2026-11-07)
+
+**His note:**
+> "Here is my what i want for visual direction. visual direction has everything to do with having eye for things that's why i wanted to go with something like but ofc in our theme but heavily inspired by this style" (reference: a 16s psychedelic cartoon eye, an endless zoom into its pupil)
+
+**Reference read** (`round44-ref-eye.jpg`):
+- One cartoon eye with an endless zoom into the pupil. Each pupil holds the whole picture again, about 2s a level.
+- A rainbow arc over the eye with cyan clouds along it, thick pink lids with black spike lashes, a blue banded iris and a white catchlight.
+- Pink and purple drapes hanging below, with yellow trunks.
+- A small red figure at the bottom, flat cartoon colour, heavy chromatic split.
+
+**Built: `EyeFX`**, the card's own 2D shader. It replaces the director's chair (`art:3`; the chair is retired).
+- **A Droste dive:** the frame zooms ×8 into the pupil every 3.2s, and the scene restarts inside the pupil at 8× scale. The loop is constant and smooth, with no seam or cut.
+- **In our language:**
+  - logo palette only, on a flat purple sky with acid sparkles;
+  - a rainbow of six palette bands that drifts round the loop, with black rules and a scalloped cyan cloud;
+  - pink and magenta lids with folds, and lashes as curling black spikes;
+  - the iris rings flowing round the palette, with black rules, radial streaks and a paper catchlight;
+  - swaying pink, magenta and purple drapes, and two acid→green trunks;
+  - thick black outlines everywhere;
+  - the 23° ink dots on the colour, vanishing in the blacks;
+  - a red/cyan split on every edge (each channel sampled 0.007 apart).
+- **The red figure is left out.** The card's text panel covers the bottom of the art.
+
+Fixed on the way:
+- the drapes began on a hard horizontal line, so their top now dips away from the eye's corners;
+- the rainbow was cut flat at eye level, so it is now a full ring that the drapes hide below.
+
+Stills: `docs/process/stills/2026-11-07-skills-eye`, `round44-eye-dive.jpg`. Film: `round44-eye-dive.mp4`.
+
+The chair's SDF still sits in the Space shader, unused. Remove it once he signs off on the eye.
+
 ## Round 43 — the camera stays whole (2026-11-07)
 
 **His note:**
