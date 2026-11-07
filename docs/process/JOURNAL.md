@@ -530,6 +530,13 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — a clean hinge
+
+> "i want this extra dither over here to be removed as well" (a crop of the hinge)
+
+The hinge's lime middle barrel is unprinted now, so it reads as a smooth polished rod between the gunmetal knuckles.
+Stills: `stills/2026-11-08-contact-phone-round14/`.
+
 ## 2026-11-08 — a lacquered panel
 
 > "yes that's the place now give that space a glossy shine finish as well" … then, on a first faint pass: "i want a heavy glossy finish it should look shiny"

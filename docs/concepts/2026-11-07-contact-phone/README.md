@@ -292,3 +292,12 @@ room, and it barely showed.
 
 Close-up: `r13-gloss.png`. Stills: `process/stills/2026-11-08-contact-phone-round13` (+ `-375`). Round 12's page:
 `.local/snapshots/2026-11-08-phone-round12-index.html`.
+
+## Round 14 — 2026-11-08: the hinge barrel unprinted
+
+**His note** (crop of the hinge, `r14-note-hinge.png`):
+> "i want this extra dither over here to be removed as well"
+
+**Built:** the halftone skips the hinge's middle barrel (material 1, |x|<.172, within .058 of the hinge axis). The
+knuckles, the lid's rim and the body keep their dots. Before/after: `r14-hinge-before-after.png`. Stills:
+`process/stills/2026-11-08-contact-phone-round14`. Round 13's page: `.local/snapshots/2026-11-08-phone-round13-index.html`.

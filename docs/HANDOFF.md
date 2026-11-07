@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r14) — CONTACT round 14: hinge barrel unprinted. NOT deployed, site/ uncommitted
+- **Did:** one more `tone=0.` rule (the barrel). Unprinted now: LCD, its bezel, the lid's inner panel, the hinge barrel.
+- **Next:** his notes; frame cost in a real tab; step 2.
+
 ## 2026-11-08 (phone r13) — CONTACT round 13: heavy lacquer gloss on the lid panel. NOT deployed, site/ uncommitted
 - **Did:** gloss block after the metal shading line (lid tray only): deep base, hard sliding window strips, lip, pin spec.
 - **Next:** his notes; frame cost in a real tab; step 2.
