@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-07",
+  "label": "skills-fullart-c1",
+  "shots": [
+    {
+      "file": "03-skills.jpg",
+      "caption": "SKILLS, settled after entry"
+    },
+    {
+      "file": "03-skills-60ms.jpg",
+      "caption": "SKILLS card entrance at 60ms: tumble-in: big, turned ~45°, on its own spot"
+    },
+    {
+      "file": "03-skills-280ms.jpg",
+      "caption": "SKILLS card entrance at 280ms: landed, alone (the hold)"
+    },
+    {
+      "file": "03-skills-420ms.jpg",
+      "caption": "SKILLS card entrance at 420ms: thin far chains growing in from off-frame"
+    },
+    {
+      "file": "03-skills-700ms.jpg",
+      "caption": "SKILLS card entrance at 700ms: all chains locked"
+    },
+    {
+      "file": "03-skills-1000ms.jpg",
+      "caption": "SKILLS card entrance at 1000ms: chained: the dead-still hold"
+    },
+    {
+      "file": "03-skills-1140ms.jpg",
+      "caption": "SKILLS card entrance at 1140ms: the bolt stabs in from the top-right"
+    },
+    {
+      "file": "03-skills-1220ms.jpg",
+      "caption": "SKILLS card entrance at 1220ms: the bolt is in: the card takes one very hard shake (0.5s)"
+    },
+    {
+      "file": "03-skills-1320ms.jpg",
+      "caption": "SKILLS card entrance at 1320ms: the break: chunks blow at the lens"
+    },
+    {
+      "file": "03-skills-1450ms.jpg",
+      "caption": "SKILLS card entrance at 1450ms: the hang: grey chunks in slow motion, banner in"
+    },
+    {
+      "file": "03-skills-1900ms.jpg",
+      "caption": "SKILLS card entrance at 1900ms: ramped back up: chunks clearing the frame"
+    },
+    {
+      "file": "03-skills-back.jpg",
+      "caption": "SKILLS card flipped to its back"
+    }
+  ],
+  "films": [],
+  "commit": "4b72014 + .local/menu-preview",
+  "captured": "2026-11-07",
+  "browser": "Comet, Chrome 156.0.8078.48"
+}

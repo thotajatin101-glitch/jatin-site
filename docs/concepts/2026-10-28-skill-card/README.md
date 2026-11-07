@@ -143,6 +143,22 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 51 — the art takes the whole card; the words move to the banner (2026-11-07)
+
+**His note** (with a sketch: a box from under the banner heading, down the right of the card):
+> "alright now here is what we are gonna do let's shift the description and title to the side under heading space on the right like shown in screenshot. and completely cover the whole card with design itself that's gives more importance. and new heading will be on the side ofc."
+
+**Built:**
+- **The card face is all picture**: the art window runs the full face (only the SKILL tab stays). The gold title, the description plate, the tags and the face sheen are gone from the card.
+  - The eye fills the card's width in the taller window; the computer and the camera already filled it.
+- **The banner is the heading**, and under it hangs a black plate (same dither as every plate) with the description in mono and the tags.
+  - It sits on its own layer above the front chain, which used to cross the copy. The banner itself stays under the card.
+  - JS gives it the banner's own pivot, so the two turn as one. It slides out 70ms after the banner.
+- **Phone:** no banner, so the plate lies flat under the card and carries the name. The card sits a little higher and smaller (36vh).
+- Audited at 1440×900, 1440×700, 1280×800 and 375×812. At 1440×700 the big numeral tucks under the PHOTOGRAPHY plate; that was already there before this round.
+
+Stills: `2026-11-07-skills-fullart` (+ `-c1`, `-c2`, `-short`, `-laptop`, `-phone`). Before: `2026-11-07-skills-order`.
+
 ## Round 50 — the deal is one flip through the back (2026-11-07)
 
 **His note:**

@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (full art) — SKILLS card face is all art; title/desc/tags moved under the banner. NOT deployed, site/ uncommitted
+- **Did:** `.skScene` is full height; the face's plate, title, desc, tags and shine are hidden. `.skInfoB` (z8, over the front chain) holds the desc and tags; `restage()` gives it the banner's pivot. On a phone it's flat under the card, with `.skInfoBName`.
+- **Watch out:** at 1440×700 the big numeral tucks under the PHOTOGRAPHY plate (this was already there).
+
 ## 2026-11-07 (flip) — SKILLS deal = one full flip through the back. NOT deployed, site/ uncommitted
 - **Did:** `select()` sends `flipTo` to the next whole turn (direction follows next/prev); `frame()` swaps the face when `cos(yaw)<-.1`, with a 900ms backstop. Deal damping is 14.5 (a click flip is 10.5). `OUT`/`IN` removed. `dealHold(ms)` replays the spring for stills.
 - **Next:** his read, in a real tab.

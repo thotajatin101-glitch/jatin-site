@@ -437,6 +437,13 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 — the card is all picture
+
+> "…shift the description and title to the side under heading space on the right … completely cover the whole card with design itself that's gives more importance…"
+
+The card face is now only art, edge to edge. The banner carries the name, and under it hangs a black plate with the description and tags, riding above the chain. On a phone the plate lies flat under the card and carries the name too.
+Stills: `stills/2026-11-07-skills-fullart/` (+ `-c1`, `-c2`, `-short`, `-laptop`, `-phone`).
+
 ## 2026-11-07 — one flip between cards
 
 > "…let's make the semless by simply fliping card which shows the back of the card and goes to next card…"
