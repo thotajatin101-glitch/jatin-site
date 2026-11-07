@@ -73,7 +73,8 @@ const SKILLS_HOLDS = [
   [1140, 'the bolt stabs in from the top-right'],
   [1220, 'the bolt is in; the chains strain'],
   [1320, 'the break: chunks blow at the lens'],
-  [1700, 'slow motion: grey chunks hang, banner in'],
+  [1450, 'the hang: grey chunks in slow motion, banner in'],
+  [1900, 'ramped back up: chunks clearing the frame'],
 ]
 const SETTLE = { about: 2600, projects: 3400, skills: 3000 };   /* ms after the swap; others 2000 */
 

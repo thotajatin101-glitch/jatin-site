@@ -174,7 +174,12 @@ What made ours flat: the break came from nowhere (the acid slash was decoration 
 
 **Stills:** before `2026-11-07-skills-before-bolt`; after `2026-11-07-skills-bolt` (+ `-phone`). `snap.mjs` SKILLS holds re-timed to the new beats.
 
-**Not judged yet:** the speed ramp and the shoves in a real tab.
+**His note on it:**
+> "ok so the impact should be just for a second right now the slow motion is too long and the cards shakes too much and too long. it should go like BAAM! in editing terms like an s graph in speed ramping."
+
+So the break is now an S-curve speed ramp (`speed`/`ramp` in SkillFX): full speed for 70ms, eased down to 15% by 170ms, hangs to 320ms, then eased back UP to 2.2× by 500ms so the chunks clear the frame. Faded by 950ms, done at 1s. Card shake cut to under half (14/10px, 3% punch, 100ms), the bolt and chain-lock shoves halved and gone in ~100ms, strain tremble halved. Stills `2026-11-07-skills-bolt-ramp`; the long-slow-mo version is `2026-11-07-skills-bolt`.
+
+**Not judged yet:** the ramp in a real tab.
 
 ## Round 29 — the chains that stay, and the banner out of the card (2026-11-06)
 
