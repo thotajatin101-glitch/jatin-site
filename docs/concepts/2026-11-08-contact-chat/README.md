@@ -14,10 +14,10 @@ when (3 picks), name, email, plus a final step.
 - **Dropped:** "how far along" and "when"; the one-liner carries both if they matter.
 
 The steps:
-1. **what's the vibe?** Pick one: edit my footage / shoot something / creative direction / just saying hi.
+1. **what's the idea?** Pick one: edit my footage / shoot something / creative direction / just saying hi.
    These are his three disciplines plus a no-pressure exit.
 2. **the one-line version?** Optional, can be skipped.
-3. **who's this? / where do i reply?** Name, plus email or @insta, on one screen.
+3. **what do i call you? / where do i reply?** Name, plus email or @insta, on one screen.
 4. **send this?** The whole message read back as a sentence, so both sides see the gist.
 
 After sending, the screen says "message sent" and the status flips from online to away.
@@ -34,3 +34,11 @@ After sending, the screen says "message sent" and the status flips from online t
 - Keypad keys 1–4 pick an option, and Esc goes back.
 
 Mock: `r1-mock-screens.png` (`r1-mock.html`).
+
+## Round 2 — 2026-11-08: copy
+
+**His note:**
+> "instead of who's this say what do i call you, and instead of what the vibe say what's the idea ?"
+
+The questions are now **what's the idea?** and **what do i call you?**. The read-back label on step 2 follows
+("idea: shoot something"). Mock: `r2-mock-screens.png`.
