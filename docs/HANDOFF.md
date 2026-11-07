@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r16) — CONTACT round 16: lid test reaches the hinge (last dotted line gone). NOT deployed, site/ uncommitted
+- **Did:** "on the lid" = `p.y>.05 || (lid(p).y>.02 && p.y>-.03)` in both the halftone and the gloss.
+- **Watch out:** if `TH` (the lid's fold) changes, recheck the strip next to the hinge up close.
+- **Next:** his notes; frame cost in a real tab; step 2.
+
 ## 2026-11-08 (phone r15) — CONTACT round 15: tray walls unprinted (no dotted outline). NOT deployed, site/ uncommitted
 - **Did:** the lid-panel rule covers the tray walls (no normal test, edge +.014).
 - **Next:** his notes; frame cost in a real tab; step 2.

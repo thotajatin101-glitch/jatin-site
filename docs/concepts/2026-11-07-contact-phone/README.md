@@ -310,3 +310,14 @@ knuckles, the lid's rim and the body keep their dots. Before/after: `r14-hinge-b
 **Built:** the inner-panel rule no longer requires a face-on normal and reaches .014 past the tray's edge, so the
 tray's walls are unprinted too. Before/after: `r15-outline-before-after.png`. Stills:
 `process/stills/2026-11-08-contact-phone-round15`. Round 14's page: `.local/snapshots/2026-11-08-phone-round14-index.html`.
+
+## Round 16 — 2026-11-08: the dotted line by the hinge, actually gone
+
+**His note** (`r16-note-dots.png`):
+> "this outline of dots on the phone i dont want them" (arrows on the dotted line along the panel's bottom edge)
+
+**Why round 15 missed it:** the halftone and the gloss tested "on the lid" as `p.y>.05` in body space. With the lid
+folded toward the viewer, the bottom of its panel sits below that, so a strip next to the hinge was printed as body.
+**Built:** both tests are now `p.y>.05 || (lid(p).y>.02 && p.y>-.03)`. Before/after: `r16-dots-before-after.png`.
+Stills: `process/stills/2026-11-08-contact-phone-round16` (+ `-375`). Round 15's page:
+`.local/snapshots/2026-11-08-phone-round15-index.html`.

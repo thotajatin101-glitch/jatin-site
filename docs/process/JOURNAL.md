@@ -530,6 +530,14 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the last dotted line
+
+> "this outline of dots on the phone i dont want them" (arrows on the dotted line along the panel's bottom edge)
+
+Round 15 did not catch it. The strip of panel next to the hinge was not being recognised as part of the lid, so it
+kept its dots and missed the gloss. Now the panel is clean and glossy all the way down to the hinge.
+Stills: `stills/2026-11-08-contact-phone-round16/` (+ `-375`).
+
 ## 2026-11-08 — no outline round the panel
 
 > "there is still and outline of that dither u can see want the removed as well"
