@@ -530,6 +530,23 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the site's marks as stickers
+
+> "can the stickers on the phone be something relatable to the website design ?"
+
+The crystal heart, rhinestones, iridescent star and jelly bone came from the Y2K deco-phone references, not the site.
+They are replaced, on both faces of the lid, by the site's own marks as raised enamel badges:
+- the menu's wedge (pink);
+- a pixel-piece chain link (cyan);
+- the acid four-point sparkle;
+- P5 stars;
+- a small green sparkle.
+
+Each badge is flat palette colour lit in the site's 4x4 Bayer steps (shade / colour / highlight) inside a black ink
+rule. The first rule was too thick and swallowed the thin sparkles, so it was halved and the sparkles fattened.
+The chrome corner studs stay.
+Stills: `stills/2026-11-08-contact-phone-round24/` (+ `-short`, `-375`).
+
 ## 2026-11-08 — leaf-pod hinge
 
 > "alright now can we get the same shaped hinges from this refrence i drew with a green line so it can be easier for u to follow. i want it to be shaped kinda like this so yea"

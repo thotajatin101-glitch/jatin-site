@@ -4,6 +4,9 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r24) — CONTACT round 24: lid stickers are the site's marks (wedge, pixel link, sparkles, P5 stars) as Bayer-lit enamel badges. NOT deployed, site/ uncommitted
+- **Next:** his notes; frame cost in a real tab; step 2.
+
 ## 2026-11-08 (phone r23) — CONTACT round 23: leaf-pod hinge from his drawing. NOT deployed, site/ uncommitted
 - **Did:** halves round into the joint (corner radii .17), knuckles are lime round-cone pods (`rcone`).
 - **Next:** his notes; frame cost in a real tab; step 2.

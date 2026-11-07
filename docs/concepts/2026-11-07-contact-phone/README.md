@@ -472,3 +472,21 @@ Close-ups: `r22-contour-close.png`. Entrance: `r22-contour-entrance.png`. Stills
 **Dropped:** a first pass with egg pods in the old gunmetal read as two black balls bolted on.
 
 Before/after: `r23-hinge-before.png`, `r23-hinge-pods.png`. Round 22's page: `.local/snapshots/2026-11-08-phone-round22-index.html`.
+
+## Round 24 — 2026-11-08: the site's marks as stickers
+
+**His note** (crop `r24-note-stickers.png`):
+> "can the stickers on the phone be something relatable to the website design ?"
+
+**Built:** `deco()` rewritten; the shapes are new 2D SDFs `sdTri` and `sdLink`, plus `badge()`.
+- **The marks:** the menu wedge, the pixel chain link (15x7 cells with a 9x3 stepped hole, tilted), the acid
+  sparkle, P5 stars and a green sparkle, on both lid faces.
+- **The badge:** a flat raised slab (`ext`, .014 thick) with a .004 black ink rule (material 6).
+- **The colour:** materials 20–24 (cyan, pink, acid, magenta, green), lit in three Bayer-stepped tones in 3px
+  screen cells, with a glossy reflection on top.
+- **Kept:** the chrome stud sparkles on the inner corners.
+
+**Dropped:** the crystals and the jelly bone, from the Y2K references; they were not the site's language.
+A .0065 rule turned the thin sparkles black.
+
+Close-ups: `r24-stickers-inner.png`, `r24-stickers-outer.png`. Round 23's page: `.local/snapshots/2026-11-08-phone-round23-index.html`.
