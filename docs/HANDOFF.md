@@ -4,6 +4,9 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (final) — SKILLS round 42: camera shards fill the centre, with flowing palette gradients; no platform; camera bigger. NOT deployed, site/ uncommitted
+- **Next:** a world for VISUAL DIRECTION.
+
 ## 2026-11-07 (last) — SKILLS round 41: camera world has no glow, hard edges only. NOT deployed, site/ uncommitted
 - **Next:** a world for VISUAL DIRECTION.
 

@@ -143,6 +143,18 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 42 — shards to the centre, flowing gradients, no platform (2026-11-07)
+
+**His note:**
+> "ok but i also do want that space extend stripes to fill it and remove the platform for the camera and make camera a bit bigger and for the background strips make sure to add a gradient effect the shifts colours smoothly"
+
+- **The shards fill the centre.** They run all the way into the vanishing point, so the black hole is gone. The strokes meet there as a small black point.
+- **Smooth colour gradients.** Every colour shard is a gradient flowing round the logo's palette as one smooth loop (`pcyc`: acid → green → cyan → purple → magenta → pink → acid). It moves outward from the point and shifts over time on page time, so there is no seam when the film loops. A quarter of the shards stay black wedges, and the ink dots and hard strokes stay.
+- **The platform is gone.** The camera floats over the grid floor.
+- **The camera is bigger.** At rest the shot sits at 5.9 instead of 8.4. The open pose is unchanged at 12.2, so every part still fits.
+
+Stills: `docs/process/stills/2026-11-07-skills-camera-gradient`. Film: `round42-camera-gradient-shards.mp4` + sheet.
+
 ## Round 41 — no backlight (2026-11-07)
 
 **His note:**

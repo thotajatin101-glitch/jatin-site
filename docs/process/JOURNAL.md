@@ -437,6 +437,17 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (final) — the shards fill in and start to flow
+
+> "ok but i also do want that space extend stripes to fill it and remove the platform for the camera and make camera a bit bigger and for the background strips make sure to add a gradient effect the shifts colours smoothly"
+
+- **The shards fill the centre.** They run all the way into the vanishing point, so the black hole is gone. The strokes meet there as a small black point.
+- **Smooth colour gradients.** Every colour shard is a gradient flowing round the logo's palette as one smooth loop (`pcyc`: acid → green → cyan → purple → magenta → pink → acid). It moves outward from the point and shifts over time on page time, so there is no seam when the film loops. A quarter of the shards stay black wedges, and the ink dots and hard strokes stay.
+- **The platform is gone.** The camera floats over the grid floor.
+- **The camera is bigger.** At rest the shot sits at 5.9 instead of 8.4. The open pose is unchanged at 12.2, so every part still fits.
+
+Stills: `docs/process/stills/2026-11-07-skills-camera-gradient`. Film: `round42-camera-gradient-shards.mp4` + sheet.
+
 ## 2026-11-07 (last) — the backlight goes
 
 > "i dont want the weird purple gradient backliht" (with a frame of the purple glow behind the open camera)
