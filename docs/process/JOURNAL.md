@@ -530,6 +530,16 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — chrome that follows the contour
+
+> "ok the it just looks like it broken and stuck into the pins of the phone right now. the case needs to look more intentin wrapped around the edges of the phone not like this"
+
+The clips were separate pieces pinned on, so they read as stuck in. Now the chrome follows the phone's own outline.
+At each outer corner a band runs along the edge and wraps over the rim front and back, fattest at the corner and
+tapering to points along the sides. Hooked tribal flares grow out of it and peel off along the outline. The stones
+are gone.
+Stills: `stills/2026-11-08-contact-phone-round22/` (+ `-short`, `-375`).
+
 ## 2026-11-08 — smooth clips with a stone
 
 > "it looks blacked out and weird need it to look smoother and the chrome needs to shaped better take a look at the refrence again" (crop of the shut phone's corner: a black mass with specks)

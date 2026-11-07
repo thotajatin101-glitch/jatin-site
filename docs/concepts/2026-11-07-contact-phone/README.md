@@ -432,3 +432,27 @@ the march ran out of steps, and the ink rule (`dm`) painted those pixels black, 
 Close-ups: `r21-clips-close.png`. Entrance: `r21-clips-entrance.png`. Stills:
 `process/stills/2026-11-08-contact-phone-round21` (+ `-short`, `-375`). Round 20's page:
 `.local/snapshots/2026-11-08-phone-round20-index.html`.
+
+## Round 22 — 2026-11-08: chrome that follows the contour
+
+**His note:**
+> "ok the it just looks like it broken and stuck into the pins of the phone right now. the case needs to look more intentin wrapped around the edges of the phone not like this"
+
+**Dropped:** round 21's separate clips with stones (a boss plus blades placed at a point). However they are shaped,
+a piece placed at a point reads as pinned on.
+
+**Built (`cornerChrome`):** at each outer corner (the body's bottom two, the lid's top two):
+- **A band driven by the half's own outline distance `o`.** Its section is a rounded box in (`o`, z): it sits on the
+  edge with a lip over each face.
+- **The band's size runs off the angle round the corner's arc** (`ang`, ±1.5 rad). It is full at the corner and
+  tapers (`k^.75`) to points along both edges, in width and depth, and is cut beyond the range.
+- **Tribal flares off the corner point,** in the phone's mid-plane:
+  - two hooks curling out back to back;
+  - a long sweep and a shorter twin peeling off along the edge.
+
+  They use the exact 2D `blade` arcs and a round-section `ext`, joined with `smin`.
+- The finish is the same plain mirror chrome.
+
+Close-ups: `r22-contour-close.png`. Entrance: `r22-contour-entrance.png`. Stills:
+`process/stills/2026-11-08-contact-phone-round22` (+ `-short`, `-375`). Round 21's page:
+`.local/snapshots/2026-11-08-phone-round21-index.html`.

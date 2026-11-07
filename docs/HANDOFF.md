@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r22) — CONTACT round 22: chrome bands follow the outline + tribal flares. NOT deployed, site/ uncommitted
+- **Did:** `cornerChrome()` replaces the clips: band from the outline distance, tapered by the corner angle, plus hooked flares.
+- **Next:** his notes; frame cost in a real tab; step 2.
+
 ## 2026-11-08 (phone r21) — CONTACT round 21: clips as true rounded extrusions, pink stone, lid clips up the sides. NOT deployed, site/ uncommitted
 - **Watch out:** never fake a height off a 2D distance (`max(d2,|z|-h(d2))`): it isn't a distance field; rays exhaust and the ink rule paints them black. Use `ext()`.
 - **Next:** his notes; frame cost in a real tab; step 2.
