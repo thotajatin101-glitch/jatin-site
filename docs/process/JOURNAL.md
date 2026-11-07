@@ -530,6 +530,14 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the whole screen panel clean
+
+> "when i said around the frame then i meant these parts of the phone the panel around the lcd screen."
+
+His crop was the stones under the screen: he meant the whole inner panel of the lid, not a margin round the screen.
+That panel is unprinted now, stones and all; the lid's rim and the rest of the phone keep the dots.
+Stills: `stills/2026-11-08-contact-phone-round12/` (+ `-375`).
+
 ## 2026-11-08 — the keypad as he drew it
 
 > "this is a drawn overlay over the current keypad to show u how i want the button to be shapped like. and the frame around the lcd screen i meant outside the chrome ring area as well"

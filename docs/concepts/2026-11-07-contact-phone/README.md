@@ -263,3 +263,13 @@ page: `.local/snapshots/2026-11-08-phone-round9-index.html`.
 
 Close-up: `r11-keypad-tiled.png`. Stills: `process/stills/2026-11-08-contact-phone-round11` (+ `-short`, `-375`).
 Round 10's page: `.local/snapshots/2026-11-08-phone-round10-index.html`.
+
+## Round 12 — 2026-11-08: the whole inner panel unprinted
+
+**His note** (crop of the stones under the screen, `r12-note-panel.png`):
+> "when i said around the frame then i meant these parts of the phone the panel around the lcd screen."
+
+**Misread in round 11:** I cleared a margin round the screen and kept the dots under the stones. He meant the whole
+panel. **Built:** the halftone skips the lid's entire inner tray (the tray's own `sdR2q` shape), and the rim stays
+printed. Close-up: `r12-clean-panel.png`. Stills: `process/stills/2026-11-08-contact-phone-round12` (+ `-375`). Round
+11's page: `.local/snapshots/2026-11-08-phone-round11-index.html`.
