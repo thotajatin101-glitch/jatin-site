@@ -143,6 +143,22 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 53 — no stars, no gap, the case arrives with the card (2026-11-07)
+
+**His note** (with crops of the stars and of the strip of background between the card and the plate):
+> "remove the stars and close this gap as well. and i've noticed that every time i first load into the skills section the cards comes first and the metal chrome case comes in randomly later fix that as well"
+
+**Built:**
+- **Stars removed** (markup, CSS, JS).
+- **Gap closed:** a black skirt (`.skInfoSkirt`) inside the banner (z5, under the card) carries the stripe's lower half on under the card's edge. JS sizes it to the plate's height, so no background shows between the card and the plate.
+- **The case arrives with the card.**
+  - Why it was late: the chrome case's texture is generated in a worker, which only started 600ms after entering SKILLS, and its finish time varies. The card came in first and the case popped on whenever the worker finished.
+  - Now `SkillFX.prep()` builds it 1.4s after the menu appears, so it's normally ready long before SKILLS opens.
+  - As a backstop, the card's entrance waits for the case (up to 1.6s). The card, chains and bolt all hold together.
+  - Measured on a fresh load, the first visible card frame already has its case: entering 2.5s after the menu, it arrives on its usual beat; entering 0.3s after the menu (the worst case), the entrance holds about 0.6s and arrives whole.
+
+Stills: `2026-11-07-skills-joined`.
+
 ## Round 52 — the copy is part of the title stripe (2026-11-07)
 
 **His note:**

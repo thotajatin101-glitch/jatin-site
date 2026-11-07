@@ -437,6 +437,13 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 — stars out, gap closed, case on time
+
+> "remove the stars and close this gap as well. and i've noticed that every time i first load into the skills section the cards comes first and the metal chrome case comes in randomly later fix that as well"
+
+Stars gone; a black skirt under the card's edge closes the gap between the card and the stripe. The chrome case was being generated only after SKILLS opened, by a worker whose finish time varies, so it landed late and at random. It is now built while the menu is up, and the card waits for it, so the first frame you see is always the finished card.
+Stills: `stills/2026-11-07-skills-joined/`.
+
 ## 2026-11-07 — one stripe
 
 > "i dont want gap between the box and the title think of it as part of the title stripe itself"

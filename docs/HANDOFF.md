@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (case) — SKILLS: stars removed, skirt closes the card/plate gap, chrome case built while the menu is up. NOT deployed, site/ uncommitted
+- **Did:** `SkillFX.prep()` (= `buildCase`) is called from `cascadeMenu()` +1.4s; `enter()` calls it as a fallback and `frame()` holds `t0` until `cas.ready` (max 1.6s). `.skInfoSkirt` is sized in `restage()`.
+- **Watch out:** anything that starts the SKILLS entrance must let the case finish first, or the case pops in late again.
+
 ## 2026-11-07 (stripe) — SKILLS copy plate flush under the name stripe (one stripe). NOT deployed, site/ uncommitted
 - **Did:** `restage()` sets `.skInfoB` padding-top to the bottom of `.skInfoMain`, the plate width to the stripe's 94% edge, and `--cut` to continue its slant. Stars now live in `.skInfoRow`.
 
