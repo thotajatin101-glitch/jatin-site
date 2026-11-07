@@ -437,6 +437,12 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 — the deck's order
+
+> "ok alot better now could u keep the visual direction first editing next and photohraphy in the end ?"
+
+The deck now leads with VISUAL DIRECTION (01), then VIDEO EDITING (02) and PHOTOGRAPHY (03). Stills: `stills/2026-11-07-skills-order/`.
+
 ## 2026-11-07 (eye, take 6) — depth without a model
 
 > "…the eye pupils are arent exactly visible … make it bit brighter. and could give this design more depth? maybe by making it 3d but i dont want a poorly modeled version i want the same design and textures but i want it to feel more immersive"

@@ -4,6 +4,9 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (order) — SKILLS card order: 01 VISUAL DIRECTION, 02 VIDEO EDITING, 03 PHOTOGRAPHY (his call). NOT deployed, site/ uncommitted
+- **Did:** reordered `CARDS`; the HTML placeholder card now matches card 01. Numbers, banner and plate menu follow the list. The eye is now `SkillFX.select(0)` in snapshots.
+
 ## 2026-11-07 (eye 6) — SKILLS round 49: eye depth (sphere ball, gaze-turned iris, lit relief, depth parallax) and a readable pupil. NOT deployed, site/ uncommitted
 - **Did:** EyeFX `scene()` rewritten: `RB` sphere, `height()` relief, `uCam`/`uZ` drift (never the cursor), feed mapped off the normal. Reflection 55% on the iris, 22% on the pupil.
 - **Next:** his read. Frame cost in a real tab (3 colour passes × 3 height taps), then the retired chair in Space.
