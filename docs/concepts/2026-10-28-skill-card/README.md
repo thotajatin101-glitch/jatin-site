@@ -143,6 +143,18 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 52 — the copy is part of the title stripe (2026-11-07)
+
+**His note:**
+> "i dont want gap between the box and the title think of it as part of the title stripe itself"
+
+**Built:** the copy plate hangs flush from the bottom of the name stripe, with no gap and no rule; it reads as the stripe's lower half.
+- JS sizes it so its right end meets the stripe's slanted cut (94%) and carries that slant on down.
+- Its left edge starts at the card's edge, so the stripe still reads as coming out from behind the card.
+- The page-count stars moved into the plate's tag row (unlit ones lifted to #4a4a52, so they show on black).
+
+Stills: `2026-11-07-skills-stripe` (+ `-short`, `-phone`).
+
 ## Round 51 — the art takes the whole card; the words move to the banner (2026-11-07)
 
 **His note** (with a sketch: a box from under the banner heading, down the right of the card):

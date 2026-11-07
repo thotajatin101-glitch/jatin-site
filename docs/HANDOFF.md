@@ -4,6 +4,9 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (stripe) — SKILLS copy plate flush under the name stripe (one stripe). NOT deployed, site/ uncommitted
+- **Did:** `restage()` sets `.skInfoB` padding-top to the bottom of `.skInfoMain`, the plate width to the stripe's 94% edge, and `--cut` to continue its slant. Stars now live in `.skInfoRow`.
+
 ## 2026-11-07 (full art) — SKILLS card face is all art; title/desc/tags moved under the banner. NOT deployed, site/ uncommitted
 - **Did:** `.skScene` is full height; the face's plate, title, desc, tags and shine are hidden. `.skInfoB` (z8, over the front chain) holds the desc and tags; `restage()` gives it the banner's pivot. On a phone it's flat under the card, with `.skInfoBName`.
 - **Watch out:** at 1440×700 the big numeral tucks under the PHOTOGRAPHY plate (this was already there).

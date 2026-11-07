@@ -437,6 +437,13 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 — one stripe
+
+> "i dont want gap between the box and the title think of it as part of the title stripe itself"
+
+The description now hangs flush from the name stripe and carries on its slanted end, so the heading and copy read as one black stripe coming out from behind the card. The stars moved into it.
+Stills: `stills/2026-11-07-skills-stripe/`.
+
 ## 2026-11-07 — the card is all picture
 
 > "…shift the description and title to the side under heading space on the right … completely cover the whole card with design itself that's gives more importance…"
