@@ -437,6 +437,25 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (eye, take 2) — the eye speaks the site's language
+
+> "it's not exactly centered on the screen and design requires some work as well try to embody our website design into" (screenshot of the card)
+
+**Centring.** The card's picture window is only the top 64% of the card, and it is wider than tall. I had placed the eye as if the picture filled the whole card, which put it too high. The eye now sits at the window's centre (+.05 for the SKILL tab). The films now render at the window's shape (600×560), so what I check is what he sees.
+
+**The site's language, in place of the cartoon:**
+- **The world is the logo's shatter fanning out of the pupil.** The eye is the vanishing point. The shards carry thick black strokes, yellow→green and cyan→dark gradients, pink, magenta and purple, and a few black wedges (16%, so the lashes still read). The field turns slowly.
+- **Lashes are long black spikes**, the shards' cousins.
+- **The lids get the plates' hard black ink drop**, then pink above and magenta below with a black rule.
+- **The eye is flat paper.**
+- **The iris is the shatter again in miniature**, turning the other way, with a cyan and black rim.
+- **The catchlight is the site's four-point star.**
+- **The whole eye tilts 4°**, like every heading.
+- **The frame stands back 1.25×**, so the shatter shows round the eye. The zoom is now ×10 per 3.2s, so the pupil still covers the frame at the loop point.
+- **Cut:** the rainbow, the clouds, the drapes and the trunks.
+
+Stills: `docs/process/stills/2026-11-07-skills-eye-site`. The rejected cartoon version is kept in `…-skills-eye` and round 44. Film: `round45-eye-site.mp4`.
+
 ## 2026-11-07 (eye) — VISUAL DIRECTION gets its world: the eye
 
 > "Here is my what i want for visual direction. visual direction has everything to do with having eye for things that's why i wanted to go with something like but ofc in our theme but heavily inspired by this style" (reference: a 16s psychedelic cartoon eye, an endless zoom into its pupil)

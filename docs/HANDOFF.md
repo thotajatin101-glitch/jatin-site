@@ -4,6 +4,9 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (eye 2) — SKILLS round 45: eye centred in the art window and rebuilt in the site's language (shatter world, star catchlight, ink drop). NOT deployed, site/ uncommitted
+- **Watch out:** the card's art window is the top 64% and wider than tall. Render films at about 600×560, not portrait.
+
 ## 2026-11-07 (eye) — SKILLS round 44: VISUAL DIRECTION = EyeFX, an endless dive into a psychedelic eye. NOT deployed, site/ uncommitted
 - **Did:** `EyeFX` (2D Droste shader, ×8 per 3.2s) before CamFilm; `Space` routes kind 3 to it; the card's `art` is 3.
 - **Harness:** `.local/menu-preview/cam.html?m=EyeFX`, and `M=EyeFX P=3.2` for the render script.

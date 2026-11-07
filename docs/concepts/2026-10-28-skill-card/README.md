@@ -143,6 +143,26 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 45 — the eye, centred, in the site's language (2026-11-07)
+
+**His note:**
+> "it's not exactly centered on the screen and design requires some work as well try to embody our website design into" (screenshot of the card)
+
+**Centring.** The card's picture window is only the top 64% of the card, and it is wider than tall. I had placed the eye as if the picture filled the whole card, which put it too high. The eye now sits at the window's centre (+.05 for the SKILL tab). The films now render at the window's shape (600×560), so what I check is what he sees.
+
+**The site's language, in place of the cartoon:**
+- **The world is the logo's shatter fanning out of the pupil.** The eye is the vanishing point. The shards carry thick black strokes, yellow→green and cyan→dark gradients, pink, magenta and purple, and a few black wedges (16%, so the lashes still read). The field turns slowly.
+- **Lashes are long black spikes**, the shards' cousins.
+- **The lids get the plates' hard black ink drop**, then pink above and magenta below with a black rule.
+- **The eye is flat paper.**
+- **The iris is the shatter again in miniature**, turning the other way, with a cyan and black rim.
+- **The catchlight is the site's four-point star.**
+- **The whole eye tilts 4°**, like every heading.
+- **The frame stands back 1.25×**, so the shatter shows round the eye. The zoom is now ×10 per 3.2s, so the pupil still covers the frame at the loop point.
+- **Cut:** the rainbow, the clouds, the drapes and the trunks.
+
+Stills: `docs/process/stills/2026-11-07-skills-eye-site`. The rejected cartoon version is kept in `…-skills-eye` and round 44. Film: `round45-eye-site.mp4`.
+
 ## Round 44 — VISUAL DIRECTION is an eye you fall into (2026-11-07)
 
 **His note:**
