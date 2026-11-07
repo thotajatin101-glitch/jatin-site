@@ -530,6 +530,17 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the phone's own screen talks back
+
+> "ok first of all the shake on the ringing is'nt exactly smooth bit too shaky and the sticker design i want it to be like refrence itself. now coming to the phone screen i can tell the when the phone comes closer that u dont use the actual lcd screen but an overlay over it the acts as screen and i dont like it i want the models LCD screen to be the screen itself ."
+
+**The ring is smoother.** It was a buzz of 15–27Hz jitter. Now it is a swing: roll at 10Hz, yaw at 7Hz, a little lift, and every burst eases in and out.
+**The pop-ups now copy his references.**
+- CLICK IT! is a golden spiky balloon with purple screen dots thickening toward its rim and orange brush lettering.
+- CLICK AGAIN! is a yellow arrow with orange dots, a hard black extrude and a white starburst on its tail.
+**The chat lives on the model's own LCD.** The screens are drawn into the LCD texture, so the scanlines, the bulge and the light all apply to them. An invisible copy of each screen sits on top to take clicks, typing and the phone keyboard.
+Stills: `stills/2026-11-08-contact-phone-round26/`; concept round 26, chat round 4.
+
 ## 2026-11-08 — the phone rings: chained, CLICK IT!, CLICK AGAIN!
 
 > "alright now intro animaiton for flip phone i want the phone to be chained up when arriving but it doesnt open automatically it stays chained and has ringing shake animation with comic pop up right outside next to the phone similar to refrence saying Click it but i want the same font like the refrence for this. once the use clicks then the chain break happens and there will be another arrow type of comic pop up that says click again but this time only click it and notification vibration as well."

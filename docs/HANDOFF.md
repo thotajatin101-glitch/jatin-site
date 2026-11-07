@@ -4,6 +4,16 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r26) — CONTACT: smoother ring, reference-style pop-ups, the chat drawn ON the model's LCD (invisible DOM twin for input). NOT deployed, site/ uncommitted
+- **Hooks:**
+  - `layout()` → `paintChat()` (texture) + `render()` (DOM twin); `repaint()` = texture only.
+  - `pushLCD(kind)`: 'chat' paints the chat.
+- **Watch out:**
+  - Any new chat element must go in `layout()`, or it shows on neither the texture nor the twin.
+  - Inputs in the twin are 16px (iOS zoom).
+  - Judge the ring in a real tab.
+- **Next:** his notes; frame cost in a real tab. Cloudflare mail only at release.
+
 ## 2026-11-08 (phone r25) — CONTACT intro: chained + ringing (CLICK IT!), click breaks chains, buzz (CLICK AGAIN!), click answers into the chat. NOT deployed, site/ uncommitted
 - **Hooks:**
   - `stage()`, `ringEnv`/`buzzEnv`, `breakChains`/`answer`, `wrap()` (chains + snap), `pops()` (DOM SVG pop-ups).

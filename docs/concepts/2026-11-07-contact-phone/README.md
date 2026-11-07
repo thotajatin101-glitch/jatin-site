@@ -521,3 +521,18 @@ Reduced motion skips the chains and pop-ups and rests open as before.
 
 Stills: `r25-two-clicks-sheet.png` (rise, ring, strain, flash, debris, buzz, open, lit, chat), `r25-pops-close.png`,
 `r25-375.png`. Round 24's page with the chat: `.local/snapshots/2026-11-08-phone-round24-chat-index.html`.
+
+
+## Round 26 (2026-11-08)
+
+> "ok first of all the shake on the ringing is'nt exactly smooth bit too shaky and the sticker design i want it to be like refrence itself. now coming to the phone screen i can tell the when the phone comes closer that u dont use the actual lcd screen but an overlay over it the acts as screen and i dont like it i want the models LCD screen to be the screen itself ."
+
+**Built:**
+- **Ring:** smoother. Roll at 10Hz (.034), yaw at 7Hz (.016), lift .004. Each ring ramps in and out over .07s instead of switching on. It renders every frame while the phone rings or buzzes. The buzz is a 24Hz roll with a 28Hz lateral jitter.
+- **Pop-ups after the references** ("like refrence itself"):
+  - The balloon is golden `#f4d03c` with a dark purple outline and long irregular spikes, three of them as the tail. Purple screen dots are masked dense at the rim. CLICK / IT! is in orange Permanent Marker.
+  - The arrow is yellow with orange dots fading along it. It has a black outline, a 12px black extrude and a white starburst with grey shards on its tail. CLICK / AGAIN! is lettered in black.
+  - The arrow's width is capped by the room to the right of the phone, so the starburst never leaves the frame. Bare SVG, with no RGB split on them.
+- **The LCD is the screen:** see chat round 4.
+
+Stills: `stills/2026-11-08-contact-phone-round26/`. Round 25's page: `.local/snapshots/2026-11-08-phone-round25-index.html`.

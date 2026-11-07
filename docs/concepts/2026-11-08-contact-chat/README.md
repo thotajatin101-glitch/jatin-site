@@ -75,3 +75,20 @@ The questions are now **what's the idea?** and **what do i call you?**. The read
 
 Stills: `r3-built-flow.png` (desktop above, 375 below), `r3-built-sent.png` (with a faked endpoint),
 `r3-built-375.png`, `r3-rest.png`.
+
+
+## Round 4 (2026-11-08): the model's LCD is the screen
+
+> "ok first of all the shake on the ringing is'nt exactly smooth bit too shaky and the sticker design i want it to be like refrence itself. now coming to the phone screen i can tell the when the phone comes closer that u dont use the actual lcd screen but an overlay over it the acts as screen and i dont like it i want the models LCD screen to be the screen itself ."
+
+The DOM overlay is gone as a picture. Everything is drawn into the LCD canvas the shader already uses: 768×980, 2× the 384×490 layout. That means:
+- the scanlines, the tube tint, the bulge and the lid's light sit on top of the chat;
+- the phone's own glass is what you read.
+
+**One layout list drives two things:**
+1. **The paint:** VT323, the acid select bar, field frames that turn acid on focus, a blinking caret, and softkeys with a cyan focus.
+2. **An invisible DOM twin** (`.phChat`), placed on the projected LCD. It does the real work: option buttons, inputs and a textarea (16px so iOS doesn't zoom), softkeys and the honeypot. Clicks, typing, the phone keyboard and screen readers all go through it.
+
+Typing repaints the texture. A validation line clears the moment you type. Focus carries over only within the same step, so a space typed after NEXT can't press the next screen's button.
+
+Stills: `stills/2026-11-08-contact-phone-round26/` (12–16).

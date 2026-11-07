@@ -963,20 +963,19 @@ into tweens.
   - **Stickers are the site's marks** (round 24, his ask: "relatable to the website design"): the menu wedge, a pixel chain link, the acid sparkle, P5 stars, as raised enamel badges in flat palette colour lit in Bayer steps inside a black ink rule (`badge`, materials 20–24). No crystals or jelly charms from the Y2K references.
   - **Lid top:** a round crystal in a chrome ring, with chrome star studs in the corners. **The contact text box is gone on every screen** (his call; kept for screen readers). Entrance (round 25, his ask, 2026-11-08), gated on two clicks like a game:
     1. **It rises shut and CHAINED** (a band and an X of the section's pixel chain, in the closed phone's space).
-    2. **It RINGS:** shake bursts, the outer display reads INCOMING CALL, and a comic **CLICK IT!** balloon punches
+    2. **It RINGS:** smooth eased swing bursts (round 26: the jitter read "too shaky"), the outer display reads INCOMING CALL, and a comic **CLICK IT!** balloon punches
        on each ring.
     3. **Click 1** (phone, balloon or Return) breaks the chains with the computer's snap; it stays shut.
-    4. **It BUZZES like a text:** two short pulses every 2s, 1 NEW MESSAGE on the outer display, and a pink comic
+    4. **It BUZZES like a text:** two short pulses every 2s, 1 NEW MESSAGE on the outer display, and a yellow comic
        **CLICK AGAIN!** arrow (from above on phones).
     5. **Click 2** snaps the lid open and carries straight into the chat. After EXIT it rests open and floating.
 
-    The pop-ups are lettered in **Permanent Marker** (his references' brush lettering). `hold(ms,c1,c2)` scrubs it.
+    The pop-ups copy his references (round 26): a golden spiky balloon with rim-dense purple dots and orange lettering, and a yellow dotted arrow with a black extrude and a white starburst. Both are lettered in **Permanent Marker**. `hold(ms,c1,c2)` scrubs it.
     Reduced motion skips the chains and pop-ups and rests open. **It follows the cursor like the PROJECTS computer** (round 17, his ask, 2026-11-08: same ±.5 yaw / ±.18 pitch, eased; this reverses the earlier no-cursor rule for the phone). No glow round it.
   - **Step 2: the phone picks up** (his ask, 2026-11-08; concept `docs/concepts/2026-11-08-contact-chat/`).
     - **Open:** a click on the phone (a projected-hull hit test, no readback) or Return dollies it in square to the
       camera (620ms in-out cubic), and the cursor follow fades out.
-    - **The screen:** `.phChat` is a DOM layer on the projected LCD (`placeChat`), in his old-messenger reference's
-      language on the blue LCD.
+    - **The screen IS the model's LCD** (round 26, his note: "i dont like it … the models LCD screen to be the screen itself"). The chat is painted into the LCD texture (`paintChat`), so the scanlines and glass apply. An invisible DOM twin (`.phChat`, `placeChat`), built from the same `layout()`, takes clicks, typing and screen readers. Never draw the chat as a visible overlay. It is in his old-messenger reference's language on the blue LCD.
     - **The questions (4 steps):** what's the idea? (4 picks) / the one-line version (optional) / what do i call you?
       plus where do i reply? / send this? (a read-back). Those wordings are his. Then "sent" and status: away.
     - **Keys:** Esc steps back and exits from home; BACK hides while it's up.
