@@ -4,6 +4,17 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (phone r4) — CONTACT round 4: card pose, lime chrome, chain strap, round-2 screens. NOT deployed, site/ uncommitted
+- **Did:**
+  - REST is yaw .3, pitch .16, roll .15. The body base is lime.
+  - `lcd()`, `outer()` and `bayer()` are back from round 2; the LCD is 384×490.
+  - Shader strap removed. `strap(q)` in PhoneFX draws ChainFX links on `.phChain` canvases (back, plus front with `.front`), projected by `proj(toW(...))`, which must stay in step with the shader's camera.
+  - Lid top: a crystal in a chrome ring at (0,.885), star studs at (±.16,.875).
+  - The harness `phone.html` now loads ChainFX as well.
+  - Round 3's page is at `.local/snapshots/2026-11-07-phone-round3-index.html`.
+- **Next:** his notes; measure the frame cost in a real tab; step 2.
+- **Watch out:** if the shader's camera changes (ro, focal 3.3, lift), change `proj()` too, or the strap drifts off the knuckle.
+
 ## 2026-11-07 (phone r3) — CONTACT round 3: posture, sunk hinge, keypad well, bigger screen, site theme. NOT deployed, site/ uncommitted
 - **Did:**
   - Open angle `TH=mix(pi,.24,uOpen)`. REST is yaw −.26, pitch .12, roll .42. The face bow is .07.

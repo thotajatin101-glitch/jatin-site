@@ -479,6 +479,18 @@ Stills: `stills/2026-11-07-contact-phone-round2/` (+ `-short`, `-375`); round 1 
   - an ink outline runs round the whole phone.
 Stills: `stills/2026-11-07-contact-phone-round3/` (+ `-short`, `-375`).
 
+## 2026-11-07 — lime, on a chain
+
+> "it's too tilted to the left. ok take inspiration from our skill cards angle and how it's facing. revert the screen ui for now. change the beads to our chains concept instead and i want the phone colour to not be pink instead a yellow lime colour"
+
+- The phone takes the SKILLS card's pose: a small lean, turned toward the top-right.
+- It is lime chrome now.
+- The screens are back to round 2's.
+- The bead strap became a loop of our own pixel chain, which hangs straight down whatever the phone does and swings
+  when the lid snaps.
+- From his crop of the reference: a round crystal at the top of the lid with chrome stars in the corners.
+Stills: `stills/2026-11-07-contact-phone-round4/` (+ `-short`, `-375`).
+
 ## 2026-11-07 — the camera looks at you
 
 > "there are times in the background u see black stripes i dont want spaces like that. and can make the camera react to the cursers so it looks at wherever the curser moves."

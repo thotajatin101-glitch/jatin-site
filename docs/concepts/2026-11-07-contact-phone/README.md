@@ -116,3 +116,26 @@ with a little pearl at the edges); the pillow bow.
 Stills: `process/stills/2026-11-07-contact-phone-round3` (+ `-short`, `-375`). Round 2 kept in `-round2`, and its
 page in `.local/snapshots/2026-11-07-phone-round2-index.html`. Entrance: `round3-entrance-sheet.jpg`.
 **Not checked yet:** frame cost in a real tab.
+
+## Round 4 — 2026-11-07: the SKILLS card's pose, lime, a chain strap
+
+**His note** (with his round-3 still `r4-note-tilt.webp`, a crop of the reference's lid top `ref-r4-lid-top.png`, and
+the beads `r4-note-beads.png`):
+> "it's too tilted to the left. ok take inspiration from our skill cards angle and how it's facing. revert the screen ui for now. change the beads to our chains concept instead and i want the phone colour to not be pink instead a yellow lime colour"
+
+**Built:**
+- **Pose:** the SKILLS card's resting pose (tilt .15, turned .3 toward the top-right, pitch .16) instead of round 3's
+  diagonal.
+- **Colour:** lime chrome (`vec3(1,1.08,.5)` base), a little pearl at the edges, the halftone ink in its shadows.
+- **Screens:** back to round 2's (the acid Bayer LCD, the pastel JATIN outer display), sized to the bigger window.
+- **Strap:** the beads are gone. It is now a loop of the site's pixel-piece chain (ChainFX links, the section's acid)
+  off the hinge's left knuckle. It hangs in world space, so it always drops straight down. Each link is projected with
+  the shader's camera onto a canvas behind or in front of the phone (`.phChain`), and the snap sets it swinging.
+- **Lid top** (my read of his crop): a round crystal in a chrome ring at the top centre, chrome four-point star studs
+  in the top corners. This replaces the earpiece slot, the heart and the star.
+
+**Watch:** the lime goes a little olive where it reflects the dark lilac sky; the LCD and the body are now both
+yellow-green, so the screen reads mostly by its bezel.
+
+Stills: `process/stills/2026-11-07-contact-phone-round4` (+ `-short`, `-375`). Round 3's page is saved in
+`.local/snapshots/2026-11-07-phone-round3-index.html`.
