@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r13) — CONTACT round 13: heavy lacquer gloss on the lid panel. NOT deployed, site/ uncommitted
+- **Did:** gloss block after the metal shading line (lid tray only): deep base, hard sliding window strips, lip, pin spec.
+- **Next:** his notes; frame cost in a real tab; step 2.
+- **Watch out:** a pure env reflection does not read on a face looking at the lens; the strips are what sell the gloss.
+
 ## 2026-11-08 (phone r12) — CONTACT round 12: the lid's whole inner panel unprinted. NOT deployed, site/ uncommitted
 - **Did:** the halftone skips the lid's inner tray (its own `sdR2q`); the rim, the body and the outer lid keep it.
 - **Next:** his notes; frame cost in a real tab; step 2 (the keys work).

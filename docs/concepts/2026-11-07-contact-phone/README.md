@@ -273,3 +273,22 @@ Round 10's page: `.local/snapshots/2026-11-08-phone-round10-index.html`.
 panel. **Built:** the halftone skips the lid's entire inner tray (the tray's own `sdR2q` shape), and the rim stays
 printed. Close-up: `r12-clean-panel.png`. Stills: `process/stills/2026-11-08-contact-phone-round12` (+ `-375`). Round
 11's page: `.local/snapshots/2026-11-08-phone-round11-index.html`.
+
+## Round 13 — 2026-11-08: a heavy gloss on the lid's inner panel
+
+**His notes:**
+> "yes that's the place now give that space a glossy shine finish as well" … then, on a first faint pass: "i want a heavy glossy finish it should look shiny"
+
+**Dropped:** a plain clear coat (`env(rW)` + fresnel). The panel faces the lens, so it reflects the dim front of the
+room, and it barely showed.
+
+**Built** (shading, material 1 on the lid's inner tray):
+- The lime goes deeper under the coat (`c·.45`).
+- Reflections: `env(rW)·(.2+.9·fr)`.
+- Three hard window strips on a diagonal. They are anchored on the panel and offset by `.3·rW.xy`, so they always
+  cross it and slide with the reflection as it floats; edges are antialiased by `ndv`.
+- A lacquer lip inside the tray edge.
+- A pin spec at pow 900.
+
+Close-up: `r13-gloss.png`. Stills: `process/stills/2026-11-08-contact-phone-round13` (+ `-375`). Round 12's page:
+`.local/snapshots/2026-11-08-phone-round12-index.html`.

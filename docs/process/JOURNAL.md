@@ -530,6 +530,15 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — a lacquered panel
+
+> "yes that's the place now give that space a glossy shine finish as well" … then, on a first faint pass: "i want a heavy glossy finish it should look shiny"
+
+The first pass was a clear coat that only mirrored the room, and straight on it barely showed. Now the panel is thick
+lacquer: the lime goes deep under it, hard white window strips cross it and slide as the phone floats, a bright lip
+runs where the lacquer meets the rim, and a hot pin highlight sits on top.
+Stills: `stills/2026-11-08-contact-phone-round13/` (+ `-375`).
+
 ## 2026-11-08 — the whole screen panel clean
 
 > "when i said around the frame then i meant these parts of the phone the panel around the lcd screen."
