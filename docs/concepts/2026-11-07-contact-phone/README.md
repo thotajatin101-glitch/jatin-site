@@ -139,3 +139,18 @@ yellow-green, so the screen reads mostly by its bezel.
 
 Stills: `process/stills/2026-11-07-contact-phone-round4` (+ `-short`, `-375`). Round 3's page is saved in
 `.local/snapshots/2026-11-07-phone-round3-index.html`.
+
+## Round 5 — 2026-11-07: his sketched angle
+
+**His note** (with his outline drawn over round 4, `r5-note-angle-sketch.webp`):
+> "i have outlined how i want the phone to be angled the way it's facing right is right but it's needs tilted back a bit and facing that way."
+
+**Read from his outline:** the lid leans about 9° further to the left than round 4, and the lid draws shorter than the
+base: it recedes, so the phone is tipped back about the hinge. The turn to the right stays.
+
+**Built:** REST yaw .3 (kept), roll .15 → .3, pitch .16 → .34. A side-by-side at pitch .16 and .42 was checked first
+(the lid foreshortens as he drew it). Tipped back, the lid reflects more of the sky, so the sky was lightened.
+
+**Watch:** the lid face still runs darker olive than the base, with heavier halftone.
+
+Stills: `process/stills/2026-11-07-contact-phone-round5` (+ `-short`, `-375`).

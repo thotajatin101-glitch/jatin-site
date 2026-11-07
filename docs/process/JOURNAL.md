@@ -491,6 +491,13 @@ Stills: `stills/2026-11-07-contact-phone-round3/` (+ `-short`, `-375`).
 - From his crop of the reference: a round crystal at the top of the lid with chrome stars in the corners.
 Stills: `stills/2026-11-07-contact-phone-round4/` (+ `-short`, `-375`).
 
+## 2026-11-07 — tipped back
+
+> "i have outlined how i want the phone to be angled the way it's facing right is right but it's needs tilted back a bit and facing that way."
+
+He drew the outline he wanted over the round-4 still. It still faces right, leans a little more to the left, and is tipped back so the lid recedes and the keypad comes toward you.
+Stills: `stills/2026-11-07-contact-phone-round5/` (+ `-short`, `-375`).
+
 ## 2026-11-07 — the camera looks at you
 
 > "there are times in the background u see black stripes i dont want spaces like that. and can make the camera react to the cursers so it looks at wherever the curser moves."

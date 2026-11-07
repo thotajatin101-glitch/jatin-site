@@ -951,7 +951,7 @@ into tweens.
   - **Screen:** bigger.
   - **The site's theme on the phone:** pink chrome with the halftone ink dots in its shadows; a hard ink rule round the silhouette; both screens black with the site's dithered shatter, SAY HI / JATIN in Cyberway Riders with the glitch split, neon VT323.
   Round 4 (his notes: "too tilted to the left … take inspiration from our skill cards angle … revert the screen ui for now … beads to our chains concept … not pink, a yellow lime"):
-  - **Pose:** the SKILLS card's resting pose (small lean, turned toward the top-right). This supersedes round 3's diagonal.
+  - **Pose:** round 5, from his sketch over the still: it faces right like the SKILLS card, leans a little to the left (roll .3), and is tipped BACK (pitch .34) so the lid recedes. This supersedes rounds 3 and 4.
   - **Colour:** lime chrome.
   - **Screens:** back to round 2's (acid Bayer LCD, pastel JATIN outer display) until he says otherwise.
   - **Strap:** a loop of the site's pixel-piece chain (ChainFX, the section's accent), hanging with gravity in world space off the left knuckle. No beads.
