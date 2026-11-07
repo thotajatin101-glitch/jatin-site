@@ -179,7 +179,13 @@ What made ours flat: the break came from nowhere (the acid slash was decoration 
 
 So the break is now an S-curve speed ramp (`speed`/`ramp` in SkillFX): full speed for 70ms, eased down to 15% by 170ms, hangs to 320ms, then eased back UP to 2.2× by 500ms so the chunks clear the frame. Faded by 950ms, done at 1s. Card shake cut to under half (14/10px, 3% punch, 100ms), the bolt and chain-lock shoves halved and gone in ~100ms, strain tremble halved. Stills `2026-11-07-skills-bolt-ramp`; the long-slow-mo version is `2026-11-07-skills-bolt`.
 
-**Not judged yet:** the ramp in a real tab.
+
+**His next note:**
+> "ok the card shak should only there when impact came from the stripe it shouldnt be that long still. a very hard shake for just like 0.5 secs"
+
+The card now shakes once, and only from the bolt: a very hard shake (up to 46×34px, ±.06rad, 5% punch) starting the moment the bolt lands. It steps to a new offset every 33ms and decays to nothing in exactly 0.5s, covering the break. Gone: the nudge when the chains lock, the strain tremble on the card, and the separate break shake. The chains still tremble under the bolt. Stills `2026-11-07-skills-bolt-shake`.
+
+**Not judged yet:** the shake and the ramp in a real tab.
 
 ## Round 29 — the chains that stay, and the banner out of the card (2026-11-06)
 
