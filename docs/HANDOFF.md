@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (phone r2) — CONTACT round 2: the decorated chrome phone, text box gone. NOT deployed, site/ uncommitted
+- **Did:** PhoneFX shader rebuilt: both halves bow out on both faces (`p.z+=sign(p.z+mid)*.2*x²`; the shading re-applies the same bend before `keys()`), rolled rims with sunk trays, pearl thin film (`film()`), palette studio (`env()`), stones (`stone()` + `sdHeart`/`sdStar5`/`sdSpark`), lid stones in `deco(q,z,outer)`, bead strap `strap()` (box-gated), glints projected with the shader's camera after boot. Textures: LCD 384×464 (Bayer), key atlas (white print, handsets), outer display 256×296 (`uOut`). `#sec-contact .secBody` is visually hidden on every size; `rest()` starts at `.06W+2.6fs`. Round-1 page saved at `.local/snapshots/2026-11-07-phone-round1-index.html`.
+- **Next:** his notes; measure the frame cost in a real tab (much heavier per pixel than round 1); then step 2.
+- **Watch out:** materials are picked by float ids (20+ = beads). The LCD test needs `u.z>-.05`, or the outer display reads as the LCD.
+
 ## 2026-11-07 (phone) — CONTACT step 1: the 3D flip phone (PhoneFX). NOT deployed, site/ uncommitted
 - **Did:** `PhoneFX` (before `openSection`) raymarches a clamshell on `.phCv`; `openSection` calls `PhoneFX.enter(el,180)`. Lid angle `TH=mix(pi,-.26,uOpen)` about the hinge (x axis at the origin); keys via `keys()`; LCD from a 384×496 canvas (`lcd()`), key labels from a 512×256 atlas, both no mips. `PhoneFX.hold(ms)` freezes the entrance. Harness: `.local/menu-preview/phone.html` + `phone-shot.mjs` (copy into `tests/browsers` to run, it needs Playwright).
 - **Next:** his notes on the model; then step 2 (working keypad, contacts list on the LCD, card removed).

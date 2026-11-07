@@ -35,3 +35,50 @@ Entrance: `round1-entrance-sheet.jpg` (200, 500, 800, 1040, 1100, 1180, 1260, 13
 **Next (step 2, proposed):** the phone is the contact page. The keypad works: arrows press the D-pad, the LCD becomes
 a contacts list (EMAIL / INSTAGRAM / …) and the lit centre key "calls" the selected one (opens the link). The card
 goes away on every size. Needs his real email and handles.
+
+## Round 2 — 2026-11-07: decorated chrome, our palette
+
+**His note:**
+> "ok right now the flip phone looks poorly modeled here are some reference that fits our theme. i want your to analyze every detail of the refrence and understand and pay attention to them. the model right now is plain has no textures and feels bland and flat try to incorporte this design style while also adding in out design style and theme. u can remove the text boc in page as well"
+
+Two new references (`ref-r2-pearl-deco.webp`, `ref-r2-pink-keypad.webp`).
+
+**What I read in them:**
+- Pearl / decorated clamshell: puffy, inflated chrome, never a flat slab. A raised rolled rim on every face with the
+  face sunk inside it. A thin-film shift (pink, lilac, blue) at the edges. The outer display sits in a fat double
+  chrome bezel. A camera boss. Stones everywhere: faceted crystal hearts, an iridescent star, rhinestones, a rhinestone
+  flower, chrome outline charms (four-point sparkle, moon), and glossy jelly charms (butterfly, bone). A bead strap:
+  chrome balls, pastel glass beads, a star bead. Hard four-point sparkle flares.
+- Pink chrome keypad: black gloss keys framed in chrome, white print, call and end handsets, a chrome nav ring with a
+  faceted pink stone, chrome four-point star studs at the bottom corners, a pill mic slot, a pink chrome hinge.
+
+**Direction (mine, to defend):** it is still our object, not a copy. The chrome reflects a studio built from the
+site's palette (hot pink panel, cyan rim, the acid wedge, white softboxes), so the colour comes from the world, not
+from paint. The pearl's thin film runs through pink, lilac, cyan and acid. Both screens are 4×4 Bayer-dithered like
+every gradient on the site. The red/cyan edge fringe stays. Sparkles are hard four-point shapes, no soft glow.
+
+**Built:**
+- **Body:** pearl chrome mirror with the palette thin film; each half bows out on both faces (a pillow), with a
+  rolled rim and a sunk tray on every face. The bow is what makes flat chrome sweep through the studio instead of
+  reading as one flat colour (round 1's problem).
+- **Hinge:** hot pink chrome, three knuckles.
+- **Keypad:** black gloss keys with a slight wave on top, chrome frames, white print; green call and pink end
+  handsets; a fat chrome donut nav ring with a faceted pink stone; chrome four-point star studs; mic slot.
+- **Lid inside:** the acid LCD (now Bayer-dithered) in a puffy chrome bezel; a crystal heart and an iridescent star
+  either side of the earpiece (which has its own chrome ring); under the screen a chrome sparkle charm, a rhinestone
+  flower, rhinestones, a big blush crystal heart and a pink jelly bone.
+- **Lid outside** (seen on the closed turn in): camera boss, a second display in a chrome bezel (a Bayer pastel ramp,
+  JATIN in Cyberway Riders, pink with a cyan ghost), its own stones.
+- **Strap:** a cord out of the hinge's right end into a loop of 18 beads: chrome balls between glass beads in pink,
+  cyan, acid and lilac, a star bead at the bottom.
+- **Glints:** hard four-point sparkles on the hearts and the pink stone, appearing when the screen boots.
+- **Page:** the text box is gone on every screen (kept for screen readers until step 2 puts the links on the LCD).
+  The phone moved toward the middle of the page.
+
+**Cut / changed:** the satin silver and the cool blue-rim studio (read flat and bland); the lit acid centre key (now
+the pink stone, as in the reference); the dark gloss face round the LCD (now pearl with stones).
+
+Stills: `process/stills/2026-11-07-contact-phone-round2` (+ `-short` at 1440×700, `-375`). Round 1 is kept in
+`2026-11-07-contact-phone`. Entrance: `round2-entrance-sheet.jpg` (300, 600, 900, 1080, 1200ms, rest).
+
+**Not checked yet:** frame cost in a real tab. The shader does much more work per pixel now (stones, strap, glints).

@@ -447,6 +447,23 @@ computer: one shader, no library. The keys are modelled and printed; the screen 
 as placeholder. Next: the keys work and the LCD becomes the contacts list.
 Stills: `stills/2026-11-07-contact-phone/` (+ `-1440`, `-375`), before: `stills/2026-11-07-contact-before-phone/`.
 
+## 2026-11-07 — the phone gets dressed
+
+> "ok right now the flip phone looks poorly modeled here are some reference that fits our theme. i want your to analyze every detail of the refrence and understand and pay attention to them. the model right now is plain has no textures and feels bland and flat try to incorporte this design style while also adding in out design style and theme. u can remove the text boc in page as well"
+
+His two new references are Y2K deco phones: a pearl clamshell covered in crystal hearts, rhinestones and jelly charms
+with a bead strap, and a pink chrome phone with a black keypad and a pink stone in a chrome nav ring. Round 1 was
+plain satin silver on flat faces, so it read as one grey colour.
+- Every face now bows out like a pillow, inside a rolled rim. Chrome is a mirror and needs curves to show what
+  it reflects.
+- The studio it reflects is built from the site's colours: a pink panel, a cyan rim, the acid wedge. The pearl
+  shimmers through the same colours at the edges.
+- Stones and charms on both faces of the lid, a pink chrome hinge, black keys in chrome frames, a faceted pink stone
+  in a chrome ring, chrome star studs, a bead strap.
+- Both screens are dithered like everything else on the site. Sparkles are hard four-point shapes.
+- The contact text box is gone; the phone owns the page.
+Stills: `stills/2026-11-07-contact-phone-round2/` (+ `-short`, `-375`); round 1 kept in `stills/2026-11-07-contact-phone/`.
+
 ## 2026-11-07 — the camera looks at you
 
 > "there are times in the background u see black stripes i dont want spaces like that. and can make the camera react to the cursers so it looks at wherever the curser moves."
