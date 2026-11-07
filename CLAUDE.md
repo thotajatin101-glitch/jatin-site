@@ -961,7 +961,19 @@ into tweens.
   - **Chrome follows the contour** (round 22, his note: separate clips looked "stuck into the pins … needs to look more intention, wrapped around the edges"; history: round 18 bumper too thick/banded, rounds 19–21 clips): at each outer corner a chrome band rides the phone's own outline, wrapping the rim front and back, fattest at the corner and tapering to points along the edges, with hooked tribal flares peeling off it. Plain mirror chrome. Build any such shape as a true distance field (`ext`), never a faked height: that went black (round 20).
   - **Light:** round 8 (his note: "more contrast on the model"): a dark room with a hard key; the lit side reads bright, the far side drops into shade. Keep the halftone visible after any light change.
   - **Stickers are the site's marks** (round 24, his ask: "relatable to the website design"): the menu wedge, a pixel chain link, the acid sparkle, P5 stars, as raised enamel badges in flat palette colour lit in Bayer steps inside a black ink rule (`badge`, materials 20–24). No crystals or jelly charms from the Y2K references.
-  - **Lid top:** a round crystal in a chrome ring, with chrome star studs in the corners. **The contact text box is gone on every screen** (his call; kept for screen readers). Entrance: rises closed on one turn, the lid snaps open (the beat), the screen flashes on, then a gentle float. **It follows the cursor like the PROJECTS computer** (round 17, his ask, 2026-11-08: same ±.5 yaw / ±.18 pitch, eased; this reverses the earlier no-cursor rule for the phone). No glow round it. Step 2 (not built): the keys work and the LCD carries the contacts.
+  - **Lid top:** a round crystal in a chrome ring, with chrome star studs in the corners. **The contact text box is gone on every screen** (his call; kept for screen readers). Entrance: rises closed on one turn, the lid snaps open (the beat), the screen flashes on, then a gentle float. **It follows the cursor like the PROJECTS computer** (round 17, his ask, 2026-11-08: same ±.5 yaw / ±.18 pitch, eased; this reverses the earlier no-cursor rule for the phone). No glow round it.
+  - **Step 2: the phone picks up** (his ask, 2026-11-08; concept `docs/concepts/2026-11-08-contact-chat/`).
+    - **Open:** a click on the phone (a projected-hull hit test, no readback) or Return dollies it in square to the
+      camera (620ms in-out cubic), and the cursor follow fades out.
+    - **The screen:** `.phChat` is a DOM layer on the projected LCD (`placeChat`), in his old-messenger reference's
+      language on the blue LCD.
+    - **The questions (4 steps):** what's the idea? (4 picks) / the one-line version (optional) / what do i call you?
+      plus where do i reply? / send this? (a read-back). Those wordings are his. Then "sent" and status: away.
+    - **Keys:** Esc steps back and exits from home; BACK hides while it's up.
+    - **Delivery:** `MAIL` posts to `worker/contact-mail`, a cf Worker whose `send_email` binding is locked to
+      thotajatin.work@gmail.com. If it's empty or fails, the visitor gets a prefilled mailto.
+    - **Email Routing goes on the `mail.thotahub.in` subdomain, never the apex** (the apex MX is his registrar
+      forwarding).
 - **SKILLS card face is all art** (his note, 2026-11-07: "completely cover the whole card with design itself"): no title or copy on the card. The banner is the heading; the description and tags hang FLUSH under it on `.skInfoB` (no gap, his note: "part of the title stripe itself"; it carries on the stripe's slant), a layer above the front chain that turns on the banner's pivot. On a phone it lies flat under the card with the name.
 - **The SKILLS chrome case is built ahead** (his note, 2026-11-07: the case came in randomly after the card). `SkillFX.prep()` runs from `cascadeMenu()`, and the card's entrance waits for `cas.ready` (max 1.6s), so the card never shows without its case.
 - **SKILLS deal = one flip** (his note, 2026-11-07: "simply flipping the card, which shows the back and goes to the next card"): a full turn on the card's flip spring, the face swapping while the back faces you. No spin-away / tumble-in.

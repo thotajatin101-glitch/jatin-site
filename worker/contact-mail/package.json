@@ -1,0 +1,7 @@
+{
+  "name": "jatin-contact-mail",
+  "private": true,
+  "type": "module",
+  "description": "Mails the CONTACT phone's messages to Jatin. Not part of the site build; deployed separately with cf.",
+  "devDependencies": { "cf": "0.15.0" }
+}

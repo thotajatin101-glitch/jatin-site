@@ -4,6 +4,17 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (contact chat) — CONTACT step 2 built: click the phone, it dollies in, the LCD asks 4 questions. NOT deployed, site/ uncommitted
+- **Did:** PhoneFX open/close/key/hit + `.phChat` DOM layer; `worker/contact-mail` (cf Worker, send_email locked to thotajatin.work@gmail.com).
+- **In flight:** Cloudflare setup needs his OK:
+  1. Email Routing on the `mail.thotahub.in` subdomain. The apex has registrar MX forwarding; don't touch it.
+  2. Verify the destination (he clicks the link Cloudflare sends).
+  3. `cf deploy` the Worker and set `MAIL` in PhoneFX.
+- **Watch out:**
+  - `MAIL` is empty, so sends fall back to mailto.
+  - The Worker has not been dry-run: `cf` is not installed in `worker/contact-mail` yet.
+  - The live site is APPLY mode, so CONTACT is not reachable there anyway.
+
 ## 2026-11-08 (phone r24) — CONTACT round 24: lid stickers are the site's marks (wedge, pixel link, sparkles, P5 stars) as Bayer-lit enamel badges. NOT deployed, site/ uncommitted
 - **Next:** his notes; frame cost in a real tab; step 2.
 

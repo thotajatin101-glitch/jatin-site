@@ -530,6 +530,29 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the phone picks up: get in touch on the LCD
+
+> "where once u click the phone i comes close to you and ask for details from the user if the want to get in touch … something simpler that gives me and user a gist of what's happening"
+
+> "i want the message to send me and email to thotajatin.work@gmail.com"
+
+**The reference and the cut:**
+- His references: an old-messenger "away message" screen, and a 7-step terminal questionnaire from a recording.
+- The questionnaire was cut to 4 steps:
+  - what's the idea? (his copy)
+  - the one-line version
+  - what do i call you? (his copy) plus where do i reply?
+  - a read-back.
+
+**Built:**
+- Clicking the phone dollies it in square to the camera, like the computer. The LCD becomes a real DOM screen in
+  the messenger language on its own electric blue.
+- A small Cloudflare Worker (`worker/contact-mail`) mails each message to him. It isn't live yet; it needs his OK on
+  the Cloudflare setup.
+- Until then, sending falls back to a prefilled email in the visitor's mail app.
+
+Concept: `concepts/2026-11-08-contact-chat/`.
+
 ## 2026-11-08 — the site's marks as stickers
 
 > "can the stickers on the phone be something relatable to the website design ?"

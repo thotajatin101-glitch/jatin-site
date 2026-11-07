@@ -42,3 +42,36 @@ Mock: `r1-mock-screens.png` (`r1-mock.html`).
 
 The questions are now **what's the idea?** and **what do i call you?**. The read-back label on step 2 follows
 ("idea: shoot something"). Mock: `r2-mock-screens.png`.
+
+## Round 3 — 2026-11-08: built
+
+**His note:**
+> "i want the message to send me and email to thotajatin.work@gmail.com"
+
+**Built in `PhoneFX`** (site/, not deployed):
+- **Click the phone** to open it; Return also works. The cursor turns to a pointer over the phone. The hit test is
+  the projected outline of the body and the lid, with no pixel readback, because the phone shader is heavy.
+- **The dolly** runs 620ms on an in-out cubic. The float and the cursor follow fade out, and the lid's inner face
+  ends square to the camera. The LCD fills 62% of the page height, or 86% of the width on a phone.
+- **The chat** is a DOM layer laid exactly on the projected LCD (`placeChat`; 1em = 1/15 of its height). It powers
+  on like a tube, and the LCD texture under it goes to a plain backlight.
+- **The flow:** home → what's the idea? (4 picks) → the one-line version (optional) → what do i call you? and where
+  do i reply? (email or @insta, checked) → send this? (the gist read back) → sending (a stepped pink bar) → sent
+  (status: away). If it can't send, it shows "no signal :(" with a MAIL button that opens their mail app with the
+  message already written.
+- **Keys:** 1–4 or the arrows pick, Return moves on, Esc goes back one step and exits from home. While the phone is
+  up, BACK and the heading hide.
+- **Spam:** a hidden honeypot field.
+
+**Delivery: `worker/contact-mail`**, a Cloudflare Worker (cf project).
+- It accepts a POST only from justjatin.thotahub.in (and localhost), validates the fields and emails him through a
+  `send_email` binding locked to thotajatin.work@gmail.com, with reply-to set to the sender's email.
+- Sending to a verified address on your own account is free on the Workers Free plan.
+- **Not set up yet; it needs his OK and one click from him:**
+  1. Turn on Email Routing for the subdomain `mail.thotahub.in`. Not the apex: thotahub.in already has registrar
+     mail forwarding in its MX records, and that must not break.
+  2. Add thotajatin.work@gmail.com as a destination address. Cloudflare emails it a link he has to click.
+  3. Deploy the Worker and put its URL in `MAIL` in PhoneFX. Until then, every send falls to the mail-app fallback.
+
+Stills: `r3-built-flow.png` (desktop above, 375 below), `r3-built-sent.png` (with a faked endpoint),
+`r3-built-375.png`, `r3-rest.png`.
