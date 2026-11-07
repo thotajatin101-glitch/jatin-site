@@ -143,6 +143,22 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 50 — the deal is one flip through the back (2026-11-07)
+
+**His note:**
+> "ok so right now the transition/switch between the card is basically rotation switch but let's make the semless by simply fliping card which shows the back of the card and goes to next card in that way it feel seemless."
+
+**Built:** the old deal (the card spins away, then the next tumbles in) is gone. Changing cards now sends the card's own flip spring, the same one a click uses, a full turn:
+- The front turns away and the JATIN back comes round.
+- The face swaps while the back is toward you, about 84ms in, so the new card arrives on the way round.
+- It lands face up with a small settle (about 10°), done by about 0.77s.
+- Next turns one way and previous the other.
+- A deal is damped a little harder than a click flip; a full turn on the click spring overshot about 45°.
+- Under reduced motion, the card swaps with no turn.
+- `SkillFX.dealHold(ms)` scrubs the flip (it replays the spring).
+
+Stills: `docs/process/stills/2026-11-07-skills-deal-flip` (0–800ms).
+
 ## Round 49 — pupils that read, and real depth in the same print (2026-11-07)
 
 **His note:**

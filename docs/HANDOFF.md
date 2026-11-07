@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (flip) — SKILLS deal = one full flip through the back. NOT deployed, site/ uncommitted
+- **Did:** `select()` sends `flipTo` to the next whole turn (direction follows next/prev); `frame()` swaps the face when `cos(yaw)<-.1`, with a 900ms backstop. Deal damping is 14.5 (a click flip is 10.5). `OUT`/`IN` removed. `dealHold(ms)` replays the spring for stills.
+- **Next:** his read, in a real tab.
+
 ## 2026-11-07 (order) — SKILLS card order: 01 VISUAL DIRECTION, 02 VIDEO EDITING, 03 PHOTOGRAPHY (his call). NOT deployed, site/ uncommitted
 - **Did:** reordered `CARDS`; the HTML placeholder card now matches card 01. Numbers, banner and plate menu follow the list. The eye is now `SkillFX.select(0)` in snapshots.
 

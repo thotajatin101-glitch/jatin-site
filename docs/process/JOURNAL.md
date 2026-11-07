@@ -437,6 +437,13 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 — one flip between cards
+
+> "…let's make the semless by simply fliping card which shows the back of the card and goes to next card…"
+
+Changing cards is now a single flip: the front turns away, the JATIN back comes round, and the next card lands face up, all in one motion on the card's own flip spring. The old spin-away and tumble-in are cut.
+Stills: `stills/2026-11-07-skills-deal-flip/`.
+
 ## 2026-11-07 — the deck's order
 
 > "ok alot better now could u keep the visual direction first editing next and photohraphy in the end ?"
