@@ -154,3 +154,11 @@ base: it recedes, so the phone is tipped back about the hinge. The turn to the r
 **Watch:** the lid face still runs darker olive than the base, with heavier halftone.
 
 Stills: `process/stills/2026-11-07-contact-phone-round5` (+ `-short`, `-375`).
+
+## Round 5b — 2026-11-07: rolled back a bit
+
+**His note:**
+> "i want you to roll it back a bit"
+
+The lean and the tip-back are each eased halfway back toward round 4: roll .3 → .22, pitch .34 → .25. Yaw .3 is kept.
+Stills: `process/stills/2026-11-07-contact-phone-round5b` (+ `-375`).

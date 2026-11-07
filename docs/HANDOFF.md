@@ -5,7 +5,7 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 ---
 
 ## 2026-11-07 (phone r5) — CONTACT round 5: his sketched angle. NOT deployed, site/ uncommitted
-- **Did:** REST is yaw .3, pitch .34, roll .3. The env sky top is lighter (.55,.52,.66).
+- **Did:** REST was yaw .3, pitch .34, roll .3; his "roll it back a bit" eased it to **yaw .3, pitch .25, roll .22**. The env sky top is lighter (.55,.52,.66).
 - **Next:** his notes; the lid face reads darker than the base; measure the frame cost in a real tab; step 2.
 
 ## 2026-11-07 (phone r4) — CONTACT round 4: card pose, lime chrome, chain strap, round-2 screens. NOT deployed, site/ uncommitted

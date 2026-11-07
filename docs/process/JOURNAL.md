@@ -498,6 +498,11 @@ Stills: `stills/2026-11-07-contact-phone-round4/` (+ `-short`, `-375`).
 He drew the outline he wanted over the round-4 still. It still faces right, leans a little more to the left, and is tipped back so the lid recedes and the keypad comes toward you.
 Stills: `stills/2026-11-07-contact-phone-round5/` (+ `-short`, `-375`).
 
+> "i want you to roll it back a bit"
+
+The lean and the tip-back were each eased halfway back.
+Stills: `stills/2026-11-07-contact-phone-round5b/` (+ `-375`).
+
 ## 2026-11-07 — the camera looks at you
 
 > "there are times in the background u see black stripes i dont want spaces like that. and can make the camera react to the cursers so it looks at wherever the curser moves."
