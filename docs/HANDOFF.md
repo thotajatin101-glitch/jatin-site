@@ -4,6 +4,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (phone r15) — CONTACT round 15: tray walls unprinted (no dotted outline). NOT deployed, site/ uncommitted
+- **Did:** the lid-panel rule covers the tray walls (no normal test, edge +.014).
+- **Next:** his notes; frame cost in a real tab; step 2.
+
 ## 2026-11-08 (phone r14) — CONTACT round 14: hinge barrel unprinted. NOT deployed, site/ uncommitted
 - **Did:** one more `tone=0.` rule (the barrel). Unprinted now: LCD, its bezel, the lid's inner panel, the hinge barrel.
 - **Next:** his notes; frame cost in a real tab; step 2.

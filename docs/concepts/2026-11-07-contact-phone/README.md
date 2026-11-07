@@ -301,3 +301,12 @@ Close-up: `r13-gloss.png`. Stills: `process/stills/2026-11-08-contact-phone-roun
 **Built:** the halftone skips the hinge's middle barrel (material 1, |x|<.172, within .058 of the hinge axis). The
 knuckles, the lid's rim and the body keep their dots. Before/after: `r14-hinge-before-after.png`. Stills:
 `process/stills/2026-11-08-contact-phone-round14`. Round 13's page: `.local/snapshots/2026-11-08-phone-round13-index.html`.
+
+## Round 15 — 2026-11-08: no dotted outline round the panel
+
+**His note** (crop of the panel's bottom edge, `r15-note-outline.png`):
+> "there is still and outline of that dither u can see want the removed as well"
+
+**Built:** the inner-panel rule no longer requires a face-on normal and reaches .014 past the tray's edge, so the
+tray's walls are unprinted too. Before/after: `r15-outline-before-after.png`. Stills:
+`process/stills/2026-11-08-contact-phone-round15`. Round 14's page: `.local/snapshots/2026-11-08-phone-round14-index.html`.

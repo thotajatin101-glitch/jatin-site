@@ -530,6 +530,14 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — no outline round the panel
+
+> "there is still and outline of that dither u can see want the removed as well"
+
+The panel's sunken walls still carried dots, tracing it with a dotted outline. They are clean now; the rim beyond
+keeps its print.
+Stills: `stills/2026-11-08-contact-phone-round15/`.
+
 ## 2026-11-08 — a clean hinge
 
 > "i want this extra dither over here to be removed as well" (a crop of the hinge)
