@@ -143,6 +143,15 @@ Stills `2026-10-29-skills-space-1…4` (+ `-short`). Not yet judged: motion in a
 - First entry keeps the chained wrap + snap he liked; the banner, slash and plate cascade fire on the snap.
 **Not yet:** other cards need their own art (they share the computer scene) and real copy; the recording's chain whip on every deal isn't in (the slash carries it). Tested with three temp cards; shipped list = Video Editing only. Stills `2026-10-29-skills-stage-3`, `-deal-70/200/330`, `-stage-4-short`, `-stage-5-phone`.
 
+## Round 32 — the whole page in the card's chrome (2026-11-07)
+
+**His note:**
+> "can we give the whole skills page the same chrome theme that the card has ? right now it's green but i feel like there is so much going on that the card isnt getting that much attention"
+
+The whole page goes monochrome steel, so the card's rainbow foil is the only colour on screen. `#sec-skills --acc` is now steel `#c3cadf`, and the world tint (sky, grid, streaks) is a darker steel `#8d96b2`. The bolt stripe dithers through the card's mirror ramp (near-black → steel → white, `CHROME` in DitherFX), so it reads as a chrome blade. The small plates (the selected skill plate, BACK) use a lighter chrome ramp with no black step, because the full ramp swallowed their ink type. The plate numbers, the banner's SKILL tag, the big 01 and the stars follow the accent instead of acid. The chains' red/cyan fringe and the heading's split stay: that's the site's print language, not the theme. The main menu's SKILLS plate is still green. Stills `2026-11-07-skills-chrome-page` (+ `-phone`); the before set is `2026-11-07-skills-menu-chain-design`.
+
+**Not judged yet:** in a real tab.
+
 ## Round 31 — menu chain design, thicker near V (2026-11-07)
 
 **His note:**

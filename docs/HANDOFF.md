@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-07 (later still) — SKILLS round 32: whole page in the card's chrome. NOT deployed, site/ uncommitted
+- **Did:** SKILLS accent → steel, world tint → dark steel, DitherFX chrome ramps (`CHROME` on the bolt, `CHROME_LT` on small plates) for anything inside `#sec-skills`, acid details on the plates/banner → `var(--acc)`.
+- **Open:** the main menu's SKILLS plate (`#m-skills`) is still green. His call whether it goes chrome too.
+- **Watch out:** CLAUDE.md's "every section wears its menu item's colour" no longer holds for SKILLS. Update it if he keeps this.
+
 ## 2026-11-07 (later) — SKILLS round 31: menu chain design in chrome, thicker near V. NOT deployed, site/ uncommitted
 - **Did:** METAL keeps its chrome bands but drops `mono`, so its links get the menu chain's fringe + ink screen; `sprite()` now reads colour stops off any palette. The rig's near V went from 1.55 to 2.15.
 - **In flight:** his read in a real tab.

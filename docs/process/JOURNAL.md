@@ -437,6 +437,12 @@ ABOUT bubble, and the menu's ABOUT line ("Independent creative studio…").
   to visitors; the rest shows when the full site comes back.
 Stills: `stills/2026-11-02-btn-copy-full/` and `-full-phone/`.
 
+## 2026-11-07 (later still) — SKILLS goes chrome
+
+> "can we give the whole skills page the same chrome theme that the card has ? right now it's green but i feel like there is so much going on that the card isnt getting that much attention"
+
+The whole page goes monochrome steel, so the card's rainbow foil is the only colour on screen. `#sec-skills --acc` is now steel `#c3cadf`, and the world tint (sky, grid, streaks) is a darker steel `#8d96b2`. The bolt stripe dithers through the card's mirror ramp (near-black → steel → white, `CHROME` in DitherFX), so it reads as a chrome blade. The small plates (the selected skill plate, BACK) use a lighter chrome ramp with no black step, because the full ramp swallowed their ink type. The plate numbers, the banner's SKILL tag, the big 01 and the stars follow the accent instead of acid. The chains' red/cyan fringe and the heading's split stay: that's the site's print language, not the theme. The main menu's SKILLS plate is still green. Stills `2026-11-07-skills-chrome-page` (+ `-phone`); the before set is `2026-11-07-skills-menu-chain-design`.
+
 ## 2026-11-07 (later) — SKILLS chains in the menu's design
 
 > "ok now i want the two front chains to be thicker. and could change chains design to what in main menu ? colours should be the same as now but design i want that"
