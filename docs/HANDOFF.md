@@ -4,6 +4,13 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r16) — ABOUT copy is his quote. NOT deployed, site/ uncommitted
+- **Did:** the bubble copy is now "Photographer, editor, director from India, and I never stop experimenting.", then
+  his quote in the marker. He approved the wording.
+- **In flight:** nothing.
+- **Next:** his notes. His second quote (gratitude) is unused; it could suit CONTACT.
+- **Watch out:** say India, not Hyderabad, in ABOUT copy (his call).
+
 ## 2026-11-08 (about r15) — ABOUT description is a silver plate, new copy. NOT deployed, site/ uncommitted
 - **Did:**
   - `.cgBubble`: paper, 3px ink rule, ink drop, ink type at weight 700. The spike is two layers, ink `::before`

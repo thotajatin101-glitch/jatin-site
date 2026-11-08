@@ -231,3 +231,12 @@ Stills: `stills/2026-11-08-about-round14-fields-under/`, `-375`.
 - New copy (see the journal).
 
 Stills: `stills/2026-11-08-about-round15-silver-bubble-1440-900/` (and `-1440-700`, `-1280-800`, `-375-812`).
+
+## Round 16 — his words
+
+> "instead of hyderabad say india don't keep editorial, liven etc on there but keep the and i never stop expeimenting part there and ofc keep my quote as well"
+
+**Copy:** "Photographer, editor, director from India, and I never stop experimenting." Then, highlighted: "I'd rather
+burn out chasing what I love than fade away doing what I don't."
+
+Stills: `stills/2026-11-08-about-round16-passion-copy-1440-900/` (and the other three sizes).

@@ -530,6 +530,22 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — his own words on the plate
+
+> "ok any ideas on what we can keep for description? this is what i wrote on my cv but it's a bit professional i wanted something passionate on the description. here are some qutoes that i wrote. … I'd rather burn out chasing what i love than fade away doing something i don't … this is the passion i have and i want to ignite."
+
+> "instead of hyderabad say india don't keep editorial, liven etc on there but keep the and i never stop expeimenting part there and ofc keep my quote as well"
+
+His quote is the punchline, in the cyan marker. The setup is one breath before it:
+
+> Photographer, editor, director from India, and I never stop experimenting.
+> **I'd rather burn out chasing what I love than fade away doing what I don't.**
+
+I proposed the list of work (editorials, live events, brand films); he cut it. His gratitude quote is held back for
+somewhere with more room (it reads heavy in a 3-line box).
+
+Stills: `stills/2026-11-08-about-round16-passion-copy-*` (four sizes).
+
 ## 2026-11-08 — the description goes silver
 
 > "alright it's time to work on the description. i want the box to be same as the name plate silver box. and any what the description could be like ?"
