@@ -23,6 +23,13 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
     - Smoke test: OPTIONS 204, a foreign origin 403, bad fields 422.
     - `MAIL='https://contact.thotahub.in/'` in PhoneFX.
   - The tests (`tests/browsers/run.mjs`) open PROJECTS from the menu plate when the intro lands on the menu.
+- **Live:** commit afb51b3, Pages run 42506315238 (success, 2026-11-08 17:44Z). Checked on the live domain:
+  - `/`, `/?frame=20` and the cutout return 200;
+  - the served page has `APPLY=false` and `MAIL` set;
+  - `tests/check.mjs <live>` passes: every photo and edit is served correctly;
+  - `run.mjs <live>` passes on Chrome, Safari, the three iPhones, Pixel 9 and Galaxy S24.
+- **Flaky test:** the Android configs sometimes time out tapping `#m-projects` while the menu is still cascading
+  in. A retry passes. That is the test, not the site.
 - **Next:** once he verifies the address, send a real message from the live phone and confirm it lands in Gmail.
 - **Watch out:** chat BACK double-clicked 200ms apart can still skip a screen, although `act()` has a 380ms guard.
   The cause was not found.
