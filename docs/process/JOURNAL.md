@@ -530,6 +530,23 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the fields lie still under the beam
+
+> "here is snippet of that flicker i was talking about it is still happening fix it"
+
+His clip (0.3s, 120fps) showed the real flicker: a dark box with teal perspective lines blinking in and out over the
+purple field. That box was the depth grid underneath, showing through. The fields used to sit OVER the beam and get
+re-cut every frame while it spread, so a big masked, dithered sheet was re-drawn 60 times a second. On a busy GPU the
+browser dropped whole tiles of it for a frame. Round 13's glow fix was real, but it wasn't this.
+
+Now the fields lie still, full frame, UNDER the beam, and are never re-cut. Only the beam re-cuts, and its tiles have
+the fields behind them, not the grid. The depth grid keeps its place over the beam's light, cut once to the open
+beam, and comes on with the projection. The settled frame is unchanged.
+
+I couldn't make the dropout happen on this machine, even at Retina density in visible Chrome, so it needs his eye.
+
+Stills: `stills/2026-11-08-about-round14-fields-under/` (`before-his-clip.jpg` is his recording, frame by frame).
+
 ## 2026-11-08 — the beam stops flickering the fields
 
 > "when the beam out happens from the camera the background is flickering so could u fix that"

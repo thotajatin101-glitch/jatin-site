@@ -206,3 +206,16 @@ fields, frame after frame.
 Nothing else in the entrance changed.
 
 Stills: `stills/2026-11-08-about-round13-no-flicker/`.
+
+## Round 14 — fields under the beam
+
+> "here is snippet of that flicker i was talking about it is still happening fix it"
+
+**Cause (from his clip):** the fields sat over the beam and were re-cut every frame. The browser dropped tiles of
+them, and the depth grid underneath flashed through in blocks.
+
+**Fix:** the fields are z0, full frame, never clipped, under the beam (z1). ABOUT's wedge drops its red/cyan filter,
+since the bands cover the edges. The depth grid stays at z2 over the light, clipped to `--beam` (the open beam, set
+once), and fades on with `.lit`.
+
+Stills: `stills/2026-11-08-about-round14-fields-under/`, `-375`.

@@ -598,6 +598,10 @@ into tweens.
     rim baked by `bakeCutout` in `--acc`.
   - **The portrait's glow is a dither that flows outward** (`CutGlow`, his ask, Oct 27): unchanged, in `.glowWrap`
     at z6, just under the portrait.
+  - **The fields lie still UNDER the beam** (round 14, his flicker clip): full frame, never re-cut. Only the beam
+    re-cuts while it opens. Re-cutting a big masked, dithered layer every frame made the browser drop tiles of it,
+    and the depth grid flashed through. The depth grid (`#fxCv`) sits over the light, cut once to the open beam
+    (`--beam`), and comes on with `.lit`.
   - **Nothing outside the beam is empty** (round 2, his scribbles: "the whole part to be covered"). Two dithered
     fields: pink above the beam, purple on the camera side, split on a ray from the lens to the top-left. They're
     a shade DEEPER than the bands (`#b81d66` / `#560c80`), or the stripes vanish into them. z3, under the print screen.

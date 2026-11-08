@@ -4,6 +4,19 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r14) — ABOUT fields no longer re-cut per frame (his flicker clip). NOT deployed, site/ uncommitted
+- **Did:**
+  - `.cgField` is z0, unclipped, under the beam. `apply()` no longer touches the fields.
+  - `#sec-about .secWedge{filter:none}`.
+  - `#fxCv` in ABOUT is clipped to `--beam` (set when `apply` runs at o=1), hidden until `.lit`.
+  - The settled stills match round 12.
+- **In flight:** nothing.
+- **Next:** his check in his browser. I couldn't reproduce the tile dropout here.
+- **Watch out:**
+  - Never put a big masked/dithered layer on a per-frame `clip-path` again. Animate the cut on the thing in
+    front, over a still background.
+  - `#fxCv` must stay above `.cgLight` in ABOUT, or the light hides the grid.
+
 ## 2026-11-08 (about r13) — beam glow no longer flickers the fields. NOT deployed, site/ uncommitted
 - **Did:** in `AboutFX.fan`, the glow outside the beam is now a fixed band off its edges (perpendicular px), not
   3.2x the beam's angle. The settled frame is unchanged, since the glow only exists while the beam is boosted.
