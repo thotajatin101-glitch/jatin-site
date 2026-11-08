@@ -530,6 +530,33 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-09 — the site learns the machine it's on
+
+His note: "why is the framerate dropping in the website for users. especially for contact page. and the phone
+layout needs alot of work as well", with two iPhone screenshots.
+
+**Frame rate.** Measured on this Mac's GPU, one frame of the CONTACT phone costs 7–12.6ms and the PROJECTS computer
+6.7ms, at 2160×1350. A laptop's built-in graphics is several times slower: that's 40–60ms a frame, about 15–25fps,
+which is what his friends saw. The fix is a frame governor. The site watches its own frame rate on whatever machine
+it lands on, and when frames run long it renders the 3D models at a lower resolution, step by step (down to .45),
+then climbs back when there's room. Laptop graphics chips start a step down, and on weak machines the models drop
+their CSS colour fringe (a second full-screen pass). The halftone dots scale with it, so a lower step reads as a
+softer print, not a broken one. On the processor side, the dithered shapes no longer all repaint on the same frame:
+each frame paints only the ones that are due, inside a small budget. The menu's worst frame went from 5.8ms of
+script to 2.5ms, ABOUT's from 8.2 to 4.3.
+
+**Phone layout.** At his real visible size (about 390×650 once Chrome's bars take their share) and an iPhone SE:
+- the menu's description ran under the plates; the heading block now measures the gap between the corner mark and
+  the top plate and sits in it, stepping its type down, then dropping the description, if it has to;
+- the ABOUT camera sat jammed under BACK and off the top; the lens comes down and in, the beam keeps its angles;
+- the SKILLS card's chrome horns covered THE TOOLKIT; the card now hangs off the heading like every page;
+- CONTACT still had a stray black hook beside the phone on the small screen: the same lid decoration, bounded too
+  loosely the first time;
+- CONTACT's menu line said "or just to talk shop", which is exactly what he doesn't want: now "Commissions and
+  collabs. Tell me what you want to make."
+
+Stills: `stills/2026-11-09-phone-layout-perf/`.
+
 ## 2026-11-09 — the phone asks why you're calling
 
 He filmed CONTACT on his iPhone and sent it with: "there is weird glitch around the phone and the contact ui is buggy

@@ -119,6 +119,7 @@ button{cursor:pointer;}
 .phCv{position:absolute;z-index:5;left:0;top:0;width:100%;height:100%;display:block;pointer-events:none;}
 .phChain{position:absolute;z-index:4;left:0;top:0;width:100%;height:100%;pointer-events:none;display:block;}
 .phChain.front{z-index:6;}   /* the phone's strap: the site's pixel-piece chain, behind or in front of the phone by depth */
+.fxLow .phCv.still,.fxLow .pcCv.still{filter:none;}
 .phCv.still{filter:drop-shadow(-3px 0 0 rgba(255,0,72,.5)) drop-shadow(3px 0 0 rgba(0,224,255,.5));}   /* CONTACT's phone: the same edge fringe as the computer, at rest only */
 /* CONTACT round 25: the comic pop-ups beside the chained phone (PhoneFX.pops places them on its edges) */
 .phPop{position:absolute;z-index:9;cursor:pointer;visibility:hidden;will-change:transform;transform:rotate(var(--rot,0deg));}   /* round 27: tapering RING! bursts, pivoting on their tip */
@@ -870,8 +871,9 @@ body.menu #menuHint{opacity:1;}
   /* no banner on a phone: the copy plate lies flat under the card, carrying the name itself */
   .skInfoB{left:5vw;right:5vw;top:auto;bottom:calc(11vh + 3.4rem);width:auto;transform:none;padding-top:0 !important;}
   .skInfoB.show{animation:skInfoUp .38s .05s cubic-bezier(.2,1.25,.35,1) both;}
-  .skInfoBody{margin:0;max-width:none;padding:.8em 1em .9em;}
-  .skInfoBName{display:block;}
+  .skInfoBody{margin:0;max-width:none;padding:.6em .9em .7em;font-size:.76rem;line-height:1.5;}
+  .skInfoBName{display:block;font-size:1.25rem;margin-bottom:.3em;}
+  .skInfoB .skInfoTags{margin-top:.55em;}
   .skMenu{top:auto;bottom:11vh;right:auto;left:50%;transform:translateX(-50%);flex-direction:row;gap:.35em;}
   .skItem{width:auto;margin:0;padding:.35em .8em .35em 1.1em;font-size:1.3rem;}
   .skItem .skLabel{display:none;}
@@ -961,7 +963,10 @@ body.apply #sec-projects .backBtn{display:none;}
   background-size:100% 260%;background-position:0 var(--fy,50%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;text-shadow:none;}
 @media (max-width:759px){
-  .skSlot{left:50vw;top:41.5vh;--skH:min(36vh,330px);}   /* higher and a touch smaller: the words sit under it on a phone */
+  /* phone (2026-11-09: the chrome horns covered THE TOOLKIT): the card hangs off the heading like every page, horns
+     included (~38px), and takes the height left above the copy plate, which overlaps its foot a little by design */
+  .skSlot{left:50vw;--skH:clamp(150px,calc(100vh - var(--headTop) - 1.95 * var(--headFs) - 44px - 11vh - 3.4rem - 7.4rem),330px);
+    top:calc(var(--headTop) + 1.95 * var(--headFs) + 44px + var(--skH) / 2);}
 }
 
 /* ============ SECTIONS (cover the landing incl. logo) ============ */
@@ -1298,6 +1303,10 @@ html.cuOn,html.cuOn *{cursor:none!important;}
      fall outside the accent and onto raw shards — give it its own card */
   /* narrow screens have no room to offset either — keep them flush left */
   #wedgeSub{margin-left:0;}
+  #wedgeText.phS #wedgeWord{font-size:clamp(2rem,12vw,3.4rem);}
+  #wedgeText.phS #wedgeDesc{font-size:.72rem;line-height:1.5;padding:.6em .8em .65em;}
+  #wedgeText.phXS #wedgeDesc{display:none;}
+  body.menu #logoSub{letter-spacing:.16em;}   /* one line on a 375 phone */
   #wedgeDesc{margin-left:0;width:auto;max-width:22em;
     font-size:.8rem;line-height:1.65;padding:.85em 1em .9em 1em;}
   #stars .st{--sz:5vw !important;}
@@ -1311,7 +1320,7 @@ html.cuOn,html.cuOn *{cursor:none!important;}
      rides above him on the left, the name low on the right */
   .collage{--ph:min(66vh,128vw);}
   .cutWrap{top:auto;bottom:-4vh;left:calc(62vw + .12 * var(--pw));}
-  .cgBubble{left:4vw;top:30vh;width:54vw;padding:.8em 1em .9em 1.1em;}
+  .cgBubble{left:4vw;top:30vh;width:min(50vw,200px);padding:.8em 1em .9em 1.1em;}
   .cgBubble p{font-size:.64rem;}
   .cgBubble::before,.cgBubble::after{display:none;}
   .spark-a{left:auto;right:4vw;top:27vh;--sz:12vw;}
@@ -1375,7 +1384,7 @@ html.cuOn,html.cuOn *{cursor:none!important;}
   <li class="mItem" id="m-about" data-desc="Photographer, editor, director from India. I never stop experimenting."      data-target="sec-about"   data-sub="Who I Am"><span class="pNum">01</span>ABOUT</li>
   <li class="mItem" id="m-projects" data-desc="Shoots, edits and films: the work I'd burn out chasing."   data-target="sec-projects" data-sub="The Work"><span class="pNum">02</span>PROJECTS</li>
   <li class="mItem" id="m-skills" data-desc="What I shoot with, cut with, and keep experimenting on."     data-target="sec-skills"   data-sub="The Toolkit"><span class="pNum">03</span>SKILLS</li>
-  <li class="mItem" id="m-contact" data-desc="Commissions, collabs, or just to talk shop."    data-target="sec-contact"  data-sub="Say Hi"><span class="pNum">04</span>CONTACT</li>
+  <li class="mItem" id="m-contact" data-desc="Commissions and collabs. Tell me what you want to make."    data-target="sec-contact"  data-sub="Say Hi"><span class="pNum">04</span>CONTACT</li>
 </ul>
 <div id="stars"></div>
 <div id="menuHint"><b>↑ ↓</b> navigate &nbsp;·&nbsp; <b>Enter</b> select &nbsp;·&nbsp; <b>Esc</b> back</div>
@@ -1487,7 +1496,7 @@ html.cuOn,html.cuOn *{cursor:none!important;}
   <div class="secBody">
     <div class="card">
       <h3>Let's make some <em>noise</em></h3>
-      <p>For commissions, collabs, or just to talk shop:</p>
+      <p>For commissions and collabs. Tell me what you want to make:</p>
       <ul style="margin-top:10px">
         <li>Email — <a href="mailto:thotajatin.work@gmail.com">thotajatin.work@gmail.com</a></li>
       </ul>
@@ -1501,6 +1510,34 @@ html.cuOn,html.cuOn *{cursor:none!important;}
 
 <script>
 function isTouch(){return matchMedia('(hover:none) and (pointer:coarse)').matches;}   /* phones + tablets: say tap, not click */
+/* ================= QUALITY: the frame governor =================
+   2026-11-09, his note: friends on laptops and PCs see dropped frames, worst on CONTACT. Measured on this Mac's GPU,
+   one frame of the phone costs 7–12.6ms and the computer 6.7ms at 2160×1350; a laptop's integrated GPU is several
+   times slower, so they got ~15–25fps. The 3D models (raymarched: their cost is per pixel) multiply their render
+   resolution by Q.s. Q watches real frame intervals: frames running long step it down (to .45), steady headroom
+   steps it back up. Integrated laptop GPUs start a step down. Below .8 the CSS colour fringe on the models goes too
+   (body.fxLow): a filter on a full-screen canvas is a second full-screen pass every frame it changes. */
+const Q=(()=>{
+  let s=1,ref=1000/60,win=[],last=0,changed=0,good=0;
+  try{const c=document.createElement('canvas').getContext('webgl'),e=c&&c.getExtension('WEBGL_debug_renderer_info');
+    const r=e?String(c.getParameter(e.UNMASKED_RENDERER_WEBGL)):'';
+    if(/intel|amd radeon\(tm\) graphics|radeon vega|uhd|iris|mali|adreno \(tm\) [1-5]|powervr|swiftshader|llvmpipe|microsoft basic/i.test(r)&&!/apple/i.test(r))s=.7;
+    const l=c&&c.getExtension('WEBGL_lose_context');l&&l.loseContext();}catch(e){}
+  const apply=()=>document.body&&document.body.classList.toggle('fxLow',s<.8);
+  function tick(now){requestAnimationFrame(tick);
+    const dt=now-last;last=now;
+    if(document.hidden||dt>120||dt<=0){win.length=0;return;}   /* a hitch or a background tab is not a verdict */
+    win.push(dt);if(win.length<40)return;
+    const a=win.sort((x,y)=>x-y),p10=a[4],p50=a[20],p90=a[36];win=[];
+    ref=Math.max(6.5,Math.min(17.5,Math.min(ref,p10*1.02)));   /* the display's own interval: the fastest frames */
+    if(now-changed<900)return;
+    if(p50>ref*1.35||p90>ref*2.1){if(s>.45){s=Math.max(.45,+(s*.82).toFixed(3));changed=now;good=0;apply();}}
+    else if(p90<ref*1.15){if(++good>=5&&s<1){s=Math.min(1,+(s/.88).toFixed(3));changed=now;good=0;apply();}}
+    else good=0;
+  }
+  requestAnimationFrame(tick);addEventListener('DOMContentLoaded',apply);
+  return {get s(){return s;},set(v){s=v;apply();},get ref(){return ref;}};
+})();
 /* ================= HELPERS ================= */
 const rand=(a,b)=>a+Math.random()*(b-a);
 const pick=arr=>arr[Math.floor(Math.random()*arr.length)];
@@ -2723,7 +2760,7 @@ void main(){
       return ok=true;
     }
     function size(){
-      const R=Math.min(devicePixelRatio||1,1.5),w=Math.round(cv.clientWidth*R),h=Math.round(cv.clientHeight*R);
+      const R=Math.min(devicePixelRatio||1,1.5)*Math.max(.6,Q.s),w=Math.round(cv.clientWidth*R),h=Math.round(cv.clientHeight*R);
       if(!w||!h)return false;
       if(w!==W||h!==H){W=cv.width=w;H=cv.height=h;gl.viewport(0,0,w,h);last=-1e9;}
       return true;
@@ -3731,7 +3768,7 @@ void main(){
      re-rendered crisp. Parallax and the screen intro stay full-res. */
   let heavy=false;
   function size(){
-    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:1),w=Math.max(1,Math.round(cv.clientWidth*R)),h=Math.max(1,Math.round(cv.clientHeight*R));
+    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:1)*Q.s,w=Math.max(1,Math.round(cv.clientWidth*R)),h=Math.max(1,Math.round(cv.clientHeight*R));
     if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;dirty=true;}
     return R;
   }
@@ -4447,15 +4484,22 @@ const DitherFX=(()=>{
     }
     rec.x.putImageData(rec.img,0,0);
   }
+  /* PERF (2026-11-09, laptops dropping frames): every shape used to repaint on the same frame, a 6–8ms spike every
+     third frame on this Mac and a dropped frame on a slower CPU. Now each frame paints only the shapes that are due
+     (30fps each), oldest first, inside a ~1.4ms budget; the list of live shapes is re-read 4× a second */
+  let list=[],listAt=-1e9;
   function tick(now,accRGB,force){
-    if(!force&&now-last<33)return;last=now;
     if(accRGB)acc=accRGB;
-    const covered=!!document.querySelector('.section.active');   /* menu sits under the open section */
-    document.querySelectorAll(SEL).forEach(el=>{
-      if(!el.getClientRects().length)return;            /* off screen / display:none */
-      if(covered&&!el.closest('.section'))return;
-      paint(attach(el),now);
-    });
+    if(force||now-listAt>250){listAt=now;
+      const covered=!!document.querySelector('.section.active');   /* menu sits under the open section */
+      list=[];document.querySelectorAll(SEL).forEach(el=>{
+        if(!el.getClientRects().length)return;            /* off screen / display:none */
+        if(covered&&!el.closest('.section'))return;
+        list.push(attach(el));});
+      list.forEach(r=>{if(r.at==null)r.at=-1e9;});}
+    const due=list.filter(r=>force||now-r.at>=33).sort((a,b)=>a.at-b.at);
+    const t0=performance.now(),budget=force?1e9:1.4;
+    for(const r of due){r.at=now;paint(r,now);if(performance.now()-t0>budget)break;}
   }
   return {tick,refresh(){tick(performance.now(),null,true);}};
 })();
@@ -4597,7 +4641,9 @@ const DepthFX=(()=>{
      ordered (Bayer) dither, so the blend resolves in small deliberate pixel
      steps — a print/screen texture instead of a digital smear. */
   const CELL=3,BAYER=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5].map(v=>(v+.5)/16);
-  let lc=null,lx=null,img=null,lastDither=0;
+  const SLUT=new Float32Array(4096);for(let i=0;i<4096;i++)SLUT[i]=Math.sin(i/4096*Math.PI*2);
+  const fsin=x=>SLUT[((x*651.8986469044033|0)%4096+4096)&4095];   /* sin via table: the per-pixel Math.sin was most of the cost */
+  let lc=null,lx=null,img=null,lastDither=0,half=0;
   function livingWedge(now,cx,cy){
     if(host!==document.body||!document.body.classList.contains('menu'))return;
     if(!wBox)wBox=wedgeGeo();if(!wBox)return;
@@ -4609,8 +4655,10 @@ const DepthFX=(()=>{
     }
     /* ~2ms at 1440×900, so recompute at 30fps and re-blit in between — the
        motion is slow enough that the half-rate is invisible */
-    const fresh=now-lastDither>=33||lc.dataset.stale;
-    if(fresh){lastDither=now;delete lc.dataset.stale;
+    /* PERF: half the rows per pass (alternating), a pass every ~16ms, so each row still refreshes at 30fps but the
+       cost is split over two frames instead of a 2ms+ spike */
+    const fresh=now-lastDither>=16||lc.dataset.stale;
+    if(fresh){lastDither=now;const both=!!lc.dataset.stale;delete lc.dataset.stale;half^=1;
     const hi=mix(acc,[255,255,255],.72),deep=mix(acc,[60,8,120],.68);
     const cr=Math.max(0,Math.min(1,1-(Math.max(...acc)-Math.min(...acc))/40)),MR=[[10,14,30],[58,68,102],[138,147,179],[207,213,234],[255,255,255]];
     const ramp=[deep,mix(deep,acc,.5),acc,mix(acc,hi,.5),hi].map((c,i)=>mix(c,MR[i],cr));   /* grey accent (SKILLS) = chrome */
@@ -4620,15 +4668,15 @@ const DepthFX=(()=>{
     const plx=(wBox[0][0]+(W-wBox[0][0])*(.55+.3*Math.sin(t*.37)))/W,ply=.5+.32*Math.sin(t*.23+1.3);
     const wL=wBox[0][0],wW=wBox[1][0]-wL,wH=H;
     const x0=Math.max(0,Math.floor(wBox[0][0]/CELL)),d=img.data,TAU2=Math.PI*2;
-    for(let y=0;y<lh;y++){
+    for(let y=both?0:half;y<lh;y+=both?1:2){
       const v=y/lh*H/W,by=(y&3)<<2;
       const nyy=y*CELL/wH*100-45,ny45=100*nyy,ny45l=100*nyy;
       for(let x=x0;x<lw;x++){
         const u=x/lw;
         const along=u*ca+v*sa,perp=-u*sa+v*ca;
-        const warp=.22*Math.sin(perp*4.2+t*.55);           /* flowy: bands curve */
-        const band=.5+.5*Math.sin(TAU2*(along*.85-ph+warp));
-        const cross=Math.sin(TAU2*(perp*.55+ph2));
+        const warp=.22*fsin(perp*4.2+t*.55);           /* flowy: bands curve */
+        const band=.5+.5*fsin(TAU2*(along*.85-ph+warp));
+        const cross=fsin(TAU2*(perp*.55+ph2));
         const dx=u-plx,dy=y/lh-ply,pool=Math.max(0,1-(dx*dx+dy*dy)*5.5);
         let tone=band*.78+cross*.16+pool*.42-.12;
         tone=tone<0?0:tone>1?1:tone;
@@ -5931,9 +5979,19 @@ const WEDGE_SKEW=0.21; /* width the skew(-9deg)+rotate(-3deg) adds, per 1px of
                           height — lets us predict the painted box instead of
                           measuring it */
 const WEDGE_MAX=250;   /* px, so short words don't balloon on huge screens */
+/* Phones (2026-11-09, his screenshot: the description ran under the plates). The heading block sits in the gap
+   between the corner mark and the top plate, centred in it. If it doesn't fit it steps down: smaller type, then
+   the description goes (the plate's tag still says what it is). Layout metrics only, like fitWedge */
+function fitWedgePhone(){
+  const H=innerHeight,ml=document.getElementById('menuList'),lw=document.getElementById('logoWrap');
+  const top=(lw?lw.offsetTop+lw.offsetHeight:0)+14,bot=H-parseFloat(getComputedStyle(ml).bottom)-ml.offsetHeight-14;
+  wedgeText.classList.remove('phS','phXS');
+  for(const k of ['','phS','phXS']){if(k)wedgeText.classList.add(k);if(wedgeText.offsetHeight<=bot-top)break;}
+  wedgeText.style.top=Math.round((top+bot)/2)+'px';
+}
 function fitWedge(){
   wedgeText.classList.add('fitted');          /* reveal once sized, never before */
-  if(innerWidth<=760){wedgeText.style.left='';wedgeWord.style.fontSize='';return;}
+  if(innerWidth<=760){wedgeText.style.left='';wedgeWord.style.fontSize='';fitWedgePhone();return;}
   /* The plates are a diagonal staircase, so only the plates level with the
      heading matter — the long top plate sits above it. Layout metrics only
      (offset*), never rects: plates animate (slide-in, select scale) and a
@@ -6527,7 +6585,7 @@ void main(){
   }
   function frame(ms){
     if(!ok||!tgt)return;
-    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:1),W=cv.clientWidth,H=cv.clientHeight;
+    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:1)*Q.s,W=cv.clientWidth,H=cv.clientHeight;
     const w=Math.round(W*R),h=Math.round(H*R);if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;}
     const q=pose(ms,W,H),S=q.S*R,lw=toW(LENS,q),kk=3.3*S/(4.6-lw[2]);
     const cx=q.x*R-lw[0]*kk,cy=(H-q.y)*R-lw[1]*kk;                      /* the lens lands on (q.x, q.y) */
@@ -6571,8 +6629,10 @@ const AboutFX=(()=>{
     const W=sec.clientWidth,H=sec.clientHeight,ph=W<760;if(!W||!H)return;
     /* the lens and the two edge directions (his reference: the top edge runs out shallow to the right, the bottom
        edge drops steeply); on a phone the beam opens down the page */
-    const L=ph?[.4*W,.165*H]:[.28*W,.25*H];
-    const T=ph?[W,.36*H]:[W,.69*H],B=ph?[0,.6*H]:[.49*W,H];
+    /* phone (2026-11-09, his screenshot: the camera sat jammed under BACK and off the top): the lens comes down and in,
+       clear of BACK, with the whole camera body on screen behind it; the beam keeps its angles */
+    const L=ph?[.47*W,Math.max(.235*H,128)]:[.28*W,.25*H];
+    const T=ph?[W,L[1]+.2*H]:[W,.69*H],B=ph?[0,L[1]+.44*H]:[.49*W,H];
     const nz=v=>{const l=Math.hypot(v[0],v[1]);return [v[0]/l,v[1]/l];};
     const ut=nz([T[0]-L[0],T[1]-L[1]]),ub=nz([B[0]-L[0],B[1]-L[1]]);
     const nt=[ut[1],-ut[0]],nb=[-ub[1],ub[0]];                            /* away from the beam: up for the top edge, left for the bottom */
@@ -6836,7 +6896,7 @@ float sdLink(vec2 q,float u){                                                   
 }
 vec2 badge(float d2,float z,float mat){return vec2(ext(d2,z-.007,.007,.0045),d2>-.004?6.:mat);}
 vec2 deco(vec2 q,float z,float outer){
-  if(z>.05)return vec2(max(z-.04,sdR2(q-vec2(0.,.5),vec2(.4,.65),0.)),0.);   /* a real bound: the lid's footprint too. As a
+  if(z>.05)return vec2(max(z-.04,sdR2(q-vec2(0.,.49),vec2(.28,.5),0.))+.01,0.);   /* a real bound: the lid's footprint too. As a
      depth-only slab it read as an endless plane, rays grazing it beyond the phone were "near misses", and the ink rule
      smeared black blobs and streaks across the screen (2026-11-09, his phone clip: "weird glitch around the phone") */
   vec2 res=vec2(1e9,0.),b;vec2 c,r;float d;
@@ -7278,7 +7338,7 @@ void main(){
   }
   let heavy=false,shaking=false;
   function size(){
-    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:shaking?.78:1),w=Math.max(1,Math.round(cv.clientWidth*R)),h=Math.max(1,Math.round(cv.clientHeight*R));
+    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:shaking?.78:1)*Q.s,w=Math.max(1,Math.round(cv.clientWidth*R)),h=Math.max(1,Math.round(cv.clientHeight*R));
     if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;P=null;}
     return R;
   }
