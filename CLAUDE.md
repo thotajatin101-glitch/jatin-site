@@ -126,7 +126,7 @@ Everything comes from his logo animation. Do not soften or "clean up" this look.
   size.** Headings are capped by width AND height (`--headFs`:
   `clamp(3rem,min(9.5vw,15vh),7.2rem)`; collage uses its own); `.secBody`
   and the collage's tag/card stack (`--cgTop`) start at
-  `7vh + 1.95 × --headFs + gap`. Width-only sizing collided with vh-placed
+  `--headTop + 1.95 × --headFs + gap`. Width-only sizing collided with vh-placed
   content on short, wide screens. The banner is height-capped too and sits
   14px higher, since its rotation drops the left end toward BACK. On the
   collage the heading sits above the portrait (z7). On phones the outline
@@ -512,6 +512,10 @@ into tweens.
   The event doesn't fire reliably when the tab is throttled, and a stuck `.in`
   pins the selected plate's transform. Same rule as the old opacity bug:
   visibility lives on classes, never inline.
+- **BACK sits top-left on every page** (his ask, 2026-11-08), a compact tab at `--backTop` (2.4vh). Headings drop to
+  `--headTop` = max(7vh, BACK + 52px) to clear it, and everything under a heading hangs off `--headTop` (`.secBody`,
+  the SKILLS card, which also shrinks on short screens so its chrome horns clear the heading). Phones use a smaller
+  BACK so it clears the ABOUT camera.
 - Sections open **over** the landing, with a slammed-in wonky header and
   staggered cards.
 - **Every section wears its menu item's colour and the menu's layout** (his
@@ -621,8 +625,7 @@ into tweens.
     drop, ink type in real Plex Mono italic 700. The spike is ink outside, silver inside.
   - **Copy and layout:** the speech bubble sits IN the beam on desktop, between the purple band and him (round 17,
     his box: 20–55% across, 44–75% down, 34vw wide), its spike pointing at him. The cyan marker is a static, subtle CRT strip (round 18: pale cyan, faint scanlines, small glow)
-    (scanlines, grille, glow, a fringe under 1px). JATIN big in the pink field top-right, above the beam (round 3, his box); DIRECT · SHOOT · CUT right of his head; BACK in the default
-    bottom-left spot. The DepthFX vanishing point is the lens (`SECTION_WORLD`), so the streaks radiate out of the
+    (scanlines, grille, glow, a fringe under 1px). JATIN big in the pink field top-right, above the beam (round 3, his box); DIRECT · SHOOT · CUT right of his head; BACK top-left like every page; The DepthFX vanishing point is the lens (`SECTION_WORLD`), so the streaks radiate out of the
     camera.
   - Small type uses a 1px glitch split; the 4px split doubled the letterforms.
   - Audited at 1440×900, 1440×700, 1280×800 and 375×812.

@@ -4,6 +4,14 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 — BACK top-left on every page. NOT deployed, site/ uncommitted
+- **Did:** `.backBtn` is a compact tab at top-left (`--backTop`); headings sit at `--headTop`; `.secBody` and the
+  SKILLS `.skSlot` hang off it (the card shrinks on short screens). Phone BACK smaller. Audited 1440×900, 1440×700,
+  1280×800, 375×812 on all four sections.
+- **In flight:** nothing.
+- **Next:** his notes.
+- **Watch out:** anything new placed under a heading must use `--headTop`, not 7vh. JATIN OS keeps its own `.osBack`.
+
 ## 2026-11-08 (about r18) — ABOUT marker made subtler. NOT deployed, site/ uncommitted
 - **Did:** toned down the `.hl` CRT strip (paler cyan, half-strength scanlines/grille, small glow, fainter fringe).
 - **In flight:** nothing.

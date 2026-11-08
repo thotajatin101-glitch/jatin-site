@@ -530,6 +530,16 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — BACK moves to the top-left
+
+His note: "keep the back button on all the pages to the top left instead of bottom left".
+
+BACK is now a compact tab in the top-left corner of every section, the place a game puts its back button. The
+headings drop just enough to clear it, and everything that hangs under a heading moved with them. On short screens
+(1440×700) the SKILLS card was then sitting on "TOOLKIT", so the card now hangs off the heading too and shrinks a
+little when the screen is short. On phones BACK is smaller so it clears the ABOUT camera. Before:
+`stills/2026-11-08-back-bottom-before-*`; after: `stills/2026-11-08-back-top-left-*` (four sizes).
+
 ## 2026-11-08 — the marker calms down
 
 His note: "could u make the highlight a bit subtle?"
