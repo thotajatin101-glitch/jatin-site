@@ -589,7 +589,7 @@ into tweens.
   - **Chains (his green lines):** each chain canvas carries its own path in `data-path` (fractions of the section,
     Catmull-Rom smoothed in `ChainFX.drawPaths`).
     - Chain A (z8) sweeps up across the bottom, in FRONT of him.
-    - Round 3: chain A is the only chain. The band chains (B, C) were cut on his call.
+    - **No chains on ABOUT** (rounds 3–4, his call: cut one by one). Don't add them back unless he asks.
     - Same slam and scroll as before.
   - **Layers:** beam z1 < light z2 < print screen z3 < chain B z4 < bands z5 < flare and glow z6 < portrait z7 <
     chain A, bubble and sparkles z8 < tags and camera z9 < BACK z10.

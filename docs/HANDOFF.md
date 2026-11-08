@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r4) — ABOUT has no chains. NOT deployed, site/ uncommitted
+- **Did:** removed `.cgChainA` (markup, CSS, path) and the `ChainFX.slam` call in `openSection`. The ChainFX
+  path code stays for other sections.
+- **Next:** his notes.
+
 ## 2026-11-08 (about r3) — ABOUT: name top-right, band chains cut, pink/purple blend. NOT deployed, site/ uncommitted
 - **Did:**
   - `.cgTag-name` moved into the pink field (56vw / 7vh; phone: top-right).

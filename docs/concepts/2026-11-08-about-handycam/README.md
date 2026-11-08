@@ -78,3 +78,10 @@ Stills: `stills/2026-11-08-about-cover-round2/` (+ `-short`, `-laptop`, `-375`).
   across the split ray.
 
 Stills: `stills/2026-11-08-about-round3/` (+ `-short`, `-laptop`, `-375`).
+
+
+## Round 4 — no chains
+
+> "remove the last chain as well"
+
+Chain A removed; ABOUT now has no chains. Stills: `stills/2026-11-08-about-round4-no-chains/` (+ `-375`).

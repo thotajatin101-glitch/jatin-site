@@ -530,6 +530,13 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — ABOUT without chains
+
+> "remove the last chain as well"
+
+The front chain is gone too, so ABOUT has no chains now. The page is the camera, the light and him.
+Stills: `stills/2026-11-08-about-round4-no-chains/` (+ `-375`).
+
 ## 2026-11-08 — the name goes up, the band chains go
 
 > "ok i want you to move the name to the location i marked and remove the chains i pointed towards. and when purple and pink colors meet i want the area to merged like a gradient smoothly"
