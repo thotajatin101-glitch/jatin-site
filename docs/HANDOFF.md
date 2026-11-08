@@ -4,6 +4,19 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r6) — ABOUT entrance: camera rushes at you, then the ray opens into the projection. NOT deployed, site/ uncommitted
+- **Did:**
+  - `CamFX.pose(ms,W,H)` gives far (bottom-right, .3×) → near (head-on, S = 1.9·min side) → REST.
+    `FLY_A` = 450, `FLY_B` = 530, `IN` = 950.
+  - `AboutFX.apply(o,len,a)` opens the beam: the edges come out of their bisector, with the bands, fields,
+    `.secBand` and `.cgRay` following.
+  - `beam()` runs the timeline: R0 960, R1 1100, O1 1420. Then `.lit` shows the white fan.
+  - `AboutFX.hold(ms)` + `CamFX.hold(ms)` scrub it.
+  - Fields and beam are now cut at a box 40px outside the frame, corners taken in angle order (`side()`).
+  - Retimed: portrait 1.38s, deco 1.36s, chain feed 1.46s, pops 1.42–1.78s. `snap.mjs` ABOUT settle is now 3000ms.
+- **Next:** his notes. Judge the motion in a real tab.
+- **Watch out:** fully shut (o=0) is special-cased, or the fields collapse to nothing.
+
 ## 2026-11-08 (about r5) — ABOUT gets one perspective chain on his path. NOT deployed, site/ uncommitted
 - **Did:**
   - `ChainFX.about(sec)` draws on `.cgRunB` (z6, under the portrait) and `.cgRunF` (z8, over him).

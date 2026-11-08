@@ -76,7 +76,7 @@ const SKILLS_HOLDS = [
   [1450, 'the hang: grey chunks in slow motion, banner in'],
   [1900, 'ramped back up: chunks clearing the frame'],
 ]
-const SETTLE = { about: 2600, projects: 3400, skills: 3000 };   /* ms after the swap; others 2000 */
+const SETTLE = { about: 3000, projects: 3400, skills: 3000 };   /* ms after the swap; others 2000 */
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, Math.max(0, ms)));
 const pad = (n) => String(n).padStart(2, '0');

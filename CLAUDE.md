@@ -572,9 +572,15 @@ into tweens.
     - viewfinder with eyecup, zoom rocker, a red REC lamp.
     `place(lens,size)` pins the hood's mouth on the lens point. Pose `REST` faces down-right into the beam with the
     near (heart) side showing. It holds still after landing; no cursor follow (world rule).
-  - **Entrance:** the camera swings in from off the top-left (700ms, ease-out quart). At .6s the projector comes
-    on: the beam, the bands and the light scale out of the lens (`beamOn`, `transform-origin: --lens`). At .74s he
-    lands in the light (a bright flash on `cutIn`). The chains whip in at .82s, then the words pop.
+  - **Entrance (round 6, his drawing):**
+    - **The camera** starts small and far bottom-RIGHT and rushes AT you, ease-in and turning head-on, until the
+      lens nearly fills the middle. It jolts there, then pulls back to its spot: 950ms in all (`CamFX.pose`).
+    - **The projector:** a thin white ray fires from the lens (.96s, `.cgRay`), then opens into the projection
+      (1.1–1.42s). `AboutFX.apply(o,…)` opens the edges out of their bisector, and the bands, fields and beam
+      follow. Until then the fields cover the whole frame.
+    - **Then:** he lands at 1.38s, the chain feeds in at 1.46s, and the words pop by 1.8s.
+    - Scrub with `CamFX.hold(ms)` + `AboutFX.hold(ms)`.
+    - Fields and beam are cut at the frame in angle order, so no opening leaves a gap.
   - **Portrait:** his right arm leaves the photo at its right edge, so that edge sits on the frame's right edge
     (the photo hangs off it). Desktop `--ph:min(55vw,96vh)`, head ≈69vw, its top about 31vh, poking above the top
     band like his drawing. Phone: head ≈62vw, bottom −4vh. If you move or scale it, keep the cut off-screen. Accent

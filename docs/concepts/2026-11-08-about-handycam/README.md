@@ -98,3 +98,26 @@ Chain A removed; ABOUT now has no chains. Stills: `stills/2026-11-08-about-round
 - **Phone:** the same idea on a shorter path.
 
 Stills: `stills/2026-11-08-about-round5-chain/` (+ `-short`, `-laptop`, `-375`).
+
+
+## Round 6 — the camera's entrance
+
+> "ok now for the intro of the camera. basically i want the projection to be part of the camera, in the screenshot u can see that the camera comes from bottom left and it's bit far and comes really close like it was about to hit and and goes back to it's postion and then beam of light it projects turns into the projection we have."
+
+His drawing:
+- a far camera bottom-right;
+- a huge head-on camera in the middle with the lens circled;
+- the camera back at its spot;
+- the beam lines out of the lens.
+
+**Built:**
+- **The fly-in:** small and far bottom-right, rushing at you (ease-in, turning head-on) until the hood is about
+  60% of the short side. A jolt, then it pulls back to rest (ease-out quart), 950ms in all.
+- **The projector:** a thin white ray fires out of the lens (140ms), then opens into the cyan projection and the
+  stripes (320ms) as the white burns off.
+- **Before that, the frame is all pink/purple fields.**
+- **Then:** he lands, the chain feeds in, and the words pop.
+
+**My call:** I followed the drawing's bottom-RIGHT start over the message's "bottom left".
+
+Stills: `stills/2026-11-08-about-round6-intro/entrance-sheet.jpg` (and the phone one in `-375`).

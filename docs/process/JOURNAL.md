@@ -530,6 +530,28 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the camera comes at you, then throws the light
+
+> "ok now for the intro of the camera. basically i want the projection to be part of the camera, in the screenshot u can see that the camera comes from bottom left and it's bit far and comes really close like it was about to hit and and goes back to it's postion and then beam of light it projects turns into the projection we have."
+
+His drawing put the start bottom-right; his words said bottom-left. I followed the drawing.
+
+The new entrance:
+- **0–450ms:** the camera starts small and far bottom-right and rushes at the viewer, accelerating, turning
+  head-on until the lens nearly fills the middle.
+- **450–530ms:** it jolts there.
+- **530–950ms:** it pulls back up to its spot top-left.
+- **0.96s:** a thin white ray fires out of the lens.
+- **1.1–1.42s:** the ray opens into the projection. The cyan beam and both stripes spread from it while the
+  white burns off.
+- **Then:** he lands in the light (1.38s), the chain feeds in, and the words pop.
+
+Until the projector fires, the pink/purple fields cover the whole frame, so the beam really is cut out of them.
+Building it showed a gap on phones while the beam was half-open, so the fields and beam are now cut exactly at
+the frame edges in angle order.
+
+Stills: `stills/2026-11-08-about-round6-intro/` (`entrance-sheet.jpg`; + `-short`, `-laptop`, `-375`).
+
 ## 2026-11-08 — one chain, in perspective
 
 > "now i want you to add a chain in the path i drew. thinner lines mean it looks smaller and gets bigger and get closer like how we did in the main menu area."
