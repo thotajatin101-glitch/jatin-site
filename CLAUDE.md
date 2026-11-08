@@ -589,7 +589,10 @@ into tweens.
   - **Chains (his green lines):** each chain canvas carries its own path in `data-path` (fractions of the section,
     Catmull-Rom smoothed in `ChainFX.drawPaths`).
     - Chain A (z8) sweeps up across the bottom, in FRONT of him.
-    - **No chains on ABOUT** (rounds 3–4, his call: cut one by one). Don't add them back unless he asks.
+    - Rounds 3–4 cut every chain. **Round 5: ONE chain on his drawn path, in perspective like the menu's**
+      (`ChainFX.about`, `RUN_D` / `RUN_P`). It starts small and far in the beam, goes behind his head (`.cgRunB`,
+      z6), loops right over the pink band, then crosses in front of him (`.cgRunF`, z8) and runs huge off the
+      bottom-left. It feeds in from the distance at .82s, then scrolls toward the viewer.
     - Same slam and scroll as before.
   - **Layers:** beam z1 < light z2 < print screen z3 < chain B z4 < bands z5 < flare and glow z6 < portrait z7 <
     chain A, bubble and sparkles z8 < tags and camera z9 < BACK z10.

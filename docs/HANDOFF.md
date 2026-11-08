@@ -4,6 +4,15 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r5) — ABOUT gets one perspective chain on his path. NOT deployed, site/ uncommitted
+- **Did:**
+  - `ChainFX.about(sec)` draws on `.cgRunB` (z6, under the portrait) and `.cgRunF` (z8, over him).
+  - The path comes from `RUN_D` / `RUN_P`: fractions plus link scale, Catmull-Rom smoothed, with the chain
+    coordinate built as in the menu.
+  - `RUN_SPLIT_*` is the key where it swaps to the front canvas.
+  - It feeds in at 820ms (450ms ease-out quart), then scrolls at 1 link/s. Its loop stops when ABOUT closes.
+- **Next:** his notes.
+
 ## 2026-11-08 (about r4) — ABOUT has no chains. NOT deployed, site/ uncommitted
 - **Did:** removed `.cgChainA` (markup, CSS, path) and the `ChainFX.slam` call in `openSection`. The ChainFX
   path code stays for other sections.

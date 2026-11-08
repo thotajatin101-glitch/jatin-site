@@ -530,6 +530,18 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — one chain, in perspective
+
+> "now i want you to add a chain in the path i drew. thinner lines mean it looks smaller and gets bigger and get closer like how we did in the main menu area."
+
+He drew one line: thin in the beam left of him, behind his head, round in a loop over the pink band on the right,
+then thick across his body and off the bottom-left. Built like the menu chain: the links grow from small and far to
+huge and near along the path, with the spacing growing to match. The first half draws under his photo, so it
+passes behind his head; from the loop's far point on it draws over him. On entry it runs in from the distance
+along its own path as the light lands, then keeps scrolling toward the viewer.
+
+Stills: `stills/2026-11-08-about-round5-chain/` (+ `-short`, `-laptop`, `-375`).
+
 ## 2026-11-08 — ABOUT without chains
 
 > "remove the last chain as well"

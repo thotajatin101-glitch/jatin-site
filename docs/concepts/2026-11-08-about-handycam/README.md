@@ -85,3 +85,16 @@ Stills: `stills/2026-11-08-about-round3/` (+ `-short`, `-laptop`, `-375`).
 > "remove the last chain as well"
 
 Chain A removed; ABOUT now has no chains. Stills: `stills/2026-11-08-about-round4-no-chains/` (+ `-375`).
+
+
+## Round 5 — one chain on his path
+
+> "now i want you to add a chain in the path i drew. thinner lines mean it looks smaller and gets bigger and get closer like how we did in the main menu area."
+
+**Built:**
+- **One chain on his green line,** in perspective like the menu's: small and far in the beam, behind his head,
+  round the right over the pink band, then in front of him and huge off the bottom-left.
+- **It feeds in from the distance** as the light lands, then scrolls toward the viewer.
+- **Phone:** the same idea on a shorter path.
+
+Stills: `stills/2026-11-08-about-round5-chain/` (+ `-short`, `-laptop`, `-375`).
