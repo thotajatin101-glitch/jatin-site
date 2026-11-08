@@ -530,6 +530,17 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the camera rolls in
+
+> "i want the camera rolling in smoothly like how other 3d models come in."
+
+Round 6's camera rushed in, stopped with a jolt, then pulled back: three moves that read as stop-start. Now it is
+one move on one decelerating clock (ease-out cubic, 1s), like the computer and the phone. It rolls a full turn as
+it comes in from far bottom-right, swings in close past you head-on, and glides back into its spot. The path is one
+smooth curve through the close point, so it never stops. The beam timing is unchanged.
+
+Stills: `stills/2026-11-08-about-round7-roll-in/` (entrance sheets, desktop + phone).
+
 ## 2026-11-08 — the camera comes at you, then throws the light
 
 > "ok now for the intro of the camera. basically i want the projection to be part of the camera, in the screenshot u can see that the camera comes from bottom left and it's bit far and comes really close like it was about to hit and and goes back to it's postion and then beam of light it projects turns into the projection we have."

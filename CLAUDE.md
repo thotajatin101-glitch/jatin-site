@@ -573,8 +573,10 @@ into tweens.
     `place(lens,size)` pins the hood's mouth on the lens point. Pose `REST` faces down-right into the beam with the
     near (heart) side showing. It holds still after landing; no cursor follow (world rule).
   - **Entrance (round 6, his drawing):**
-    - **The camera** starts small and far bottom-RIGHT and rushes AT you, ease-in and turning head-on, until the
-      lens nearly fills the middle. It jolts there, then pulls back to its spot: 950ms in all (`CamFX.pose`).
+    - **The camera ROLLS in on one smooth move** (round 7, his note: "rolling in smoothly like how other 3d models
+      come in"). One ease-out cubic over 1s, like the computer and the phone. It starts small and far bottom-RIGHT,
+      takes a full roll that settles, swings close past you head-on (the lens nearly filling the middle) and glides
+      back to its spot along one curve. No stop, no jolt: round 6's rush → jolt → pull-back read as stop-start.
     - **The projector:** a thin white ray fires from the lens (.96s, `.cgRay`), then opens into the projection
       (1.1–1.42s). `AboutFX.apply(o,…)` opens the edges out of their bisector, and the bands, fields and beam
       follow. Until then the fields cover the whole frame.

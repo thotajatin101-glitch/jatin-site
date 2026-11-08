@@ -121,3 +121,14 @@ His drawing:
 **My call:** I followed the drawing's bottom-RIGHT start over the message's "bottom left".
 
 Stills: `stills/2026-11-08-about-round6-intro/entrance-sheet.jpg` (and the phone one in `-375`).
+
+
+## Round 7 — roll in smoothly
+
+> "i want the camera rolling in smoothly like how other 3d models come in."
+
+**Built:** one continuous move instead of rush → jolt → pull-back. It's a single ease-out cubic (1s), as on the
+computer and the phone. A full roll settles as it comes. It swings close past you head-on, then glides back to
+rest, along one smooth curve.
+
+Stills: `stills/2026-11-08-about-round7-roll-in/`.

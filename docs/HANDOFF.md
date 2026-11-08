@@ -4,6 +4,16 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r7) — ABOUT camera rolls in on one smooth move. NOT deployed, site/ uncommitted
+- **Did:**
+  - `CamFX.pose` is now one ease-out cubic over `IN` = 1000ms.
+  - Position and log-size follow a quadratic curve through the near point (.52W, .58H, S = 1.6·min side).
+  - Roll is REST + 2π·(1−e); yaw and pitch swing head-on by sin(πe).
+  - `FLY_A` / `FLY_B` are gone.
+- **Next:** his notes. Judge it in a real tab.
+- **Watch out:** CamFX's `init` / `r2` / `toW` / `LENS` sit between `REST` and `pose`. Don't splice that region by
+  index again: a bad splice dropped them once this round, and was caught and restored.
+
 ## 2026-11-08 (about r6) — ABOUT entrance: camera rushes at you, then the ray opens into the projection. NOT deployed, site/ uncommitted
 - **Did:**
   - `CamFX.pose(ms,W,H)` gives far (bottom-right, .3×) → near (head-on, S = 1.9·min side) → REST.
