@@ -4,7 +4,22 @@
 interface Env { EMAIL: { send(m: unknown): Promise<{ messageId: string }> }; FROM: string }
 
 const ORIGINS = ["https://justjatin.thotahub.in", "http://localhost:5179", "http://localhost:8080"];
-const IDEAS = ["edit my footage", "shoot something", "creative direction", "just saying hi"];
+const IDEAS = ["edit my footage", "shoot something", "creative direction", "something else"];
+/* 2026-11-09, his note: no "just saying hi", a real reason, and an email that exists. The phone checks all of this
+   first; these are the same rules again so nobody can skip the phone and post here directly. */
+const TRASH = /(^|\.)(mailinator|guerrillamail|sharklasers|10minutemail|tempmail|temp-mail|yopmail|trashmail|getnada|dispostable|maildrop|throwawaymail|fakeinbox|mailnesia|mintemail|emailondeck|mohmal|tempail|tempinbox|spamgourmet|mailcatch|discard)\./i;
+const briefOk = (t: string) => {
+  const w = t.split(/\s+/).filter(x => /[a-z0-9]/i.test(x));
+  return t.length >= 25 && w.length >= 5 && !/^(hi+|hey+|hello+|yo+|sup|hii+|test)\b[\s!.]*$/i.test(t);
+};
+/* the domain must publish a real MX (not the "0 ." null MX): DNS over HTTPS to Cloudflare's resolver */
+async function mxOk(dom: string): Promise<boolean> {
+  try {
+    const r = await fetch(`https://cloudflare-dns.com/dns-query?type=MX&name=${encodeURIComponent(dom)}`, { headers: { accept: "application/dns-json" } });
+    const j = await r.json() as { Status: number; Answer?: { type: number; data: string }[] };
+    return j.Status === 0 && (j.Answer || []).some(a => a.type === 15 && !/^\d+\s+\.?$/.test(a.data));
+  } catch { return true; }   /* resolver down: don't lose a real message over it */
+}
 
 const cors = (o: string | null) => ({
   "Access-Control-Allow-Origin": o && ORIGINS.includes(o) ? o : ORIGINS[0],
@@ -24,10 +39,14 @@ export default {
     let b: Record<string, unknown>;
     try { b = await req.json(); } catch { return Response.json({ ok: false, error: "bad json" }, { status: 400, headers: h }); }
     if (clean(b.hp, 200)) return Response.json({ ok: true }, { headers: h });
-    const idea = clean(b.idea, 40), line = clean(b.line, 280), name = clean(b.name, 80), reply = clean(b.reply, 120);
-    if (!IDEAS.includes(idea) || !name || !reply)
+    const idea = clean(b.idea, 40), line = clean(b.line, 400), name = clean(b.name, 80), reply = clean(b.reply, 120);
+    if (!IDEAS.includes(idea) || !name)
       return Response.json({ ok: false, error: "missing fields" }, { status: 422, headers: h });
-    const isMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reply);
+    if (!briefOk(line)) return Response.json({ ok: false, why: "line" }, { status: 422, headers: h });
+    const m = /^[^\s@]+@([a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,})$/i.exec(reply);
+    if (!m || TRASH.test(m[1]) || !(await mxOk(m[1].toLowerCase())))
+      return Response.json({ ok: false, why: "email" }, { status: 422, headers: h });
+    const isMail = true;
     const text = `${name} (${reply})\n${idea}${line ? `: ${line}` : ""}\n\nsent from the phone on justjatin.thotahub.in`;
     const html = `<div style="font:16px/1.5 monospace">
 <p><b>${esc(name)}</b> &middot; ${isMail ? `<a href="mailto:${esc(reply)}">${esc(reply)}</a>` : esc(reply)}</p>

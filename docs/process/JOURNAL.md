@@ -530,6 +530,32 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-09 — the phone asks why you're calling
+
+He filmed CONTACT on his iPhone and sent it with: "there is weird glitch around the phone and the contact ui is buggy
+and has no real feedback when clicking. the ui is just hard to read in general. and i Don't want people just contact
+me willy nilly shouldn't be able to just send you a hi lol. there should be an intention to why they want to get in
+touch and most importantly in email address it accepts whatever email u put even if doesnt exist."
+
+- **The glitch** was black blobs and streaks smearing up the screen while the phone rose. The phone draws a hard ink
+  outline wherever a ray only just misses it. The lid's decoration layer measured its distance as depth only, as if
+  the lid's face ran on forever across the screen, so rays grazing that invisible plane were "near misses" and got
+  inked. Bounding it to the lid fixed it.
+- **Hard to read:** on a phone the LCD now fills the width (the bezel runs off the sides). The type is a size up,
+  and the small grey notes are bigger and brighter.
+- **No feedback:** a key lights white and sinks the instant a finger lands, and a picked row holds lit a beat before
+  the screen moves on.
+- **Buggy taps:** when the iPhone's toolbar slid, the page resized but the still phone skipped its redraw, so the
+  invisible tap layer sat off from the screen he could see.
+- **Intent:** "just saying hi" is gone. The picks are edit / shoot / direction / something else, and "tell me about
+  it" is required: five real words or more, and a greeting doesn't count.
+- **A real email:** email only (an Instagram handle can't be checked). The phone catches the common typos
+  ("did you mean @gmail.com?") and throwaway inboxes, and the domain has to be able to receive mail (its MX
+  record). The Worker checks all of it again. Nothing can prove a mailbox exists short of mailing it a code; that's
+  the next step if fakes still get through.
+
+Stills: `stills/2026-11-09-contact-intent/`.
+
 ## 2026-11-09 — the chain comes out of the light
 
 His note, with a crop of its far end: "the chain looks like it coming out of nowhere could u extend the chain in the

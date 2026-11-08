@@ -4,6 +4,23 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-09 — CONTACT: glitch, press feedback, intent, real email. NOT deployed (site or Worker)
+- **His note** (iPhone clip): glitch round the phone, no click feedback, hard to read, no "just hi", fake emails pass.
+- **Glitch:** `deco()` in the phone shader early-outs with `z-.04`, a depth-only slab. Rays grazing it far from the
+  phone hit the ink-rule test (`dm<2.6*uDpr`) and smeared black. Now `max(z-.04, footprint box)`. If more blobs
+  ever show, tint the ink rule red and colour by the min-distance material to find the bad SDF.
+- **Tap twin drift:** the still-chat early return compared `P.zk` with a stale `zCache.key`; it now calls
+  `zoomPose(R)` first, so a resize (iOS toolbar) re-frames the phone and the twin.
+- **Chat:** IDEAS = edit / shoot / direction / something else; `line` required (`briefOk`: ≥25 chars, ≥5 words, not a
+  greeting); reply = email only (`emailErr`: syntax, typo map, throwaway list; `mxOk`: Cloudflare DoH MX, 3s
+  timeout, fails open). Press state `pressK` on pointerdown; pick holds 170ms (`busy`). Type 30→33, notes 27+;
+  phone LCD fills the width (`zoomPose` want/cy).
+- **Worker** (`worker/contact-mail/src/index.ts`): same rules; 422 `{why:'email'|'line'}` sends the phone back to
+  that screen. Tested with a mock mailer (no real sends). **Deploy the Worker and the site together**: the live
+  Worker refuses "something else", the live site still offers "just saying hi".
+- **Next:** on "deploy": `cd worker/contact-mail && cf deploy`, then push. Real-device pass on his iPhone.
+- **Not done:** proof the mailbox exists (a code mailed to the visitor). Needs Email Sending to any address.
+
 ## 2026-11-09 — Menu chain comes out of the vanishing point. NOT deployed
 - **Did:** in `ChainFX`, `buildPath(W,H,tri,vp)` puts a key point at the world's vanishing point in front of the
   old origin. The path cache is keyed on the VP. The triangle clip is gone. Links under .8px are drawn as ring-colour

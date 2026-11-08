@@ -6836,7 +6836,9 @@ float sdLink(vec2 q,float u){                                                   
 }
 vec2 badge(float d2,float z,float mat){return vec2(ext(d2,z-.007,.007,.0045),d2>-.004?6.:mat);}
 vec2 deco(vec2 q,float z,float outer){
-  if(z>.05)return vec2(z-.04,0.);
+  if(z>.05)return vec2(max(z-.04,sdR2(q-vec2(0.,.5),vec2(.4,.65),0.)),0.);   /* a real bound: the lid's footprint too. As a
+     depth-only slab it read as an endless plane, rays grazing it beyond the phone were "near misses", and the ink rule
+     smeared black blobs and streaks across the screen (2026-11-09, his phone clip: "weird glitch around the phone") */
   vec2 res=vec2(1e9,0.),b;vec2 c,r;float d;
   bool o=outer>.5;
   if(!o){
@@ -7564,9 +7566,9 @@ void main(){
     for(let p=-1.2;p<=1.2;p+=.0025){const w=toW(n,{yaw:0,pitch:p,roll:0});if(w[2]>best){best=w[2];pitch=p;}}
     const q={yaw:0,pitch,roll:0,lift:0,R,cx:0,cy:0,S:1};
     const c=toW(lidToObj([0,.52,0],.3),q),zc=4.6-c[2];
-    const want=kb?Math.min(Hv*.9/.51,W*.96/.4):Math.min(H*(W<760?.5:.62)/.51,W*.86/.4);           /* the LCD's height on the page, in CSS px per unit */
+    const want=kb?Math.min(Hv*.9/.51,W*.98/.4):Math.min(H*(W<760?.66:.62)/.51,W*(W<760?.97:.86)/.4);   /* 2026-11-09, his phone clip: "hard to read". On a phone the LCD takes the width (the bezel runs off the sides) */           /* the LCD's height on the page, in CSS px per unit */
     q.S=want*R*zc/3.3;
-    const k=want;q.cx=R*(W/2-c[0]*k);q.cy=R*((kb?top+Hv*.5:H*(W<760?.46:.5))-c[1]*k);   /* the LCD's centre on the page's centre */
+    const k=want;q.cx=R*(W/2-c[0]*k);q.cy=R*((kb?top+Hv*.5:H*(W<760?.48:.5))-c[1]*k);   /* the LCD's centre on the page's centre */
     q.key=key;return zCache=q;
   }
   function lcdRect(q){                                          /* the LCD's four corners on the page */
@@ -7595,48 +7597,52 @@ void main(){
      bar, VT323, rules, scanlines from the shader). One layout list drives both the paint and an invisible DOM twin laid
      on the LCD: transparent buttons and real inputs at the same spots, so clicks, typing, the phone keyboard and
      screen readers all work, and nothing of it is seen. ---- */
-  const IDEAS=['edit my footage','shoot something','creative direction','just saying hi'];
-  let st={step:'home',pick:-1,idea:'',line:'',name:'',reply:''},items=[],caretOn=true,caretT=0,errMsg='';
+  /* 2026-11-09, his note: "i don't want people just contact me willy nilly … there should be an intention". No "just
+     saying hi": a pick, a REQUIRED brief, and a reply address that can actually receive mail */
+  const IDEAS=['edit my footage','shoot something','creative direction','something else'];
+  let st={step:'home',pick:-1,idea:'',line:'',name:'',reply:''},items=[],caretOn=true,caretT=0,errMsg='',pressK='',busy=false;
   const PX={
     link:["..#########..",".##.......##.","##..#####..##","#..#.....#..#","##..#####..##",".##.......##.","..#########.."],
     star:["....#....","...###...","#########",".#######.","..##.##..",".##...##."],
     heart:[".##.##.","#######","#######",".#####.","..###..","...#..."],dn:["#####",".###.","..#.."]};
-  const INK='#f2fffd',DIM='#a9dcff',ACD='#e8ff00',DEEP='#0a1670',PINK='#ff2e88',CY='#00f0d8';
+  const INK='#f2fffd',DIM='#d4ecff',ACD='#e8ff00',DEEP='#0a1670',PINK='#ff2e88',CY='#00f0d8';
   function wrapText(t,w,size){sx.font=size+'px VT323';const out=[];let line='';
     const parts=[];for(const word of t.split(/(\s+)/)){if(sx.measureText(word).width<=w){parts.push(word);continue;}   /* QA: one long unbroken name ran off the LCD */
       let ch='';for(const c of word){if(sx.measureText(ch+c).width>w){parts.push(ch);parts.push(' ');ch='';}ch+=c;}parts.push(ch);}
     for(const word of parts){if(!word)continue;const tr=line+word;if(sx.measureText(tr.trimEnd()).width>w&&line.trim()){out.push(line.trimEnd());line=word.trimStart();}else line=tr;}
     out.push(line.trimEnd());return out;}
   function layout(){
-    const s=st,L=[],X=18,Wd=348,T=v=>L.push(Object.assign({t:'text',size:30,col:INK},v));
+    const s=st,L=[],X=18,Wd=348,T=v=>L.push(Object.assign({t:'text',size:33,col:INK},v));   /* 2026-11-09: 30 → 33, small notes 24 → 27+ ("hard to read") */
     const soft=(l,ld,r,rd)=>{L.push({t:'soft',l,ld,r,rd});};
     if(s.step==='home'){
       L.push({t:'box',x:X,y:80,w:Wd,h:178});L.push({t:'icon',n:'link',x:X+16,y:98,k:5,col:ACD});T({x:X+96,y:112,s:'new'});T({x:X+96,y:142,s:'message:'});
-      L.push({t:'in',x:X+14,y:162,w:Wd-28,h:80});T({x:X+28,y:196,s:'got a vision?'});T({x:X+28,y:228,s:"let's make it."});L.push({t:'icon',n:'heart',x:X+214,y:208,k:3,col:PINK});
+      L.push({t:'in',x:X+14,y:162,w:Wd-28,h:80});T({x:X+28,y:196,s:'got a vision?'});T({x:X+28,y:228,s:"let's make it."});L.push({t:'icon',n:'heart',x:X+272,y:208,k:3,col:PINK});
       L.push({t:'box',x:X,y:272,w:Wd,h:66});L.push({t:'icon',n:'star',x:X+16,y:291,k:3.4,col:ACD});T({x:X+58,y:316,s:'status:'});
       L.push({t:'fld',x:X+150,y:284,w:Wd-166,h:42,s:'online'});   /* QA: the ▾ looked like a menu that did nothing */
       soft('EXIT','exit','START ▸','next');
     }else if(s.step==='idea'){
-      L.push({t:'box',x:X,y:80,w:Wd,h:256});T({x:X+16,y:116,s:"what's the idea?",id:'q'});
-      IDEAS.forEach((o,k)=>L.push({t:'opt',x:X+12,y:132+k*48,w:Wd-24,h:42,s:(k+1)+' '+o,sel:s.pick===k,act:'pick',i:k,heart:k===3}));
-      if(errMsg){L.push({t:'errbar',y:338});T({x:192,y:366,s:errMsg,size:27,col:DEEP,align:'center',live:1});}
+      L.push({t:'box',x:X,y:76,w:Wd,h:276});T({x:X+16,y:112,s:"what's the idea?",id:'q'});
+      IDEAS.forEach((o,k)=>L.push({t:'opt',x:X+10,y:126+k*54,w:Wd-20,h:50,s:(k+1)+' '+o,sel:s.pick===k,act:'pick',i:k}));
+      if(errMsg){L.push({t:'errbar',y:354});T({x:192,y:383,s:errMsg,size:29,col:DEEP,align:'center',live:1});}
       L.push({t:'pips',n:1});soft('◂ BACK','back','PICK ▸','next');
     }else if(s.step==='line'){
-      L.push({t:'box',x:X,y:80,w:Wd,h:206});T({x:X+16,y:110,s:'idea: '+s.idea,size:24,col:DIM});T({x:X+16,y:142,s:'the one-line version?'});
-      L.push({t:'fld',x:X+12,y:156,w:Wd-24,h:116,name:'line',multi:1,ph:s.idea==='just saying hi'?'say hi…':'like: a music video',label:'the one-line version, optional'});
-      T({x:X+16,y:312,s:'optional · NEXT to skip',size:24,col:DIM});
+      L.push({t:'box',x:X,y:76,w:Wd,h:262});T({x:X+16,y:106,s:'idea: '+s.idea,size:27,col:DIM});T({x:X+16,y:140,s:'tell me about it:'});
+      L.push({t:'fld',x:X+10,y:154,w:Wd-20,h:170,name:'line',multi:1,ph:'what, for who, when',label:'tell me about it: what, for who, when',bad:!!errMsg});
+      if(errMsg){L.push({t:'errbar',y:346});T({x:192,y:375,s:errMsg,size:29,col:DEEP,align:'center',live:1});}
+      else T({x:X+16,y:372,s:'a line or two. be real.',size:27,col:DIM});
       L.push({t:'pips',n:2});soft('◂ BACK','back','NEXT ▸','next');
     }else if(s.step==='who'){
-      L.push({t:'box',x:X,y:80,w:Wd,h:110});T({x:X+16,y:116,s:'what do i call you?'});L.push({t:'fld',x:X+12,y:132,w:Wd-24,h:44,name:'name',ph:'your name',label:'what do i call you?',ac:'name',bad:!!errMsg&&!s.name.trim()});
-      L.push({t:'box',x:X,y:202,w:Wd,h:110});T({x:X+16,y:238,s:'where do i reply?'});L.push({t:'fld',x:X+12,y:254,w:Wd-24,h:44,name:'reply',ph:'email or @instagram',label:'where do i reply? email or instagram',ac:'email',bad:!!errMsg&&!!s.name.trim()});
-      if(errMsg){L.push({t:'errbar',y:314});T({x:192,y:342,s:errMsg,size:27,col:DEEP,align:'center',live:1});}
+      L.push({t:'box',x:X,y:76,w:Wd,h:116});T({x:X+16,y:112,s:'what do i call you?'});L.push({t:'fld',x:X+10,y:126,w:Wd-20,h:52,name:'name',ph:'your name',label:'what do i call you?',ac:'name',bad:!!errMsg&&!s.name.trim()});
+      L.push({t:'box',x:X,y:202,w:Wd,h:116});T({x:X+16,y:238,s:'your email?'});L.push({t:'fld',x:X+10,y:252,w:Wd-20,h:52,name:'reply',ph:'you@email.com',label:'your email',ac:'email',bad:!!errMsg&&!!s.name.trim()});
+      if(errMsg){L.push({t:'errbar',y:330});T({x:192,y:359,s:errMsg,size:29,col:DEEP,align:'center',live:1});}
+      else if(s.checking)T({x:192,y:359,s:'checking that email...',size:27,col:DIM,align:'center',live:1});
       L.push({t:'pips',n:3});soft('◂ BACK','back','NEXT ▸','next');
     }else if(s.step==='review'){
-      const lines=["hey, it's "+s.name+' ('+s.reply+')',s.idea+(s.line?':':'')].concat(s.line?[s.line]:[]);
-      let wl=[];lines.forEach(l=>wl=wl.concat(wrapText(l,Wd-56,26)));wl=wl.slice(0,7);
-      L.push({t:'box',x:X,y:80,w:Wd,h:58+wl.length*28+24});T({x:X+16,y:116,s:'send this?'});
-      L.push({t:'in',x:X+14,y:130,w:Wd-28,h:wl.length*28+20});wl.forEach((l,k)=>T({x:X+28,y:158+k*28,s:l,size:26}));
-      T({x:X+16,y:Math.min(388,80+58+wl.length*28+24+30),s:'only jatin gets this. nothing stored.',size:21,col:DIM});   /* QA: where does it go? */
+      const lines=["hey, it's "+s.name,s.reply,s.idea+':',s.line];
+      let wl=[];lines.forEach(l=>wl=wl.concat(wrapText(l,Wd-48,28)));wl=wl.slice(0,8);if(wl.length===8)wl[7]=wl[7].slice(0,-1)+'…';
+      L.push({t:'box',x:X,y:76,w:Wd,h:58+wl.length*30+22});T({x:X+16,y:112,s:'send this?'});
+      L.push({t:'in',x:X+12,y:126,w:Wd-24,h:wl.length*30+18});wl.forEach((l,k)=>T({x:X+24,y:154+k*30,s:l,size:28}));
+      T({x:X+16,y:Math.min(392,76+58+wl.length*30+22+30),s:'only jatin gets this.',size:27,col:DIM});   /* QA: where does it go? */
       L.push({t:'pips',n:4});soft('◂ EDIT','back','SEND ♥','send');
     }else if(s.step==='sending'){
       L.push({t:'box',x:X,y:150,w:Wd,h:120});T({x:192,y:196,s:'sending'+'...'.slice(0,Math.floor(performance.now()/250)%4),align:'center'});
@@ -7644,7 +7650,7 @@ void main(){
     }else if(s.step==='sent'){
       L.push({t:'box',x:X,y:80,w:Wd,h:206});L.push({t:'icon',n:'link',x:X+16,y:98,k:5,col:ACD});T({x:X+96,y:112,s:'message'});T({x:X+96,y:142,s:'sent!'});
       L.push({t:'in',x:X+14,y:162,w:Wd-28,h:108});T({x:X+28,y:196,s:'got it, '+(s.name.split(' ')[0]||'friend')+'.'});T({x:X+28,y:226,s:"i'll hit you back"});T({x:X+28,y:256,s:'within 2 days.'});
-      L.push({t:'icon',n:'heart',x:X+196,y:238,k:3,col:PINK});
+      L.push({t:'icon',n:'heart',x:X+272,y:238,k:3,col:PINK});
       L.push({t:'box',x:X,y:300,w:Wd,h:66});L.push({t:'icon',n:'star',x:X+16,y:319,k:3.4,col:ACD});T({x:X+58,y:344,s:'status:'});
       L.push({t:'fld',x:X+150,y:312,w:Wd-166,h:42,s:'away'});
       soft('EXIT','exit','NEW ▸','again');
@@ -7674,29 +7680,30 @@ void main(){
       else if(it.t==='in'){sx.fillStyle='rgba(242,255,253,.1)';sx.fillRect(it.x,it.y,it.w,it.h);sx.strokeStyle=INK;sx.lineWidth=2;sx.strokeRect(it.x+1,it.y+1,it.w-2,it.h-2);}
       else if(it.t==='text'){sx.font=it.size+'px VT323';sx.fillStyle=it.col;sx.textAlign=it.align||'left';sx.fillText(it.s,it.x,it.y);}
       else if(it.t==='icon')pixIcon(it.n,it.x,it.y,it.k,it.col);
-      else if(it.t==='opt'){const on=it.sel||fact==='opt'+it.i;
-        if(on){sx.fillStyle=ACD;sx.fillRect(it.x,it.y,it.w,it.h);}
-        sx.font='28px VT323';sx.textAlign='left';sx.fillStyle=on?DEEP:INK;sx.fillText(it.s,it.x+10,it.y+30);
-        if(it.heart)pixIcon('heart',it.x+18+sx.measureText(it.s).width,it.y+13,2.6,PINK);}
+      else if(it.t==='opt'){const pr=pressK==='opt'+it.i,on=it.sel||pr||fact==='opt'+it.i;
+        if(on){sx.fillStyle=pr?INK:ACD;sx.fillRect(it.x+(pr?3:0),it.y+(pr?3:0),it.w,it.h);}   /* press: it lights and sinks */
+        else{sx.strokeStyle='rgba(242,255,253,.35)';sx.lineWidth=2;sx.strokeRect(it.x+1,it.y+1,it.w-2,it.h-2);}   /* every row reads as a button */
+        sx.font='32px VT323';sx.textAlign='left';sx.fillStyle=on?DEEP:INK;sx.fillText(it.s,it.x+12+(pr?3:0),it.y+34+(pr?3:0));
+        if(on&&!pr)sx.fillText('◂',it.x+it.w-26,it.y+34);}
       else if(it.t==='fld'){const f=it.name&&fname===it.name;
         sx.fillStyle='rgba(10,22,112,.72)';sx.fillRect(it.x,it.y,it.w,it.h);sx.strokeStyle=it.bad?PINK:f?ACD:CY;sx.lineWidth=it.bad||f?3:2;sx.strokeRect(it.x+1,it.y+1,it.w-2,it.h-2);
-        sx.font='28px VT323';sx.textAlign='left';
+        sx.font='31px VT323';sx.textAlign='left';
         if(it.dd){sx.fillStyle=INK;sx.fillText(it.s,it.x+10,it.y+30);pixIcon('dn',it.x+it.w-30,it.y+16,4,CY);continue;}
         if(!it.name){sx.fillStyle=INK;sx.fillText(it.s,it.x+10,it.y+30);continue;}   /* QA rerun: a read-only field (status) printed 'undefined' */
-        const v=st[it.name]||'',lines=v?(it.multi?wrapText(v,it.w-22,28):[v]):[it.ph];
+        const v=st[it.name]||'',lines=v?(it.multi?wrapText(v,it.w-22,31):[v]):[it.ph];
         sx.save();sx.beginPath();sx.rect(it.x+4,it.y+2,it.w-8,it.h-4);sx.clip();
-        const max=Math.max(1,Math.floor((it.h-8)/28)),show=lines.slice(-max);sx.fillStyle=v?INK:'#6f93e0';
-        let lx=it.x+10;show.forEach((l,k)=>{const y=it.y+30+k*28;if(!it.multi&&v){const tw=sx.measureText(l).width;lx=Math.min(it.x+10,it.x+it.w-18-tw);sx.fillText(l,lx,y);}else sx.fillText(l,it.x+(v||!f?10:24),y);});   /* the caret no longer eats the placeholder's first letter */
-        if(f&&caretOn){const last=v?show[show.length-1]:'',cx=(it.multi||!v?it.x+10:lx)+(v?sx.measureText(last).width:0)+2,cy=it.y+8+(v?show.length-1:0)*28;sx.fillStyle=ACD;sx.fillRect(cx,cy,10,24);}
+        const max=Math.max(1,Math.floor((it.h-10)/32)),show=lines.slice(-max);sx.fillStyle=v?INK:'#8fb0f0';
+        let lx=it.x+10;show.forEach((l,k)=>{const y=it.y+34+k*32;if(!it.multi&&v){const tw=sx.measureText(l).width;lx=Math.min(it.x+10,it.x+it.w-18-tw);sx.fillText(l,lx,y);}else sx.fillText(l,it.x+(v||!f?10:24),y);});   /* the caret no longer eats the placeholder's first letter */
+        if(f&&caretOn){const last=v?show[show.length-1]:'',cx=(it.multi||!v?it.x+10:lx)+(v?sx.measureText(last).width:0)+2,cy=it.y+10+(v?show.length-1:0)*32;sx.fillStyle=ACD;sx.fillRect(cx,cy,11,27);}
         sx.restore();}
       else if(it.t==='errbar'){sx.fillStyle=PINK;sx.fillRect(14,it.y,W-28,40);}   /* QA: a missing field reads as a warning, not a footnote */
       else if(it.t==='pips'){for(let k=0;k<4;k++){const x=192-62+k*32,y=H-92;sx.fillStyle=k<it.n?ACD:'rgba(10,22,112,.7)';sx.fillRect(x,y,26,14);sx.strokeStyle=CY;sx.lineWidth=2;sx.strokeRect(x+1,y+1,24,12);}}
       else if(it.t==='bar'){sx.strokeStyle=INK;sx.lineWidth=2;sx.strokeRect(it.x,it.y,it.w,it.h);
         const n=Math.min(10,Math.floor((performance.now()-sendT0)/70)+1);sx.fillStyle=PINK;for(let k=0;k<n;k++)sx.fillRect(it.x+4+k*(it.w-8)/10,it.y+4,(it.w-8)/10-4,it.h-8);}
       else if(it.t==='soft'){sx.fillStyle=INK;sx.fillRect(16,H-62,W-32,3);sx.font='40px VT323';
-        const sl=fact==='softL',sr=fact==='softR';
-        if(it.l){sx.textAlign='left';if(sl){sx.fillStyle=CY;sx.fillRect(14,H-50,sx.measureText(it.l).width+16,40);}sx.fillStyle=sl?DEEP:INK;sx.fillText(it.l,22,H-20);}
-        if(it.r){sx.textAlign='right';if(sr){sx.fillStyle=CY;const w=sx.measureText(it.r).width+16;sx.fillRect(W-14-w,H-50,w,40);}sx.fillStyle=sr?DEEP:INK;sx.fillText(it.r,W-22,H-20);}}
+        const sl=fact==='softL'||pressK==='softL',sr=fact==='softR'||pressK==='softR';
+        if(it.l){sx.textAlign='left';if(sl){sx.fillStyle=pressK==='softL'?INK:CY;sx.fillRect(14,H-50,sx.measureText(it.l).width+16,40);}sx.fillStyle=sl?DEEP:INK;sx.fillText(it.l,22,H-20);}
+        if(it.r){sx.textAlign='right';if(sr){sx.fillStyle=pressK==='softR'?INK:CY;const w=sx.measureText(it.r).width+16;sx.fillRect(W-14-w,H-50,w,40);}sx.fillStyle=sr?DEEP:INK;sx.fillText(it.r,W-22,H-20);}}
     }
   }
   let sendT0=0,mailT=0,stepAt=0;
@@ -7706,6 +7713,12 @@ void main(){
     host.appendChild(chat);
     chat.addEventListener('click',e=>{const b=e.target.closest('[data-do]');if(!b)return;e.preventDefault();
       act(b.dataset.do,b.dataset.i);});
+    /* 2026-11-09, his note: "no real feedback when clicking". A press lights the key on the LCD the instant a finger
+       or the mouse goes down (and buzzes a phone that can), the way a real keypad answers */
+    const unpress=()=>{if(!pressK)return;const k=pressK;setTimeout(()=>{if(pressK===k){pressK='';items=layout();repaint();}},140);};
+    chat.addEventListener('pointerdown',e=>{const b=e.target.closest('button[data-key]');if(!b)return;pressK=b.dataset.key;items=layout();repaint();
+      if(e.pointerType==='touch'&&navigator.vibrate)try{navigator.vibrate(8);}catch(_){}});
+    for(const t of ['pointerup','pointercancel','pointerleave'])chat.addEventListener(t,unpress);
     chat.addEventListener('input',e=>{const t=e.target;if(t.name in st){st[t.name]=t.value;caretOn=true;if(errMsg){for(const s of chat.querySelectorAll('[role=status]'))if(s.textContent===errMsg)s.remove();errMsg='';items=layout();}queueRepaint();}});
     chat.addEventListener('focusin',()=>{caretOn=true;repaint();});chat.addEventListener('focusout',()=>setTimeout(repaint,0));
     return chat;
@@ -7720,8 +7733,8 @@ void main(){
       if(it.t==='text'&&it.mail)h+=`<a href="mailto:${esc(it.s)}" style="${box(it.x-6,it.y-28,340,36)}">${esc(it.s)}</a>`;   /* QA: the address on the LCD is a real link */
       else if(it.t==='text')h+=`<span style="${box(it.align==='center'?it.x-150:it.x,it.y-26,300,30)}"${it.live?' role="status"':''}${it.id?` id="ph-${it.id}"`:''}>${esc(it.s)}</span>`;
       else if(it.t==='opt')h+=`<button data-do="pick" data-i="${it.i}" data-key="opt${it.i}" role="option" aria-selected="${it.sel}" style="${box(it.x,it.y,it.w,it.h)}">${esc(it.s)}</button>`;
-      else if(it.t==='fld'&&it.name){const a=`name="${it.name}" data-key="f-${it.name}" aria-label="${esc(it.label)}" maxlength="${it.name==='line'?280:it.name==='name'?80:120}" style="${box(it.x,it.y,it.w,it.h)}"`;
-        h+=it.multi?`<textarea ${a}>${esc(st[it.name])}</textarea>`:`<input ${a} autocomplete="${it.ac}" autocapitalize="${it.name==='name'?'words':'off'}" spellcheck="false" value="${esc(st[it.name])}">`;}
+      else if(it.t==='fld'&&it.name){const a=`name="${it.name}" data-key="f-${it.name}" aria-label="${esc(it.label)}" maxlength="${it.name==='line'?400:it.name==='name'?80:120}" style="${box(it.x,it.y,it.w,it.h)}"`;
+        h+=it.multi?`<textarea ${a}>${esc(st[it.name])}</textarea>`:`<input ${a} autocomplete="${it.ac}"${it.name==='reply'?' type="email" inputmode="email"':''} autocapitalize="${it.name==='name'?'words':'off'}" spellcheck="false" value="${esc(st[it.name])}">`;}
       else if(it.t==='fld')h+=`<span style="${box(it.x,it.y,it.w,it.h)}">${esc(it.s)}</span>`;
       else if(it.t==='soft'){if(it.l)h+=`<button data-do="${it.ld}" data-key="softL" style="${box(0,490-56,170,56)}">${esc(it.l)}</button>`;
         if(it.r)h+=`<button data-do="${it.rd}" data-key="softR" style="${box(214,490-56,170,56)}">${esc(it.r)}</button>`;}
@@ -7736,11 +7749,39 @@ void main(){
   function repaint(){if(zState!=='open')return;if(!chat||chat.hidden)return;items=items.length?items:layout();pushLCD('chat');}
   function setStep(step){st.step=step;errMsg='';stepAt=performance.now();render();}
   const ORDER=['home','idea','line','who','review'];
-  function valid(){
+  /* the brief has to say something: five words, a couple of dozen letters, not a greeting */
+  function briefOk(t){t=t.trim();const w=t.split(/\s+/).filter(x=>/[a-z0-9]/i.test(x));
+    return t.length>=25&&w.length>=5&&!/^(hi+|hey+|hello+|yo+|sup|hii+|test)\b[\s!.]*$/i.test(t);}
+  /* the reply has to be an email that can receive mail. Syntax, the usual typos, throwaway inboxes, then the domain's
+     MX record (only the domain is looked up, over Cloudflare's DNS). The Worker checks it all again. No check can prove
+     a mailbox exists without mailing it: this stops the fakes and the typos, not a real address that isn't theirs */
+  const TYPO={'gmial.com':'gmail.com','gmal.com':'gmail.com','gmai.com':'gmail.com','gmail.co':'gmail.com','gmail.con':'gmail.com','gamil.com':'gmail.com','gnail.com':'gmail.com','gmail.in':'gmail.com',
+    'hotmial.com':'hotmail.com','hotmai.com':'hotmail.com','yaho.com':'yahoo.com','yahoo.co':'yahoo.com','outlok.com':'outlook.com','icloud.co':'icloud.com','iclod.com':'icloud.com'};
+  const TRASH=/(^|\.)(mailinator|guerrillamail|sharklasers|10minutemail|tempmail|temp-mail|yopmail|trashmail|getnada|dispostable|maildrop|throwawaymail|fakeinbox|mailnesia|mintemail|emailondeck|mohmal|tempail|tempinbox|spamgourmet|mailcatch|discard)\./i;
+  const mxSeen={};
+  async function mxOk(dom){
+    if(dom in mxSeen)return mxSeen[dom];
+    try{const j=await Promise.race([fetch('https://cloudflare-dns.com/dns-query?type=MX&name='+encodeURIComponent(dom),{headers:{accept:'application/dns-json'}}).then(r=>r.json()),
+        new Promise((_,no)=>setTimeout(no,3000))]);const mx=(j.Answer||[]).filter(a=>a.type===15&&!/^\d+\s+\.?$/.test(a.data));
+      return mxSeen[dom]=j.Status===0&&mx.length>0;}
+    catch(e){return true;}                                      /* DNS unreachable from here: the Worker still checks */
+  }
+  function emailErr(r){
+    const m=/^([^\s@]+)@([a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,})$/i.exec(r);
+    if(!m)return 'that is not an email';
+    const d=m[2].toLowerCase();
+    if(TYPO[d])return 'did you mean @'+TYPO[d]+'?';
+    if(TRASH.test(d))return 'no throwaway inboxes';
+    return '';
+  }
+  async function valid(){
     const n=st.name.trim(),r=st.reply.trim();
-    const ok=n&&(/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(r)||/^@[\w.]{2,30}$/.test(r));   /* QA: 'notanemail' and emoji domains passed */
-    if(!ok){errMsg=!n?'need a name to call you':'an email, or your @instagram';render();}
-    return !!ok;
+    let e=!n?'need a name to call you':emailErr(r);
+    if(!e){st.checking=true;render();const ok=await mxOk(r.split('@')[1].toLowerCase());st.checking=false;
+      if(st.step!=='who'||st.reply.trim()!==r)return false;   /* they left or changed it while it was checking */
+      if(!ok)e="that email can't get mail";}
+    if(e){errMsg=e;render();return false;}
+    return true;
   }
   function body(){return {idea:st.idea,line:st.line.trim(),name:st.name.trim(),reply:st.reply.trim(),hp:(chat.querySelector('.phHp')||{}).value||''};}
   async function send(){
@@ -7748,7 +7789,9 @@ void main(){
     if(!MAIL){clearInterval(tick);st.failed=false;return setStep('mail');}   /* QA rerun: the bar's timer kept repainting the chat onto the LCD after EXIT */            /* no backend yet: straight to the mail step, no fake failure */
     try{
       const r=await fetch(MAIL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body())});
-      const j=await r.json().catch(()=>({}));if(!r.ok||!j.ok)throw 0;
+      const j=await r.json().catch(()=>({}));
+      if(r.status===422&&(j.why==='email'||j.why==='line')){clearInterval(tick);setStep(j.why==='email'?'who':'line');errMsg=j.why==='email'?"that email can't get mail":'tell me a bit more';render();return;}   /* the Worker's own check */
+      if(!r.ok||!j.ok)throw 0;
       await new Promise(f=>setTimeout(f,Math.max(0,760-(performance.now()-sendT0))));   /* the bar always gets its beat */
       clearInterval(tick);setStep('sent');
     }catch(e){clearInterval(tick);st.failed=true;setStep('mail');}
@@ -7759,7 +7802,9 @@ void main(){
     const age=performance.now()-stepAt;if(a!=='exit'&&(age<380||(a==='mail'&&age<650)))return;
     const k=ORDER.indexOf(st.step);
     if(a==='exit')return close();
-    if(a==='pick'){st.pick=+i;st.idea=IDEAS[st.pick];return setStep('line');}
+    if(busy)return;
+    if(a==='pick'){st.pick=+i;st.idea=IDEAS[st.pick];items=layout();repaint();busy=true;   /* the row holds lit a beat, then the screen moves on */
+      setTimeout(()=>{busy=false;if(st.step==='idea')setStep('line');},170);return;}
     if(a==='back'){if(st.step==='mail'||st.step==='mailed')return setStep('review');return k>0?setStep(ORDER[k-1]):close();}
     if(a==='again'){stepAt=performance.now();st={step:'idea',pick:-1,idea:'',line:'',name:st.name,reply:st.reply};return render();}
     if(a==='send')return send();
@@ -7767,7 +7812,8 @@ void main(){
       +'&body='+encodeURIComponent(`${b.name} (${b.reply})\n${b.idea}${b.line?': '+b.line:''}`);return;}
     if(a==='next'){
       if(st.step==='idea'){if(st.pick<0){errMsg='pick one: 1, 2, 3 or 4';render();return;}st.idea=IDEAS[st.pick];return setStep('line');}
-      if(st.step==='who'&&!valid())return;
+      if(st.step==='line'&&!briefOk(st.line)){errMsg=st.line.trim()?'tell me a bit more':'what is it about?';render();return;}
+      if(st.step==='who'){busy=true;valid().then(ok=>{busy=false;if(ok&&st.step==='who')setStep('review');});return;}
       if(k>=0&&k<ORDER.length-1)return setStep(ORDER[k+1]);
       if(st.step==='review')return send();
     }
@@ -7826,7 +7872,7 @@ function frame(now){
     /* PERF (his note, 2026-11-09: "after the flip phone in contact it's kind of laggy"): the phone fills the screen
        once the chat is up and doesn't move, so it only redraws when its LCD changes (pushLCD clears P) or its
        framing does (resize, the phone keyboard). Moving, it caps at 60fps: 120Hz screens drew it every vsync */
-    if(zState==='open'&&zp>=1&&P&&holdMs==null&&P.zk===(zCache&&zCache.key)&&P.R===R)return;
+    if(zState==='open'&&zp>=1&&P&&holdMs==null&&P.zk===zoomPose(R).key&&P.R===R)return;   /* zoomPose first: it re-keys on a resize (the iPhone toolbar sliding), so the phone redraws and the tap twin follows the LCD; it used to compare a stale key and keep both where they were */
     if(P&&holdMs==null&&now-lastDraw<15)return;
     lastDraw=now;P=pose(now,R);if(zState==='open'&&zp>=1){zoomPose(R);P.zk=zCache&&zCache.key;}draw(P);strap(P);wrap(P,ms);pops(P,ms);if(zState==='open')placeChat(P);
   }

@@ -997,6 +997,9 @@ into tweens.
   - **Chrome follows the contour** (round 22, his note: separate clips looked "stuck into the pins … needs to look more intention, wrapped around the edges"; history: round 18 bumper too thick/banded, rounds 19–21 clips): at each outer corner a chrome band rides the phone's own outline, wrapping the rim front and back, fattest at the corner and tapering to points along the edges, with hooked tribal flares peeling off it. Plain mirror chrome. Build any such shape as a true distance field (`ext`), never a faked height: that went black (round 20).
   - **Light:** round 8 (his note: "more contrast on the model"): a dark room with a hard key; the lit side reads bright, the far side drops into shade. Keep the halftone visible after any light change.
   - **Stickers are the site's marks** (round 24, his ask: "relatable to the website design"): the menu wedge, a pixel chain link, the acid sparkle, P5 stars, as raised enamel badges in flat palette colour lit in Bayer steps inside a black ink rule (`badge`, materials 20–24). No crystals or jelly charms from the Y2K references.
+  - **The ink rule only works on true distance fields.** A part whose distance is a bare slab (`deco()` once returned
+    `z-.04`) reads as an endless plane: rays grazing it get inked and black blobs smear across the screen. Bound
+    every early-out (2026-11-09, his clip: "weird glitch around the phone").
   - **Lid top:** a round crystal in a chrome ring, with chrome star studs in the corners. **The contact text box is gone on every screen** (his call; kept for screen readers). Entrance (round 25, his ask, 2026-11-08), gated on two clicks like a game:
     1. **It rises shut and CHAINED** (a band and an X of the section's pixel chain, in the closed phone's space).
     2. **It RINGS:** smooth eased swing bursts (round 26: the jitter read "too shaky"), the outer display reads INCOMING CALL, and a comic **CLICK IT!** burst punches
@@ -1011,8 +1014,16 @@ into tweens.
     - **Open:** a click on the phone (a projected-hull hit test, no readback) or Return dollies it in square to the
       camera (620ms in-out cubic), and the cursor follow fades out.
     - **The screen IS the model's LCD** (round 26, his note: "i dont like it … the models LCD screen to be the screen itself"). The chat is painted into the LCD texture (`paintChat`), so the scanlines and glass apply. An invisible DOM twin (`.phChat`, `placeChat`), built from the same `layout()`, takes clicks, typing and screen readers. Never draw the chat as a visible overlay. It is in his old-messenger reference's language on the blue LCD.
-    - **The questions (4 steps):** what's the idea? (4 picks) / the one-line version (optional) / what do i call you?
-      plus where do i reply? / send this? (a read-back). Those wordings are his. Then "sent" and status: away.
+    - **The questions (4 steps):** what's the idea? (edit my footage / shoot something / creative direction /
+      something else) / tell me about it (REQUIRED) / what do i call you? plus your email? / send this? (a
+      read-back). Then "sent" and status: away.
+    - **Intent and a real email** (his note, 2026-11-09: "i Don't want people just contact me willy nilly … there
+      should be an intention … it accepts whatever email"). No "just saying hi". The brief needs 5+ real words and
+      isn't a greeting (`briefOk`). Reply is email only: syntax, typo map, throwaway list, and an MX record
+      (`mxOk`, Cloudflare DoH). The Worker repeats every check and answers 422 `why:'email'|'line'`. Never loosen
+      these to make sending easier.
+    - **Every press answers** (`pressK`): the key lights and sinks on pointerdown; a pick holds lit 170ms.
+    - **Readable:** body type 33px on the 384×490 LCD, nothing under 27px; on phones the LCD fills the width.
     - **Keys:** Esc steps back and exits from home; BACK hides while it's up.
     - **Delivery:** `MAIL` (`https://contact.thotahub.in/`) posts to `worker/contact-mail`, a cf Worker on that
       custom domain whose `send_email` binding is locked to thotajatin.work@gmail.com. If the post fails, the
