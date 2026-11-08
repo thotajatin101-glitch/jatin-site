@@ -25,6 +25,8 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 - **Oops:** three timing POSTs went out as real emails ("QA test · just saying hi"). The address had been
   verified since the release. Never POST a valid body to the live Worker without asking.
 - **Rollback point (before the push):** Pages run 42506315238 (afb51b3). Roll back: `gh run rerun 42506315238`.
+- **Live:** 824644d, Pages run 42511956743 (success). The live page carries the fix; `run.mjs <live>` passes 6/6
+  (Chrome, Safari, three iPhones, Pixel 9).
 - **Next:** one real test message from the live phone.
 
 ## 2026-11-08 — RELEASE: the full site replaces the Vogue apply build. Mail goes live.
