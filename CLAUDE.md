@@ -1010,8 +1010,14 @@ into tweens.
     - **The questions (4 steps):** what's the idea? (4 picks) / the one-line version (optional) / what do i call you?
       plus where do i reply? / send this? (a read-back). Those wordings are his. Then "sent" and status: away.
     - **Keys:** Esc steps back and exits from home; BACK hides while it's up.
-    - **Delivery:** `MAIL` posts to `worker/contact-mail`, a cf Worker whose `send_email` binding is locked to
-      thotajatin.work@gmail.com. If it's empty or fails, the visitor gets a prefilled mailto.
+    - **Delivery:** `MAIL` (`https://contact.thotahub.in/`) posts to `worker/contact-mail`, a cf Worker on that
+      custom domain whose `send_email` binding is locked to thotajatin.work@gmail.com. If the post fails, the
+      chat goes to its MAIL step: a prefilled mailto plus the address as a link. It never shows a fake failure.
+      Redeploy with `cd worker/contact-mail && cf deploy`.
+    - **Launch QA rules (2026-11-08):**
+      - every chat action goes through ONE guard in `act()`: no screen skips on double-clicks or Enter mashes;
+      - presses during the entrances are queued (`q1`/`q2`, the computer's `queue()`, OS `qEsc`), never dropped;
+      - wording follows `isTouch()`: TAP on touch, CLICK otherwise.
     - **Email Routing goes on the `mail.thotahub.in` subdomain, never the apex** (the apex MX is his registrar
       forwarding).
 - **SKILLS card face is all art** (his note, 2026-11-07: "completely cover the whole card with design itself"): no title or copy on the card. The banner is the heading; the description and tags hang FLUSH under it on `.skInfoB` (no gap, his note: "part of the title stripe itself"; it carries on the stripe's slant), a layer above the front chain that turns on the banner's pivot. On a phone it lies flat under the card with the name.
@@ -1037,9 +1043,10 @@ into tweens.
 ## Apply mode + REVERT MAIN (2026-10-30)
 
 For a Vogue application he asked for the intro to go **straight to PROJECTS**,
-without deleting the menu site. `const APPLY=true` (just above `toMenu()`)
-routes the handoff to `landOnProjects()`. In apply mode the menu, BACK and
-back-navigation are off. Set it to `false` and the full site is back as built.
+without deleting the menu site. `const APPLY` (just above `toMenu()`) routes the
+handoff to `landOnProjects()` when true. **It has been `false` since the 2026-11-08
+release** (his word: "turn off vogue application mode and replace that site with
+our final finished site"): the live site is the full menu site.
 
 **"REVERT MAIN"** — his words: "When i Say "REVERT MAIN" i want you to reset
 the website to it's current stage so i can continue my work in the future".

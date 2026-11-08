@@ -7,6 +7,8 @@ export default defineConfig({
     name: "jatin-contact-mail",
     entrypoint: "./src/index.ts",
     compatibilityDate: "2026-10-01",
+    /* its own hostname on his zone; no workers.dev */
+    domains: ["contact.thotahub.in"],
     env: {
       EMAIL: bindings.sendEmail({ destinationAddress: "thotajatin.work@gmail.com" }),
       FROM: bindings.text("contact@mail.thotahub.in"),

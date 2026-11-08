@@ -4,6 +4,56 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 — RELEASE: the full site replaces the Vogue apply build. Mail goes live.
+- **Rollback point (recorded before the push):** live was Pages run 41129488755 (commit 9599bfb, site from
+  a3cc3b5, apply mode). Roll back: `gh run rerun 41129488755`, or `git revert --no-edit <release>..HEAD && git push`.
+  Snapshot of the pre-release page: `.local/snapshots/2026-11-08-pre-release-index.html`.
+- **Did:**
+  - `APPLY=false`: the intro lands on the menu.
+  - The QA pass, below.
+  - Contact mail is live:
+    - Email Routing is on for `mail.thotahub.in` ONLY. Its MX is route1–3.mx.cloudflare.net. The apex MX is still
+      his registrar forwarding (eforward1–5), untouched.
+    - Destination thotajatin.work@gmail.com was added. **It stays unverified until he clicks Cloudflare's email.**
+      Until then a send fails and the phone falls back to the mail-app step.
+    - Worker `jatin-contact-mail` is on the custom domain `contact.thotahub.in` (no workers.dev), version
+      91d38993-3dfd-415b-8f56-0909bc5432b4.
+    - The worker builds through `vite.config.ts` + `@cloudflare/vite-plugin` 1.64.0 / vite 8.3.4, pinned dev-only:
+      `cf deploy` refuses to build without a declared dev server.
+    - Smoke test: OPTIONS 204, a foreign origin 403, bad fields 422.
+    - `MAIL='https://contact.thotahub.in/'` in PhoneFX.
+  - The tests (`tests/browsers/run.mjs`) open PROJECTS from the menu plate when the intro lands on the menu.
+- **Next:** once he verifies the address, send a real message from the live phone and confirm it lands in Gmail.
+- **Watch out:** chat BACK double-clicked 200ms apart can still skip a screen, although `act()` has a 380ms guard.
+  The cause was not found.
+
+## 2026-11-08 — Launch QA: 5 simulated first-time users, fixed, rerun. NOT deployed at the time
+- **Did:** five persona agents (impatient, skeptic, mobile slow-3G, non-native, breaker). Their briefs and the
+  per-user findings are in the session scratchpad. Fixes in `site/index.html`, each marked `QA` in a comment:
+  - the contact chat:
+    - ends on a MAIL step, not "no signal";
+    - no answer picked in advance;
+    - real validation of the reply field;
+    - a pink warning bar, with the empty field outlined;
+    - the email shown on the LCD is a mailto link;
+    - one guard against double clicks and key mashes, in `act()`;
+    - the send timer is cleared, so the chat no longer haunts the LCD after EXIT;
+    - the read-only status field shows its text;
+    - on a phone the LCD refits above the keyboard (`zoomPose` with `kb`).
+  - clicks during the computer's and the phone's entrances are queued, not dropped;
+  - the transition canvas lets input through once a section has swapped in;
+  - JATIN OS: one Esc is held during its animations (`qEsc`);
+  - `popstate` reads the live URL when it applies, and a hash typed into the address bar opens that section;
+  - the menu remembers the last section (`lastSec`);
+  - wording follows the device (`isTouch()`): TAP vs CLICK;
+  - a `.skHint` on SKILLS;
+  - phones: 44px OS controls and no label under 11px;
+  - the portrait loads after the menu (`data-src`), and grid thumbs load lazily past 11;
+  - `?frame` only takes digits;
+  - og:url and canonical point at justjatin.thotahub.in.
+- **Kept on purpose:** CLICK ANY BUTTON on desktop, CLICK IT!/CLICK AGAIN!, Enter = back on sections, and
+  #hash reloads restart the intro.
+
 ## 2026-11-08 — SKILLS card copy rewritten in his voice. NOT deployed, site/ uncommitted
 - **Did:** the three `desc` lines in `CARDS` + the placeholder `.skDesc` in the HTML. Fit checked at 1440×900,
   1440×700, 375×812.

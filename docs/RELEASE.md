@@ -86,7 +86,9 @@ domain:    gh api repos/thotajatin101-glitch/jatin-site/pages   (cname, https_en
   the inline scripts and asserts the routes above. A real-browser version needs
   Playwright as a **dev-only** tool — it never ships, but it's still his OK.
 
-## Before the release that ships CONTACT's phone chat
+## CONTACT's phone chat (set up 2026-11-08)
+
+Done at the 2026-11-08 release: routing on `mail.thotahub.in`, Worker on `contact.thotahub.in`, `MAIL` set. Redeploy the Worker with `cd worker/contact-mail && cf deploy`. Original steps, for reference:
 
 His call (2026-11-08): the mail side is set up at release time, not before. See `docs/concepts/2026-11-08-contact-chat/`.
 1. Turn on Email Routing for `mail.thotahub.in`, the subdomain only. The apex MX is his registrar forwarding.

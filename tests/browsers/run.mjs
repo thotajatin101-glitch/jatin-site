@@ -69,6 +69,8 @@ async function walk(name, engine, opts, base) {
     await page.waitForSelector('#pressAny', { timeout: 20000 });
     for (let i = 0; i < 80; i++) {
       if (await page.evaluate(() => document.getElementById('sec-projects').classList.contains('active'))) break;
+      // full site: the intro lands on the menu, so open PROJECTS from its plate (apply mode lands on PROJECTS itself)
+      if (await page.evaluate(() => document.body.classList.contains('menu') && !!document.querySelector('#m-projects.done, #m-projects.sel'))) { await tapOrClick('#m-projects'); await sleep(900); continue; }
       touch ? await page.touchscreen.tap(opts.viewport.width / 2, opts.viewport.height * .7) : await page.keyboard.press('x');
       await sleep(400);
     }

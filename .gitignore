@@ -7,3 +7,6 @@ reference/*.mov
 
 # dev-only test tooling
 node_modules/
+
+# cf build output and cache
+.cloudflare/

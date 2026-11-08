@@ -530,6 +530,35 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — five strangers try the site, then it goes live
+
+His ask: "Act as my launch QA lead. Spin up 5 … subagents, each a different first-time user … Fix it all in one pass,
+then rerun the 5 users to prove it's fixed." Then: "it's time host the site now. u can now turn off vogue application
+mode and replace that site with our final finished site".
+
+Five simulated visitors walked the site, each from landing to a first win (see a photo, send a message):
+- impatient;
+- skeptic;
+- a phone on slow 3G;
+- a non-native English reader;
+- a breaker.
+
+What hit the most people:
+- the contact chat ended on "no signal";
+- presses during the 3D entrances were thrown away;
+- desktop words on touch screens;
+- the menu forgot where you'd been.
+
+The chat now ends on an honest MAIL step and lands in his inbox through the Worker. Taps say TAP. The phone's screen
+refits above the keyboard. Every entrance keeps the press it got early.
+
+The reruns caught two bugs from the fix pass itself, both fixed:
+- the status box read "undefined";
+- the chat repainted itself onto the phone after EXIT.
+
+His voice and the comic pop-ups stayed exactly as they were. Then the Vogue apply build came down and the full site
+went up.
+
 ## 2026-11-08 — the skill cards stop sounding like slogans
 
 His note: "i want the description on skill cards to be something fits my personality it's too cheesy right now".
