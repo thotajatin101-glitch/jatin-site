@@ -805,7 +805,7 @@ into tweens.
     - 21+ the **idle screen = the OS chrome**: LAST UPDATED strip, the
       JATINSPACE header, the link row, the HOW TO USE bar, and a BIG,
       heavy pink old-web **CLICK ME!!** button (660×196 on the 1024 screen;
-      hand-tracked at .14em with extra air after the L; untracked it read "CUCK ME", his note) with a paper drop
+      now set in VT323 with a hand that loops a press; see the cursor notes) with a paper drop
       shadow, the pixel hand cursor, and "▸ enter JATINSPACE" with a
       blinking caret. The teaser folders under it were cut (his note).
     - **Loading**: the same chrome with a chunky pink dithered bar that
@@ -1016,6 +1016,18 @@ into tweens.
 - **SKILLS deal = one flip** (his note, 2026-11-07: "simply flipping the card, which shows the back and goes to the next card"): a full turn on the card's flip spring, the face swapping while the back faces you. No spin-away / tumble-in.
 - **SKILLS deck order** (his call, 2026-11-07): 01 VISUAL DIRECTION, 02 VIDEO EDITING, 03 PHOTOGRAPHY. The order is `CARDS`; the placeholder card in the HTML mirrors card 01.
 - **SKILLS: every card has its own world** (his note, 2026-11-07). The space sky, the rainbow slab and the foil shapes belong to VIDEO EDITING only. PHOTOGRAPHY's camera film stands in the site's own world (`siteWorld` in CamFilm: palette shards, black strokes, ink dots, a glowing floor). **No black wedges in it** (his note: "black stripes … i dont want spaces like that"). **The camera looks at the cursor** (his ask, 2026-11-07): its lens turns toward the pointer on the card's tilt spring. This is card art reacting, which is allowed; the world still holds. VISUAL DIRECTION is `EyeFX`, from his fourth eye reference (round 47, it replaced the flight through layers): ONE eye, held still, and the motion is what it SEES. A pink duotone eye in the site's print language (Bayer steps, ink dots, red/cyan split, hard liner, no lashes); the reflection is a feed canvas flicking through HIS OWN photos (`PHOTOS`, round 48: browse → flicker → white hit → LOCKED with that photo's palette pulled as swatches → 2×2 moodboard), green HUD tags, a datamosh on the hits. `PHOTOS` sits at the top of the script so JATIN OS and the eye share it. The eye glances on its own, never with the cursor. **Depth comes from form, not a model** (round 49, his note: "same design and textures but … more immersive", no poorly modelled 3D): the ball is a sphere with a gaze-turned iris under fixed catchlights; the face is lit from a height field but still printed in the Bayer steps; a slow camera drift moves brow / lids / ball at different depths. The reflection stays faint over the iris and pupil so the pupil always reads. It sits centred in the art window (the top 64% of the card, wider than tall). A new card never borrows another card's world. No soft glow or gradient backlight behind the subject (he cut a purple one): black behind, hard-edged shards.
+- **The cursor is the site's own** (`CursorFX`, his reference 2026-11-08: a pixel arrow / hand extruded into blocks;
+  concept `docs/concepts/2026-11-08-cursor/`). An object with weight that never fidgets:
+  - drawn at one texel per 2px cell, unsmoothed: black glossy face, curved shine, lavender rim; the side runs the
+    page's accent (`CursorFX.accent`, called from `worldToMenu` / `worldToSection`) inside a black ink rule;
+  - position instant, only the LEAN has weight (spring, slight overshoot); a flick throws the side out;
+  - arrow → hand on anything with a `cursor:pointer`/zoom/grab rule or inline style (hard cut, punch, one glint);
+    pixel I-beam on text fields;
+  - click = key press (face sinks into its side, 90ms red/cyan split, pixels pop);
+  - the loop stops when settled; no trail, no idle motion. Off without a fine hovering pointer; reduced motion
+    drops lean and pops. `CursorFX.pose(shape,press,lx,ly)` freezes a pose.
+- **CLICK ME!! on the PROJECTS screen is VT323** (his call: Cyberway's L+I read as "CUCK"), and the screen's hand
+  loops a press (12fps, 1.67s: rest, glide in, the button sinks onto its drop with a click flash, drift back).
 - Full keyboard nav, like a game: arrows to move, Enter to select, Esc to back.
 
 ## Apply mode + REVERT MAIN (2026-10-30)

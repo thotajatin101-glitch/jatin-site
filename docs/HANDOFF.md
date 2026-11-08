@@ -4,6 +4,16 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 — Custom cursor (CursorFX) + CLICK ME in VT323 with a pressing hand. NOT deployed, site/ uncommitted
+- **Did:** `CursorFX` (end of the script, `CursorFX.init()`): extruded pixel arrow/hand/I-beam on `#cuCv`, accent
+  side via `worldToMenu`/`worldToSection`, lean spring, press. `html.cuOn *{cursor:none!important}`. CLICK ME!! on
+  the PROJECTS screen is VT323; the `blink` slot of `screenState` is now the press step (0–19 at 12fps);
+  `MonitorFX.peek(21+k)` shows step k.
+- **In flight:** nothing.
+- **Next:** his notes on the cursor in a real browser (the preview pane runs at 1–2fps, don't judge it there).
+- **Watch out:** hand detection reads the stylesheet's `cursor:` rules once at init plus inline `style.cursor`;
+  new clickables just need `cursor:pointer` as usual. Safari: check the cursor hides over the 3D canvases.
+
 ## 2026-11-08 — PROJECTS CLICK ME!! re-lettered. NOT deployed, site/ uncommitted
 - **Did:** `drawScreen` 'click' draws CLICK ME!! per glyph at .14em tracking, 3px stroke, +.3em after the L,
   fitted to 600px.

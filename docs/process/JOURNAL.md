@@ -530,6 +530,28 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the site gets its own cursor
+
+His reference: a pixel arrow and hand pushed out into blocks, glossy black faces, pink-violet sides. His ask: "its own
+personality and behaviour" — he wasn't sure how to put it, so I gave him a read and he said build it.
+
+The read: an object with weight that answers you and never fidgets. Where it is, it is instantly; what has weight is
+the lean. Move it and the block tilts against the motion, so a flick throws its side out long, then it settles with a
+little overshoot. Over anything clickable it cuts to the hand with a punch and one glint; over text it's a pixel
+I-beam. A click is a key press: the face sinks into its side, a red/cyan split, a few pixels pop. Its side takes each
+page's colour on the same cut as the world. When you stop, it stops. No trail: that would be the idle flicker he cut.
+Concept: `docs/concepts/2026-11-08-cursor/`. Still: `stills/2026-11-08-cursor-v1`.
+
+## 2026-11-08 — CLICK ME gets a pixel face and a hand that presses it
+
+His note: "Just change the font for click me and u could also animate the cursor next to it into making it look
+like the button is being clicked essentially prompting users to click it."
+
+CLICK ME!! is now VT323, the screen's own pixel face (Cyberway kept fusing the L and I). The hand loops a press on
+the site's stepped cadence, 12fps, 1.67s a loop: rest, glide onto the button, the button sinks onto its paper drop
+with a pixel click flash, then it drifts back. The caret blinks off while it presses.
+Still: `stills/2026-11-08-clickme-vt323-press`.
+
 ## 2026-11-08 — CLICK ME, not the other thing
 
 His note: "the click me on the 3d computer looks like cuck me".
