@@ -4,6 +4,12 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-09 — the story document: "JATIN, Unchained" (his ask)
+- **Did:** a narrative making-of, written as themes, not a log: who he is (the ABOUT plate), the idea, the chain as his breaking-his-limits metaphor (every screen arrives held and the visitor breaks it), timing, what he cut and the rules it left, objects, his own material, how he works, the visitor, where it stands. His quotes throughout. Plain design per his part-one note (Plex Sans/Serif/Mono, one magenta accent, light/dark). Published private: https://claude.ai/artifact/QKAWewkWe8qrBfXMK3CJpF. Source `docs/process/story/` (`index.html` + `img/`, 1200px copies of stills).
+- **Not checked:** the live page by eye (the in-app browser isn't signed in to claude.ai); all 20 files confirmed published.
+- **Next:** his read. Part one (https://claude.ai/artifact/9vkQ3GiZtP5aj2mN44TBtP) stays as the round-by-round log.
+- **Watch out:** no site code touched.
+
 ## 2026-11-09 — CONTACT: glitch, press feedback, intent, real email. NOT deployed (site or Worker)
 - **His note** (iPhone clip): glitch round the phone, no click feedback, hard to read, no "just hi", fake emails pass.
 - **Glitch:** `deco()` in the phone shader early-outs with `z-.04`, a depth-only slab. Rays grazing it far from the
