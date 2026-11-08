@@ -24,3 +24,9 @@ curved shine, lavender rim, pink → violet sides.
 **Stills:** `docs/process/stills/2026-11-08-cursor-v1/states.png` (rest, flicks, hand, click, I-beam, lean, press).
 
 **Left out on purpose:** a trail (it would read as the idle flicker he cut).
+
+## Round 2
+**His words:** "ok love but for the clicking hand cursor could show middle finger instead of index finger".
+The hand is now a middle finger (long, four cells wide, folded knuckles either side, finger lines kept). The first
+try had a six-row finger and read as a fist; it's nine rows now. Hotspot on the fingertip. The pointing hand on the
+PROJECTS screen's CLICK ME loop is unchanged. Still: `stills/2026-11-08-cursor-middle-finger`.
