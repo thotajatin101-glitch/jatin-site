@@ -12,6 +12,13 @@ const briefOk = (t: string) => {
   const w = t.split(/\s+/).filter(x => /[a-z0-9]/i.test(x));
   return t.length >= 25 && w.length >= 5 && !/^(hi+|hey+|hello+|yo+|sup|hii+|test)\b[\s!.]*$/i.test(t);
 };
+const userOk = (u: string, d: string) => {
+  u = u.toLowerCase().split("+")[0];
+  if (/^(gmail|googlemail)\.com$/.test(d)) { const c = u.replace(/\./g, ""); return /^[a-z0-9.]+$/.test(u) && c.length >= 6 && c.length <= 30 && !/^\.|\.$|\.\./.test(u); }
+  if (/^(icloud|me|mac)\.com$/.test(d)) return u.length >= 3 && u.length <= 20;
+  if (/^yahoo\./.test(d)) return u.length >= 4 && u.length <= 32;
+  return true;
+};
 /* the domain must publish a real MX (not the "0 ." null MX): DNS over HTTPS to Cloudflare's resolver */
 async function mxOk(dom: string): Promise<boolean> {
   try {
@@ -43,8 +50,8 @@ export default {
     if (!IDEAS.includes(idea) || !name)
       return Response.json({ ok: false, error: "missing fields" }, { status: 422, headers: h });
     if (!briefOk(line)) return Response.json({ ok: false, why: "line" }, { status: 422, headers: h });
-    const m = /^[^\s@]+@([a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,})$/i.exec(reply);
-    if (!m || TRASH.test(m[1]) || !(await mxOk(m[1].toLowerCase())))
+    const m = /^([^\s@]+)@([a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,})$/i.exec(reply);
+    if (!m || TRASH.test(m[2]) || !userOk(m[1], m[2].toLowerCase()) || !(await mxOk(m[2].toLowerCase())))
       return Response.json({ ok: false, why: "email" }, { status: 422, headers: h });
     const isMail = true;
     const text = `${name} (${reply})\n${idea}${line ? `: ${line}` : ""}\n\nsent from the phone on justjatin.thotahub.in`;
