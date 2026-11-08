@@ -16,7 +16,7 @@ const esc = (s: string) => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt
 const clean = (v: unknown, n: number) => (typeof v === "string" ? v : "").replace(/[\r\n\t]+/g, " ").trim().slice(0, n);
 
 export default {
-  async fetch(req: Request, env: Env): Promise<Response> {
+  async fetch(req: Request, env: Env, ctx: { waitUntil(p: Promise<unknown>): void }): Promise<Response> {
     const o = req.headers.get("Origin"), h = cors(o);
     if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: h });
     if (req.method !== "POST") return new Response("POST only", { status: 405, headers: h });
@@ -33,18 +33,16 @@ export default {
 <p><b>${esc(name)}</b> &middot; ${isMail ? `<a href="mailto:${esc(reply)}">${esc(reply)}</a>` : esc(reply)}</p>
 <p><b>${esc(idea)}</b>${line ? `: ${esc(line)}` : ""}</p>
 <p style="color:#888;font-size:12px">sent from the phone on justjatin.thotahub.in</p></div>`;
-    try {
-      await env.EMAIL.send({
-        to: "thotajatin.work@gmail.com",
-        from: { email: env.FROM, name: "JATIN phone" },
-        subject: `new message: ${idea} · ${name}`,
-        text, html,
-        ...(isMail ? { replyTo: reply } : {}),
-      });
-    } catch (e) {
-      console.log("send failed", (e as { code?: string }).code, (e as Error).message);
-      return Response.json({ ok: false, error: "send failed" }, { status: 502, headers: h });
-    }
+    /* The send itself takes ~6s inside Email Service (measured 2026-11-09), and the visitor sat on "sending" for all
+       of it. The message is validated above, so answer now and let the send finish after the response. A failure
+       is logged (cf tail) rather than shown; the binding only reaches his verified inbox, so failures are rare. */
+    ctx.waitUntil(env.EMAIL.send({
+      to: "thotajatin.work@gmail.com",
+      from: { email: env.FROM, name: "JATIN phone" },
+      subject: `new message: ${idea} · ${name}`,
+      text, html,
+      ...(isMail ? { replyTo: reply } : {}),
+    }).catch(e => console.log("send failed", (e as { code?: string }).code, (e as Error).message)));
     return Response.json({ ok: true }, { headers: h });
   },
 };

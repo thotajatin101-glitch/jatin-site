@@ -4,6 +4,28 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-09 — CONTACT lag + slow send fixed. Site NOT deployed; Worker IS live
+- **His note:** "after the flip phone in contact it's kind of laggy … the cursor and animations feels very laggy
+  and it's a bit of time to sending the message mail".
+- **Cause, measured in headed Chrome on the Metal GPU:**
+  - the phone canvas is 2160×1350 at DPR 1.5;
+  - it redrew every vsync while ringing or buzzing (~80 draws/s on 120Hz);
+  - with the chat open it redrew 30–50/s, although the zoomed phone is perfectly still and fills the screen.
+  - Result: p95 frame 16.7ms, worst 50ms, which is the cursor stutter.
+- **Did (`site/index.html`, PhoneFX `frame`/`size`):**
+  - the open chat redraws only when the LCD changes (`pushLCD` clears `P`) or its framing does (`P.zk` vs
+    `zCache.key`, `P.R`);
+  - anything moving caps at 60fps;
+  - while ringing, buzzing or snapping it renders at .78 resolution (`shaking`), which can't be told apart in
+    stills.
+  - Now 120fps flat in every CONTACT state, p95 9.3ms.
+- **Send:** Email Service takes ~6.4s per send. The Worker now validates, answers at once, and finishes the send
+  in `ctx.waitUntil` (~0.2s to the phone). A failed send is logged (`npx wrangler tail jatin-contact-mail`),
+  not shown. Worker version ee5acb86, **already live** (it deploys separately from the site).
+- **Oops:** three timing POSTs went out as real emails ("QA test · just saying hi"). The address had been
+  verified since the release. Never POST a valid body to the live Worker without asking.
+- **Next:** push the site on his "deploy". After that, one real test message from the live phone.
+
 ## 2026-11-08 — RELEASE: the full site replaces the Vogue apply build. Mail goes live.
 - **Rollback point (recorded before the push):** live was Pages run 41129488755 (commit 9599bfb, site from
   a3cc3b5, apply mode). Roll back: `gh run rerun 41129488755`, or `git revert --no-edit <release>..HEAD && git push`.

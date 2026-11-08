@@ -7267,9 +7267,9 @@ void main(){
       retex(keyTex,keyAtlas());retex(outTex,outer(outKind));scrKey='';P=null;},()=>{});
     return true;
   }
-  let heavy=false;
+  let heavy=false,shaking=false;
   function size(){
-    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:1),w=Math.max(1,Math.round(cv.clientWidth*R)),h=Math.max(1,Math.round(cv.clientHeight*R));
+    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:shaking?.78:1),w=Math.max(1,Math.round(cv.clientWidth*R)),h=Math.max(1,Math.round(cv.clientHeight*R));
     if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;P=null;}
     return R;
   }
@@ -7801,7 +7801,7 @@ function frame(now){
     else{const dt=Math.min(.1,(now-(parAt||now))/1000),k=1-Math.exp(-dt*5);par.x+=(parT.x-par.x)*k;par.y+=(parT.y-par.y)*k;}   /* eased like the computer's */
     parAt=now;
     const ms=now-t0;if(ms<0){if(P!==false){gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);P=false;}return;}
-    const was=heavy;heavy=!reduce&&ms<SPIN;if(was!==heavy)P=null;
+    const was=heavy,wasS=shaking;heavy=!reduce&&ms<SPIN;shaking=!reduce&&(ringEnv(ms)>0||buzzEnv(ms)>0||(ms>SNAP-150&&ms<SNAP+600));if(was!==heavy||wasS!==shaking)P=null;
     cv.classList.toggle('still',!heavy);
     const R=size(),k=zState==='open'?'chat':zState==='in'?'on':screenKind(ms);
     const ok2=stage(ms)==='ring'?'call':stage(ms)==='notify'||stage(ms)==='snap'?'msg':'idle';
@@ -7816,7 +7816,12 @@ function frame(now){
     const moving=zState==='in'||zState==='out';
     const st=stage(ms),settled=(reduce||ms>SNAP+1400||(st!=='rise'&&st!=='snap'&&!(c1!=null&&ms<c1+700)))&&!moving&&!(ms>SNAP-150&&ms<SNAP+1400)&&!(ringEnv(ms)>0||buzzEnv(ms)>0);   /* a shake at 30fps judders: full rate while it moves */
     if(settled&&P&&holdMs==null&&now-lastDraw<33)return;      /* the idle float is slow: 30fps is plenty */
-    lastDraw=now;P=pose(now,R);draw(P);strap(P);wrap(P,ms);pops(P,ms);if(zState==='open')placeChat(P);
+    /* PERF (his note, 2026-11-09: "after the flip phone in contact it's kind of laggy"): the phone fills the screen
+       once the chat is up and doesn't move, so it only redraws when its LCD changes (pushLCD clears P) or its
+       framing does (resize, the phone keyboard). Moving, it caps at 60fps: 120Hz screens drew it every vsync */
+    if(zState==='open'&&zp>=1&&P&&holdMs==null&&P.zk===(zCache&&zCache.key)&&P.R===R)return;
+    if(P&&holdMs==null&&now-lastDraw<15)return;
+    lastDraw=now;P=pose(now,R);if(zState==='open'&&zp>=1){zoomPose(R);P.zk=zCache&&zCache.key;}draw(P);strap(P);wrap(P,ms);pops(P,ms);if(zState==='open')placeChat(P);
   }
   function enter(section,delay){
     const c=section.querySelector('.phCv');if(!c)return;
