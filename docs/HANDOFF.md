@@ -4,6 +4,30 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-09 — Frame governor + phone layout pass. NOT deployed
+- **His note:** frame drops for users (worst on CONTACT) and "the phone layout needs alot of work".
+- **Measured** (headed Chromium, Metal, 1440×900 @2x, GPU time by forcing a 1px readback after each draw, probe
+  only): phone 7–12.6ms GPU per frame at 2160×1350, computer 6.7ms, SKILLS card 1.2ms. JS p95: menu 5.8ms, ABOUT 8.2ms
+  (DitherFX repainting every shape on one frame).
+- **Did:**
+  - `Q` (top of the script): frame governor. 40-frame windows; display interval = fastest frames; p50 > 1.35× or
+    p90 > 2.1× → `s *= .82` (floor .45); five calm windows → `s /= .88`; 900ms between changes. Integrated GPUs
+    (WEBGL_debug_renderer_info: Intel/UHD/Iris/AMD APU/Mali/old Adreno/SwiftShader) start at .7. `body.fxLow`
+    (s < .8) drops the CSS fringe on `.phCv`/`.pcCv`. `Q.set(v)` forces a level. Multiplied into the R of PhoneFX,
+    MonitorFX, CamFX and the SKILLS GL card (floor .6 there).
+  - DitherFX: shapes due at 30fps each, oldest first, 1.4ms budget per frame; element list re-read every 250ms.
+  - livingWedge: table sine, half the rows per pass (interlaced), full refresh still 30fps.
+  - Phone layout: `fitWedgePhone()` (menu block between logo and plates, `.phS` / `.phXS` steps); ABOUT phone lens
+    `[.47W, max(.235H,128)]`, edges keep their angles; SKILLS phone card hangs off the heading; compact phone info
+    plate; bubble `min(50vw,200px)`; `deco()` bound tightened to the lid (`.28×.5` at y .49, +.01).
+  - CONTACT blurb no longer says "just to talk shop".
+  - `tests/browsers/run.mjs`: intro skip-tap moved from .7 to .22 of the height (on a 360×732 Pixel it opened
+    ABOUT). 14/14 pass locally.
+- **After:** 120fps on every screen here; menu JS p95 2.5ms, ABOUT 4.3ms.
+- **Not verified:** a real weak laptop. The governor was only exercised by a probe stall and forced levels.
+- **Next:** deploy on his word, site + contact Worker together (`cd worker/contact-mail && cf deploy`, then push);
+  then a friend with a laptop tries CONTACT.
+
 ## 2026-11-09 — the story document: "JATIN, Unchained" (his ask)
 - **Did:** a narrative making-of, written as themes, not a log: who he is (the ABOUT plate), the idea, the chain as his breaking-his-limits metaphor (every screen arrives held and the visitor breaks it), timing, what he cut and the rules it left, objects, his own material, how he works, the visitor, where it stands. His quotes throughout. Plain design per his part-one note (Plex Sans/Serif/Mono, one magenta accent, light/dark). Published private: https://claude.ai/artifact/QKAWewkWe8qrBfXMK3CJpF. Source `docs/process/story/` (`index.html` + `img/`, 1200px copies of stills).
 - **Not checked:** the live page by eye (the in-app browser isn't signed in to claude.ai); all 20 files confirmed published.

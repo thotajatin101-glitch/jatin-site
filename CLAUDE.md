@@ -246,6 +246,11 @@ Everything comes from his logo animation. Do not soften or "clean up" this look.
     readback. **Never read pixels back in the intro.** The 2D path survives
     only as a no-WebGL fallback. Worst intro frame is now ~1.7ms of JS. The
     downsample canvas must still not be `willReadFrequently`.
+  - **The frame governor `Q`** (2026-11-09, his friends' laptops dropped frames, worst on CONTACT). Raymarched
+    models cost per pixel, so their render scale is multiplied by `Q.s`, which steps down when real frames run
+    long and back up with headroom (floor .45; integrated GPUs start at .7; `body.fxLow` below .8 drops the CSS
+    fringe). Any new full-screen GL canvas multiplies its R by `Q.s`. DitherFX paints in a per-frame budget,
+    never every shape on one frame. Judge on a real laptop GPU if one is at hand; headless is SwiftShader.
   - **The intro's opening draws every vsync** (the chained phase + the first
     7 frames after the snap, up to `SMOOTH`): smooth S-curves on a 24fps clock read as lag (his note). From
     the fan slam on, frames render only on a new 24fps frame, on 2s; that
@@ -515,6 +520,10 @@ into tweens.
   The event doesn't fire reliably when the tab is throttled, and a stuck `.in`
   pins the selected plate's transform. Same rule as the old opacity bug:
   visibility lives on classes, never inline.
+- **Phone layout rules** (2026-11-09 pass, checked at 390×652 = his visible iPhone area, 375×560 and 430×800):
+  the menu heading block is fitted between the corner mark and the top plate (`fitWedgePhone`); the ABOUT lens sits
+  clear of BACK with the whole camera on screen; the SKILLS card hangs off the heading. Audit phones at the
+  VISIBLE height (browser bars included), not the device height.
 - **BACK sits top-left on every page** (his ask, 2026-11-08), a compact tab at `--backTop` (2.4vh). Headings drop to
   `--headTop` = max(7vh, BACK + 52px) to clear it, and everything under a heading hangs off `--headTop` (`.secBody`,
   the SKILLS card, which also shrinks on short screens so its chrome horns clear the heading). Phones use a smaller
