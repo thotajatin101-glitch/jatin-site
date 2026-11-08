@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-09",
+  "label": "chain-source-short",
+  "shots": [
+    {
+      "file": "menu-01-about.jpg",
+      "caption": "Menu, ABOUT selected"
+    },
+    {
+      "file": "menu-02-projects.jpg",
+      "caption": "Menu, PROJECTS selected"
+    },
+    {
+      "file": "menu-03-skills.jpg",
+      "caption": "Menu, SKILLS selected"
+    },
+    {
+      "file": "menu-04-contact.jpg",
+      "caption": "Menu, CONTACT selected"
+    },
+    {
+      "file": "04-contact.jpg",
+      "caption": "CONTACT, settled after entry"
+    }
+  ],
+  "films": [],
+  "commit": "2ee3a9a + uncommitted changes",
+  "captured": "2026-11-09",
+  "browser": "Comet, Chrome 156.0.8078.48"
+}

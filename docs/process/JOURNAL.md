@@ -530,6 +530,19 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-09 — the chain comes out of the light
+
+His note, with a crop of its far end: "the chain looks like it coming out of nowhere could u extend the chain in the
+main menu? (this is the smaller starting end of the chain)".
+
+It started tucked under the wedge's lower edge, clipped on a hard diagonal. Now the path runs back into the menu's
+vanishing point, the glow behind the heading:
+- the chain comes out of the same light as the grid and the streaks;
+- its links shrink to nothing inside the bloom;
+- it swings down into his drawn loop.
+Nothing fades and nothing is cut. Stills: `stills/2026-11-09-chain-source` (+ `-short`, `-laptop`, `-375`).
+Before: `stills/2026-11-08-release/menu-*`.
+
 ## 2026-11-09 — the phone stops hogging the frame
 
 His note: "after the flip phone in contact it's kind of laggy … the cursor and animations feels very laggy and it's a

@@ -662,10 +662,14 @@ into tweens.
     - **The curve is a Hermite spline through six key points with explicit
       tangents** (`MKEYS`, in his sketch's 1674×1952 pixels), so every joint
       is smooth. Don't go back to traced points.
-    - **Nothing fades.** The triangle hides the start: the origin is snapped
-      just inside its lower edge, and links near the start are clipped to
-      outside it. The frame edge takes the end: the path runs one screen
-      past it.
+    - **Nothing fades. It comes OUT OF THE LIGHT** (his note, 2026-11-09: it
+      "looks like it coming out of nowhere"; the old start was clipped on the
+      triangle's lower edge). The path now runs back from the old origin to
+      the world's vanishing point (`menuVP()`, or `SECTION_WORLD` in a
+      section), with the links shrinking to a tenth of a pixel inside the
+      bloom. Under ~.8px a link is drawn as a sliver of its ring colour: the
+      sprite there is all ink rule and read as a crack. The frame edge takes
+      the end: the path runs one screen past it.
     - y scales with height. x hangs off the RIGHT edge and stretches by the
       geometric mean of the two ratios, so on 16:10 the loop stays round
       instead of flattening into an oval, and still reaches behind the plates.

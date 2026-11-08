@@ -1755,7 +1755,7 @@ const ChainFX=(()=>{
     const d1=s(t[0],t[1]),d2=s(t[1],t[2]),d3=s(t[2],t[0]);
     return !((d1<0||d2<0||d3<0)&&(d1>0||d2>0||d3>0));
   }
-  function buildPath(W,H,tri){
+  function buildPath(W,H,tri,vp){
     /* his sketch was a near-square window; on wide screens a straight
        width-stretch flattens the loop into a long oval, so x stretches by the
        geometric mean instead and hangs off the RIGHT edge (the loop still
@@ -1765,6 +1765,11 @@ const ChainFX=(()=>{
     /* snap the origin just inside the triangle's lower edge at its height */
     const [A,,C]=tri,y0=P[0][1];
     if(C[1]!==A[1])P[0][0]=A[0]+(C[0]-A[0])*(y0-A[1])/(C[1]-A[1])+W*.03;
+    /* his note, 2026-11-09: the chain "looks like it coming out of nowhere" (it was cut on the triangle's edge).
+       It now comes OUT OF THE LIGHT: the path runs back to the world's vanishing point, where the links shrink
+       below a pixel inside the bloom. Same depth story as the grid and the streaks; nothing fades, nothing is cut */
+    if(vp){const O=P[0],dx=O[0]-vp[0],dy=O[1]-vp[1];
+      P.unshift([vp[0],vp[1],dx*.35,dy*1.9,O[4]*.06]);}
     /* run the near end one screen past the frame so its last link never shows */
     const L=P[P.length-1],dl=Math.hypot(L[2],L[3])||1,ext=Math.max(W,H);
     P.push([L[0]+L[2]/dl*ext,L[1]+L[3]/dl*ext,L[2],L[3],L[4]*1.3]);
@@ -1813,8 +1818,9 @@ const ChainFX=(()=>{
     }
     const W=innerWidth,H=innerHeight,R=Math.min(devicePixelRatio||1,1.5);
     if(mcv.width!==Math.round(W*R)||mcv.height!==Math.round(H*R)){mcv.width=Math.round(W*R);mcv.height=Math.round(H*R);}
-    const key=[W,H,tri.flat().map(v=>v|0).join()].join('|');
-    if(key!==mKey){mKey=key;mPts=buildPath(W,H,tri);}
+    const wv=mHost&&SECTION_WORLD[mHost.id]?SECTION_WORLD[mHost.id]:menuVP(),vp=[wv[0]*W,wv[1]*H];
+    const key=[W,H,tri.flat().map(v=>v|0).join(),vp.map(v=>v|0).join()].join('|');
+    if(key!==mKey){mKey=key;mPts=buildPath(W,H,tri,vp);}
     const dt=lastT?Math.min(64,now-lastT):0;lastT=now;
     travel+=dt/1000*(1.15+surge*6);                   /* links per second; surges on a menu move */
     mg.setTransform(R,0,0,R,0,0);mg.clearRect(0,0,W,H);
@@ -1822,11 +1828,12 @@ const ChainFX=(()=>{
     for(let n=-2;n<P.C+2;n++){                         /* chain order = far to near, so near links land on top */
       const c=n+f;if(c<0||c>P.C)continue;
       const [x,y,a,k]=at(P,c);
-      if(c<P.exitC+2){                                 /* still coming out from under the triangle */
-        mg.save();mg.beginPath();mg.rect(0,0,W,H);
-        mg.moveTo(...P.tri[0]);mg.lineTo(...P.tri[1]);mg.lineTo(...P.tri[2]);mg.closePath();
-        mg.clip('evenodd');link(mg,n,x,y,a,k*CELL/SS,SS,1,mPal);mg.restore();
-      }else link(mg,n,x,y,a,k*CELL/SS,SS,1,mPal);
+      const px=k*CELL;if(px<.1)continue;               /* lost in the light */
+      if(px<.8){                                        /* under a pixel the sprite is all ink rule and reads as a
+                                                           crack; a sliver of the ring's light colour reads as chain */
+        mg.save();mg.translate(x,y);mg.rotate(a);mg.globalAlpha=Math.min(1,px*1.6);mg.fillStyle=mPal?mPal[0]:'#fff';
+        mg.fillRect(-PITCH*px*.42,-Math.max(.45,px*3.2)/2,PITCH*px*.84,Math.max(.45,px*3.2));mg.restore();continue;}
+      link(mg,n,x,y,a,k*CELL/SS,SS,1,mPal);
     }
   }
 

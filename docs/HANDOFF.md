@@ -4,6 +4,15 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-09 — Menu chain comes out of the vanishing point. NOT deployed
+- **Did:** in `ChainFX`, `buildPath(W,H,tri,vp)` puts a key point at the world's vanishing point in front of the
+  old origin. The path cache is keyed on the VP. The triangle clip is gone. Links under .8px are drawn as ring-colour
+  slivers, and links under .1px are skipped. Checked at 1440×900, 1440×700, 1280×800 and 375×812, on the menu
+  and CONTACT.
+- **Watch out:** the dark "crack" on the phone's CONTACT field was there before this change: it's a DepthFX ink
+  streak, not the chain.
+- **Next:** his notes; deploy on his word.
+
 ## 2026-11-09 — CONTACT lag + slow send fixed. Site NOT deployed; Worker IS live
 - **His note:** "after the flip phone in contact it's kind of laggy … the cursor and animations feels very laggy
   and it's a bit of time to sending the message mail".
