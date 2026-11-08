@@ -530,6 +530,21 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the projector fills the frame
+
+> "this scree i scribbled over to to tell you that i wanted the whole part to be covered over like."
+
+He scribbled over round 1: purple over everything on the camera side, pink over everything above the beam. He
+also drew green lines out of the lens along both bands. In the reference nothing outside the beam is empty, and
+ours showed the dark world there. Now two flat fields cover it, carrying the same flowing dither as every other
+shape. Pink sits above the beam and purple on the camera side, split on a ray from the lens up to the top-left.
+Both fields are a shade deeper than the bands. At full strength the bands melted into them and only the paper
+rule was left, so the stripes stopped reading. The green lines became chains: one comes out of the lens along the
+pink band and runs behind his head; the other runs down the purple band. Both scroll outward, so the camera
+seems to throw them. The front chain across his chest stays.
+
+Stills: `stills/2026-11-08-about-cover-round2/` (+ `-short`, `-laptop`, `-375`).
+
 ## 2026-11-08 — ABOUT becomes a projector
 
 > "alright now it's to work on the about page. the refrence showcase a camera kind of makes a projection from it's lens and around it u can see the same similar stripes like what have in the about page on top bottom but i want them to be angle like in the refrence with a similar 3d handycam. one is the base screenshot refrence and the other is my drawing. where i drew where my photo is going which is blue outline and chains are the green outline. (yes we are redoing the desing of the about page"

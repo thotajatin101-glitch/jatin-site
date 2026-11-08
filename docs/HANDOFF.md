@@ -4,6 +4,17 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r2) — ABOUT fields cover everything outside the beam; chains out of the lens. NOT deployed, site/ uncommitted
+- **Did:**
+  - `.cgFieldT` (#b81d66) and `.cgFieldB` (#560c80) sit at z3, both in DitherFX `SEL` with 5px cells.
+    `AboutFX.layout` clips them, split on the ray from the lens to (.08W, top); on phones (.22W, top).
+  - Chains B and C ride the bands (`ride()` in `layout`), at z6 so they sit over the bands and under him.
+- **In flight:** nothing.
+- **Next:** his notes on round 2.
+- **Watch out:**
+  - The fields must stay darker than the bands, or the stripes vanish.
+  - Snapshot of round 1: `.local/snapshots/2026-11-08-about-round1-index.html`.
+
 ## 2026-11-08 (about r1) — ABOUT rebuilt as the handycam projector (CamFX + AboutFX). NOT deployed, site/ uncommitted
 - **Hooks:**
   - `AboutFX.layout()` derives everything from the lens point: band clip-paths, the beam, the light / burst canvases,

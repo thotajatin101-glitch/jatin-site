@@ -48,3 +48,20 @@ body with the black only on the hood's rim.
 
 Stills: `stills/2026-11-08-about-handycam-round1/` (+ `-short`, `-laptop`, `-375`); before:
 `stills/2026-11-08-about-before-handycam/` (+ `-375`).
+
+
+## Round 2 — cover the frame
+
+> "this scree i scribbled over to to tell you that i wanted the whole part to be covered over like."
+
+His notes were scribbles on the round 1 still: purple over the camera side, pink over the top, and green lines
+out of the lens along both bands.
+
+**Built:**
+- **Two dithered fields** fill everything outside the beam, split on a ray from the lens to the top-left.
+- **The fields are a shade deeper than the bands.** At equal strength the bands were lost.
+- **Chains B and C** come out of the lens and ride the pink and purple bands. B passes behind his head. Both
+  scroll outward.
+- **Chain A** still crosses in front of him.
+
+Stills: `stills/2026-11-08-about-cover-round2/` (+ `-short`, `-laptop`, `-375`).

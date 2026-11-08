@@ -581,10 +581,14 @@ into tweens.
     rim baked by `bakeCutout` in `--acc`.
   - **The portrait's glow is a dither that flows outward** (`CutGlow`, his ask, Oct 27): unchanged, in `.glowWrap`
     at z6, just under the portrait.
+  - **Nothing outside the beam is empty** (round 2, his scribbles: "the whole part to be covered"). Two dithered
+    fields: pink above the beam, purple on the camera side, split on a ray from the lens to the top-left. They're
+    a shade DEEPER than the bands (`#b81d66` / `#560c80`), or the stripes vanish into them. z3, under the print screen.
   - **Chains (his green lines):** each chain canvas carries its own path in `data-path` (fractions of the section,
     Catmull-Rom smoothed in `ChainFX.drawPaths`).
     - Chain A (z8) sweeps up across the bottom, in FRONT of him.
-    - Chain B (z4) comes out from under the purple band, rises behind his neck and arcs off right.
+    - Chains B and C (z6, round 2) come out of the lens and ride the pink and purple bands; B passes behind his
+      head. They scroll outward, so the camera throws them.
     - Same slam and scroll as before.
   - **Layers:** beam z1 < light z2 < print screen z3 < chain B z4 < bands z5 < flare and glow z6 < portrait z7 <
     chain A, bubble and sparkles z8 < tags and camera z9 < BACK z10.
