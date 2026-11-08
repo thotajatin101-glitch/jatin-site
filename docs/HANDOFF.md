@@ -4,6 +4,19 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r11) — ABOUT camera is draggable, the projection follows. NOT deployed, site/ uncommitted
+- **Did:**
+  - `AboutFX` keeps `LU` (the lens as fractions). `layout()` uses it; T and B stay fixed.
+  - `camHit` is a capsule down the body from the lens, live once `.lit`.
+  - Pointer events sit on `#sec-about` (capture, skipping BACK), with an rAF-throttled relayout. Classes:
+    `.camHover` (grab cursor), `.camGrab`.
+  - `#sec-about` is now `touch-action:none`.
+  - Clamp: desktop x .14–.6, y .2–.6; phone x .12–.88, y .08–.36.
+  - The field split now hangs off the lens (L.x − .2W).
+- **Not done:** keyboard has no way to move the camera (it's extra play, not navigation).
+- **Watch out:** the DepthFX vanishing point stays at the default lens spot. The fields cover the world, so it
+  barely shows.
+
 ## 2026-11-08 (about r10) — ABOUT camera aimed down the beam's bisector. NOT deployed, site/ uncommitted
 - **Did:**
   - `CamFX.place(lens, size, dir)` → `aim(dir)` searches the roll so the lens axis (toW of +x) matches the

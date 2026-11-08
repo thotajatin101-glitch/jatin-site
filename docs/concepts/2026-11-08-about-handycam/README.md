@@ -167,3 +167,16 @@ Stills: `stills/2026-11-08-about-round9-no-gap/`.
 straight out of the lens. On desktop it's slightly smaller, so it clears the top edge.
 
 Stills: `stills/2026-11-08-about-round10-aim/`.
+
+
+## Round 11 — drag the camera
+
+> "ok now i want to be able to grab and move around the camera and the projection around with the camera as well."
+
+**Built:**
+- **Grab and move:** the camera can be grabbed and moved (mouse or finger), and everything that hangs off the
+  lens follows.
+- **The beam keeps aiming at him**, so the camera swivels like a hand-held projector.
+- **It stays where you drop it,** and resets on the next visit.
+
+Stills: `stills/2026-11-08-about-round11-drag/`.

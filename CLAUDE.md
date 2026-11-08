@@ -570,6 +570,9 @@ into tweens.
       coated glass;
     - a closed flip-out screen carrying a raised pink enamel heart (the reference's heart);
     - viewfinder with eyecup, zoom rocker, a red REC lamp.
+    **The camera can be grabbed and dragged** (round 11, his ask). The lens follows the pointer and the whole
+    projection re-cuts from it (`AboutFX` `LU`). The beam keeps landing on him (T and B fixed), so the camera
+    swivels. It drops where you let go and resets on the next visit.
     `place(lens,size,dir)` pins the hood's mouth on the lens point and AIMS it: the roll is solved so the lens axis
     runs down the beam's centre line on every layout (round 10, his note: the projection came out "at a weird angle"). Pose `REST` faces down-right into the beam with the
     near (heart) side showing. It holds still after landing; no cursor follow (world rule).

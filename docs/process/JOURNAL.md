@@ -530,6 +530,21 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — pick up the camera
+
+> "ok now i want to be able to grab and move around the camera and the projection around with the camera as well."
+
+You can now grab the camera (the cursor turns to a hand over it, and a finger works on phones) and move it
+around. The projection comes with it: the beam, both stripes, the pink and purple fields, the light and the burst
+at the lens all re-cut from wherever the lens is. The beam keeps landing on the same spot, so the camera swivels
+as you move it and keeps him in the light, like steering a real projector. It stays where you drop it, and the
+next visit starts from its normal spot. The camera can't be dragged off screen.
+
+My call: the beam stays aimed at him rather than sliding off with the camera, since the point of the page is him
+in the light.
+
+Stills: `stills/2026-11-08-about-round11-drag/`.
+
 ## 2026-11-08 — the camera points down its own beam
 
 > "the camera is'nt angle properly. the projection is coming out an weird angle."
