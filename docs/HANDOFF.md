@@ -4,6 +4,13 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r9) — ABOUT beam spreads the instant it lands. NOT deployed, site/ uncommitted
+- **Did:**
+  - Timeline is now R0 960 / R1 = R2 1200 / O1 1600. The reach is ease-out quad and the spread ease-out cubic.
+  - `fan` reach is the farthest frame corner from the lens, so the beam lands on the edge at R1.
+  - Retimed: portrait 1.48s, deco 1.52s, chain 1.64s, pops 1.6–1.94s.
+- **Watch out:** don't put a hold or an ease-in between the beam and the spread.
+
 ## 2026-11-08 (about r8) — ABOUT projector throws a beam of light that fans into the projection. NOT deployed, site/ uncommitted
 - **Did:**
   - `AboutFX.fan(o,len,boost)` replaces the fan part of `light()`: core + glow + lens flare scaled by boost, plus

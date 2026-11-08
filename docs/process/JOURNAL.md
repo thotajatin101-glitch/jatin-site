@@ -530,6 +530,21 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — no gap between the beam and the spread
+
+> "not sure why but there is a small gap when then beams comes out. need it spread immedietly after it beams out"
+
+Three things made the gap:
+- an 80ms hold;
+- a spread that started slowly (ease-in-out);
+- a beam whose reach ran past the frame, so it looked finished about 80ms before the spread began.
+
+Now the beam lands on the frame edge at exactly 1.2s and still moving (ease-out quad), and the spread starts that
+same frame at full speed (ease-out cubic, 0.4s). The rest pulled in by about 0.18s: he lands at 1.48s, and the
+words are done by about 1.95s.
+
+Stills: `stills/2026-11-08-about-round9-no-gap/`.
+
 ## 2026-11-08 — a beam of light, not a flicker
 
 > "ok so when the light projects i wanted a beam of light turning into the projection we have right now it's just flicker."

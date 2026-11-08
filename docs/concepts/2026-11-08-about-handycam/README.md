@@ -145,3 +145,15 @@ Stills: `stills/2026-11-08-about-round7-roll-in/`.
 - **Timing:** about 0.8s, against 0.46s before.
 
 Stills: `stills/2026-11-08-about-round8-light-beam/`.
+
+
+## Round 9 — no gap
+
+> "not sure why but there is a small gap when then beams comes out. need it spread immedietly after it beams out"
+
+The gap came from a hold, the slow start of the spread, and a beam reach that stopped short of the timeline.
+
+**Built:** the beam lands on the frame edge still moving, and the spread starts that same frame at full speed.
+Everything after it moved earlier.
+
+Stills: `stills/2026-11-08-about-round9-no-gap/`.

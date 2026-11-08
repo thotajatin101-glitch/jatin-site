@@ -580,10 +580,11 @@ into tweens.
     - **The projector throws a BEAM OF LIGHT** (round 8, his note: the quick white ray "is just flicker").
       - At .96s the lens flares, and a white-hot shaft with a dithered glow reaches out over the fields
         (`AboutFX.fan`, Bayer steps, `.cgLight` at z4 while it plays).
-      - It holds a breath, then fans open from 1.34 to 1.78s as its core cools into the projection's fan. The cyan
-        beam, the stripes and the fields open with it (`apply(open)`).
+      - It reaches the frame edge at 1.2s still moving, and spreads THAT frame (1.2–1.6s, ease-out) as its core
+        cools into the projection's fan. The cyan beam, the stripes and the fields open with it (`apply(open)`).
+      - No hold or ease-in between the beam and the spread (round 9, his note: "a small gap").
       - It ends exactly on the fan, so there's no cut.
-    - **Then:** he lands at 1.66s, the chain feeds in at 1.82s, and the words pop by about 2.1s.
+    - **Then:** he lands at 1.48s, the chain feeds in at 1.64s, and the words pop by about 1.95s.
     - Scrub with `CamFX.hold(ms)` + `AboutFX.hold(ms)`.
     - Fields and beam are cut at the frame in angle order, so no opening leaves a gap.
   - **Portrait:** his right arm leaves the photo at its right edge, so that edge sits on the frame's right edge
