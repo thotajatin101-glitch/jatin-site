@@ -530,6 +530,18 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the camera points down its own beam
+
+> "the camera is'nt angle properly. the projection is coming out an weird angle."
+
+The lens pointed about 29° down, while the beam's centre line runs at about 43° on desktop and about 74° on
+phones, so the light left the lens sideways. Now the camera's tilt is worked out from the beam's centre line on
+every layout, so the lens always points straight down the projection. The 3/4 view stays: the lens is a little
+toward you and the heart side shows. On desktop the camera is slightly smaller, so the body doesn't clip the top
+edge.
+
+Stills: `stills/2026-11-08-about-round10-aim/` (+ `-short`, `-laptop`, `-375`).
+
 ## 2026-11-08 — no gap between the beam and the spread
 
 > "not sure why but there is a small gap when then beams comes out. need it spread immedietly after it beams out"

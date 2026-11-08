@@ -157,3 +157,13 @@ The gap came from a hold, the slow start of the spread, and a beam reach that st
 Everything after it moved earlier.
 
 Stills: `stills/2026-11-08-about-round9-no-gap/`.
+
+
+## Round 10 — aim
+
+> "the camera is'nt angle properly. the projection is coming out an weird angle."
+
+**Built:** the camera's roll is solved from the beam's centre line on every layout, so the projection comes
+straight out of the lens. On desktop it's slightly smaller, so it clears the top edge.
+
+Stills: `stills/2026-11-08-about-round10-aim/`.

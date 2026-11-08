@@ -4,6 +4,14 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r10) — ABOUT camera aimed down the beam's bisector. NOT deployed, site/ uncommitted
+- **Did:**
+  - `CamFX.place(lens, size, dir)` → `aim(dir)` searches the roll so the lens axis (toW of +x) matches the
+    bisector on screen. The result is stored in `RQ`, which `pose` uses.
+  - REST yaw is now -.62.
+  - Desktop size is now min(.205W, .34H).
+- **Watch out:** if the beam geometry changes, the aim follows on its own; don't hand-set the roll.
+
 ## 2026-11-08 (about r9) — ABOUT beam spreads the instant it lands. NOT deployed, site/ uncommitted
 - **Did:**
   - Timeline is now R0 960 / R1 = R2 1200 / O1 1600. The reach is ease-out quad and the spread ease-out cubic.

@@ -570,7 +570,8 @@ into tweens.
       coated glass;
     - a closed flip-out screen carrying a raised pink enamel heart (the reference's heart);
     - viewfinder with eyecup, zoom rocker, a red REC lamp.
-    `place(lens,size)` pins the hood's mouth on the lens point. Pose `REST` faces down-right into the beam with the
+    `place(lens,size,dir)` pins the hood's mouth on the lens point and AIMS it: the roll is solved so the lens axis
+    runs down the beam's centre line on every layout (round 10, his note: the projection came out "at a weird angle"). Pose `REST` faces down-right into the beam with the
     near (heart) side showing. It holds still after landing; no cursor follow (world rule).
   - **Entrance (round 6, his drawing):**
     - **The camera ROLLS in on one smooth move** (round 7, his note: "rolling in smoothly like how other 3d models
