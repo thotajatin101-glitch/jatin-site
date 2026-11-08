@@ -25,7 +25,9 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
   that screen. Tested with a mock mailer (no real sends). **Deploy the Worker and the site together**: the live
   Worker refuses "something else", the live site still offers "just saying hi".
 - **Next:** on "deploy": `cd worker/contact-mail && cf deploy`, then push. Real-device pass on his iPhone.
-- **Not done:** proof the mailbox exists (a code mailed to the visitor). Needs Email Sending to any address.
+- **Later the same day:** his test `gg@gmail.com` passed (gmail has MX). Added `userOk`: Gmail 6–30 letters/digits/dots,
+  iCloud 3–20, Yahoo 4–32, on the phone and in the Worker. Offered a mailed 4-digit code as the real proof; **his
+  call: "Rules are enough"**. Don't build the code check unless he asks.
 
 ## 2026-11-09 — Menu chain comes out of the vanishing point. NOT deployed
 - **Did:** in `ChainFX`, `buildPath(W,H,tri,vp)` puts a key point at the world's vanishing point in front of the
