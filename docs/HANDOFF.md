@@ -4,6 +4,11 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 — SKILLS card copy rewritten in his voice. NOT deployed, site/ uncommitted
+- **Did:** the three `desc` lines in `CARDS` + the placeholder `.skDesc` in the HTML. Fit checked at 1440×900,
+  1440×700, 375×812.
+- **Next:** his notes. The PHOTOGRAPHY card still carries an EDITORIAL tag.
+
 ## 2026-11-08 — Identity copy matches the ABOUT plate. NOT deployed, site/ uncommitted
 - **Did:** title, meta/OG, `#logoSub`, `data-desc` on ABOUT/PROJECTS/SKILLS (+ `#wedgeDesc` fallback), ABOUT role
   ribbon order, PHOTOGRAPHY card copy. No overflow at 1440×900, 1440×700, 375×812.

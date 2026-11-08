@@ -530,6 +530,18 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the skill cards stop sounding like slogans
+
+His note: "i want the description on skill cards to be something fits my personality it's too cheesy right now".
+
+The old lines were taglines ("every frame earns its place or it goes"). Now they're first person, plain and restless,
+in the voice of the ABOUT plate:
+- VISUAL DIRECTION: "I pick the colours, the light, the type, the mood. Then I break it all and try again until it
+  feels like mine."
+- VIDEO EDITING: "I lose whole nights in Resolve chasing one cut that hits right. Still my favourite place."
+- PHOTOGRAPHY: "I shoot what makes me stop and look twice, and I keep going until it stops feeling safe."
+Two lines each on desktop. Still: `stills/2026-11-08-skill-card-copy`.
+
 ## 2026-11-08 — the whole site says who he is
 
 His note, pointing at the ABOUT plate: "this is the context of who iam and what the site is about so anywhere that
