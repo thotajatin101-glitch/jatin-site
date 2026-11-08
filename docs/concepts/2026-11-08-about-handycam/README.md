@@ -219,3 +219,15 @@ since the bands cover the edges. The depth grid stays at z2 over the light, clip
 once), and fades on with `.lit`.
 
 Stills: `stills/2026-11-08-about-round14-fields-under/`, `-375`.
+
+## Round 15 — silver description
+
+> "alright it's time to work on the description. i want the box to be same as the name plate silver box. and any what the description could be like ?"
+
+**Built:**
+- `.cgBubble` is paper with an ink rule and an ink drop, so DitherFX gives it the name plate's silver.
+- Ink type, bold italic (real Plex Mono italic 700, now loaded).
+- The spike is ink outside, silver inside.
+- New copy (see the journal).
+
+Stills: `stills/2026-11-08-about-round15-silver-bubble-1440-900/` (and `-1440-700`, `-1280-800`, `-375-812`).

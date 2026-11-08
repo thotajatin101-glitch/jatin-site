@@ -530,6 +530,26 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the description goes silver
+
+> "alright it's time to work on the description. i want the box to be same as the name plate silver box. and any what the description could be like ?"
+
+The speech bubble was a black card with a white rule. It's now the name plate's silver: paper dithered into the
+silver ramp, an ink rule, a hard ink drop and ink type. The spike is silver inside an ink rule, so it still reads
+where it pokes into the pale beam. The cyan marker on the last line stays; on silver it's the one hit of colour.
+
+New copy, written to say what makes him different (he does all three jobs, so nothing gets lost) and end on a
+punch in his own cutting rhythm:
+
+> Visual & creative director, Hyderabad. I direct, shoot and cut it all myself, so the idea never gets watered down
+> on the way. **Loud colour. Hard cuts. Nothing like everyone else's.**
+
+Also fixed: the site only loaded Plex Mono italic at 400, so the bubble's bold italic was faked by the browser and
+read thin over the dots. The real italic 600/700 cuts are loaded now.
+
+Stills: `stills/2026-11-08-about-round15-silver-bubble-*` (four sizes). The old black bubble is in
+`.local/snapshots/2026-11-08-about-round14-index.html`.
+
 ## 2026-11-08 — the fields lie still under the beam
 
 > "here is snippet of that flicker i was talking about it is still happening fix it"

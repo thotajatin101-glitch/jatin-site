@@ -4,6 +4,17 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r15) — ABOUT description is a silver plate, new copy. NOT deployed, site/ uncommitted
+- **Did:**
+  - `.cgBubble`: paper, 3px ink rule, ink drop, ink type at weight 700. The spike is two layers, ink `::before`
+    and paper `::after`.
+  - The copy is rewritten, pending his yes.
+  - The Plex Mono request now includes italic 600/700.
+  - Snapshot before: `.local/snapshots/2026-11-08-about-round14-index.html`.
+- **In flight:** his OK on the wording.
+- **Next:** his notes.
+- **Watch out:** italic Plex at 600+ used to be synthesized. If you trim the font request, keep `1,600;1,700`.
+
 ## 2026-11-08 (about r14) — ABOUT fields no longer re-cut per frame (his flicker clip). NOT deployed, site/ uncommitted
 - **Did:**
   - `.cgField` is z0, unclipped, under the beam. `apply()` no longer touches the fields.

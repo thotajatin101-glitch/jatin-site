@@ -617,6 +617,8 @@ into tweens.
     - Same slam and scroll as before.
   - **Layers:** beam z1 < light z2 < print screen z3 < chain B z4 < bands z5 < flare and glow z6 < portrait z7 <
     chain A, bubble and sparkles z8 < tags and camera z9 < BACK z10.
+  - **The description is a silver plate like the name** (round 15, his ask): paper dithered silver, ink rule, ink
+    drop, ink type in real Plex Mono italic 700. The spike is ink outside, silver inside.
   - **Copy and layout:** speech bubble left, under the camera, with its spike poking across the purple band into
     the beam. JATIN big in the pink field top-right, above the beam (round 3, his box); DIRECT · SHOOT · CUT right of his head; BACK in the default
     bottom-left spot. The DepthFX vanishing point is the lens (`SECTION_WORLD`), so the streaks radiate out of the
