@@ -530,6 +530,20 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the beam stops flickering the fields
+
+> "when the beam out happens from the camera the background is flickering so could u fix that"
+
+The glow round the beam was sized off the beam's own angle (3.2 times it). While the beam spread from a sliver to the
+full fan, the glow grew with it, and a halo of dither dots swept across the pink and purple fields. Each frame
+washed them pale and the next cleared them, which read as flicker. Now the glow is a band of fixed width off the
+beam's edges, about 40px plus a little more with distance, so it hugs the light and the fields stay put.
+
+Also checked: the light's draw loop is single and its frames run in order. A headless film showed the halo
+blinking on alternate frames, but a visible Chrome window doesn't, so that was the capture.
+
+Stills: `stills/2026-11-08-about-round13-no-flicker/` (beam scrubs, desktop and phone, plus the live film before).
+
 ## 2026-11-08 — put the camera back down
 
 > "ok so how i want the grabbing around movement to work is as if the camera is floating around a bit. and the chains that comes projection keep it attached to the corner so it doesnt look weird"

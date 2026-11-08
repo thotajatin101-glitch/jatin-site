@@ -194,3 +194,15 @@ projection.
 aimed down the beam and holding still.
 
 Stills: `stills/2026-11-08-about-round12-no-grab/`, `-375`.
+
+## Round 13 — no flicker
+
+> "when the beam out happens from the camera the background is flickering so could u fix that"
+
+**Cause:** the beam's glow was 3.2x the beam's angle. As the beam spread, the glow swept dither dots over the
+fields, frame after frame.
+
+**Fix:** the glow is now a fixed band off the beam's edges (`.025·diag + .05·distance`), so it hugs the light.
+Nothing else in the entrance changed.
+
+Stills: `stills/2026-11-08-about-round13-no-flicker/`.

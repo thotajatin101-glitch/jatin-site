@@ -587,6 +587,8 @@ into tweens.
         cools into the projection's fan. The cyan beam, the stripes and the fields open with it (`apply(open)`).
       - No hold or ease-in between the beam and the spread (round 9, his note: "a small gap").
       - It ends exactly on the fan, so there's no cut.
+      - The glow round it is a band of fixed width off the beam's edges (round 13). Sized off the beam's angle, it
+        swept dither over the fields as the beam spread and read as flicker.
     - **Then:** he lands at 1.48s, the chain feeds in at 1.64s, and the words pop by about 1.95s.
     - Scrub with `CamFX.hold(ms)` + `AboutFX.hold(ms)`.
     - Fields and beam are cut at the frame in angle order, so no opening leaves a gap.

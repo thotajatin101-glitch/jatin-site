@@ -4,6 +4,14 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r13) — beam glow no longer flickers the fields. NOT deployed, site/ uncommitted
+- **Did:** in `AboutFX.fan`, the glow outside the beam is now a fixed band off its edges (perpendicular px), not
+  3.2x the beam's angle. The settled frame is unchanged, since the glow only exists while the beam is boosted.
+- **In flight:** nothing.
+- **Next:** his look in a real tab.
+- **Watch out:** Playwright *headless* screencasts show canvases blinking on alternate frames. That's an artifact;
+  film in headed Chrome (`headless:false`) to judge flicker.
+
 ## 2026-11-08 (about r12) — grab removed, ABOUT back to round 10. NOT deployed, site/ uncommitted
 - **Did:** removed round 11's drag (`LU`, `camHit`, `wire`, the grab cursors, `touch-action`). Also removed the
   unshown round 12 float (`CamFX.sway`) and the chain pin (`_runShift`, `RUN_W`). The stills match round 10.
