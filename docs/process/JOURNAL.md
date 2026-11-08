@@ -530,6 +530,14 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the marker calms down
+
+His note: "could u make the highlight a bit subtle?"
+
+Same CRT strip, everything turned down: a paler cyan tube, scanlines and grille at about half strength, a 5px glow
+instead of the bright double halo, and a fainter colour fringe on the type. The quote still reads as the highlight;
+it just stops shouting over the plate. Still: `stills/2026-11-08-about-round18-subtle-crt-1440-900`.
+
 ## 2026-11-08 — the plate steps into the beam, the marker lights up
 
 > "i want the box to placed and to be that size as. increase font size according to that as well. and could make cyan highlight have a crt look ?"

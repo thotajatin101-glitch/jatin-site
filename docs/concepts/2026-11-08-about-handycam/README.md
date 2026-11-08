@@ -252,3 +252,8 @@ Stills: `stills/2026-11-08-about-round16-passion-copy-1440-900/` (and the other 
 - Phone is unchanged.
 
 Stills: `stills/2026-11-08-about-round17-bubble-in-beam-1440-900/` (and the other three sizes).
+
+## Round 18 — subtler marker
+His note: "could u make the highlight a bit subtle?" Kept the CRT strip and halved it: paler cyan
+(#d6fffb → #6fe3d8), scanlines .13, grille .07, glow 5px at .3, fringe .4px. Round 17 saved in
+`.local/snapshots/2026-11-08-about-round17-index.html`.

@@ -620,7 +620,7 @@ into tweens.
   - **The description is a silver plate like the name** (round 15, his ask): paper dithered silver, ink rule, ink
     drop, ink type in real Plex Mono italic 700. The spike is ink outside, silver inside.
   - **Copy and layout:** the speech bubble sits IN the beam on desktop, between the purple band and him (round 17,
-    his box: 20–55% across, 44–75% down, 34vw wide), its spike pointing at him. The cyan marker is a static CRT strip
+    his box: 20–55% across, 44–75% down, 34vw wide), its spike pointing at him. The cyan marker is a static, subtle CRT strip (round 18: pale cyan, faint scanlines, small glow)
     (scanlines, grille, glow, a fringe under 1px). JATIN big in the pink field top-right, above the beam (round 3, his box); DIRECT · SHOOT · CUT right of his head; BACK in the default
     bottom-left spot. The DepthFX vanishing point is the lens (`SECTION_WORLD`), so the streaks radiate out of the
     camera.
