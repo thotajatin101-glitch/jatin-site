@@ -1013,7 +1013,11 @@ into tweens.
     - **Delivery:** `MAIL` (`https://contact.thotahub.in/`) posts to `worker/contact-mail`, a cf Worker on that
       custom domain whose `send_email` binding is locked to thotajatin.work@gmail.com. If the post fails, the
       chat goes to its MAIL step: a prefilled mailto plus the address as a link. It never shows a fake failure.
-      Redeploy with `cd worker/contact-mail && cf deploy`.
+      Redeploy with `cd worker/contact-mail && cf deploy`. The Worker answers BEFORE the email goes out
+      (`ctx.waitUntil`): Email Service takes ~6s per send, and the visitor sat through it (his note, 2026-11-09).
+    - **Phone perf (his note: "after the flip phone in contact it's kind of laggy"):** the zoomed chat phone is
+      still, so it redraws only on an LCD change or a re-framing; moving, it caps at 60fps; ringing, buzzing or
+      snapping it renders at .78 res. A full-screen raymarch every vsync was the cursor stutter.
     - **Launch QA rules (2026-11-08):**
       - every chat action goes through ONE guard in `act()`: no screen skips on double-clicks or Enter mashes;
       - presses during the entrances are queued (`q1`/`q2`, the computer's `queue()`, OS `qEsc`), never dropped;

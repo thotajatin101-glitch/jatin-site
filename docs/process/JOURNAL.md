@@ -530,6 +530,20 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-09 — the phone stops hogging the frame
+
+His note: "after the flip phone in contact it's kind of laggy … the cursor and animations feels very laggy and it's a
+bit of time to sending the message mail".
+
+The phone was raymarching the whole screen every vsync while it rang. Once the chat was up, it kept redrawing a phone
+that wasn't moving. Now:
+- the still phone redraws only when its screen changes;
+- the moving one caps at 60;
+- while it shakes it renders a touch lower, where the motion hides it.
+
+CONTACT holds 120fps everywhere. The mail took ~6s because Cloudflare's email send is slow. The phone now gets its
+answer right away and the email follows a moment later. Still: `stills/2026-11-09-contact-perf`.
+
 ## 2026-11-08 — five strangers try the site, then it goes live
 
 His ask: "Act as my launch QA lead. Spin up 5 … subagents, each a different first-time user … Fix it all in one pass,
