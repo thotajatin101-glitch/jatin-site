@@ -4,10 +4,6 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
-## 2026-11-08 — Cursor hand is now a middle finger (his call). NOT deployed, site/ uncommitted
-- **Did:** `CursorFX` `M.hand` redrawn (16×20, hotspot [7,0]). The CRT screen's pointing hand is unchanged.
-- **Next:** his notes.
-
 ## 2026-11-08 — Custom cursor (CursorFX) + CLICK ME in VT323 with a pressing hand. NOT deployed, site/ uncommitted
 - **Did:** `CursorFX` (end of the script, `CursorFX.init()`): extruded pixel arrow/hand/I-beam on `#cuCv`, accent
   side via `worldToMenu`/`worldToSection`, lean spring, press. `html.cuOn *{cursor:none!important}`. CLICK ME!! on

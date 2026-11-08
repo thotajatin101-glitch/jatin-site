@@ -530,12 +530,6 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
-## 2026-11-08 — the hand flips you off
-
-He loved the cursor; one note: "for the clicking hand cursor could show middle finger instead of index finger". The
-hand over anything clickable is now a middle finger: long and slim so it reads at cursor size, the folded knuckles
-either side, the reference's finger lines kept. Still: `stills/2026-11-08-cursor-middle-finger`.
-
 ## 2026-11-08 — the site gets its own cursor
 
 His reference: a pixel arrow and hand pushed out into blocks, glossy black faces, pink-violet sides. His ask: "its own

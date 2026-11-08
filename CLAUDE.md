@@ -1021,8 +1021,7 @@ into tweens.
   - drawn at one texel per 2px cell, unsmoothed: black glossy face, curved shine, lavender rim; the side runs the
     page's accent (`CursorFX.accent`, called from `worldToMenu` / `worldToSection`) inside a black ink rule;
   - position instant, only the LEAN has weight (spring, slight overshoot); a flick throws the side out;
-  - arrow → hand on anything with a `cursor:pointer`/zoom/grab rule or inline style (hard cut, punch, one glint).
-    The hand is a MIDDLE FINGER (his call, 2026-11-08), long and slim so it reads at cursor size;
+  - arrow → hand on anything with a `cursor:pointer`/zoom/grab rule or inline style (hard cut, punch, one glint);
     pixel I-beam on text fields;
   - click = key press (face sinks into its side, 90ms red/cyan split, pixels pop);
   - the loop stops when settled; no trail, no idle motion. Off without a fine hovering pointer; reduced motion
