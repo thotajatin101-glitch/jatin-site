@@ -4,6 +4,16 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r3) — ABOUT: name top-right, band chains cut, pink/purple blend. NOT deployed, site/ uncommitted
+- **Did:**
+  - `.cgTag-name` moved into the pink field (56vw / 7vh; phone: top-right).
+  - Chains B and C removed (markup, CSS and paths).
+  - Both fields now take the same "outside the beam" clip. `.cgFieldT` gets a linear `mask-image` computed in
+    `AboutFX.layout`, normal to the lens→S ray, ±.2·min(W,H).
+- **Next:** his notes.
+- **Watch out:** the mask angle and offset are in px from the element box (the full section), so recompute them on
+  every layout.
+
 ## 2026-11-08 (about r2) — ABOUT fields cover everything outside the beam; chains out of the lens. NOT deployed, site/ uncommitted
 - **Did:**
   - `.cgFieldT` (#b81d66) and `.cgFieldB` (#560c80) sit at z3, both in DitherFX `SEL` with 5px cells.

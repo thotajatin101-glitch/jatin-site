@@ -65,3 +65,16 @@ out of the lens along both bands.
 - **Chain A** still crosses in front of him.
 
 Stills: `stills/2026-11-08-about-cover-round2/` (+ `-short`, `-laptop`, `-375`).
+
+
+## Round 3 — name up, chains cut, a soft meet
+
+> "ok i want you to move the name to the location i marked and remove the chains i pointed towards. and when purple and pink colors meet i want the area to merged like a gradient smoothly"
+
+**Built:**
+- **The JATIN tag moved into his box,** in the pink field top-right, bigger.
+- **The two band chains are removed.** Chain A stays.
+- **Pink fades into purple** over about 40% of the short side. The pink field is masked by a linear gradient
+  across the split ray.
+
+Stills: `stills/2026-11-08-about-round3/` (+ `-short`, `-laptop`, `-375`).

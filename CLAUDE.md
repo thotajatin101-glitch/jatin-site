@@ -584,16 +584,17 @@ into tweens.
   - **Nothing outside the beam is empty** (round 2, his scribbles: "the whole part to be covered"). Two dithered
     fields: pink above the beam, purple on the camera side, split on a ray from the lens to the top-left. They're
     a shade DEEPER than the bands (`#b81d66` / `#560c80`), or the stripes vanish into them. z3, under the print screen.
+    Where they meet they BLEND (round 3, his ask: "merged like a gradient smoothly"). Both take the whole
+    outside-the-beam clip, and the pink one is faded by a linear mask across the split ray. No hard seam.
   - **Chains (his green lines):** each chain canvas carries its own path in `data-path` (fractions of the section,
     Catmull-Rom smoothed in `ChainFX.drawPaths`).
     - Chain A (z8) sweeps up across the bottom, in FRONT of him.
-    - Chains B and C (z6, round 2) come out of the lens and ride the pink and purple bands; B passes behind his
-      head. They scroll outward, so the camera throws them.
+    - Round 3: chain A is the only chain. The band chains (B, C) were cut on his call.
     - Same slam and scroll as before.
   - **Layers:** beam z1 < light z2 < print screen z3 < chain B z4 < bands z5 < flare and glow z6 < portrait z7 <
     chain A, bubble and sparkles z8 < tags and camera z9 < BACK z10.
   - **Copy and layout:** speech bubble left, under the camera, with its spike poking across the purple band into
-    the beam. JATIN across his chest over chain A; DIRECT · SHOOT · CUT right of his head; BACK in the default
+    the beam. JATIN big in the pink field top-right, above the beam (round 3, his box); DIRECT · SHOOT · CUT right of his head; BACK in the default
     bottom-left spot. The DepthFX vanishing point is the lens (`SECTION_WORLD`), so the streaks radiate out of the
     camera.
   - Small type uses a 1px glitch split; the 4px split doubled the letterforms.

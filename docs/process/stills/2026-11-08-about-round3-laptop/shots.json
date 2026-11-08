@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-08",
+  "label": "about-round3-laptop",
+  "shots": [
+    {
+      "file": "01-about.jpg",
+      "caption": "ABOUT, settled after entry"
+    }
+  ],
+  "films": [],
+  "commit": "5ecbb10 + .local/menu-preview",
+  "captured": "2026-11-08",
+  "browser": "Comet, Chrome 156.0.8078.48"
+}

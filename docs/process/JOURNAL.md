@@ -530,6 +530,19 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the name goes up, the band chains go
+
+> "ok i want you to move the name to the location i marked and remove the chains i pointed towards. and when purple and pink colors meet i want the area to merged like a gradient smoothly"
+
+He boxed the empty pink top-right for the name and pointed at the two chains that ride the bands.
+- **The name** now sits big in the pink field above the beam, filling his box.
+- **The band chains are gone.** Only the chain across him stays.
+- **Pink and purple now blend** across a wide soft gradient where they meet; there's no hard seam. Both fields
+  cover the whole outside of the beam, and a mask fades the pink one out over the purple.
+- A star that landed on the acid bolt moved to the right edge.
+
+Stills: `stills/2026-11-08-about-round3/` (+ `-short`, `-laptop`, `-375`).
+
 ## 2026-11-08 — the projector fills the frame
 
 > "this scree i scribbled over to to tell you that i wanted the whole part to be covered over like."
