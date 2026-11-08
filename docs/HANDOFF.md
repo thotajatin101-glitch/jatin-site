@@ -4,6 +4,13 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r17) — ABOUT plate moved into the beam, bigger; CRT marker. NOT deployed, site/ uncommitted
+- **Did:** moved the bubble to his drawn box on desktop and scaled the type, capped by vh. The `.hl` marker is now a
+  static CRT strip. Checked at 1440×900, 1440×700, 1280×800 and 375×812: no collisions.
+- **In flight:** nothing.
+- **Next:** his notes.
+- **Watch out:** the CRT fringe on `.hl` is .6px on purpose. A wider split doubles the mono letterforms.
+
 ## 2026-11-08 (about r16) — ABOUT copy is his quote. NOT deployed, site/ uncommitted
 - **Did:** the bubble copy is now "Photographer, editor, director from India, and I never stop experimenting.", then
   his quote in the marker. He approved the wording.

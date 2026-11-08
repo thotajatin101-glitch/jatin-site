@@ -240,3 +240,15 @@ Stills: `stills/2026-11-08-about-round15-silver-bubble-1440-900/` (and `-1440-70
 burn out chasing what I love than fade away doing what I don't."
 
 Stills: `stills/2026-11-08-about-round16-passion-copy-1440-900/` (and the other three sizes).
+
+## Round 17 — plate in the beam, CRT marker
+
+> "i want the box to placed and to be that size as. increase font size according to that as well. and could make cyan highlight have a crt look ?"
+
+**Built:**
+- `.cgBubble` is at `left:20.5vw; top:44vh; width:34vw`.
+- Copy is `clamp(.8rem, min(1.36vw, 2.3vh), 1.35rem)`.
+- `.hl` is a CRT strip: scanlines, aperture grille, radial tube, phosphor glow and a .6px fringe.
+- Phone is unchanged.
+
+Stills: `stills/2026-11-08-about-round17-bubble-in-beam-1440-900/` (and the other three sizes).

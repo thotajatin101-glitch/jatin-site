@@ -530,6 +530,21 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the plate steps into the beam, the marker lights up
+
+> "i want the box to placed and to be that size as. increase font size according to that as well. and could make cyan highlight have a crt look ?"
+
+He drew the box over the beam, between the camera's purple band and him. The plate now sits there on desktop: about
+20–55% across and 44–75% down, 34vw wide (it was 25vw). The type scales with it, capped by height so it still fits
+on short screens. Its spike now points at him across the beam. The phone keeps its own spot.
+
+The cyan marker is now a lit CRT strip, all static: fine scanlines, an RGB aperture grille, a tube brighter in the
+middle, a phosphor glow round it, and a hairline red/blue fringe on the type (under 1px, so the mono letters never
+double).
+
+Stills: `stills/2026-11-08-about-round17-bubble-in-beam-*` (four sizes). Before:
+`.local/snapshots/2026-11-08-about-round16-index.html`.
+
 ## 2026-11-08 — his own words on the plate
 
 > "ok any ideas on what we can keep for description? this is what i wrote on my cv but it's a bit professional i wanted something passionate on the description. here are some qutoes that i wrote. … I'd rather burn out chasing what i love than fade away doing something i don't … this is the passion i have and i want to ignite."
