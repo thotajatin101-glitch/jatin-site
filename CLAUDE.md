@@ -13,7 +13,10 @@ side sticker, a studio link in CONTACT), never in the site's titles,
 taglines, meta/OG text, bio or new copy unless he asks. The same goes for
 anything spun off from the site's style (Resolve macros, DCTLs, render packs,
 graphic posts): those are his personal brand **justjatin** and are named
-JATIN, never BTN (his second note, same day). Primary tools: DaVinci Resolve + Fusion, where he
+JATIN, never BTN (his second note, same day). **Who he is, in his words** (the ABOUT plate, 2026-11-08: "this is the context of who iam and what the site is
+about"): *photographer, editor, director from India, and I never stop experimenting* + his quote *I'd rather burn out
+chasing what I love than fade away doing what I don't.* Every line of copy that describes him follows this — India,
+not Hyderabad; no "visual & creative director", "editorial" or "live events". Primary tools: DaVinci Resolve + Fusion, where he
 builds his own reusable macros.
 
 He is a **director, not a developer**. Talk about this project in editing and

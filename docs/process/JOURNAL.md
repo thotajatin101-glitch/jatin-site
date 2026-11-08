@@ -530,6 +530,24 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — the whole site says who he is
+
+His note, pointing at the ABOUT plate: "this is the context of who iam and what the site is about so anywhere that
+doesnt convey make changes there".
+
+The old identity — "visual & creative director, Hyderabad", "editorial", "brand direction" — was still on the tab
+title, the share preview, the name tag under JATIN and the menu's one-liners. All of it now speaks the plate:
+- tab / share title: JATIN — Photographer, Editor, Director;
+- search + share text: photographer, editor, director from India, who never stops experimenting (+ his quote on
+  the share card);
+- name tag: PHOTOGRAPHER · EDITOR · DIRECTOR — INDIA;
+- ABOUT: "Photographer, editor, director from India. I never stop experimenting."
+- PROJECTS: "Shoots, edits and films: the work I'd burn out chasing."
+- SKILLS: "What I shoot with, cut with, and keep experimenting on."
+- CONTACT unchanged; the ABOUT ribbon reads SHOOT · CUT · DIRECT, in his order; the PHOTOGRAPHY card drops
+  "Editorial".
+Still: `stills/2026-11-08-copy-who-i-am`.
+
 ## 2026-11-08 — the site gets its own cursor
 
 His reference: a pixel arrow and hand pushed out into blocks, glossy black faces, pink-violet sides. His ask: "its own

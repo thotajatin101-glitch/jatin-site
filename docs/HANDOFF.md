@@ -4,6 +4,12 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 — Identity copy matches the ABOUT plate. NOT deployed, site/ uncommitted
+- **Did:** title, meta/OG, `#logoSub`, `data-desc` on ABOUT/PROJECTS/SKILLS (+ `#wedgeDesc` fallback), ABOUT role
+  ribbon order, PHOTOGRAPHY card copy. No overflow at 1440×900, 1440×700, 375×812.
+- **Next:** his notes. The SKILLS deck order (VISUAL DIRECTION first) is his earlier call; left as is.
+- **Watch out:** og:url still points at the old github.io address; fix at release.
+
 ## 2026-11-08 — Custom cursor (CursorFX) + CLICK ME in VT323 with a pressing hand. NOT deployed, site/ uncommitted
 - **Did:** `CursorFX` (end of the script, `CursorFX.init()`): extruded pixel arrow/hand/I-beam on `#cuCv`, accent
   side via `worldToMenu`/`worldToSection`, lean spring, press. `html.cuOn *{cursor:none!important}`. CLICK ME!! on
