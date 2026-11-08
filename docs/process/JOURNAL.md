@@ -530,6 +530,21 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — put the camera back down
+
+> "ok so how i want the grabbing around movement to work is as if the camera is floating around a bit. and the chains that comes projection keep it attached to the corner so it doesnt look weird"
+
+> "actually just remove the grabbing mechanic and go back to the previous state"
+
+I started on a floating drag: the camera trails the pointer on a spring, tilts into the move, and the chain's far end
+stays pinned to the projection. He called it off before it was shown. The grab is gone entirely, the float and the
+chain pin with it. ABOUT is back to round 10: the camera lands, aims down its own beam, and holds.
+
+**Cut and why:** the grab pulled focus off the composition. The projection works because everything hangs off one
+fixed point, and a moving lens kept re-cutting the frame.
+
+Stills: `stills/2026-11-08-about-round12-no-grab/` (and `-375`). They match round 10 frame for frame.
+
 ## 2026-11-08 — pick up the camera
 
 > "ok now i want to be able to grab and move around the camera and the projection around with the camera as well."

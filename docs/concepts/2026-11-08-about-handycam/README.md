@@ -180,3 +180,17 @@ Stills: `stills/2026-11-08-about-round10-aim/`.
 - **It stays where you drop it,** and resets on the next visit.
 
 Stills: `stills/2026-11-08-about-round11-drag/`.
+
+## Round 12 — grab removed
+
+> "ok so how i want the grabbing around movement to work is as if the camera is floating around a bit. and the chains that comes projection keep it attached to the corner so it doesnt look weird"
+
+> "actually just remove the grabbing mechanic and go back to the previous state"
+
+**Built, then pulled before he saw it:** a spring float on the drag, and the chain's far end pinned to the
+projection.
+
+**Now:** all of round 11 and 12 is out: no grab, no float, no chain pin. It's back to round 10, with the camera
+aimed down the beam and holding still.
+
+Stills: `stills/2026-11-08-about-round12-no-grab/`, `-375`.

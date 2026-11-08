@@ -4,6 +4,13 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r12) — grab removed, ABOUT back to round 10. NOT deployed, site/ uncommitted
+- **Did:** removed round 11's drag (`LU`, `camHit`, `wire`, the grab cursors, `touch-action`). Also removed the
+  unshown round 12 float (`CamFX.sway`) and the chain pin (`_runShift`, `RUN_W`). The stills match round 10.
+- **In flight:** nothing.
+- **Next:** his next ABOUT note. Motion still hasn't been judged in a real tab, only in headless scrubs.
+- **Watch out:** the r11 entry below describes code that no longer exists.
+
 ## 2026-11-08 (about r11) — ABOUT camera is draggable, the projection follows. NOT deployed, site/ uncommitted
 - **Did:**
   - `AboutFX` keeps `LU` (the lens as fractions). `layout()` uses it; T and B stay fixed.
