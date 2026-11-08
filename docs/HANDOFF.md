@@ -4,6 +4,17 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 (about r8) — ABOUT projector throws a beam of light that fans into the projection. NOT deployed, site/ uncommitted
+- **Did:**
+  - `AboutFX.fan(o,len,boost)` replaces the fan part of `light()`: core + glow + lens flare scaled by boost, plus
+    the Bayer fan. Deco stays in `light()`.
+  - Timeline: R0 960 / R1 1260 / R2 1340 / O1 1780. `at()` returns {o, len, a, open}. `apply(open)` drives the
+    cyan beam, bands and fields; `fan(o, len, a)` drives the light.
+  - `.cgLight` is z4 while it plays (over the fields) and z2 once `.lit`.
+  - `.cgRay` is no longer used.
+  - Retimed: portrait 1.66s, deco 1.7s, chain feed 1.82s, pops 1.78–2.12s. `snap.mjs` ABOUT settle is now 3400ms.
+- **Watch out:** `fan` with boost runs full-frame for ~0.8s (~3ms a frame); after that it's drawn once.
+
 ## 2026-11-08 (about r7) — ABOUT camera rolls in on one smooth move. NOT deployed, site/ uncommitted
 - **Did:**
   - `CamFX.pose` is now one ease-out cubic over `IN` = 1000ms.

@@ -132,3 +132,16 @@ computer and the phone. A full roll settles as it comes. It swings close past yo
 rest, along one smooth curve.
 
 Stills: `stills/2026-11-08-about-round7-roll-in/`.
+
+
+## Round 8 — the beam of light
+
+> "ok so when the light projects i wanted a beam of light turning into the projection we have right now it's just flicker."
+
+**Built:**
+- **The beam:** a lens flare, then a white-hot shaft with a dithered glow that reaches out over the fields. It
+  holds for a breath, then fans open into the projection as its core cools into the fan.
+- **Look:** it's in the Bayer steps throughout, so it ends exactly on the projection.
+- **Timing:** about 0.8s, against 0.46s before.
+
+Stills: `stills/2026-11-08-about-round8-light-beam/`.

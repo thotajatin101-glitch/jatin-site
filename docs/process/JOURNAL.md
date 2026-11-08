@@ -530,6 +530,23 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — a beam of light, not a flicker
+
+> "ok so when the light projects i wanted a beam of light turning into the projection we have right now it's just flicker."
+
+Round 6's ray was a flat white wedge on screen for about 0.3s, and it read as a flicker. Now the projector throws
+a real beam of light, drawn in the same Bayer steps as the projection's fan:
+- **0.96s:** the lens flares and a white-hot shaft with a soft glow reaches out across the pink and purple
+  (0.3s, ease-out).
+- **It holds** for a breath.
+- **1.34–1.78s:** it fans open (ease-in-out). The cyan beam and the stripes open with it while the white core
+  cools down into the fan.
+
+At the end it is exactly the fan, so there's no cut. Everything after it moved later by about 0.35s: he lands at
+1.66s, and the words are done by about 2.1s.
+
+Stills: `stills/2026-11-08-about-round8-light-beam/` (entrance sheets, desktop + phone).
+
 ## 2026-11-08 — the camera rolls in
 
 > "i want the camera rolling in smoothly like how other 3d models come in."

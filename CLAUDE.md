@@ -577,10 +577,13 @@ into tweens.
       come in"). One ease-out cubic over 1s, like the computer and the phone. It starts small and far bottom-RIGHT,
       takes a full roll that settles, swings close past you head-on (the lens nearly filling the middle) and glides
       back to its spot along one curve. No stop, no jolt: round 6's rush → jolt → pull-back read as stop-start.
-    - **The projector:** a thin white ray fires from the lens (.96s, `.cgRay`), then opens into the projection
-      (1.1–1.42s). `AboutFX.apply(o,…)` opens the edges out of their bisector, and the bands, fields and beam
-      follow. Until then the fields cover the whole frame.
-    - **Then:** he lands at 1.38s, the chain feeds in at 1.46s, and the words pop by 1.8s.
+    - **The projector throws a BEAM OF LIGHT** (round 8, his note: the quick white ray "is just flicker").
+      - At .96s the lens flares, and a white-hot shaft with a dithered glow reaches out over the fields
+        (`AboutFX.fan`, Bayer steps, `.cgLight` at z4 while it plays).
+      - It holds a breath, then fans open from 1.34 to 1.78s as its core cools into the projection's fan. The cyan
+        beam, the stripes and the fields open with it (`apply(open)`).
+      - It ends exactly on the fan, so there's no cut.
+    - **Then:** he lands at 1.66s, the chain feeds in at 1.82s, and the words pop by about 2.1s.
     - Scrub with `CamFX.hold(ms)` + `AboutFX.hold(ms)`.
     - Fields and beam are cut at the frame in angle order, so no opening leaves a gap.
   - **Portrait:** his right arm leaves the photo at its right edge, so that edge sits on the frame's right edge
