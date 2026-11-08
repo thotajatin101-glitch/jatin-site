@@ -24,7 +24,8 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
   not shown. Worker version ee5acb86, **already live** (it deploys separately from the site).
 - **Oops:** three timing POSTs went out as real emails ("QA test · just saying hi"). The address had been
   verified since the release. Never POST a valid body to the live Worker without asking.
-- **Next:** push the site on his "deploy". After that, one real test message from the live phone.
+- **Rollback point (before the push):** Pages run 42506315238 (afb51b3). Roll back: `gh run rerun 42506315238`.
+- **Next:** one real test message from the live phone.
 
 ## 2026-11-08 — RELEASE: the full site replaces the Vogue apply build. Mail goes live.
 - **Rollback point (recorded before the push):** live was Pages run 41129488755 (commit 9599bfb, site from
