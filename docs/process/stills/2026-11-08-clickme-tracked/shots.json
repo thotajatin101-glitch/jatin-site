@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-08",
+  "label": "clickme-tracked",
+  "shots": [
+    {
+      "file": "02-projects.jpg",
+      "caption": "PROJECTS, settled after entry"
+    },
+    {
+      "file": "02-projects-600ms.jpg",
+      "caption": "PROJECTS entrance at 600ms: chained up, mid-spin"
+    },
+    {
+      "file": "02-projects-1060ms.jpg",
+      "caption": "PROJECTS entrance at 1060ms: the snap"
+    },
+    {
+      "file": "02-projects-1300ms.jpg",
+      "caption": "PROJECTS entrance at 1300ms: the break: links fly at the lens"
+    },
+    {
+      "file": "02-projects-os.jpg",
+      "caption": "PROJECTS, clicked: the dolly lands in JATIN OS (folder stage)"
+    },
+    {
+      "file": "02-projects-os-folder.jpg",
+      "caption": "JATIN OS, first folder opened"
+    }
+  ],
+  "films": [],
+  "commit": "077fa97 + .local/menu-preview",
+  "captured": "2026-11-08",
+  "browser": "Comet, Chrome 156.0.8078.48"
+}

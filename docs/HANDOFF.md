@@ -4,6 +4,12 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-08 — PROJECTS CLICK ME!! re-lettered. NOT deployed, site/ uncommitted
+- **Did:** `drawScreen` 'click' draws CLICK ME!! per glyph at .14em tracking, 3px stroke, +.3em after the L,
+  fitted to 600px.
+- **Next:** his notes.
+- **Watch out:** any Cyberway text on a canvas needs hand tracking (`makeLogo` does the same).
+
 ## 2026-11-08 — BACK top-left on every page. NOT deployed, site/ uncommitted
 - **Did:** `.backBtn` is a compact tab at top-left (`--backTop`); headings sit at `--headTop`; `.secBody` and the
   SKILLS `.skSlot` hang off it (the card shrinks on short screens). Phone BACK smaller. Audited 1440×900, 1440×700,

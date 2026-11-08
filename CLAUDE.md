@@ -805,7 +805,7 @@ into tweens.
     - 21+ the **idle screen = the OS chrome**: LAST UPDATED strip, the
       JATINSPACE header, the link row, the HOW TO USE bar, and a BIG,
       heavy pink old-web **CLICK ME!!** button (660×196 on the 1024 screen;
-      the type is stroked in its own ink to read bolder) with a paper drop
+      hand-tracked at .14em with extra air after the L; untracked it read "CUCK ME", his note) with a paper drop
       shadow, the pixel hand cursor, and "▸ enter JATINSPACE" with a
       blinking caret. The teaser folders under it were cut (his note).
     - **Loading**: the same chrome with a chunky pink dithered bar that

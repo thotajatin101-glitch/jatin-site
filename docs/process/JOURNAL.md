@@ -530,6 +530,15 @@ behaves like a real chain. The rise drags it, the turn whips it, the lid's snap 
 under the weight of a tall black JATIN hang-tag on the end. Once still, a breath of air keeps it moving a little.
 Stills: `stills/2026-11-08-contact-phone-round8/` (+ `-short`, `-375`).
 
+## 2026-11-08 — CLICK ME, not the other thing
+
+His note: "the click me on the 3d computer looks like cuck me".
+
+The button's lettering was drawn on the canvas with no tracking (canvas ignores the site's letter-spacing) and a
+heavy 7px ink stroke, so the L's swash welded into the I and the pair read as a U. Now it's set letter by letter at
+the site's .14em tracking, with a lighter stroke, extra air after the L, and fitted to the button.
+Still: `stills/2026-11-08-clickme-tracked`.
+
 ## 2026-11-08 — BACK moves to the top-left
 
 His note: "keep the back button on all the pages to the top left instead of bottom left".
