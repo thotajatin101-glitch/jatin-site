@@ -2,7 +2,7 @@
 
 ## Who this is for
 
-Jatin. Visual & creative director, Hyderabad. Disciplines: video editing,
+Jatin. Photographer, editor, director from India. Disciplines: video editing,
 editorial shoots, visual/creative direction.
 
 **This is HIS portfolio, not BTN's** (his note, 2026-11-02: "i dont want you
