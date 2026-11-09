@@ -41,7 +41,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
-## 2026-11-10 — Slow-machine test rig + the lag it found. NOT deployed
+## 2026-11-10 — Slow-machine test rig + the lag it found. DEPLOYED (Pages run 42680683777, 54b0c34)
+- **Deploy:** his word "deploy". Rollback point: run 42596277255 (707106c). Two Pages runs timed out in GitHub's
+  file sync (10-min default) before `deploy-pages` got `timeout: 1800000`; the third went through in 2 min. Live
+  page carries the new code; `tests/check.mjs` live: all passed.
 - **His ask:** test on very low processing power, lowering it after each test, and fix what lags.
 - **Built:** `tests/perf.mjs` (rigs gpu/phone/cpu, `LADDER`, `PROF`, `ONLY`, `SITE_DIR`+`TAG`); `tests/serve.mjs`
   takes `SITE_DIR`. Results `docs/process/perf/2026-11-09-*-{before,after}.json` (+ gpu after).
