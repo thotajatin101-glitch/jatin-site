@@ -4,6 +4,21 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-09 — Master design brief (justjatin design language)
+- **His ask:** the site "created my own design identity without realizing"; he wants it on every post, video edit
+  and asset.
+- **Did:** `docs/brand/index.html` (self-contained, Cyberway embedded) + `docs/brand/img/` stills, published
+  privately at https://claude.ai/artifact/K9pmWn6SiWopC2VVr7ECz2. Chapters: idea (LOUD / PRINTED / UNCHAINED),
+  colour (hexes, proportions, dithered ramps), type, texture (yes/no demos), shapes, motion (in 24fps frames),
+  voice, recipes (post 4:5, reel 9:16, thumbnail, lower third, transition), the never-list with his words, and a
+  checklist. Unlike the making-of docs, this one IS in the site's look, because it is the look.
+- **Next:** his notes. Then the asset kit it lists: Resolve/Fusion macros named JATIN, a PNG sticker pack, layered
+  templates, swatch files.
+- **Watch out:** the glitch split in the CSS puts cyan on the RIGHT and pink on the left (CLAUDE.md says the
+  reverse); the brief follows the code.
+
+---
+
 ## 2026-11-09 — Deployed: frame governor, phone layout, CONTACT intent + email rules
 - **His word:** "deploy".
 - **Rollback point (recorded before):** site = Pages run 42511956743 (commit 824644d); Worker jatin-contact-mail v2
