@@ -1,0 +1,261 @@
+{
+ "rig": "phone",
+ "cpu": 6,
+ "url": "http://127.0.0.1:63816/",
+ "phases": [
+  {
+   "label": "intro: float (waiting)",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 17,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 1,
+   "top": null
+  },
+  {
+   "label": "intro: snap → menu",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0.5,
+   "worst": 225,
+   "longTasks": 2,
+   "longMs": 203,
+   "Q": 0.82,
+   "top": null
+  },
+  {
+   "label": "menu: idle",
+   "fps": 120.5,
+   "p95": 9.2,
+   "jank": 0,
+   "worst": 9,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.82,
+   "top": null
+  },
+  {
+   "label": "menu: browsing",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 24,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.82,
+   "top": null
+  },
+  {
+   "label": "about: open",
+   "fps": 119,
+   "p95": 17.5,
+   "jank": 0.7,
+   "worst": 83,
+   "longTasks": 1,
+   "longMs": 88,
+   "Q": 0.551,
+   "top": null
+  },
+  {
+   "label": "about: idle",
+   "fps": 120.5,
+   "p95": 16.3,
+   "jank": 0,
+   "worst": 18,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.452,
+   "top": null
+  },
+  {
+   "label": "about: back to menu",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 24,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.452,
+   "top": null
+  },
+  {
+   "label": "projects: open",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0.3,
+   "worst": 50,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "projects: idle",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 16,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "projects: dolly → OS",
+   "fps": 120.5,
+   "p95": 9.2,
+   "jank": 0.3,
+   "worst": 67,
+   "longTasks": 1,
+   "longMs": 67,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "projects: OS browse",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 25,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "projects: open folder",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0.3,
+   "worst": 34,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "projects: back to menu",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 17,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "skills: open",
+   "fps": 119,
+   "p95": 75,
+   "jank": 9.5,
+   "worst": 101,
+   "longTasks": 1,
+   "longMs": 74,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "skills: idle",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 25,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "skills: deal a card",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 17,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "skills: back to menu",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 17,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "contact: open",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0.6,
+   "worst": 133,
+   "longTasks": 2,
+   "longMs": 187,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "contact: idle",
+   "fps": 120.5,
+   "p95": 9.2,
+   "jank": 0,
+   "worst": 9,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "contact: flip open",
+   "fps": 120.5,
+   "p95": 9.2,
+   "jank": 0,
+   "worst": 26,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "contact: buzzing",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 18,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "contact: chat",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 17,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "contact: back to menu",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 9,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  }
+ ],
+ "errors": []
+}

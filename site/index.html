@@ -1518,22 +1518,30 @@ function isTouch(){return matchMedia('(hover:none) and (pointer:coarse)').matche
    steps it back up. Integrated laptop GPUs start a step down. Below .8 the CSS colour fringe on the models goes too
    (body.fxLow): a filter on a full-screen canvas is a second full-screen pass every frame it changes. */
 const Q=(()=>{
-  let s=1,ref=1000/60,win=[],last=0,changed=0,good=0;
+  let s=1,ref=1000/60,win=[],cpu=[],sum=0,last=0,changed=0,good=0,t0=0;
   try{const c=document.createElement('canvas').getContext('webgl'),e=c&&c.getExtension('WEBGL_debug_renderer_info');
     const r=e?String(c.getParameter(e.UNMASKED_RENDERER_WEBGL)):'';
     if(/intel|amd radeon\(tm\) graphics|radeon vega|uhd|iris|mali|adreno \(tm\) [1-5]|powervr|swiftshader|llvmpipe|microsoft basic/i.test(r)&&!/apple/i.test(r))s=.7;
     const l=c&&c.getExtension('WEBGL_lose_context');l&&l.loseContext();}catch(e){}
   const apply=()=>document.body&&document.body.classList.toggle('fxLow',s<.8);
-  function tick(now){requestAnimationFrame(tick);
+  /* how long the main thread was busy this frame: from the frame's start to a message posted from it, which runs
+     once the frame's scripts, style and layout are done. The models draw on the GPU, so when the main thread is
+     what makes a frame late, lowering their resolution costs sharpness and saves nothing. */
+  const mc=new MessageChannel();mc.port1.onmessage=()=>{cpu.push(performance.now()-t0);};
+  function tick(now){requestAnimationFrame(tick);t0=performance.now();mc.port2.postMessage(0);
     const dt=now-last;last=now;
-    if(document.hidden||dt>120||dt<=0){win.length=0;return;}   /* a hitch or a background tab is not a verdict */
-    win.push(dt);if(win.length<40)return;
-    const a=win.sort((x,y)=>x-y),p10=a[4],p50=a[20],p90=a[36];win=[];
+    /* 2026-11-09 slow-machine test: frames over 120ms used to be thrown away as hitches, so a machine running at
+       5fps never filled a window and never stepped down. Only a hidden tab or a >1s gap (tab switch) is ignored. */
+    if(document.hidden||dt>1000||dt<=0){win.length=0;cpu.length=0;sum=0;return;}
+    win.push(Math.min(dt,250));sum+=dt;if(win.length<40&&!(sum>900&&win.length>=6))return;
+    const n=win.length,a=win.sort((x,y)=>x-y),p10=a[Math.floor(n*.1)],p50=a[Math.floor(n*.5)],p90=a[Math.floor(n*.9)];
+    const c=cpu.sort((x,y)=>x-y),cb=c.length?c[Math.floor(c.length*.5)]:0;win=[];cpu=[];sum=0;
     ref=Math.max(6.5,Math.min(17.5,Math.min(ref,p10*1.02)));   /* the display's own interval: the fastest frames */
     if(now-changed<900)return;
-    if(p50>ref*1.35||p90>ref*2.1){if(s>.45){s=Math.max(.45,+(s*.82).toFixed(3));changed=now;good=0;apply();}}
-    else if(p90<ref*1.15){if(++good>=5&&s<1){s=Math.min(1,+(s/.88).toFixed(3));changed=now;good=0;apply();}}
-    else good=0;
+    const slow=p50>ref*1.35||p90>ref*2.1,cpuBound=cb>p50*.7;
+    if(slow&&!cpuBound){if(s>.45){s=Math.max(.45,+(s*.82).toFixed(3));changed=now;good=0;apply();}}
+    else if(!slow&&p90<ref*1.25){if(++good>=3&&s<1){s=Math.min(1,+(s/.88).toFixed(3));changed=now;good=0;apply();}}   /* climbs back after ~1s of headroom */
+    else if(!cpuBound)good=0;
   }
   requestAnimationFrame(tick);addEventListener('DOMContentLoaded',apply);
   return {get s(){return s;},set(v){s=v;apply();},get ref(){return ref;}};
@@ -2219,13 +2227,22 @@ void main(){
       if(asked)return Promise.resolve();asked=true;
       let P=null;try{P=PHOTOS;}catch(e){}
       if(!P)return Promise.resolve();
-      const list=[];Object.keys(P).forEach(set=>P[set].forEach((_,i)=>list.push(`work/${set}/${String(i+1).padStart(2,'0')}-t.jpg`)));
-      const sc=document.createElement('canvas');sc.width=5;sc.height=1;const sx=sc.getContext('2d',{willReadFrequently:true});
-      const one=src=>new Promise(r=>{const im=new Image();im.decoding='async';im.onload=()=>{
-        let sw=[];try{sx.drawImage(im,0,0,5,1);const d=sx.getImageData(0,0,5,1).data;for(let k=0;k<5;k++)sw.push(`rgb(${d[k*4]},${d[k*4+1]},${d[k*4+2]})`);}catch(e){}
-        REFS.push({im,sw});r();};im.onerror=r;im.src=src;});
+      let list=[];Object.keys(P).forEach(set=>P[set].forEach((_,i)=>list.push(`work/${set}/${String(i+1).padStart(2,'0')}-t.jpg`)));
+      /* 48 at random, not all of them: a loop shows ~30, and each loop still picks its own. Swatches are sampled only
+         for the photo it locks onto (swatch()). 2026-11-09 slow-machine test: decoding and sampling all 154 thumbs
+         up front was the SKILLS entrance's biggest cost. */
+      for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}
+      list=list.slice(0,48);
+      const one=src=>new Promise(r=>{const im=new Image();im.decoding='async';im.onload=()=>{REFS.push({im,sw:null});r();};im.onerror=r;im.src=src;});
       let q=list.slice();const lane=()=>q.length?one(q.shift()).then(lane):null;
       return Promise.all([lane(),lane(),lane()]);
+    }
+    let sx=null;
+    function swatch(r){                                                /* its palette, sampled once, the first time it's locked */
+      if(r.sw)return r.sw;r.sw=[];
+      try{if(!sx){const c=document.createElement('canvas');c.width=5;c.height=1;sx=c.getContext('2d',{willReadFrequently:true});}
+        sx.drawImage(r.im,0,0,5,1);const d=sx.getImageData(0,0,5,1).data;for(let k=0;k<5;k++)r.sw.push(`rgb(${d[k*4]},${d[k*4+1]},${d[k*4+2]})`);}catch(e){}
+      return r.sw;
     }
     function cover(im,x,y,w,h,z){                                      /* draw a photo cover-fit into a box, zoomed by z */
       const s=Math.max(w/im.width,h/im.height)*z,dw=im.width*s,dh=im.height*s;
@@ -2263,7 +2280,7 @@ void main(){
         fx.fillStyle='#000';fx.fillRect(0,0,512,320);cover(r.im,0,0,512,320,1.18-.06*e);
         const m=70-40*e;brackets(60+m,50+m*.6,392-2*m,220-1.2*m,GRN);
         const shown=Math.min(5,Math.floor(t*12/2));
-        r.sw.slice(0,shown).forEach((c,i)=>{fx.fillStyle=c;fx.fillRect(150+i*48,186,44,34);fx.lineWidth=4;fx.strokeStyle='#000';fx.strokeRect(150+i*48,186,44,34);});
+        swatch(r).slice(0,shown).forEach((c,i)=>{fx.fillStyle=c;fx.fillRect(150+i*48,186,44,34);fx.lineWidth=4;fx.strokeStyle='#000';fx.strokeRect(150+i*48,186,44,34);});
         if(Math.floor(t*12)%4<3)hud('> LOCKED','');
       }else{                                                           /* the board: four at once */
         s=4;t=(st-68)/12;fx.fillStyle='#000';fx.fillRect(0,0,512,320);
@@ -2282,7 +2299,7 @@ void main(){
       pr=gl.createProgram();gl.attachShader(pr,v);gl.attachShader(pr,f);gl.bindAttribLocation(pr,0,'p');gl.linkProgram(pr);
       if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return false;
       ['uRes','uT','uG','uSd','uPup','uLook','uF','uCam','uZ'].forEach(n=>U[n]=gl.getUniformLocation(pr,n));
-      fc=document.createElement('canvas');fc.width=512;fc.height=320;fx=fc.getContext('2d');lights(0);
+      fc=document.createElement('canvas');fc.width=512;fc.height=320;fx=fc.getContext('2d',{willReadFrequently:true});   /* CPU-backed: texImage2D from it is a plain upload, not a GPU readback */lights(0);
       tex=gl.createTexture();gl.activeTexture(gl.TEXTURE2);gl.bindTexture(gl.TEXTURE_2D,tex);
       gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
@@ -2759,8 +2776,12 @@ void main(){
       CamFilm.init(gl);EyeFX.init(gl);
       return ok=true;
     }
+    /* the card's box, from a ResizeObserver: reading clientWidth every frame forced a style + layout pass each time,
+       because the card's transform changes every frame (2026-11-09 slow-machine test) */
+    let cw=0,ch=0,ro=null;
     function size(){
-      const R=Math.min(devicePixelRatio||1,1.5)*Math.max(.6,Q.s),w=Math.round(cv.clientWidth*R),h=Math.round(cv.clientHeight*R);
+      if(!ro){ro=new ResizeObserver(e=>{const b=e[0].contentRect;cw=b.width;ch=b.height;});ro.observe(cv);cw=cv.clientWidth;ch=cv.clientHeight;}
+      const R=Math.min(devicePixelRatio||1,1.5)*Math.max(.6,Q.s),w=Math.round(cw*R),h=Math.round(ch*R);
       if(!w||!h)return false;
       if(w!==W||h!==H){W=cv.width=w;H=cv.height=h;gl.viewport(0,0,w,h);last=-1e9;}
       return true;
@@ -4472,7 +4493,11 @@ const DitherFX=(()=>{
               :rec.chrome?(el.matches('.secBand')?CHROME:CHROME_LT):[lo,mix(lo,b,.5),b,mix(b,hi,.5),hi];
     const t=now/1000,ph=(now/5600+rec.seed)%1,M=Math.max(w,h),d=rec.img.data,T=Math.PI*2;
     const ang=.35+.15*Math.sin(t*.19+rec.seed*6),ca=Math.cos(ang),sa=Math.sin(ang);
-    for(let y=0;y<lh;y++){
+    /* big shapes (section bands, ABOUT's fields: ~50k cells) repaint alternate rows each pass, like the wedge: one of
+       them alone used to blow the frame budget on a slow CPU. A fresh buffer paints every row. */
+    const big=lw*lh>12000,fresh=rec.fresh!==lw*lh;rec.fresh=lw*lh;rec.half=big&&!fresh?rec.half^1:0;
+    const y0=big&&!fresh?rec.half:0,ys=big&&!fresh?2:1;
+    for(let y=y0;y<lh;y+=ys){
       const v=y*rec.cell/M,by=(y&3)<<2;
       for(let x=0;x<lw;x++){
         const u=x*rec.cell/M,along=u*ca+v*sa,perp=-u*sa+v*ca;
@@ -4487,7 +4512,7 @@ const DitherFX=(()=>{
   /* PERF (2026-11-09, laptops dropping frames): every shape used to repaint on the same frame, a 6–8ms spike every
      third frame on this Mac and a dropped frame on a slower CPU. Now each frame paints only the shapes that are due
      (30fps each), oldest first, inside a ~1.4ms budget; the list of live shapes is re-read 4× a second */
-  let list=[],listAt=-1e9;
+  let list=[],listAt=-1e9,every=33;
   function tick(now,accRGB,force){
     if(accRGB)acc=accRGB;
     if(force||now-listAt>250){listAt=now;
@@ -4497,9 +4522,12 @@ const DitherFX=(()=>{
         if(covered&&!el.closest('.section'))return;
         list.push(attach(el));});
       list.forEach(r=>{if(r.at==null)r.at=-1e9;});}
-    const due=list.filter(r=>force||now-r.at>=33).sort((a,b)=>a.at-b.at);
-    const t0=performance.now(),budget=force?1e9:1.4;
-    for(const r of due){r.at=now;paint(r,now);if(performance.now()-t0>budget)break;}
+    const due=list.filter(r=>force||now-r.at>=every).sort((a,b)=>a.at-b.at);
+    const t0=performance.now(),budget=force?1e9:1.4;let n=0;
+    for(const r of due){r.at=now;paint(r,now);n++;if(performance.now()-t0>budget)break;}
+    /* a machine that can't keep up refreshes the shapes less often (to ~12fps) instead of losing frames; room to
+       spare brings it back to 30fps */
+    if(!force&&due.length){if(n<due.length)every=Math.min(80,every*1.08);else if(performance.now()-t0<budget*.5)every=Math.max(33,every*.97);}
   }
   return {tick,refresh(){tick(performance.now(),null,true);}};
 })();
@@ -4921,7 +4949,7 @@ const CutGlow=(()=>{
       if(xx<GW-1)d=Math.min(d,D[i+1]+3);if(y<GH-1){d=Math.min(d,D[i+GW]+3);
         if(xx<GW-1)d=Math.min(d,D[i+GW+1]+4);if(xx>0)d=Math.min(d,D[i+GW-1]+4);}D[i]=d;}
     const R=(P/GS)*3;                                  /* reach of the glow, in chamfer units */
-    N=new Float32Array(GW*GH);Bs=new Float32Array(GW*GH);
+    N=new Float32Array(GW*GH);Bs=new Float32Array(GW*GH);Q8=null;
     for(let i=0;i<GW*GH;i++){const n=Math.min(1,D[i]/R);N[i]=n;Bs[i]=Math.pow(1-n,1.1);}
     cv=document.createElement('canvas');cv.width=GW;cv.height=GH;cv.className='cutGlow';cv.setAttribute('aria-hidden','true');
     cv.style.cssText=`position:absolute;left:0;height:${cssH};top:${cssTop};width:auto;image-rendering:pixelated;pointer-events:none;`;
@@ -4932,17 +4960,24 @@ const CutGlow=(()=>{
     gw.appendChild(cv);after.closest('.cutWrap').parentNode.insertBefore(gw,after.closest('.cutWrap'));
     if(document.getElementById('sec-about').classList.contains('active'))start();else draw(0);
   }
+  /* every term but the Bayer threshold depends only on the cell's distance n, so a frame works out 256 distance
+     levels once and each cell just looks its level up. Cells past the glow's reach (n=1) never draw and are skipped.
+     (2026-11-09 slow-machine test: the per-cell maths was ABOUT's biggest cost on a slow CPU.) */
+  const NL=256,COV=new Float32Array(NL),TF=new Float32Array(NL);let Q8=null,ACT=null;
   function draw(now){
     if(!cv)return;
-    const t=now/1000,d=img.data,T=Math.PI*2;
-    for(let yy=0;yy<GH;yy++){const by=(yy&3)<<2;
-      for(let xx=0;xx<GW;xx++){const i=yy*GW+xx,n=N[i],o=i<<2;
-        const wv=.5+.5*LUT[((n*1.25-t*.2)*651.8986469044033&4095)+4096&4095];   /* bands travel outward */
-        const cov=Bs[i]*(.72+.34*wv)*.92,bay=BAYER[by+(xx&3)];
-        if(cov<=bay){d[o+3]=0;continue;}
-        let tone=Math.pow(1-n,1.25)*.8+wv*.14-.04;tone=tone<0?0:tone>1?1:tone;
-        const f=tone*4,k=f|0,c=RAMP[Math.min(4,k+((f-k)>bay?1:0))];
-        d[o]=c[0];d[o+1]=c[1];d[o+2]=c[2];d[o+3]=170;}}
+    if(!Q8){Q8=new Uint8Array(GW*GH);const a=[];
+      for(let i=0;i<GW*GH;i++){Q8[i]=Math.min(NL-1,Math.round(N[i]*(NL-1)));if(N[i]<1)a.push(i);}ACT=Uint32Array.from(a);}
+    const t=now/1000,d=img.data;
+    for(let q=0;q<NL;q++){const n=q/(NL-1);
+      const wv=.5+.5*LUT[((n*1.25-t*.2)*651.8986469044033&4095)+4096&4095];   /* bands travel outward */
+      COV[q]=Math.pow(1-n,1.1)*(.72+.34*wv)*.92;
+      let tone=Math.pow(1-n,1.25)*.8+wv*.14-.04;TF[q]=(tone<0?0:tone>1?1:tone)*4;}
+    for(let j=0;j<ACT.length;j++){const i=ACT[j],o=i<<2,yy=(i/GW)|0,xx=i-yy*GW,q=Q8[i];
+      const bay=BAYER[((yy&3)<<2)+(xx&3)];
+      if(COV[q]<=bay){d[o+3]=0;continue;}
+      const f=TF[q],k=f|0,c=RAMP[Math.min(4,k+((f-k)>bay?1:0))];
+      d[o]=c[0];d[o+1]=c[1];d[o+2]=c[2];d[o+3]=170;}
     x.putImageData(img,0,0);
   }
   function loop(now){

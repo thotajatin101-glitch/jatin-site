@@ -6,7 +6,7 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 
-export const SITE = path.resolve(import.meta.dirname, '..', 'site');
+export const SITE = process.env.SITE_DIR ? path.resolve(process.env.SITE_DIR) : path.resolve(import.meta.dirname, '..', 'site');   // SITE_DIR: serve another copy (e.g. a before build for perf.mjs)
 const TYPES = { '.html': 'text/html', '.png': 'image/png', '.jpg': 'image/jpeg', '.mp4': 'video/mp4' };
 
 export function handler(req, res) {

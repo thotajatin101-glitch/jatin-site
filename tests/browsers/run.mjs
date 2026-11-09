@@ -71,7 +71,10 @@ async function walk(name, engine, opts, base) {
       if (await page.evaluate(() => document.getElementById('sec-projects').classList.contains('active'))) break;
       // full site: the intro lands on the menu, so open PROJECTS from its plate (apply mode lands on PROJECTS itself)
       if (await page.evaluate(() => document.body.classList.contains('menu') && !!document.querySelector('#m-projects.done, #m-projects.sel'))) { await tapOrClick('#m-projects'); await sleep(900); continue; }
-      touch ? await page.touchscreen.tap(opts.viewport.width / 2, opts.viewport.height * .22) : await page.keyboard.press('x');   // .22, not .7: on a 360×732 phone .7 lands on the ABOUT plate once the menu arrives
+      // only press while the intro still owns the screen: once the menu is up, any fixed tap point lands on some
+      // plate (.7 hit ABOUT on a 360×732 phone, .22 hits it in iPhone landscape) and opens the wrong section
+      if (await page.evaluate(() => document.body.classList.contains('menu'))) { await sleep(400); continue; }
+      touch ? await page.touchscreen.tap(opts.viewport.width / 2, opts.viewport.height * .22) : await page.keyboard.press('x');
       await sleep(400);
     }
     if (!(await page.evaluate(() => document.getElementById('sec-projects').classList.contains('active')))) throw new Error('intro never reached PROJECTS');

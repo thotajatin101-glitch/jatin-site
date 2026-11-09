@@ -11,6 +11,37 @@ by piece and marked "Oct 2026".
 ---
 
 
+## 2026-11-10 — the site on a slow machine
+
+**His note:** "the website still laggin in mobile and other pc so what i recommend doing is run tests on very low
+processsing power to simulate a slow pc or mobile to fine the bugs lagging problems to fix", and then "i also want
+you to lower the processing power after each test".
+
+**What was built:** a test rig, `tests/perf.mjs`, that walks the whole site the way a visitor does (intro, menu,
+every section, the computer and its folders, the phone's flip and chat) and records every frame. It runs on a
+software GPU (every pixel on the CPU), a phone with a 6× slower CPU and a laptop with a 6× slower CPU, and his ladder
+steps the CPU down pass by pass (÷4, ÷8, ÷12, ÷16) so you can see where each screen gives way. With the profiler on
+it names the code behind each stutter.
+
+**What it found:**
+- The frame governor never stepped down on a truly slow machine: it threw away frames over 120ms as "hitches", so at
+  5fps it never collected enough frames to judge. Once at its floor it also never climbed back, so one bumpy moment
+  left the 3D models soft for the rest of the visit. And it lowered resolution when the script, not the graphics,
+  was late — losing sharpness for nothing.
+- ABOUT's glow round his portrait redid a dozen sums per cell every frame.
+- One giant dithered band could blow the whole frame budget on its own.
+- The SKILLS eye decoded all 154 of his thumbnails and sampled each one's colours the moment the card arrived.
+- The SKILLS card asked the page for its size every frame, forcing a layout pass.
+
+**Fixed,** with the same picture on screen (stills in `stills/2026-11-10-slow-machine/`). On the 8× slower laptop:
+menu browsing 62 → 110fps, ABOUT 60 → 119 (and no stutter on the entrance), SKILLS entrance 39 → 110, the card
+flip 60 → 119. On the 12× slower phone ABOUT holds 112fps instead of 41, CONTACT 108 instead of 60. Before/after
+numbers in `perf/`.
+
+**Still open:** the software-GPU rig (a PC with graphics acceleration off) still crawls at single-digit fps on the
+3D screens even at the lowest resolution. That needs a different answer (a lite mode), not more tuning. And the
+rig caught a layout bug unrelated to speed: in phone landscape the menu heading hides behind the JATIN mark.
+
 ## 2026-11-10 — one colour world per post
 
 He asked for the background shards to carry the same dither as everything else, to stay inside each post's own colour

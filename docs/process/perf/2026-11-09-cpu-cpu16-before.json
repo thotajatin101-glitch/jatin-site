@@ -1,0 +1,261 @@
+{
+ "rig": "cpu",
+ "cpu": 16,
+ "url": "http://127.0.0.1:63720/",
+ "phases": [
+  {
+   "label": "intro: float (waiting)",
+   "fps": 107.5,
+   "p95": 17.6,
+   "jank": 0.5,
+   "worst": 50,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.672,
+   "top": null
+  },
+  {
+   "label": "intro: snap → menu",
+   "fps": 116.3,
+   "p95": 41.1,
+   "jank": 5.8,
+   "worst": 683,
+   "longTasks": 11,
+   "longMs": 1349,
+   "Q": 0.551,
+   "top": null
+  },
+  {
+   "label": "menu: idle",
+   "fps": 39.7,
+   "p95": 33.5,
+   "jank": 6.3,
+   "worst": 92,
+   "longTasks": 1,
+   "longMs": 60,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "menu: browsing",
+   "fps": 29.9,
+   "p95": 75.1,
+   "jank": 50,
+   "worst": 158,
+   "longTasks": 2,
+   "longMs": 158,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "about: open",
+   "fps": 17.1,
+   "p95": 225.7,
+   "jank": 92.1,
+   "worst": 267,
+   "longTasks": 20,
+   "longMs": 2212,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "about: idle",
+   "fps": 20,
+   "p95": 66.8,
+   "jank": 94,
+   "worst": 76,
+   "longTasks": 21,
+   "longMs": 1246,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "about: back to menu",
+   "fps": 29.5,
+   "p95": 67.4,
+   "jank": 59,
+   "worst": 75,
+   "longTasks": 5,
+   "longMs": 328,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "projects: open",
+   "fps": 39.8,
+   "p95": 84.1,
+   "jank": 24,
+   "worst": 133,
+   "longTasks": 8,
+   "longMs": 691,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "projects: idle",
+   "fps": 58.8,
+   "p95": 25.4,
+   "jank": 0.8,
+   "worst": 34,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "projects: dolly → OS",
+   "fps": 40.7,
+   "p95": 40.9,
+   "jank": 8.6,
+   "worst": 208,
+   "longTasks": 3,
+   "longMs": 449,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "projects: OS browse",
+   "fps": 57.1,
+   "p95": 42.4,
+   "jank": 12,
+   "worst": 108,
+   "longTasks": 4,
+   "longMs": 267,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "projects: open folder",
+   "fps": 58.1,
+   "p95": 34,
+   "jank": 8.3,
+   "worst": 125,
+   "longTasks": 2,
+   "longMs": 216,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "projects: back to menu",
+   "fps": 30.2,
+   "p95": 42.6,
+   "jank": 36.2,
+   "worst": 67,
+   "longTasks": 1,
+   "longMs": 65,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "skills: open",
+   "fps": 5.7,
+   "p95": 299.9,
+   "jank": 69.6,
+   "worst": 308,
+   "longTasks": 23,
+   "longMs": 2154,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "skills: idle",
+   "fps": 23.8,
+   "p95": 208.8,
+   "jank": 69.4,
+   "worst": 233,
+   "longTasks": 20,
+   "longMs": 1487,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "skills: deal a card",
+   "fps": 39.1,
+   "p95": 50,
+   "jank": 27.9,
+   "worst": 67,
+   "longTasks": 3,
+   "longMs": 171,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "skills: back to menu",
+   "fps": 39.1,
+   "p95": 42.4,
+   "jank": 25,
+   "worst": 58,
+   "longTasks": 1,
+   "longMs": 61,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "contact: open",
+   "fps": 30.5,
+   "p95": 50.9,
+   "jank": 40.2,
+   "worst": 376,
+   "longTasks": 3,
+   "longMs": 611,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "contact: idle",
+   "fps": 41.3,
+   "p95": 40.9,
+   "jank": 15.6,
+   "worst": 43,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "contact: flip open",
+   "fps": 40.3,
+   "p95": 41.7,
+   "jank": 14.4,
+   "worst": 84,
+   "longTasks": 2,
+   "longMs": 153,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "contact: buzzing",
+   "fps": 41,
+   "p95": 34,
+   "jank": 10,
+   "worst": 42,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "contact: chat",
+   "fps": 61,
+   "p95": 25.1,
+   "jank": 1.7,
+   "worst": 58,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "contact: back to menu",
+   "fps": 40.5,
+   "p95": 25.9,
+   "jank": 1.5,
+   "worst": 42,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  }
+ ],
+ "errors": []
+}

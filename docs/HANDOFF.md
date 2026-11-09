@@ -29,6 +29,22 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-10 — Slow-machine test rig + the lag it found. NOT deployed
+- **His ask:** test on very low processing power, lowering it after each test, and fix what lags.
+- **Built:** `tests/perf.mjs` (rigs gpu/phone/cpu, `LADDER`, `PROF`, `ONLY`, `SITE_DIR`+`TAG`); `tests/serve.mjs`
+  takes `SITE_DIR`. Results `docs/process/perf/2026-11-09-*-{before,after}.json` (+ gpu after).
+- **Fixed in site/index.html:** Q governor (counts slow frames, ignores main-thread-bound windows, recovers in ~1s);
+  CutGlow per-distance LUT + active-cell list; DitherFX interlaced big shapes + adaptive refresh (`every` 33→80ms);
+  EyeFX loads 48 random thumbs, swatches lazily, CPU-backed feed canvas; SkillFX Space size from a ResizeObserver.
+- **Numbers** (laptop CPU ÷8): menu browse 62→110, ABOUT open 60*→119, ABOUT idle 60→118, SKILLS open 39*→110,
+  deal 60→119. Phone ÷12: ABOUT idle 41→112, CONTACT idle 60→108.
+- **Checked:** stills `docs/process/stills/2026-11-10-slow-machine/` (glow, dither, eye look unchanged); browsers 14/14
+  (run.mjs: the intro tap now stops once the menu is up — in iPhone landscape .22 hit ABOUT).
+- **Open:** (1) software GPU still single-digit fps on 3D screens: needs a lite mode (his call). (2) Phone landscape
+  menu: the heading block sits behind the JATIN mark and ABOUT's plate runs into the logo panel (fitWedgePhone
+  assumes portrait). (3) Not measured on a real weak laptop.
+- **Watch out:** `docs/studio/studio.html` and `.claude/launch.json` are someone else's uncommitted edits.
+
 ## 2026-11-09 — Content look round 1 (posts + reels)
 - **His note:** the asset-kit preview was "pretty simple and not good yet"; sent 2 post + 2 reel references (design
   only, not topic). Saved to memory as content-quality-bar.

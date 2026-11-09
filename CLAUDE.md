@@ -251,6 +251,23 @@ Everything comes from his logo animation. Do not soften or "clean up" this look.
     long and back up with headroom (floor .45; integrated GPUs start at .7; `body.fxLow` below .8 drops the CSS
     fringe). Any new full-screen GL canvas multiplies its R by `Q.s`. DitherFX paints in a per-frame budget,
     never every shape on one frame. Judge on a real laptop GPU if one is at hand; headless is SwiftShader.
+  - **Slow-machine test** (2026-11-10, his ask: "run tests on very low processing power … lower the processing power
+    after each test"): `node tests/perf.mjs` walks every screen on throttled rigs (`gpu` software GPU, `phone` 6×
+    slower CPU, `cpu` 6× slower laptop) and prints fps / p95 / % stutter per phase; `LADDER=4,8,12,16` re-runs the
+    walk at each slowdown and prints one table; `PROF=1` names the top functions per phase; `SITE_DIR=… TAG=before`
+    measures another build. Results in `docs/process/perf/`. Run it after any motion or rendering change. Rules it
+    taught:
+    - Q never throws slow frames away (it used to drop anything over 120ms, so a 5fps machine never stepped down),
+      and it does NOT lower resolution when the main thread is what's late (measured per frame); it climbs back after
+      ~1s of headroom.
+    - DitherFX: shapes over 12k cells repaint alternate rows per pass; a machine that can't keep the budget refreshes
+      shapes less often (to ~12fps) instead of dropping frames.
+    - Per-pixel loops work out everything that doesn't depend on the pixel once per frame (CutGlow: 256 distance
+      levels) and skip cells that never draw.
+    - Never read a box (`clientWidth`) inside a per-frame draw: cache it with a ResizeObserver (SKILLS card).
+    - Never decode or sample a whole photo library up front: the eye loads 48 random thumbs, swatches on lock.
+    - A 2D canvas uploaded into WebGL every few frames is `willReadFrequently` (CPU-backed), or the upload is a GPU
+      readback.
   - **The intro's opening draws every vsync** (the chained phase + the first
     7 frames after the snap, up to `SMOOTH`): smooth S-curves on a 24fps clock read as lag (his note). From
     the fan slam on, frames render only on a new 24fps frame, on 2s; that
