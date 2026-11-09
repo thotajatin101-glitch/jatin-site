@@ -4,6 +4,16 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-09 — Content look round 1 (posts + reels)
+- **His note:** the asset-kit preview was "pretty simple and not good yet"; sent 2 post + 2 reel references (design
+  only, not topic). Saved to memory as content-quality-bar.
+- **Did:** `docs/studio/` (dev-only still renderer: three.js voxels, prints, hand type) and round 1 drafts in
+  `docs/concepts/2026-11-09-content-look/` → https://claude.ai/artifact/M92mq2HztYmj2Qgp5dCTbq.
+- **Next:** his notes. My pick: extruded 3D type + glossier black floor, and a 6–8s motion test of the high-effort style.
+- **Watch out:** studio uses three.js from a CDN — fine because it never ships; keep it out of `site/`.
+
+---
+
 ## 2026-11-09 — Asset kit preview (round 1)
 - **His ask:** see how the asset kit works before it's built.
 - **Did:** `docs/concepts/2026-11-09-asset-kit/` — a live preview page on his photos (transition, chain snap, title
