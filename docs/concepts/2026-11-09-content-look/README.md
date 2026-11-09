@@ -89,3 +89,5 @@ flung link landed on his head; the CRT dominated (scaled .82).
 **Stills:** round 2 is `img/p*-round2.jpg`, round 1 is `img/p*-round1.jpg`, round 3 is `img/p*.jpg`.
 
 **Open:** the CRT is a flat black box from above (could become the site's beige computer); the reels.
+
+**His verdict (2026-11-10):** "alot better". The site-world ground is the direction.
