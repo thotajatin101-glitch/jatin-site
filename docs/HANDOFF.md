@@ -3,6 +3,12 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-10 — Content look round 6 (WHO I AM type on the plates)
+- **His note:** use the WHO I AM font; the bold didn't look right.
+- **Did:** `silverPlate` uses #wedgeSub's type; faux bold removed; doc v6 (same URL), round 5 stills kept.
+- **Next:** his notes; the CRT → beige computer; then the reels.
+
+---
 ## 2026-11-10 — Content look round 5 (silver plates)
 - **His notes:** small mono words → the site's silver plate, bold; keep R3's headline colours.
 - **Did:** `silverPlate()` / style `plate`; `R3TYPE` on every world; doc v5 (same URL), round 4 stills kept.

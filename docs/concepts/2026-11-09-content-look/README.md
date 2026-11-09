@@ -128,3 +128,13 @@ the mono words, with the ABOUT "WHO I AM" tag as the reference), then "and also 
   pairs were reverted. The dithered one-family shards stay.
 
 **Stills:** round 4 is `img/p*-round4.jpg`; round 5 is `img/p*.jpg`.
+
+## Round 6 — 2026-11-10 · the WHO I AM type
+
+**His note, in his words:** "ok use the same font as the WHO I AM text and bold doe'snt look".
+
+**Built:** the plate type is now `#wedgeSub`'s exactly: IBM Plex Mono 600, upright, uppercase, tracked .42em, slanted
+only by the plate's skew (−9°, as on the site), with padding in the tag's proportions. The faux-bold ink stroke is
+gone. The plate size is down to .052 of the width, since the tracking makes the run long.
+
+**Stills:** round 5 is `img/p*-round5.jpg`; round 6 is `img/p*.jpg`.

@@ -12,6 +12,12 @@ by piece and marked "Oct 2026".
 
 
 
+
+## 2026-11-10 (later still) — the plates speak like the menu tag
+
+The bold italic on the silver plates didn't sit right with him. He pointed at WHO I AM, the menu's own tag, so the
+plates now use its voice: upright mono, all caps, wide tracking, leaning only because the plate leans. The faux-bold
+stroke is gone. The small words now read like a label the site would print, not like body copy.
 ## 2026-11-10 (later) — the small words get the silver plate
 
 He pointed at the plain mono words ("editing", "i almost", "in one") and the ABOUT name tag, and asked for that silver

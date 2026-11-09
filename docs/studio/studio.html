@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <title>JATIN studio</title>
 <!-- Dev-only still renderer for posts and reel frames. Never ships. three.js r128 from cdnjs. -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,500;0,700;1,700&family=VT323&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,500;0,600;0,700;1,700&family=VT323&display=swap">
 <style>
 @font-face{font-family:"Cyberway Riders";src:url(../../CyberwayRiders-lg97d.ttf) format("truetype")}
 html,body{margin:0;background:#111}
@@ -37,16 +37,19 @@ const W=root=>root;
 function dotTile(px,alpha){const c=mk(px,px),x=c.getContext('2d');x.fillStyle=`rgba(0,0,0,${alpha})`;x.beginPath();x.arc(px/2,px/2,px*.28,0,7);x.fill();return c}
 function dotPattern(ctx,px,alpha,ang=23){const p=ctx.createPattern(dotTile(px,alpha),'repeat');p.setTransform(new DOMMatrix().rotate(ang));return p}
 function glyphRun(text,font,size,track){
-  const c=mk(8,8).getContext('2d');c.font=font.startsWith('italic')?font.replace('italic 700 ',`italic 700 ${size}px `):`${size}px ${font}`;let x=0;const g=[];
+  const c=mk(8,8).getContext('2d');c.font=font.startsWith('italic')?font.replace('italic 700 ',`italic 700 ${size}px `):/^\d00 /.test(font)?font.replace(/^(\d00) /,`$1 ${size}px `):`${size}px ${font}`;let x=0;const g=[];
   for(const ch of text){const w=c.measureText(ch).width;g.push({ch,x,w});x+=w+track*size}
   return{g,w:x-track*size};
 }
 // The site's silver plate (ABOUT's name tag and copy plate, round 5 of the posts, his ask): paper dithered into the
 // silver ramp (white -> lavender grey, DitherFX's light-shape ramp) in 3px Bayer cells, skewed, an ink rule, a hard
 // ink drop, and ink type in Plex Mono italic 700, fattened with an ink stroke so it reads bold.
+// Round 6 (his note: the bold "doe'snt look", use the WHO I AM font): the type is #wedgeSub's exactly: Plex Mono 600,
+// upright, uppercase, tracked .42em, slanted only by the plate's own skew (-9deg). No faux-bold stroke.
 function silverPlate(O,text,cx,cy,size,rot,cw){
-  const font=`italic 700 ${size}px "IBM Plex Mono"`,track=size*.06,run=glyphRun(text,'italic 700 "IBM Plex Mono"',size,.06);
-  const padX=size*.5,padY=size*.3,w=run.w+padX*2,h=size*.9+padY*2,cell=Math.max(3,Math.round(cw/360)),sk=Math.tan(-8*Math.PI/180);
+  text=text.toUpperCase();
+  const font=`600 ${size}px "IBM Plex Mono"`,run=glyphRun(text,'600 "IBM Plex Mono"',size,.42);
+  const padX=size*1.1,padY=size*.42,w=run.w+padX*2,h=size*.82+padY*2,cell=Math.max(3,Math.round(cw/360)),sk=Math.tan(-9*Math.PI/180);
   const lw=Math.ceil(w/cell),lh=Math.ceil(h/cell),dc=mk(lw,lh),dx=dc.getContext('2d'),im=dx.createImageData(lw,lh),d=im.data;
   const W=[255,255,255],lo=[171,165,196],ramp=[lo,[213,210,226],W,W,W].map((c,i)=>i<3?c:W);
   const RAMP5=[[171,165,196],[192,188,212],[213,210,226],[234,232,240],[255,255,255]];
@@ -59,9 +62,8 @@ function silverPlate(O,text,cx,cy,size,rot,cw){
   O.fillStyle='#000';O.fillRect(-w/2+size*.12,-h/2+size*.14,w,h);
   O.imageSmoothingEnabled=false;O.drawImage(dc,-w/2,-h/2,w,h);O.imageSmoothingEnabled=true;
   O.lineWidth=Math.max(4,size*.06);O.strokeStyle='#000';O.strokeRect(-w/2,-h/2,w,h);
-  O.transform(1,0,-sk*.5,1,0,0);O.font=font;O.textBaseline='middle';O.textAlign='left';O.lineJoin='round';
-  O.fillStyle='#000';O.strokeStyle='#000';O.lineWidth=size*.05;
-  run.g.forEach(g=>{O.strokeText(g.ch,-run.w/2+g.x,size*.04);O.fillText(g.ch,-run.w/2+g.x,size*.04)});
+  O.font=font;O.textBaseline='middle';O.textAlign='left';O.fillStyle='#000';
+  run.g.forEach(g=>O.fillText(g.ch,-run.w/2+g.x,size*.04));
   O.restore();
 }
 function paintType(cw,ch,lines,opt={}){
@@ -450,7 +452,7 @@ DRAFTS.p1=async()=>{ // STOP editing SAFE — pink world; the chain comes out of
   const [dc,dx]=frameCanvas();[[0,-210,-230,1.2],[1,310,-400,-.7]].forEach(([n,ox,oy,da])=>{const l=links[brk+n];chLink(dx,l.i,l.x+ox,l.y+oy,l.a+da,l.c*1.1,pal)});SCN.add(framePlane(dc,1.9));
   const T=worldType(acc,[
     {t:'STOP',size:.27,x:.48,y:.185,rot:-.07,seed:3},
-    {t:'editing',style:'plate',size:.07,x:.72,y:.31,rot:-.05,seed:5},
+    {t:'editing',style:'plate',size:.052,x:.72,y:.31,rot:-.05,seed:5},
     {t:'SAFE',size:.28,x:.5,y:.435,rot:.04,seed:9}
   ]);
   SCN.add(framePlane(T,.9));
@@ -472,7 +474,7 @@ DRAFTS.p2=async()=>{ // FRAMES i almost DELETED — cyan world; the stack sits i
   const [ux,uz]=at(800,760,2.2);cur.position.set(ux,2.2,uz);cur.rotation.set(-1.15,0,-.35);SCN.add(cur);
   const T=worldType(acc,[
     {t:'FRAMES',size:.185,x:.52,y:.16,rot:-.05,seed:11},
-    {t:'i almost',style:'plate',size:.07,x:.26,y:.75,rot:-.06,seed:2},
+    {t:'i almost',style:'plate',size:.052,x:.28,y:.75,rot:-.06,seed:2},
     {t:'DELETED',size:.19,x:.5,y:.87,rot:.05,seed:21}
   ]);
   SCN.add(framePlane(T,1.5));
@@ -486,7 +488,7 @@ DRAFTS.p3=async()=>{ // CUT IT in one NIGHT — acid world; the light comes out 
     pixels:[[1010,1120,PAL.pink,1,.25],[70,1250,PAL.cyan,0,-.2]],scribbles:[[120,760,'#ff2e88'],[900,1120,'#00f0d8']]});
   const T=worldType(acc,[
     {t:'CUT IT',size:.25,x:.49,y:.17,rot:-.06,seed:4},
-    {t:'in one',style:'plate',size:.068,x:.76,y:.285,rot:-.05,seed:8},
+    {t:'in one',style:'plate',size:.052,x:.76,y:.285,rot:-.05,seed:8},
     {t:'NIGHT',size:.25,x:.5,y:.385,rot:.04,seed:6}
   ]);
   SCN.add(framePlane(T,1.2));
