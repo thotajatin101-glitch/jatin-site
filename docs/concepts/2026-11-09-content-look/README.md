@@ -28,3 +28,30 @@ sRGB→linear colours; a 1px fallback font stacked the small mono word into one 
 fills; captions over his face; type clipping off the frame.
 
 **Open:** floor reads slightly grey; type has no thickness; high-effort needs a motion test.
+
+## Round 2 — 2026-11-09 · posts, electric
+
+**His notes, in his words:** "The posts are definetly alot better but reels require alot of effort still. but let's
+use this doc itself as preview for changes, let's work on perfecting the posts look right now, So i like the whole 3d
+look it has with light and everything but the colours and background washed out i want them to stick to the electric
+colour scheme we have."
+
+**Why it washed out:**
+- The key light sat on the camera's side (-4,22,4), so every flat face mirrored it back as a white glare.
+- The hemisphere light and the coloured point light pushed every object toward pastel.
+- The voxel ramps reached into their near-white steps.
+- The floor's specular turned the black tiles grey (~73/255).
+
+**Built:**
+- **Light:** the key now comes from the back left (-13,20,-6) at 1.02, with a 0.16 hemisphere fill, balanced so a flat
+  face renders at its exact palette value. The shadows got longer and harder.
+- **Accent:** the point light is gone. A low accent kicker from the far side lights only the voxel walls.
+- **Floor:** matte Lambert pure black. The grout is emissive neon in the accent, with a glow and a white-hot core, and
+  an accent bloom pools at the vanishing point. It now samples about 5/255.
+- **Voxels:** they use the middle of the ramp (chains .9–2.75; pink props .8–2.4), so there are no pastel steps.
+- **Bloom:** a post bloom on the bright, saturated pixels only (`bloom()` in `finishPost`).
+- **Fixes:** the sparkle is off the "i", the star is off NIGHT's T, and p3 is tagged EDIT NOTES · 02.
+
+**Stills:** round 1 is kept as `img/p*-round1.jpg`; round 2 is `img/p*.jpg`.
+
+**Open:** extruded type (a side wall on the rim); the CRT body still reads flat grey; the reels wait until the posts lock.

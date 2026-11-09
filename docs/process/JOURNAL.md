@@ -10,6 +10,16 @@ by piece and marked "Oct 2026".
 
 ---
 
+## 2026-11-09 (night) — the posts go electric
+
+He liked the 3D and the light in the round 1 posts but said "the colours and background washed out i want them to
+stick to the electric colour scheme we have". The light was the culprit. It sat beside the camera and bounced a white
+glare off every flat face, a soft fill and a coloured lamp pulled everything toward pastel, and the floor's sheen
+turned black into grey. The fix was to treat the light like a print press. It's balanced so a flat face prints at its
+exact palette colour, and it comes from behind for long hard shadows. The grout became neon that lights itself, so
+shadows can't grey it. Black is ink again (~5/255), and the colour sits on it at full voltage. Round 1 stills are
+kept beside round 2 in the concept folder.
+
 ## 0 · The idea (Aug 2026)
 
 Two references, merged on purpose:

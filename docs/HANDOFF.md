@@ -3,6 +3,15 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-09 — Content look round 2 (posts, electric)
+- **His note:** posts "alot better", reels need much more effort; perfect the posts first. Keep the 3D and light, but
+  "colours and background washed out", stick to the electric scheme. Use the content-look doc as the preview.
+- **Did:** studio light rig and floor rebuilt for full saturation (see concept README round 2); p1–p3 re-rendered,
+  round 1 kept as `p*-round1.jpg`; doc republished (same URL, v2).
+- **Next:** his notes on the electric posts. Then extruded type and a less flat CRT; the reels after the posts lock.
+- **Watch out:** `lights()`/`floor()` are post-only; reels still use `propRender`'s own lights.
+
+---
 
 ## 2026-11-09 — Content look round 1 (posts + reels)
 - **His note:** the asset-kit preview was "pretty simple and not good yet"; sent 2 post + 2 reel references (design
