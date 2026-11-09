@@ -10,6 +10,17 @@ by piece and marked "Oct 2026".
 
 ---
 
+## 2026-11-09 (late night) — the posts move into his world
+
+The electric posts were cleaner, but he said they didn't capture his style: "i can see the elements of website design
+but that's [not] how i remember my website to look like." He sent two more references, bold flat paper layers behind
+one real object, and named what to keep: the chain, the cursor and the type. Round 2 had laid the site's props on a
+neon grid floor, which belongs to no part of the site. So the floor became the site itself. The menu's shard burst,
+its dithered accent wedge, the streaks, the stars and the plates are all painted flat as the ground, the way the
+references' paper shapes sit behind their notebook. The chain is no longer a voxel stand-in: it's the site's own
+link sprites, ported, coming out of the light and snapping over his print. His work, the cursor and the type stand
+on that ground in real 3D light. Lesson saved: a post has to look like the site, not just quote it.
+
 ## 2026-11-09 (night) — the posts go electric
 
 He liked the 3D and the light in the round 1 posts but said "the colours and background washed out i want them to

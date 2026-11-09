@@ -55,3 +55,37 @@ colour scheme we have."
 **Stills:** round 1 is kept as `img/p*-round1.jpg`; round 2 is `img/p*.jpg`.
 
 **Open:** extruded type (a side wall on the rim); the CRT body still reads flat grey; the reels wait until the posts lock.
+
+## Round 3 — 2026-11-09 · posts, in his world
+
+**His notes, in his words:** "These posts are also of similar style that i do like they are bold and the get idea too
+and right now posts look fine good but it doesnt feel like it captured my style. and i can see the elements of website
+design but that's how i remember my website to look like. remember what i like and don't like. i like our chain design
+and our curser and everything (althought i do prefer the font design in the current so keep that)". New references:
+bold flat graphic layers (paper shapes, starbursts, marker strokes) behind one real object (a sketchbook, a clip).
+
+**Read:** round 2 was the site's props on a neon Tron floor, and the floor is not the site. The site is its world.
+
+**Built (`siteWorld`, `ditherTri`, `chainLinks` in studio.html):**
+- **Camera:** straight down. Every flat layer (`framePlane`) is sized to land exactly on the frame at its height, so
+  the 2D ground and the 3D objects line up pixel for pixel.
+- **Ground** (painted flat, 2 texels per px), all from the site:
+  - the menu sky pooled at a vanishing point, plus the perspective grid;
+  - the site's `makeShardSVG` geometry and fills (stripe/hatch prints, thick ink);
+  - the accent wedge in 4×4 Bayer steps with its red/cyan edge;
+  - ink streaks, light streaks with white-hot cores, the bloom, and the 23° ink-dot screen;
+  - the furniture: P5 stars, sparkles, pixel stickers, wire scribbles.
+- **Acid shade:** acid now shades to deep green. Into the purple shade it went olive.
+- **Chain:** the site's own pixel-piece link sprites (`ChainFX.sprite` ported), on a Hermite path out of the light,
+  growing toward the lens. It sits on a lifted plane, so it casts a real shadow. On p1 it snaps over the print with
+  an impact burst, and the flung links ride a higher plane, so their shadows read as flight.
+- **Labels:** black menu plates with an accent number.
+- **Kept:** the type treatment (his call), the voxel cursor, the prints, and the electric light from round 2.
+- **p3:** the light comes out of the CRT (vanishing point on its screen), like the ABOUT handycam.
+
+**Fixed while checking:** the type crowded the corner mark (sizes −7%, lines lower); the acid world went olive; a
+flung link landed on his head; the CRT dominated (scaled .82).
+
+**Stills:** round 2 is `img/p*-round2.jpg`, round 1 is `img/p*-round1.jpg`, round 3 is `img/p*.jpg`.
+
+**Open:** the CRT is a flat black box from above (could become the site's beige computer); the reels.

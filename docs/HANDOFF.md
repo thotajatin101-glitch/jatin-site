@@ -3,6 +3,16 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-09 — Content look round 3 (posts in his world)
+- **His note:** the posts "doesnt feel like it captured my style", with the site's elements but not its look. Keep the
+  chain, the cursor and the current type. Two new references (flat bold layers behind one real object).
+- **Did:** studio posts rebuilt on the site's world as the ground (`siteWorld`), the site's chain sprites ported,
+  straight-down camera with frame-exact layers. Doc republished (v3, same URL), with round 2 and 1 stills kept.
+  Memory: posts-feel-like-the-site.
+- **Next:** his notes on round 3. Possibly the site's beige computer in place of the voxel CRT; then the reels.
+- **Watch out:** `framePlane` layers must stay frame-exact (`fh(L)`); type and chain heights decide what shadows what.
+
+---
 ## 2026-11-09 — Content look round 2 (posts, electric)
 - **His note:** posts "alot better", reels need much more effort; perfect the posts first. Keep the 3D and light, but
   "colours and background washed out", stick to the electric scheme. Use the content-look doc as the preview.
