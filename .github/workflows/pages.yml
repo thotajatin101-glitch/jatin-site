@@ -38,3 +38,5 @@ jobs:
           path: site
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000   # 30 min: with his photos and edits (~270MB) GitHub's file sync ran past the 10-min default on 2026-11-10
