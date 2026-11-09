@@ -112,3 +112,19 @@ colour scheme."
 | Acid | pink | magenta | purple |
 
 **Stills:** round 3 is `img/p*-round3.jpg`; round 4 is `img/p*.jpg`.
+
+## Round 5 — 2026-11-10 · silver plates, round 3 type colours
+
+**His notes, in his words:** "switch these normal font's to our silver plate look but make the text look bold" (on
+the mono words, with the ABOUT "WHO I AM" tag as the reference), then "and also keep the old font colour scheme from R3".
+
+**Built:**
+- **`silverPlate()`** (type style `plate`): the site's silver plate, built from:
+  - paper dithered in 3px Bayer cells from white into lavender silver (DitherFX's light-shape ramp, #aba5c4 → #fff),
+    light on the left and stepping down to the right;
+  - skewX(−8°), an ink rule and a hard ink drop;
+  - ink Plex Mono italic 700, thickened with an ink stroke for weight.
+- **Headlines:** back to round 3's acid fill, green foot and pink rim on every world (`R3TYPE`). The round 4 contrast
+  pairs were reverted. The dithered one-family shards stay.
+
+**Stills:** round 4 is `img/p*-round4.jpg`; round 5 is `img/p*.jpg`.

@@ -41,6 +41,29 @@ function glyphRun(text,font,size,track){
   for(const ch of text){const w=c.measureText(ch).width;g.push({ch,x,w});x+=w+track*size}
   return{g,w:x-track*size};
 }
+// The site's silver plate (ABOUT's name tag and copy plate, round 5 of the posts, his ask): paper dithered into the
+// silver ramp (white -> lavender grey, DitherFX's light-shape ramp) in 3px Bayer cells, skewed, an ink rule, a hard
+// ink drop, and ink type in Plex Mono italic 700, fattened with an ink stroke so it reads bold.
+function silverPlate(O,text,cx,cy,size,rot,cw){
+  const font=`italic 700 ${size}px "IBM Plex Mono"`,track=size*.06,run=glyphRun(text,'italic 700 "IBM Plex Mono"',size,.06);
+  const padX=size*.5,padY=size*.3,w=run.w+padX*2,h=size*.9+padY*2,cell=Math.max(3,Math.round(cw/360)),sk=Math.tan(-8*Math.PI/180);
+  const lw=Math.ceil(w/cell),lh=Math.ceil(h/cell),dc=mk(lw,lh),dx=dc.getContext('2d'),im=dx.createImageData(lw,lh),d=im.data;
+  const W=[255,255,255],lo=[171,165,196],ramp=[lo,[213,210,226],W,W,W].map((c,i)=>i<3?c:W);
+  const RAMP5=[[171,165,196],[192,188,212],[213,210,226],[234,232,240],[255,255,255]];
+  for(let y=0;y<lh;y++)for(let x=0;x<lw;x++){const u=x/lw,v=y/lh;
+    // light on the left, stepping down to lavender toward the right end, with one slow band across it
+    let tone=1-u*.95+.18*Math.sin(6.283*(u*1.2+v*.35)+1.3);tone=clamp(tone);
+    const f=tone*4,k=f|0,c=RAMP5[Math.min(4,k+((f-k)>bay(x,y)?1:0))],o=(y*lw+x)*4;d[o]=c[0];d[o+1]=c[1];d[o+2]=c[2];d[o+3]=255}
+  dx.putImageData(im,0,0);
+  O.save();O.translate(cx,cy);O.rotate(rot);O.transform(1,0,sk,1,0,0);
+  O.fillStyle='#000';O.fillRect(-w/2+size*.12,-h/2+size*.14,w,h);
+  O.imageSmoothingEnabled=false;O.drawImage(dc,-w/2,-h/2,w,h);O.imageSmoothingEnabled=true;
+  O.lineWidth=Math.max(4,size*.06);O.strokeStyle='#000';O.strokeRect(-w/2,-h/2,w,h);
+  O.transform(1,0,-sk*.5,1,0,0);O.font=font;O.textBaseline='middle';O.textAlign='left';O.lineJoin='round';
+  O.fillStyle='#000';O.strokeStyle='#000';O.lineWidth=size*.05;
+  run.g.forEach(g=>{O.strokeText(g.ch,-run.w/2+g.x,size*.04);O.fillText(g.ch,-run.w/2+g.x,size*.04)});
+  O.restore();
+}
 function paintType(cw,ch,lines,opt={}){
   const out=mk(cw,ch),O=out.getContext('2d');
   const fillC=mk(cw,ch),F=fillC.getContext('2d');
@@ -53,6 +76,7 @@ function paintType(cw,ch,lines,opt={}){
     const run=glyphRun(L.t,style==='mono'?'italic 700 "IBM Plex Mono"':(style==='pix'?'"VT323"':'"Cyberway Riders"'),size,L.track??(style==='marker'?.1:.02));
     let x0=L.x*cw-(L.align==='left'?0:L.align==='right'?run.w:run.w/2);
     const y0=L.y*ch;
+    if(style==='plate'){const rot=L.rot||0,cx=L.x*cw,cy=y0;late.push(()=>silverPlate(O,L.t,cx,cy,size,rot,cw));continue}
     bands.push({y:y0-size*.55,h:size*1.05});
     run.g.forEach((gl,i)=>{
       const seed=(L.seed||1)*97+i;
@@ -267,8 +291,9 @@ const SHARD_FAM={
   [PAL.pink]:[['#3a0a52','#9a1460','#ff2e88','#ff8cc0'],['#2a0640','#7a12b0','#c81ee0','#e48cf2'],['#14043c','#3a0a6a','#7a12b0','#c81ee0'],['#5a0a3a','#c81ee0','#ff2e88','#ffc2dc']],
   [PAL.cyan]:[['#00262a','#006f73','#00f0d8','#7ffcef'],['#04122e','#0a4f7a','#0b8fb0','#00f0d8'],['#00201c','#0b6a60','#00b8a6','#7ffcef'],['#06183a','#0a4f7a','#00f0d8','#e9fffc']],
   [PAL.acid]:[['#1a3d00','#39e639','#e8ff00','#f4ff8a'],['#062a0c','#147a2a','#39e639','#a8ff6a'],['#0a2a06','#2e6a10','#8ac600','#e8ff00'],['#1a3d00','#6fbf00','#e8ff00','#fdffe0']]};
-// the type takes the colours that fight the world: acid on pink, pink on cyan, pink on acid with a purple rule
-const TYPE_ON={[PAL.pink]:{fill:PAL.acid,outline:PAL.cyan,foot:PAL.green},[PAL.cyan]:{fill:PAL.pink,outline:PAL.acid,foot:PAL.mag},[PAL.acid]:{fill:PAL.pink,outline:PAL.purple,foot:PAL.mag}};
+// headline colours: round 3's acid fill, green foot and pink rim on every world (his call, 2026-11-10; the round 4
+// contrast pairs were reverted)
+const R3TYPE={fill:PAL.acid,outline:PAL.pink,foot:PAL.green},TYPE_ON={[PAL.pink]:R3TYPE,[PAL.cyan]:R3TYPE,[PAL.acid]:R3TYPE};
 const worldType=(acc,lines)=>paintType(PW*2,PH*2,lines.map(L=>L.style?L:{...L,fill:TYPE_ON[acc].fill,outline:TYPE_ON[acc].outline}),{foot:TYPE_ON[acc].foot});
 function siteWorld(acc,o){
   SEED=o.seed||7;const w=PW,h=PH,c=mk(w*SS2,h*SS2),x=c.getContext('2d');x.scale(SS2,SS2);
@@ -425,7 +450,7 @@ DRAFTS.p1=async()=>{ // STOP editing SAFE — pink world; the chain comes out of
   const [dc,dx]=frameCanvas();[[0,-210,-230,1.2],[1,310,-400,-.7]].forEach(([n,ox,oy,da])=>{const l=links[brk+n];chLink(dx,l.i,l.x+ox,l.y+oy,l.a+da,l.c*1.1,pal)});SCN.add(framePlane(dc,1.9));
   const T=worldType(acc,[
     {t:'STOP',size:.27,x:.48,y:.185,rot:-.07,seed:3},
-    {t:'editing',style:'mono',size:.085,x:.7,y:.31,rot:-.06,seed:5},
+    {t:'editing',style:'plate',size:.07,x:.72,y:.31,rot:-.05,seed:5},
     {t:'SAFE',size:.28,x:.5,y:.435,rot:.04,seed:9}
   ]);
   SCN.add(framePlane(T,.9));
@@ -447,7 +472,7 @@ DRAFTS.p2=async()=>{ // FRAMES i almost DELETED — cyan world; the stack sits i
   const [ux,uz]=at(800,760,2.2);cur.position.set(ux,2.2,uz);cur.rotation.set(-1.15,0,-.35);SCN.add(cur);
   const T=worldType(acc,[
     {t:'FRAMES',size:.185,x:.52,y:.16,rot:-.05,seed:11},
-    {t:'i almost',style:'mono',size:.085,x:.27,y:.75,rot:-.08,seed:2},
+    {t:'i almost',style:'plate',size:.07,x:.26,y:.75,rot:-.06,seed:2},
     {t:'DELETED',size:.19,x:.5,y:.87,rot:.05,seed:21}
   ]);
   SCN.add(framePlane(T,1.5));
@@ -461,7 +486,7 @@ DRAFTS.p3=async()=>{ // CUT IT in one NIGHT — acid world; the light comes out 
     pixels:[[1010,1120,PAL.pink,1,.25],[70,1250,PAL.cyan,0,-.2]],scribbles:[[120,760,'#ff2e88'],[900,1120,'#00f0d8']]});
   const T=worldType(acc,[
     {t:'CUT IT',size:.25,x:.49,y:.17,rot:-.06,seed:4},
-    {t:'in one',style:'mono',size:.08,x:.76,y:.285,rot:-.05,seed:8},
+    {t:'in one',style:'plate',size:.068,x:.76,y:.285,rot:-.05,seed:8},
     {t:'NIGHT',size:.25,x:.5,y:.385,rot:.04,seed:6}
   ]);
   SCN.add(framePlane(T,1.2));

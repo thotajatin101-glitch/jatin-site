@@ -11,6 +11,13 @@ by piece and marked "Oct 2026".
 ---
 
 
+
+## 2026-11-10 (later) — the small words get the silver plate
+
+He pointed at the plain mono words ("editing", "i almost", "in one") and the ABOUT name tag, and asked for that silver
+plate with bold type. The plate is the site's own: paper dithered from white into lavender silver, skewed, with an ink
+rule and an ink drop. The words are ink mono, thickened to read bold. He also took the headlines back to round 3's
+acid and pink. The contrast colours had pulled them away from the type he already called his.
 ## 2026-11-10 — the site on a slow machine
 
 **His note:** "the website still laggin in mobile and other pc so what i recommend doing is run tests on very low

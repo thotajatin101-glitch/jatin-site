@@ -3,6 +3,12 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-10 — Content look round 5 (silver plates)
+- **His notes:** small mono words → the site's silver plate, bold; keep R3's headline colours.
+- **Did:** `silverPlate()` / style `plate`; `R3TYPE` on every world; doc v5 (same URL), round 4 stills kept.
+- **Next:** his notes; the CRT → his beige computer is still open; then the reels.
+
+---
 ## 2026-11-10 — Content look round 4 (one colour world per post)
 - **His note:** dither the shards, keep them in the post's colour scheme, make the text contrast it.
 - **Did:** `SHARD_FAM` dithered shards, `TYPE_ON` contrasting type colours; doc v4 (same URL), round 3 stills kept.
