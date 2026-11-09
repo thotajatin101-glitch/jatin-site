@@ -91,3 +91,24 @@ flung link landed on his head; the CRT dominated (scaled .82).
 **Open:** the CRT is a flat black box from above (could become the site's beige computer); the reels.
 
 **His verdict (2026-11-10):** "alot better". The site-world ground is the direction.
+
+## Round 4 — 2026-11-10 · one colour world per post
+
+**His notes, in his words:** "the scattered shards in the background needs to have the same dither look we have and
+keep the same colour consistency as colour theme of the post itself and the text should be contrasting colour to that
+colour scheme."
+
+**Built:**
+- **Shards:** each shard is filled with a 4-step ramp in 4×4 Bayer cells (3px), running along its length from the
+  light outward. The direction and starting step are per shard. About a quarter of them stay black.
+- **Colour:** the families live in `SHARD_FAM`, one per accent: pink/magenta/purple, cyan/teal/deep blue, acid/green.
+  The stripe/hatch prints and flat gradients are gone.
+- **Type:** `TYPE_ON` gives each world its contrasting type colours. The treatment is unchanged.
+
+| World | Fill | Foot | Rim |
+|---|---|---|---|
+| Pink | acid | green | cyan |
+| Cyan | pink | magenta | acid |
+| Acid | pink | magenta | purple |
+
+**Stills:** round 3 is `img/p*-round3.jpg`; round 4 is `img/p*.jpg`.

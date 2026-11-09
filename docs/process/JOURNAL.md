@@ -10,6 +10,14 @@ by piece and marked "Oct 2026".
 
 ---
 
+
+## 2026-11-10 — one colour world per post
+
+He asked for the background shards to carry the same dither as everything else, to stay inside each post's own colour
+scheme, and for the text to contrast it. The shards had been the site's mixed palette, with flat fills and stripe
+prints. Now each shard steps through a ramp of the post's own family in Bayer cells, so a pink post is all pinks,
+magentas and purples. The headline keeps its treatment but takes the colours that fight the world: acid on pink, pink
+on cyan, pink with a purple rim on acid. Each post now reads as one colour world with type that punches out of it.
 ## 2026-11-09 (late night) — the posts move into his world
 
 The electric posts were cleaner, but he said they didn't capture his style: "i can see the elements of website design

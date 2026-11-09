@@ -3,6 +3,12 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-10 — Content look round 4 (one colour world per post)
+- **His note:** dither the shards, keep them in the post's colour scheme, make the text contrast it.
+- **Did:** `SHARD_FAM` dithered shards, `TYPE_ON` contrasting type colours; doc v4 (same URL), round 3 stills kept.
+- **Next:** his notes; the CRT → his beige computer is still open; then the reels.
+
+---
 ## 2026-11-09 — Content look round 3 (posts in his world)
 - **His note:** the posts "doesnt feel like it captured my style", with the site's elements but not its look. Keep the
   chain, the cursor and the current type. Two new references (flat bold layers behind one real object).
