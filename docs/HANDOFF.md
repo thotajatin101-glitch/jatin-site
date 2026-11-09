@@ -4,6 +4,17 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-09 — Asset kit preview (round 1)
+- **His ask:** see how the asset kit works before it's built.
+- **Did:** `docs/concepts/2026-11-09-asset-kit/` — a live preview page on his photos (transition, chain snap, title
+  + lower third, chroma burst, sticker sheet, accent switch, frame scrub + mini timelines), published privately at
+  https://claude.ai/artifact/PLPAHemou7FfEHtKmmejhG. README has the round log.
+- **Next:** his notes → render the real files (4K ProRes 4444 alpha, PNGs) from the same drawing code → Fusion macros.
+- **Watch out:** checked locally by serving a temporary copy from `site/` (removed after); never leave check files there,
+  since `site/` deploys.
+
+---
+
 ## 2026-11-09 — ABOUT bubble off his face on phones. NOT deployed
 - **His note** (iPhone screenshots): "my face being cover and main menu description having now space". The menu
   shot was the pre-deploy build; live 6716cd0 already fits (still in `docs/process/stills/2026-11-09-about-bubble-face/`).
