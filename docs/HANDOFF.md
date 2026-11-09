@@ -4,6 +4,21 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-09 — Deployed: frame governor, phone layout, CONTACT intent + email rules
+- **His word:** "deploy".
+- **Rollback point (recorded before):** site = Pages run 42511956743 (commit 824644d); Worker jatin-contact-mail v2
+  `ee5acb86-1c45-44b8-a4e4-f358401534a6`. Roll back the Worker with `cf workers versions` / redeploy v2; the site with
+  `git revert --no-edit 824644d..6716cd0 && git push`.
+- **Went live:** Worker `e510cc5b-bb9c-433e-aa08-eb22f221a187` (new brief + email rules), then site 6716cd0 (Pages run
+  42584520369, success).
+- **Checked:** live Worker refuses "hi" (422 line) and gg@gmail.com (422 email) with invalid bodies only (no mail sent);
+  `/` and `/jatin-cutout.png` 200; live index carries the new code; `tests/check.mjs` live: all ok except 1 photo + 2
+  edits (flux-edits/03, 07) "fetch failed" — the network here was resetting connections (git fetch and gh failed the
+  same minute). Those files didn't change in this release. Re-run `node tests/check.mjs https://justjatin.thotahub.in`
+  on a stable connection.
+- **Next:** a real iPhone pass on CONTACT; a friend's laptop on CONTACT; one real send once he confirms the Gmail
+  verification.
+
 ## 2026-11-09 — Frame governor + phone layout pass. NOT deployed
 - **His note:** frame drops for users (worst on CONTACT) and "the phone layout needs alot of work".
 - **Measured** (headed Chromium, Metal, 1440×900 @2x, GPU time by forcing a 1px readback after each draw, probe
