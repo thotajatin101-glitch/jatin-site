@@ -640,6 +640,7 @@ into tweens.
     (scanlines, grille, glow, a fringe under 1px). JATIN big in the pink field top-right, above the beam (round 3, his box); DIRECT · SHOOT · CUT right of his head; BACK top-left like every page; The DepthFX vanishing point is the lens (`SECTION_WORLD`), so the streaks radiate out of the
     camera.
   - Small type uses a 1px glitch split; the 4px split doubled the letterforms.
+  - Phones: the bubble ends at or under 49vw (border-box, 46vw from 3vw); his face starts ~53vw (his note: "my face being cover").
   - Audited at 1440×900, 1440×700, 1280×800 and 375×812.
 - **Pixel-piece chains** (`ChainFX`, his ask from the same poster): chains
   built from the site's own pixel "puzzle pieces" (the stepped stickers on the

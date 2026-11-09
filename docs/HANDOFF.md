@@ -4,6 +4,13 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-09 — ABOUT bubble off his face on phones. NOT deployed
+- **His note** (iPhone screenshots): "my face being cover and main menu description having now space". The menu
+  shot was the pre-deploy build; live 6716cd0 already fits (still in `docs/process/stills/2026-11-09-about-bubble-face/`).
+- **Did:** phone `.cgBubble` is border-box, `left:3vw`, `width:min(46vw,200px)`, tighter padding: right edge ≤49vw,
+  his face starts ~53vw. Checked in WebKit at 393×657 and 375×560.
+- **Next:** deploy on his word; he should hard-refresh (or close the tab) on the phone, Chrome iOS caches the page.
+
 ## 2026-11-09 — Master design brief (justjatin design language)
 - **His ask:** the site "created my own design identity without realizing"; he wants it on every post, video edit
   and asset.
