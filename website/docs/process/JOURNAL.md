@@ -13,6 +13,12 @@ by piece and marked "Oct 2026".
 
 
 
+## 2026-11-10 (last) — the posts let go of their props
+
+Once the type sat right, he took the props out: the prints, the cursor, the TV. What's left is his world, his words
+and the chain, which now has to carry each frame by itself. It also had to stop wobbling. The old path was steered by
+hand at each joint, and the joints showed. Now it's one smooth curve laid through a few points, coming out of the
+light small and growing steadily toward you. On STOP SAFE it still snaps.
 ## 2026-11-10 (later still) — the plates speak like the menu tag
 
 The bold italic on the silver plates didn't sit right with him. He pointed at WHO I AM, the menu's own tag, so the

@@ -138,3 +138,22 @@ only by the plate's skew (−9°, as on the site), with padding in the tag's pro
 gone. The plate size is down to .052 of the width, since the tracking makes the run long.
 
 **Stills:** round 5 is `img/p*-round5.jpg`; round 6 is `img/p*.jpg`.
+
+## Round 7 — 2026-11-10 · no props, one smooth chain
+
+**His note, in his words:** "Alright nice now let's just remove the 3d assets like the photos and curser tv etc (keep
+chain ofc but the chain path is a bit wiggly need to it to have smooth curved path)".
+
+**Built:**
+- **Props removed:** the photo prints, the voxel cursor and the voxel CRT. Each post is now the world, the type and the
+  chain.
+- **`chainCurve(points,k0,k1,cell)`:** replaces the hand-tangent Hermite keys, which caused the wiggle because their
+  tangents didn't match the span lengths. It's a centripetal Catmull-Rom through 4–7 points, so it can't loop or cusp
+  inside a span. Link size grows geometrically with arc length along the WHOLE path (from .3 to 2.8), so the
+  perspective never jumps at a joint.
+- **First-pass fixes:** p2's top-right corner and p3's peak still turned too tight, so I spread the points round the
+  bends. p1's flying link sat on a pixel sticker, and p3's sticker sat on the chain; both moved.
+
+**Rule:** a chain path is a few well-spaced points on a smooth spline. Never hand-set tangents.
+
+**Stills:** round 6 is `img/p*-round6.jpg`; round 7 is `img/p*.jpg`.

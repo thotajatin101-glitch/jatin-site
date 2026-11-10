@@ -3,6 +3,12 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-10 — Content look round 7 (no props, smooth chain)
+- **His note:** remove the 3D props (photos, cursor, CRT); keep the chain on a smooth curved path.
+- **Did:** props out of p1–p3; new `chainCurve` (centripetal Catmull-Rom, link size by arc length) replaces the Hermite keys for the posts. Doc v7 (same URL); round 6 stills kept as `p*-round6.jpg`.
+- **Next:** his notes on R7; then the reels. The beige-computer swap is moot now (the CRT is gone).
+- **Watch out:** the reels' code still uses `chainLinks`/`voxels`; leave them until the reels round.
+
 ## 2026-11-10 — project moved to ~/Documents/jatin-site (his ask)
 - **Did:** moved the whole folder from ~/Downloads (same disk; Documents is not iCloud-synced). Claude memory copied to the new project key. Site checks pass from the new spot.
 - **Watch out:** older Claude sessions still point at ~/Downloads/jatin-site and won't find the files; start new sessions from ~/Documents/jatin-site. `~/Downloads/jatin-site.zip` is an old August copy, not this project.
