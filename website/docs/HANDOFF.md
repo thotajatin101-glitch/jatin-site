@@ -3,6 +3,10 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-10 — project moved to ~/Documents/jatin-site (his ask)
+- **Did:** moved the whole folder from ~/Downloads (same disk; Documents is not iCloud-synced). Claude memory copied to the new project key. Site checks pass from the new spot.
+- **Watch out:** older Claude sessions still point at ~/Downloads/jatin-site and won't find the files; start new sessions from ~/Documents/jatin-site. `~/Downloads/jatin-site.zip` is an old August copy, not this project.
+
 ## 2026-11-10 — folder split: website/ and personal-brand/ (his ask)
 - **Did:** `site/ docs/ tests/ worker/` → `website/`. Brand work → `personal-brand/`: `kit/brief` (was docs/brand), `kit/studio` (was docs/studio), `kit/concepts/` (asset-kit, content-look), plus empty `posts/` and `videos/` (one `YYYY-MM-DD-name/` per piece; video masters gitignored). Fixed: Pages workflow (`website/site`, `website/tests/check.mjs`), `.claude/serve.js`, snap `--rev` (reads `website/site/` or the old layouts), studio renderer + its font/photo paths, READMEs. CLAUDE.md has a "Folder layout" section: every path in it is relative to `website/`.
 - **Checked:** `node website/tests/check.mjs` all pass; the studio renders all 10 drafts (p1–p3, r1–r7) from the new spot.
