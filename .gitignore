@@ -10,3 +10,9 @@ node_modules/
 
 # cf build output and cache
 .cloudflare/
+
+# brand video masters/renders exceed GitHub's 100MB limit
+personal-brand/videos/**/*.mov
+personal-brand/videos/**/*.mp4
+personal-brand/videos/**/*.mxf
+personal-brand/videos/**/*.braw

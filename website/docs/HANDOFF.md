@@ -3,6 +3,12 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-10 — folder split: website/ and personal-brand/ (his ask)
+- **Did:** `site/ docs/ tests/ worker/` → `website/`. Brand work → `personal-brand/`: `kit/brief` (was docs/brand), `kit/studio` (was docs/studio), `kit/concepts/` (asset-kit, content-look), plus empty `posts/` and `videos/` (one `YYYY-MM-DD-name/` per piece; video masters gitignored). Fixed: Pages workflow (`website/site`, `website/tests/check.mjs`), `.claude/serve.js`, snap `--rev` (reads `website/site/` or the old layouts), studio renderer + its font/photo paths, READMEs. CLAUDE.md has a "Folder layout" section: every path in it is relative to `website/`.
+- **Checked:** `node website/tests/check.mjs` all pass; the studio renders all 10 drafts (p1–p3, r1–r7) from the new spot.
+- **Not pushed.** The next push is the first deploy from `website/site`; watch that Pages run.
+- **Watch out:** this log stays the one hand-off for both halves. Old entries below use the old paths. `.claude/launch.json` is still someone else's uncommitted edit (untouched).
+
 ## 2026-11-10 — Content look round 6 (WHO I AM type on the plates)
 - **His note:** use the WHO I AM font; the bold didn't look right.
 - **Did:** `silverPlate` uses #wedgeSub's type; faux bold removed; doc v6 (same URL), round 5 stills kept.

@@ -28,6 +28,26 @@ He gives feedback the way an editor gives notes ("too slow", "hits too soft",
 Opinionated creative input over neutral lists of options — pick a direction and
 defend it rather than offering him five choices.
 
+## Folder layout (his ask, 2026-11-10)
+
+The folder is split in two (his words: "divided between website, Personal
+brand and inside personal brand it will be videos and posts"):
+
+- **`website/`**: the portfolio site: `site/` (deploy folder), `docs/`,
+  `tests/`, `worker/`. **Every path in the rest of this file is relative to
+  `website/`**: `site/index.html` means `website/site/index.html`,
+  `docs/HANDOFF.md` means `website/docs/HANDOFF.md`, and `node docs/tools/…` /
+  `node tests/…` run from inside `website/`. `docs/HANDOFF.md` stays the one
+  hand-off log for both halves.
+- **`personal-brand/`**: justjatin (never BTN): `posts/` and `videos/` (one
+  `YYYY-MM-DD-name/` folder per finished piece; video masters are
+  gitignored), and `kit/`: `brief/` (the design brief), `studio/` (the post/reel
+  draft renderer, which borrows `website/tests/browsers`' Playwright and reads his
+  photos from `website/site/work/`) and `concepts/` (asset-kit, content-look).
+- At the top: `CLAUDE.md`, `README.md`, the font master
+  `CyberwayRiders-lg97d.ttf` (shared by both), `.local/` (gitignored raw
+  material), `.claude/`, `.github/` (Pages deploys `website/site`).
+
 ## What this is
 
 A single-page personal portfolio. It is not a scrolling website — it behaves

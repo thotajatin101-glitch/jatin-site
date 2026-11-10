@@ -1,7 +1,14 @@
 # jatin-site
 
-Personal portfolio for Jatin — Beyond the Noise Studio.
-Single self-contained page. Open `site/index.html` in a browser. That's it.
+Jatin's work, in two halves:
+
+| Folder | What's in it |
+|---|---|
+| `website/` | The portfolio site: `site/` (the only folder that goes live), `docs/`, `tests/`, `worker/` |
+| `personal-brand/` | justjatin: `posts/`, `videos/`, and `kit/` (the design brief, the post/reel renderer, the look concepts) |
+
+Shared at the top: `CLAUDE.md`, `CyberwayRiders-lg97d.ttf` (the font master), `.local/` (raw material, gitignored).
+The site is a single self-contained page. Open `website/site/index.html` in a browser. That's it.
 
 ## Picking this up in Claude Code
 
@@ -17,19 +24,19 @@ project.
 
 Good first message to give it:
 
-> Read CLAUDE.md and the images in docs/site/reference/, then open site/index.html and tell me
+> Read CLAUDE.md and the images in website/docs/site/reference/, then open website/site/index.html and tell me
 > what you'd tighten first.
 
 ## Files
 
 | File | What it is |
 |---|---|
-| `site/index.html` | The whole site. HTML + CSS + JS in one file, no dependencies. |
+| `website/site/index.html` | The whole site. HTML + CSS + JS in one file, no dependencies. |
 | `CyberwayRiders-lg97d.ttf` | The display font. Already embedded as base64 inside `index.html` — this is the master copy, keep it. |
-| `site/jatin-cutout.png` | Background-removed B&W portrait used in the ABOUT collage. |
-| `docs/tools/cutout.swift` | Regenerates that cutout from any photo. Build and run: `swiftc -O docs/tools/cutout.swift -o /tmp/cutout && /tmp/cutout photo.jpg out.png` — then desaturate with ffmpeg (see below). |
+| `website/site/jatin-cutout.png` | Background-removed B&W portrait used in the ABOUT collage. |
+| `website/docs/tools/cutout.swift` | Regenerates that cutout from any photo. Build and run: `swiftc -O website/docs/tools/cutout.swift -o /tmp/cutout && /tmp/cutout photo.jpg out.png` — then desaturate with ffmpeg (see below). |
 | `CLAUDE.md` | Project brief. Auto-loaded by Claude Code each session. |
-| `docs/site/reference/` | The visual references the design is built from. Raw recordings and screenshots live in `.local/reference/` (gitignored). |
+| `website/docs/site/reference/` | The visual references the design is built from. Raw recordings and screenshots live in `.local/reference/` (gitignored). |
 
 ## Reference images
 
@@ -56,8 +63,8 @@ Source screen recordings aren't included here (large files). Add them to
   polygon inside `#wedgeTri`.
 - The halftone is a fine ink screen — `--dot` (size), `--dot-angle`, and
   `--dotgrid` (dot weight) at the top of the stylesheet drive it everywhere.
-- To swap the ABOUT portrait: run `docs/tools/cutout.swift` on a new photo, then
-  `ffmpeg -i cut.png -vf "crop=…,format=rgba,hue=s=0,eq=contrast=1.42,scale=880:-1" site/jatin-cutout.png`.
+- To swap the ABOUT portrait: run `website/docs/tools/cutout.swift` on a new photo, then
+  `ffmpeg -i cut.png -vf "crop=…,format=rgba,hue=s=0,eq=contrast=1.42,scale=880:-1" website/site/jatin-cutout.png`.
   The sticker outline is CSS (`#cutout`'s stacked drop-shadows), so it adapts
   to whatever silhouette you give it — don't bake an outline into the PNG.
 - The wedge heading sizes itself to fill the space left of the screen edge
@@ -66,7 +73,7 @@ Source screen recordings aren't included here (large files). Add them to
   font size.
 - The intro is the `IntroFX` canvas engine in the script block; its frame map
   is in the comment at the top. Add `?frame=N` to the URL to freeze it on any
-  frame, e.g. `site/index.html?frame=40` for the first beat of the hold.
+  frame, e.g. `website/site/index.html?frame=40` for the first beat of the hold.
 - Screen transitions are `TransFX` (trace → flash → slam → retract, 520ms). Run
   `TransFX.peek(400)` in the browser console to freeze one at 400ms, and
   `TransFX.hide()` to clear it.

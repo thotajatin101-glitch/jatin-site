@@ -111,7 +111,7 @@ function source() {
   }
   const sha = git('rev-parse', '--short', args.rev);
   const files = git('ls-tree', '-r', '--name-only', sha).split('\n');
-  const dir = files.includes('site/index.html') ? 'site/' : '';   /* before the site/ move it lived at the root */
+  const dir = files.includes('website/site/index.html') ? 'website/site/' : files.includes('site/index.html') ? 'site/' : '';   /* site/ moved under website/ on 2026-11-10; before site/ it lived at the root */
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'snap-rev-'));
   for (const f of files) {
     const rel = f.slice(dir.length);

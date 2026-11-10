@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: node tests/check.mjs
+      - run: node website/tests/check.mjs
 
   deploy:
     needs: test
@@ -35,7 +35,7 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: website/site
       - id: deployment
         uses: actions/deploy-pages@v4
         with:

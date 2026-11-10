@@ -1,7 +1,7 @@
 # JATIN KIT — asset kit for posts and edits
 
 Preview: https://claude.ai/artifact/PLPAHemou7FfEHtKmmejhG (private). Source: `index.html` here (Cyberway embedded,
-images in `img/`, crops of his own photos from `site/work/`).
+images in `img/`, crops of his own photos from `website/site/work/`).
 
 ## Round 1 — 2026-11-09
 

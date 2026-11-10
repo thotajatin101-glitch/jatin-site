@@ -4,7 +4,7 @@
 <!-- Dev-only still renderer for posts and reel frames. Never ships. three.js r128 from cdnjs. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,500;0,600;0,700;1,700&family=VT323&display=swap">
 <style>
-@font-face{font-family:"Cyberway Riders";src:url(../../CyberwayRiders-lg97d.ttf) format("truetype")}
+@font-face{font-family:"Cyberway Riders";src:url(../../../CyberwayRiders-lg97d.ttf) format("truetype")}
 html,body{margin:0;background:#111}
 canvas{display:block}
 </style>
@@ -443,7 +443,7 @@ DRAFTS.p1=async()=>{ // STOP editing SAFE — pink world; the chain comes out of
     streaks:[[-2.6,900,9],[-.35,800,6],[.55,1000,11],[2.25,700,5]],ink:[[-1.25,.06],[1.9,.05]],
     stars:[[110,1180,46,PAL.acid],[1000,1240,34,PAL.cyan],[60,560,30,PAL.pink]],sparkles:[[960,130,40],[150,330,26],[1010,900,22]],
     pixels:[[110,860,PAL.cyan,0,.3],[1000,1060,PAL.acid,1,-.2]],scribbles:[[200,1050,'#e8ff00'],[860,1180,'#00f0d8']]});
-  const A=await loadImg('../../site/work/flux-02/20.jpg');
+  const A=await loadImg('../../../website/site/work/flux-02/20.jpg');
   const pr=print(A,6.0,.05,.3);const [px,pz]=at(700,1030);pr.rotation.set(-Math.PI/2,0,.16);pr.position.set(px,.14,pz);SCN.add(pr);
   // the chain: out of the light, round the left, then across the print toward the lens; it breaks over the print
   const pal=chPal(PAL.acid),links=chainLinks([[790,560,-420,140,.32],[300,760,-60,420,.62],[420,1150,520,260,1.05],[1250,1430,700,200,2.1]],6);
@@ -465,7 +465,7 @@ DRAFTS.p2=async()=>{ // FRAMES i almost DELETED — cyan world; the stack sits i
     streaks:[[-2.9,800,7],[-.6,900,9],[.4,950,10],[2.5,800,6]],ink:[[-1.7,.05],[1.25,.06]],
     stars:[[980,330,40,PAL.pink],[90,1240,34,PAL.acid],[1010,1010,26,PAL.pink]],sparkles:[[90,420,34],[1000,560,22],[300,320,18]],
     pixels:[[1000,1180,PAL.pink,0,.2],[80,860,PAL.acid,1,-.3]],scribbles:[[140,980,'#ff2e88'],[880,420,'#e8ff00']]});
-  const ims=await Promise.all(['../../site/work/flux-01/03.jpg','../../site/work/outstation/04.jpg','../../site/work/flux-03/01.jpg','../../site/work/flux-02/16.jpg'].map(loadImg));
+  const ims=await Promise.all(['../../../website/site/work/flux-01/03.jpg','../../../website/site/work/outstation/04.jpg','../../../website/site/work/flux-03/01.jpg','../../../website/site/work/flux-02/16.jpg'].map(loadImg));
   const pose=[[400,560,-.32],[730,610,.22],[520,700,-.06],[640,560,.12]];
   ims.forEach((im,i)=>{const p=print(im,i===2?6.2:4.4,.05,.28+i*.05,i===2?'#0127  keep?':null);const [px,py,r]=pose[i],L=.25+i*.15,[wx,wz]=at(px,py,L);p.rotation.set(-Math.PI/2,0,r);p.position.set(wx,L,wz);SCN.add(p)});
   const pal=chPal(PAL.pink),links=chainLinks([[560,610,420,-200,.3],[930,520,0,420,.55],[880,1000,-480,160,.85],[200,1060,-200,360,1.3],[-150,1500,-500,300,2.2]],6);
@@ -507,7 +507,7 @@ DRAFTS.p3=async()=>{ // CUT IT in one NIGHT — acid world; the light comes out 
   cubes.forEach(([i,j,k],n)=>{M.makeTranslation((i-nx/2+.5)*cell,(ny/2-j-.5)*cell,(k-nz/2+.5)*cell);im.setMatrixAt(n,M);
     const base=j>=ny-4&&k>=nz-1?(i>nx-8&&i<nx-3&&(i%2)?'#ff2e88':(i<9&&i>2&&j===ny-3?'#000':'#22242e')):'#1a1b22';C.set(bay(i,j+k)>.62&&base==='#1a1b22'?'#262833':base).convertSRGBToLinear();im.setColorAt(n,C)});
   im.castShadow=true;im.receiveShadow=true;g.add(im);
-  const scr=await loadImg('../../site/work/flux-edits/02.jpg');
+  const scr=await loadImg('../../../website/site/work/flux-edits/02.jpg');
   const sc=mk(1024,780),sx=sc.getContext('2d');cover(sx,scr,0,0,1024,780);
   sx.fillStyle='rgba(0,0,0,.18)';for(let y=0;y<780;y+=4)sx.fillRect(0,y,1024,1);
   sx.fillStyle=PAL.pink;sx.fillRect(0,0,1024,46);sx.fillStyle='#000';sx.font='36px VT323';sx.fillText('JATINSPACE · timeline_final_v9.drp',14,32);
@@ -538,7 +538,7 @@ async function talkFrame(bgSrc,caption,acc,bgKind){
     const pr=await propRender(async()=>{const c=voxelChain(9,RAMP.acid,.2,{broken:4});c.rotation.set(.3,.5,-.5);SCN.add(c);const s=voxels(MASK.star(),3,rampFn(RAMP.pink,1.6,4),.2);s.position.set(2.6,2.4,1);s.rotation.set(.3,-.5,.2);SCN.add(s)},RW,RW,[0,0,16],acc);
     x.drawImage(pr,0,RH*.08)}
   else{const im=await loadImg(bgSrc);cover(x,im,0,0,RW,RH)}
-  const cut=await loadImg('../../site/jatin-cutout.png');
+  const cut=await loadImg('../../../website/site/jatin-cutout.png');
   const st=sticker(cut,10,acc);const w=RW*.82,h=w*st.height/st.width;x.drawImage(st,(RW-w)/2+20,RH-h+40,w,h);
   // caption: same spot every frame, accent plate, ink mono
   x.font='700 54px "IBM Plex Mono"';const tw=x.measureText(caption).width;
@@ -546,15 +546,15 @@ async function talkFrame(bgSrc,caption,acc,bgKind){
   splitText(x,'JATIN',110,90,46,-.06,2);x.font='600 22px "IBM Plex Mono"';x.fillStyle='#fff';x.textAlign='right';x.fillText('HOW I CUT · EP 03',RW-40,96);x.textAlign='left';
   grain(x,RW,RH,10);return o;
 }
-DRAFTS.r1=()=>talkFrame('../../site/work/flux-01/05.jpg','the first cut',PAL.cyan);
+DRAFTS.r1=()=>talkFrame('../../../website/site/work/flux-01/05.jpg','the first cut',PAL.cyan);
 DRAFTS.r2=()=>talkFrame(null,'is always too long',PAL.pink,'shards');
 DRAFTS.r3=()=>talkFrame(null,'so break it',PAL.acid,'props');
 // high-effort frames
 DRAFTS.r4=async()=>{ // huge word behind him, slices
-  const o=mk(RW,RH),x=o.getContext('2d');const bg=await loadImg('../../site/work/outstation/01.jpg');cover(x,bg,0,0,RW,RH,.35);
+  const o=mk(RW,RH),x=o.getContext('2d');const bg=await loadImg('../../../website/site/work/outstation/01.jpg');cover(x,bg,0,0,RW,RH,.35);
   x.fillStyle='rgba(0,0,0,.25)';x.fillRect(0,0,RW,RH);
   splitText(x,'BREAK',RW*.5,RH*.36,250,-.06,12);
-  const cut=await loadImg('../../site/jatin-cutout.png');const st=sticker(cut,9,PAL.cyan);const w=RW*1.02,h=w*st.height/st.width;x.drawImage(st,(RW-w)/2+30,RH-h+30,w,h);
+  const cut=await loadImg('../../../website/site/jatin-cutout.png');const st=sticker(cut,9,PAL.cyan);const w=RW*1.02,h=w*st.height/st.width;x.drawImage(st,(RW-w)/2+30,RH-h+30,w,h);
   // the last letter in front of him
   x.save();x.beginPath();x.rect(RW*.66,0,RW,RH*.5);x.clip();splitText(x,'BREAK',RW*.5,RH*.36,250,-.06,12);x.restore();
   ransom(x,'IT BEFORE IT',RW*.5,RH*.13,74,7);ransom(x,'BREAKS YOU',RW*.5,RH*.2,92,9);
@@ -562,7 +562,7 @@ DRAFTS.r4=async()=>{ // huge word behind him, slices
 };
 DRAFTS.r5=async()=>{ // roto silhouette in flat pink over the shard world
   const o=mk(RW,RH),x=o.getContext('2d');shardField(x,RW,RH,RW*.3,RH*.22,[PAL.cyan,'',PAL.acid,'','',PAL.mag,'',''],5);
-  const cut=await loadImg('../../site/jatin-cutout.png');
+  const cut=await loadImg('../../../website/site/jatin-cutout.png');
   const sil=sticker(cut,10,PAL.acid,{fill:PAL.pink});const w=RW*.95,h=w*sil.height/sil.width;x.drawImage(sil,(RW-w)/2,RH-h,w,h);
   x.save();x.globalCompositeOperation='source-atop';x.restore();
   x.fillStyle='#000';x.font='italic 700 46px "IBM Plex Mono"';
@@ -587,12 +587,12 @@ DRAFTS.r6=async()=>{ // JATINSPACE window on the field + pixel cursor
 DRAFTS.r7=async()=>{ // collage page: black print, framed photos, chained together, stickers
   const o=mk(RW,RH),x=o.getContext('2d');x.fillStyle='#060608';x.fillRect(0,0,RW,RH);x.fillStyle=dotPattern(x,7,.0);
   x.fillStyle='rgba(255,255,255,.05)';for(let i=0;i<RW;i+=60)x.fillRect(i,0,2,RH);for(let j=0;j<RH;j+=60)x.fillRect(0,j,RW,2);
-  const ims=await Promise.all(['../../site/work/flux-02/16.jpg','../../site/work/flux-03/01.jpg','../../site/work/outstation/04.jpg'].map(loadImg));
+  const ims=await Promise.all(['../../../website/site/work/flux-02/16.jpg','../../../website/site/work/flux-03/01.jpg','../../../website/site/work/outstation/04.jpg'].map(loadImg));
   const frames=[[60,200,620,400,-.03,PAL.cyan],[430,700,590,380,.04,PAL.pink],[80,1180,640,420,-.02,PAL.acid]];
   const pr=await propRender(async()=>{const c=voxelChain(12,RAMP.chrome,.18);c.rotation.set(.2,.3,-1.1);SCN.add(c)},800,1400,[0,0,15],PAL.pink);
   x.drawImage(pr,140,260,700,1225);
   frames.forEach(([fx,fy,fw,fh,r,c],i)=>{x.save();x.translate(fx+fw/2,fy+fh/2);x.rotate(r);x.fillStyle='#000';x.fillRect(-fw/2+14,-fh/2+16,fw,fh);x.fillStyle=c;x.fillRect(-fw/2-10,-fh/2-10,fw+20,fh+20);cover(x,ims[i],-fw/2,-fh/2,fw,fh);x.lineWidth=5;x.strokeStyle='#000';x.strokeRect(-fw/2-10,-fh/2-10,fw+20,fh+20);x.restore()});
-  const cut=await loadImg('../../site/jatin-cutout.png');const st=sticker(cut,9,PAL.acid);const w=RW*.62,h=w*st.height/st.width;x.drawImage(st,RW-w+60,RH-h,w,h);
+  const cut=await loadImg('../../../website/site/jatin-cutout.png');const st=sticker(cut,9,PAL.acid);const w=RW*.62,h=w*st.height/st.width;x.drawImage(st,RW-w+60,RH-h,w,h);
   star(x,880,190,70,PAL.acid);star(x,120,1700,54,PAL.pink);star(x,980,1060,40,PAL.cyan);
   ransom(x,'3 SHOOTS',RW*.36,RH*.08,96,5);ransom(x,'ONE THREAD',RW*.6,RH*.55,84,6);
   grain(x,RW,RH,10);return o;

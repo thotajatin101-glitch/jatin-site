@@ -1,7 +1,7 @@
 # Content look — posts and reels in his language
 
-Drafts: https://claude.ai/artifact/M92mq2HztYmj2Qgp5dCTbq (private). Renderer: `docs/studio/` (dev-only, never
-ships; `node docs/studio/render.mjs <outDir> p1 p2 p3 r1 … r7`, uses tests/browsers' pinned Playwright + three.js r128
+Drafts: https://claude.ai/artifact/M92mq2HztYmj2Qgp5dCTbq (private). Renderer: `personal-brand/kit/studio/` (dev-only, never
+ships; `node personal-brand/kit/studio/render.mjs <outDir> p1 p2 p3 r1 … r7`, uses website/tests/browsers' pinned Playwright + three.js r128
 from cdnjs).
 
 ## Round 1 — 2026-11-09
