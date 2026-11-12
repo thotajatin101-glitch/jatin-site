@@ -3,6 +3,12 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-12 — identity video, round 2: taste, not branding (his note)
+- **His note:** shift the context "from branding to building a taste and an identity or style because branding has become something that takes the meaning of stuff".
+- **Did:** rewrote `personal-brand/videos/2026-11-12-identity/script.md`. Title "I never designed my style. I built my taste." Three words fixed: taste = input, style = output, identity = others noticing. "Brand" appears once (scene 2, as what swallowed the meaning); scene 5's line is "taste isn't liking more things, it's knowing what to cut". Lesson saved to memory (`taste-not-branding`).
+- **Next:** same `[YOU: …]` gaps as round 1.
+
+---
 ## 2026-11-12 — script for the "identity" video (his ask)
 - **His brief:** context = "made my own brand identity without trying … consuming to your heart's content is the key". One combined YouTube video (story + take) and a short, heavily edited gist cut. Him on camera. Influences he named: Persona 5 Royal, Cyberpunk 2077, Edgerunners, plus smaller things.
 - **Did:** `personal-brand/videos/2026-11-12-identity/script.md`: hook, 7 scenes (~4:30), the 45–55s short cut as an edit table, and open items. The spine, found in the journal: identity = what he cut (vignette, grunge, scanlines, idle glitch), not what he added.

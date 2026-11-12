@@ -1,38 +1,49 @@
-# "I never designed my brand identity" — script, round 1 (2026-11-12)
+# "I never designed my style. I built my taste." — script, round 2 (2026-11-12)
 
-Context line (his): *Made my own brand identity without trying to make it. There is no framework or steps to making
-it; consuming to your heart's content is the key to creating your own identity.*
+Context line (his, round 1): *Made my own brand identity without trying to make it. There is no framework or steps to
+making it; consuming to your heart's content is the key to creating your own identity.*
 
-Plan (his call): ONE YouTube video that combines A (the story) and B (the take), plus a short gist cut for reels
-that is heavy on editing. Him on camera for both.
+**Round 2 shift (his note):** move the context from branding to **building a taste, an identity, a style**, "because
+branding has become something that takes the meaning of stuff." So the word *brand* is out of the video. It only
+appears once, as the thing that swallowed the meaning (scene 2).
+
+The three words, used the same way everywhere:
+- **Taste** is the input: what you consume, what stops you, what you keep.
+- **Style** is the output: what shows up when you make things.
+- **Identity** is other people noticing the style.
+
+Plan (his call): ONE YouTube video that combines the story and the take, plus a short gist cut for reels that is heavy
+on editing. Him on camera for both.
 
 Anything in **[YOU: …]** is a fact only he knows. I did not write his experiences for him; replace or cut those lines.
 
 ---
 
 ## Working titles (pick one)
-1. **I never designed my brand identity** (my pick: plain, a little contrarian, true)
-2. Nobody can teach you a personal brand. Here's what actually builds one.
+1. **I never designed my style. I built my taste.** (my pick: it names the shift in one line)
+2. Nobody can teach you taste. Here's how mine got built.
 
-Thumbnail idea: his face + the site's menu, one word in the Cyberway font: NO FRAMEWORK.
+Thumbnail idea: his face + the site's menu, one word in the Cyberway font: TASTE.
 
 ---
 
-## YOUTUBE CUT (about 4:30 spoken)
+## YOUTUBE CUT (about 4:40 spoken)
 
 ### 1. Hook (0:00–0:20)
 *On camera. Quick cuts of the site, posts, intro slam under his voice.*
 
 "Everything you're looking at. The colours, the glitch, the menu, the chains. I never sat down and designed any of it.
 [YOU: true? "I never made a mood board." You did collect reference stills, so only say it if you mean the formal kind.]
-I never wrote brand pillars. And somehow I ended up with an identity. I want to show you how, because it's not what
+I never wrote a style guide. And somehow it ended up looking like me. I want to show you how, because it's not what
 you've been told."
 
-### 2. What you've been told (0:20–0:50)
-"Search how to find your style and you get steps. Pick three words. Build a mood board. Define your audience. I get it.
-A framework feels safe. But I don't think a worksheet has ever produced a style."
+### 2. What you've been told (0:20–1:00)
+"Search how to find your style and you get steps. Pick three words. Build a mood board. Define your audience. And
+somewhere along the way, branding swallowed the whole thing. It became logos and colour palettes and posting
+schedules. What I'm talking about is older and smaller than that. It's taste. I don't think a worksheet has ever
+produced one."
 
-### 3. What I actually did (0:50–1:50)
+### 3. What I actually did (1:00–2:00)
 *B-roll: his reference stills (`website/docs/site/reference/04-persona-menu.jpg`, `05-persona-submenu.jpg`), the
 Confidant intro recording, short clips only.*
 
@@ -41,7 +52,7 @@ this year. [YOU: one specific thing from each that made you stop. A menu, a scen
 smaller things around them. A title intro. [YOU: one or two of the small ones.] A frame of Spider-Verse. I wasn't
 studying any of it. I just kept going back."
 
-### 4. The moment it showed up (1:50–2:50)
+### 4. The moment it showed up (2:00–3:00)
 *Split screen: Persona menu on the left, his menu on the right. Then Spider-Verse frame next to his depth grid.*
 
 "Then I made my own logo animation. Then I wanted a website. And when I described it, I never said make it look like
@@ -49,25 +60,25 @@ Persona. I said: one screen, you pick an item, it slams open. That's the menu. T
 and never thought about. Same with depth. I wanted it to feel like Spider-Verse, so there's one vanishing point and
 light streaks coming off it. I didn't copy a look. I'd soaked up a feeling and I was trying to get it back."
 
-### 5. The part nobody tells you (2:50–3:40)
+### 5. What taste actually is (3:00–3:50)
 *Cut list on screen as hard-cut text, one X per beat, each with the chromatic hit.*
 
-"But when I went back through the whole build, I noticed something. The identity isn't in what I added. It's in what I
-said no to. I cut the vignette, because the logo video stays bright to the edges. I cut the grunge. I cut the
-scanlines. I cut the idle glitch, because it looked, in my words, like a problem with a TV. Every one of those nos is
-why it looks like me and not like the games I took it from. Consuming gives you the pile. Cutting gives you the
-identity."
+"But when I went back through the whole build, I noticed something. Taste isn't liking more things. It's knowing what
+to cut. I cut the vignette, because the logo video stays bright to the edges. I cut the grunge. I cut the scanlines. I
+cut the idle glitch, because it looked, in my words, like a problem with a TV. Every one of those nos is why it looks
+like me and not like the games I took it from. Consuming builds your taste. Cutting turns it into a style."
 
-### 6. So what do you do (3:40–4:20)
+### 6. So what do you do (3:50–4:30)
 "So, no framework. But here's what I'd actually do.
 One. Consume without guilt, and go outside your field. I edit video and my biggest influence is games.
-Two. Keep a pile of whatever makes you stop. Not what's good. What stops you.
-Three. Make things before you understand them. The pattern shows up after.
+Two. Keep a pile of whatever makes you stop. Not what's good. What stops you. That's your taste, before you can
+explain it.
+Three. Make things before you understand them. The style shows up after.
 Four. Cut what isn't you. That's the hard part."
 
-### 7. Close (4:20–4:40)
-"Your identity is the pattern that's left in the pile. So go consume to your heart's content. Then pay attention to
-what you keep."
+### 7. Close (4:30–4:50)
+"Your taste is the pile. Your style is what's left when you cut. And identity is just other people noticing. So go
+consume to your heart's content. Then pay attention to what you keep."
 *Optional, low-key: site address on screen, justjatin.thotahub.in. No "link in bio" energy.*
 
 ---
@@ -79,14 +90,14 @@ cutaways cover the rest.
 
 | Time | Line | Edit |
 |---|---|---|
-| 0:00 | "I never designed my brand identity." | Hard cut, the intro's snap frame on the last word |
-| 0:03 | "No mood board. No pillars. No framework." | Three words slam as type, one per hit (**check the mood-board line, see above**) |
-| 0:07 | "I just consumed. Persona 5 Royal. Cyberpunk. Edgerunners." | Three reference flashes, each held 4 frames, split on each |
-| 0:15 | "Then I built my menu, and it was Persona's. Not copied. Soaked up." | Split screen, hard wipe |
-| 0:25 | "Here's the part nobody tells you." | Beat of black, then him |
-| 0:28 | "Identity isn't what you add. It's what you cut." | Fast list: vignette ✕ grunge ✕ scanlines ✕ idle glitch ✕, one hit per ✕ |
-| 0:40 | "Consume to your heart's content. Then notice what you keep." | Back to him, close and still |
-| 0:46 | end card | Site address, held 1s |
+| 0:00 | "I never designed my style. I built my taste." | Hard cut, the intro's snap frame on the last word |
+| 0:04 | "No style guide. No mood board. No framework." | Three words slam as type, one per hit (**check the mood-board line, see above**) |
+| 0:08 | "I just consumed. Persona 5 Royal. Cyberpunk. Edgerunners." | Three reference flashes, each held 4 frames, split on each |
+| 0:16 | "Then I built my menu, and it was Persona's. Not copied. Soaked up." | Split screen, hard wipe |
+| 0:26 | "Here's the part nobody tells you." | Beat of black, then him |
+| 0:29 | "Taste isn't liking more things. It's knowing what to cut." | Fast list: vignette ✕ grunge ✕ scanlines ✕ idle glitch ✕, one hit per ✕ |
+| 0:41 | "Consume to your heart's content. Then notice what you keep." | Back to him, close and still |
+| 0:47 | end card | Site address, held 1s |
 
 ---
 
@@ -97,6 +108,8 @@ cutaways cover the rest.
    Cyberway Riders font could be that influence, but only he can say. Give me the moment and I'll write it in.
 2. **Game footage.** Long clips of Persona or Cyberpunk on YouTube risk a copyright claim. Use stills and
    short clips with his commentary over them, or his own recreation: the site already rebuilds the menu.
-3. **"Without trying."** The honest line is *without trying to make an identity*, not *without trying*: the build took
+3. **"Without trying."** The honest line is *without trying to build a style*, not *without trying*: the build took
    dozens of rounds. Scene 5 turns that into the strongest part of the video, so keep the wording.
-4. **Length.** 4:30 is a first pass for a first YouTube video. If it feels long on camera, scene 2 is the first cut.
+4. **Discovery.** Searchers type "personal brand", not "taste". Keeping the word out of the video is his call and the
+   right one for the idea. If he wants to be found, "personal brand" can sit in the description and tags only.
+5. **Length.** 4:40 is a first pass for a first YouTube video. If it feels long on camera, scene 2 is the first cut.
