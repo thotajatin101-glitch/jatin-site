@@ -3,6 +3,52 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-12 — script for the "identity" video (his ask)
+- **His brief:** context = "made my own brand identity without trying … consuming to your heart's content is the key". One combined YouTube video (story + take) and a short, heavily edited gist cut. Him on camera. Influences he named: Persona 5 Royal, Cyberpunk 2077, Edgerunners, plus smaller things.
+- **Did:** `personal-brand/videos/2026-11-12-identity/script.md`: hook, 7 scenes (~4:30), the 45–55s short cut as an edit table, and open items. The spine, found in the journal: identity = what he cut (vignette, grunge, scanlines, idle glitch), not what he added.
+- **Next:** his answers to the `[YOU: …]` gaps (the Cyberpunk / Edgerunners moment, small influences, mood-board line), then round 2. Optional: I build the short's on-screen graphics (cut list, split screens) in the site's look; he records and edits in Resolve.
+- **Watch out:** the site's docs name Persona, Spider-Verse and his logo, not Cyberpunk/Edgerunners; I did not invent that link. No game footage beyond short clips (copyright).
+
+## 2026-11-11 — Site intro video, round 1 (first cut rendered)
+- **His brief:** a 3D world-building intro video: JATIN chained, the cursor clicks, the snap; then objects floating with an
+  immersive camera like his reference; a black hole; "visit the site" in his tone. Posts are parked ("keep this stuff aside").
+- **Did:** `personal-brand/kit/studio/video/` (`render-video.mjs` + `intro-video.js`): renders from the REAL site with
+  export hooks patched in at serve time (site files untouched), so the computer, phone, handycam, intro, chain and cursor
+  are the site's own. 18s first cut → `personal-brand/videos/2026-11-11-site-intro/site-intro-r1.mp4` (gitignored, 127MB);
+  web copy + 9 key frames + README in `personal-brand/kit/concepts/2026-11-11-site-intro-video/`.
+- **Round 2 (same day):** the cursor is a 3D slab entering from under the frame and tipping upright (his second reference); `site-intro-r2.mp4`. He is giving notes one beat at a time, cursor first.
+- **Round 3 (11-12):** cursor in true perspective; blow-up violent then slow motion (`sim`/`burst`); computer, phone, skill card, handycam enter past the lens one by one into the black hole (`HERO`); the card is photographed from the real site in a pre-pass. `site-intro-r3.mp4`, 17s.
+- **Next:** his notes. Known gaps: no sound, camera smoother than his reference, name small in the opening (phone
+  layout), skill card not in the world.
+- **Watch out:** the hooks find each FX by its `const XFX=(()=>{` line and its first 2-space `return {`; if the site's
+  code moves, `render-video.mjs` throws "no …". It needs the real GPU (launches Chromium with ANGLE Metal). Nothing committed.
+
+---
+## 2026-11-11 — Content look round 10 (title only on the mixed-media background)
+- **His note:** no photo of him; not cluttered; "i just want the title but i love the mixed media background".
+- **Did:** p1–p3 stripped to title + background (see concept README round 10). Doc v10, same URL. Round 9 kept as stills and as `p1r9`–`p3r9`.
+- **Next:** his notes. Reels still wait on footage and his concept.
+- **Watch out:** `render.mjs` timed out once on p2 (180s) and passed on a re-run. Nothing committed.
+
+---
+## 2026-11-11 — Content look round 9 (maximalist collage posts)
+- **His note:** round 8 "sitting too much in the comfort zone"; wants maximalism, explored from his references (Broken
+  Frames above all), and every post's imagery relevant to its topic. Memory: posts-maximal-and-on-topic.
+- **Did:** a 2D collage toolkit in `kit/studio/studio.html` (ROUND 9 block) and p1–p3 rebuilt on it. Doc v9, same URL.
+  Round 8 stills kept; round 8 code kept as `p1r8`–`p3r8`.
+- **Next:** his notes. Photographed objects as stickers would lift it; p2 could take more layers. Reels still wait on footage of him.
+- **Watch out:** these posts no longer use three.js or `siteWorld`; the motion test `m1` still does. Nothing committed.
+
+---
+## 2026-11-10 — Content look round 8 (subject back, readable type, 3 layouts) + first reel motion test
+- **His asks:** improve the posts with his content idea (identity made without trying; consume first; no framework);
+  make the reel tests; **he wants me to do the reel execution, he does concept and ideation** (memory: reels-execution-is-mine).
+- **Did:** p1–p3 rebuilt (see concept README round 8); `DRAFTS.m1` + `kit/studio/render-reel.mjs` → `m1-motion-test.mp4`
+  (7s). Doc v8, same URL. Round 7 stills kept. Also gave him a content plan in chat (FED → MADE format, 2 simple : 1 heavy reel).
+- **Next:** his notes on R8 and the test. Reels need footage of him (he is one still now). He is still deciding what he wants from reels.
+- **Watch out:** `paintType` marker defaults changed (track .2, rim .1): r1–r7 don't use them. Nothing committed.
+
+---
 ## 2026-11-10 — Content look round 7 (no props, smooth chain)
 - **His note:** remove the 3D props (photos, cursor, CRT); keep the chain on a smooth curved path.
 - **Did:** props out of p1–p3; new `chainCurve` (centripetal Catmull-Rom, link size by arc length) replaces the Hermite keys for the posts. Doc v7 (same URL); round 6 stills kept as `p*-round6.jpg`.
