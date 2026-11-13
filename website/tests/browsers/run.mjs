@@ -42,6 +42,26 @@ const CONFIGS = [
   ['galaxy-s24', chromium, devices['Galaxy S24']],
   ['ipad-pro-11', webkit, devices['iPad Pro 11']],
   ['ipad-mini', webkit, devices['iPad Mini']],
+  // wider sweep (2026-11-14, his ask: every browser modern computers and phones use)
+  ['edge-desktop', chromium, devices['Desktop Edge HiDPI']],
+  ['chrome-1366x768', chromium, { viewport: { width: 1366, height: 768 } }],
+  ['chrome-4k-2560x1440', chromium, { viewport: { width: 2560, height: 1440 } }],
+  ['safari-macbook-air-1470x956', webkit, desk(1470, 956)],
+  ['iphone-17', webkit, devices['iPhone 17']],
+  ['iphone-air', webkit, devices['iPhone Air']],
+  ['iphone-16e', webkit, devices['iPhone 16e']],
+  ['iphone-15', webkit, devices['iPhone 15']],
+  ['iphone-13-mini', webkit, devices['iPhone 13 Mini']],
+  ['iphone-11', webkit, devices['iPhone 11']],
+  ['pixel-10', chromium, devices['Pixel 10']],
+  ['pixel-10-pro-xl', chromium, devices['Pixel 10 Pro XL']],
+  ['pixel-7a', chromium, devices['Pixel 7a']],
+  ['galaxy-a55', chromium, devices['Galaxy A55']],
+  ['galaxy-z-flip-7', chromium, devices['Galaxy Z Flip 7']],
+  ['galaxy-z-fold-7', chromium, devices['Galaxy Z Fold 7']],
+  ['galaxy-tab-s9', chromium, devices['Galaxy Tab S9']],
+  ['ipad-gen-11', webkit, devices['iPad (gen 11)']],
+  ['ipad-pro-11-landscape', webkit, devices['iPad Pro 11 landscape']],
 ].filter(([n]) => !process.env.ONLY || process.env.ONLY.split(',').some((o) => n.includes(o)));
 
 const serve = () => serveSite('127.0.0.1');   // range-aware, like GitHub Pages: tests/serve.mjs
@@ -127,6 +147,28 @@ async function walk(name, engine, opts, base) {
     await tapOrClick('.osBack'); await page.waitForFunction(() => !document.querySelector('.osStage').classList.contains('inside'), null, { timeout: 4000 }); await sleep(500);
     await tapOrClick('.osBack');
     await page.waitForFunction(() => !MonitorFX.isOpen(), null, { timeout: 6000 }).catch(() => fail('BACK from the folders did not close the OS'));
+    // the rest of the site: menu, then ABOUT / SKILLS / CONTACT, each opened from its plate and left by BACK
+    await sleep(900);
+    r.secs = [];
+    for (const s of ['about', 'skills', 'contact']) {
+      await tapOrClick('.section.active .backBtn');
+      await page.waitForFunction(() => !document.querySelector('.section.active') && document.body.classList.contains('menu'), null, { timeout: 8000 });
+      await sleep(1500);
+      if (s === 'about') {
+        await shot('6-menu');
+        if (await overflow() > 0) fail(`menu overflows sideways by ${await overflow()}px`);
+        const cut = await page.$$eval('.mItem', (m) => m.filter((e) => e.scrollWidth > e.clientWidth + 1).map((e) => e.id));
+        if (cut.length) fail(`menu plates clip their label: ${cut.join()}`);
+      }
+      await tapOrClick('#m-' + s);
+      await page.waitForFunction((id) => document.getElementById('sec-' + id).classList.contains('active'), s, { timeout: 8000 });
+      await sleep(3200);                                       // the entrance plays out
+      await shot('7-' + s);
+      if (await overflow() > 0) fail(`${s.toUpperCase()} overflows sideways by ${await overflow()}px`);
+      const back = await page.locator('.section.active .backBtn').boundingBox();
+      if (!back || back.x < 0 || back.y < 0 || back.x + back.width > opts.viewport.width) fail(`${s.toUpperCase()}: BACK is off screen`);
+      r.secs.push(s);
+    }
   } catch (e) {
     fail(e.message.split('\n')[0]);
     await shot('error');
@@ -206,6 +248,7 @@ for (const [name, engine, opts] of CONFIGS) {
   results.push(r);
   console.log(r.fails.length ? `FAIL (${r.fails.length})` : 'ok', `· webgl ${r.webgl ? 'yes' : 'NO'} · intro ${r.intro || '-'} · tap opens computer ${r.tapOpens ? 'yes' : 'no'} · viewer ${r.viewer || '-'} · zoom ${r.zoom || '-'}`);
   if (r.edits) console.log(' '.repeat(28) + `edits ${r.edits.n} tiles ${r.edits.w}×${r.edits.h} (${r.edits.loaded} posters loaded) · ${r.play || 'not played'}`);
+  console.log(' '.repeat(28) + `sections walked: menu ${(r.secs || []).join(' ') || '-'}`);
   for (const g of r.grids || []) console.log(' '.repeat(28) + g);
   for (const n of r.notes) console.log(' '.repeat(28) + 'note: ' + n);
   for (const f of [...new Set(r.fails)]) console.log(' '.repeat(28) + 'FAIL ' + f);
