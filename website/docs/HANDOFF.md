@@ -3,6 +3,18 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-14 · SKILLS dropouts, round 2: the menu switches off under a section (not deployed)
+
+- **His note** (second recording, after the foil fix went live): "it's alot better but still requires some fixing".
+- **Found:** in his clip only the band's lower strip still blinks out, about once a second. Nothing is re-drawn any more
+  (`raster.mjs` 0), so this is memory: SKILLS held ~15 full-screen layers, six of them the menu hidden underneath.
+- **Did:** `body.under` hides the menu world while a section is open (on at the swap, off before the way back starts);
+  the 5s background beat is skipped then too. New `tests/flicker/layers.mjs` lists layers. BACK, browser back/forward
+  and all four sections checked; browser subset 7/7.
+- **Next:** his "deploy", then his phone. If the strip still blinks: the next suspects are BACK's 590×852 layer (overlap
+  squashing) and the section's own print screen (`.section::after`).
+- **Watch out:** anything that must show the menu while a section is still `.active` has to drop `under` first.
+
 ## 2026-11-14 · SKILLS: layers dropping out on his phone (not deployed)
 
 - **His note:** a screen recording of SKILLS on his phone, "so u can get a better view so try fixing it now".

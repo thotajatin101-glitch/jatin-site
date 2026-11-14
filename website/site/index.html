@@ -972,6 +972,12 @@ body.apply #sec-projects .backBtn{display:none;}
 /* ============ SECTIONS (cover the landing incl. logo) ============ */
 .screen{position:fixed;inset:0;display:none;z-index:45;}
 .screen.active{display:block;}
+/* The menu world is switched OFF while a section covers it (2026-11-14, his second SKILLS recording: the lower strip of the
+   band still blinked out about once a second). A section is opaque, but the menu underneath kept its layers alive: the
+   shard bitmap, its print screen at twice the screen, the triangle, the plates, the corner mark. On a phone that is tens
+   of MB of pictures nobody sees, and when the phone runs short it drops pieces of the layers you DO see. `under` goes on
+   at the transition's swap and comes off as the way back starts, so the menu is drawn again before the swap shows it. */
+body.under :is(#shardbg,#hole,#mBack,#wedge,#wedgeText,#menuList,#menuList .mItem,#stars,#menuHint,#logoWrap){visibility:hidden !important;}
 .section{overflow:hidden;background:var(--ink);}
 /* Every section carries its menu item's colour and the menu's own layout
    (his ask: continuity and balance). The accent is the item's; the two
@@ -5082,7 +5088,7 @@ function startGlitchBeat(){
   (function beat(){
     setTimeout(()=>{
       /* skip the beat while a transition is drawing — never stack GPU work */
-      if(!document.hidden&&!TransFX.active()){
+      if(!document.hidden&&!TransFX.active()&&!document.body.classList.contains('under')){   /* nor while a section covers the menu */
         BgRaster.glitch(34,5);
         setTimeout(()=>BgRaster.glitch(19,-2),90);
         setTimeout(()=>BgRaster.rest(),190);
@@ -6164,7 +6170,7 @@ if(APPLY)document.body.classList.add('apply');
 function landOnProjects(){
   const el=document.getElementById('sec-projects'),it=items.find(i=>i.dataset.target==='sec-projects');
   if(it){selIndex=items.indexOf(it);paintWedge(it);}   /* the chain and the world take PROJECTS' pink, as if picked from the menu */
-  el.classList.add('active');worldToSection(el);void el.offsetWidth;el.classList.add('enter');
+  el.classList.add('active');document.body.classList.add('under');worldToSection(el);void el.offsetWidth;el.classList.add('enter');
   MonitorFX.enter(el,180);currentScreen=el;menuReady=true;busy=false;
   history.replaceState({sec:'sec-projects'},'','#projects');
 }
@@ -8099,7 +8105,7 @@ function openSection(id,fromHistory){
   if(!fromHistory)history.pushState({sec:id},'','#'+id.replace('sec-',''));
   doTransition(()=>{
     const el=document.getElementById(id);
-    el.classList.add('active');
+    el.classList.add('active');document.body.classList.add('under');
     worldToSection(el);                      /* the world follows into the section */
     void el.offsetWidth;
     el.classList.add('enter');
@@ -8113,6 +8119,7 @@ function openSection(id,fromHistory){
 }
 function backToMenu(){
   if(busy||!currentScreen||TransFX.active())return;busy=true;
+  document.body.classList.remove('under');   /* the menu is drawn again under the section, before the swap */
   doTransition(()=>{
     currentScreen.classList.remove('active','enter');
     currentScreen=null;

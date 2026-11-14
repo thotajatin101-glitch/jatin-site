@@ -13,6 +13,20 @@ by piece and marked "Oct 2026".
 
 
 
+## 2026-11-14 (night, round 2) — the menu that was still there underneath
+
+**His note**, with a second recording: "ok it's alot better but still requires some fixing".
+
+**What the clip showed.** The big dropouts are gone. What's left: the lower strip of the steel band blinks out for one
+frame, about once a second.
+
+**Why.** Nothing on the page is being re-drawn any more, so it isn't work, it's weight. A section covers the menu
+completely, but the menu was still fully there underneath: the shard field, its print screen, the triangle, the plates,
+the corner mark. Six full-screen pictures nobody could see, held in the phone's memory next to the ones on show.
+
+**Built.** The menu world switches off the moment a section covers it and comes back just before the way back starts,
+so the transition still reveals a finished menu.
+
 ## 2026-11-14 (night) — the frames where SKILLS lost its background
 
 **His note**, with a screen recording from his phone: "i recorded the screen for the skills section so u can get a

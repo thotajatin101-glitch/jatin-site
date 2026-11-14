@@ -579,6 +579,12 @@ into tweens.
   step re-drew both faces, the edges and the whole page behind them 13 times a second; a phone that can't keep up drops
   whole layers for a frame. The foil holds now. `node tests/flicker/raster.mjs <section>` counts re-draws per second on an
   idle page: it must print 0. Idle motion lives on canvases and transforms only.
+- **The menu world is off while a section covers it** (`body.under`, 2026-11-14, his second SKILLS recording: "alot better
+  but still requires some fixing"; the band's lower strip still blinked out about once a second). The menu's layers
+  (shard bitmap, its double-size print screen, triangle, plates, corner mark) stayed alive under the opaque section; a
+  phone short of picture memory drops pieces of the layers on show. `under` goes on at the swap and comes off BEFORE the
+  transition back starts. `node tests/flicker/layers.mjs <section>` lists the layers a page holds: a new full-screen
+  layer has to earn its place.
 - **A phone held SIDEWAYS takes the desktop layout** (2026-11-14, found by the browser sweep: sideways, the phone layout
   buried the menu heading, the ABOUT camera and the SKILLS card). The phone layout is for an upright phone only: JS asks
   `upright()` (width ≤760 AND taller than wide), CSS uses `(max-width:760px) and (orientation:portrait)`. Never test
