@@ -1362,6 +1362,9 @@ html.cuOn,html.cuOn *{cursor:none!important;}
   .skInfoTags span{font-size:.5rem;}
   .skInfoBody{padding:.5em 3.4em .6em 1em;max-width:calc(99vw - var(--skCx) - 66vh * .36 - 1.4em);}   /* never past the frame's right edge */
   .skHint{font-size:.55rem;right:auto;left:3vw;bottom:3vh;}      /* bottom-left, under the heading: bottom-right is the description's */
+  /* JATIN OS: with a photo or edit open, the date strip, the JATINSPACE header and HOW TO USE step aside, or the
+     chrome takes two thirds of a 308px screen and the photo shrinks to a stamp. The link row and the viewer's bar stay. */
+  .pcOS:has(.osView:not([hidden])) :is(.osTop,.osHead,.osInfo){display:none;}
 }
 </style>
 </head>

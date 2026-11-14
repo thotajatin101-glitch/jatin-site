@@ -118,7 +118,10 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 - **Fixed:** a phone held sideways broke the menu, ABOUT and SKILLS. It now takes the desktop layout (`upright()` in JS,
   `orientation:portrait` on the phone media queries) plus one short-landscape block at the end of the stylesheet. Rules in
   CLAUDE.md (Layout rules). Stills `docs/process/stills/2026-11-14-phone-sideways/`, JOURNAL chapter 2026-11-14.
-- **Next:** NOT deployed; needs his "deploy". Then a real phone turned sideways.
+- **Deployed 2026-11-14 on his "deploy"** (push to main, Pages builds `website/site`). Rollback: `git revert` back to
+  `8f9656c` (the last live commit) and push. The 37-config sweep passed after one more fix: JATIN OS hides its date
+  strip, header and HOW TO USE while a photo is open on a sideways phone (the photo was 143px tall on a Pixel).
+- **Next:** a real phone turned sideways.
 - **Watch out:** Playwright runs today's engine builds only; it can't run older Safari/Chrome versions or real Samsung
   Internet. Sweep stills (`docs/process/stills/2026-11-13-browsers/`, 229MB+) are not committed. `PH` is taken (a colour
   in the page); the phone test is `upright()`.
