@@ -557,6 +557,13 @@ into tweens.
   The event doesn't fire reliably when the tab is throttled, and a stuck `.in`
   pins the selected plate's transform. Same rule as the old opacity bug:
   visibility lives on classes, never inline.
+- **A phone held SIDEWAYS takes the desktop layout** (2026-11-14, found by the browser sweep: sideways, the phone layout
+  buried the menu heading, the ABOUT camera and the SKILLS card). The phone layout is for an upright phone only: JS asks
+  `upright()` (width ≤760 AND taller than wide), CSS uses `(max-width:760px) and (orientation:portrait)`. Never test
+  `innerWidth<760` on its own again. One block at the end of the stylesheet, `(orientation:landscape) and
+  (max-height:480px)`, lets the pieces with a minimum size go smaller: the corner mark drops its role line, headings
+  shrink, the ABOUT plate's type shrinks, and on SKILLS the card stands BESIDE the heading with the words hanging off it
+  and the hint bottom-left. Audit sideways at 667×375, 756×308, 756×352 and 838×390.
 - **Phone layout rules** (2026-11-09 pass, checked at 390×652 = his visible iPhone area, 375×560 and 430×800):
   the menu heading block is fitted between the corner mark and the top plate (`fitWedgePhone`); the ABOUT lens sits
   clear of BACK with the whole camera on screen; the SKILLS card hangs off the heading. Audit phones at the

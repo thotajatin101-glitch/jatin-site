@@ -109,6 +109,20 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-14 · Browser sweep (37 computers and phones) + phones held sideways fixed
+
+- **Did:** `tests/browsers/run.mjs` grew from 14 to 37 configs (Edge, 1366×768, 2560×1440, MacBook Air, iPhone 11 → 17 / Air /
+  16e / 13 mini, Pixel 7a / 10 / 10 Pro XL, Galaxy A55 / Z Flip 7 / Z Fold 7 / Tab S9, iPad gen 11, iPad landscape, four
+  phones sideways) and now walks the WHOLE site: after PROJECTS it goes menu → ABOUT → SKILLS → CONTACT by plate and BACK
+  (overflow, clipped plates, BACK on screen, errors, a still of each).
+- **Fixed:** a phone held sideways broke the menu, ABOUT and SKILLS. It now takes the desktop layout (`upright()` in JS,
+  `orientation:portrait` on the phone media queries) plus one short-landscape block at the end of the stylesheet. Rules in
+  CLAUDE.md (Layout rules). Stills `docs/process/stills/2026-11-14-phone-sideways/`, JOURNAL chapter 2026-11-14.
+- **Next:** NOT deployed; needs his "deploy". Then a real phone turned sideways.
+- **Watch out:** Playwright runs today's engine builds only; it can't run older Safari/Chrome versions or real Samsung
+  Internet. Sweep stills (`docs/process/stills/2026-11-13-browsers/`, 229MB+) are not committed. `PH` is taken (a colour
+  in the page); the phone test is `upright()`.
+
 ## 2026-11-10 — Slow-machine test rig + the lag it found. DEPLOYED (Pages run 42680683777, 54b0c34)
 - **Deploy:** his word "deploy". Rollback point: run 42596277255 (707106c). Two Pages runs timed out in GitHub's
   file sync (10-min default) before `deploy-pages` got `timeout: 1800000`; the third went through in 2 min. Live

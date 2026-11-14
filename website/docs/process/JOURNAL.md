@@ -13,6 +13,23 @@ by piece and marked "Oct 2026".
 
 
 
+## 2026-11-14 — a phone held sideways
+
+His ask: "a playwright and browser test for each version of a browser modern computers and phones use", then
+"yes fix it" when the sweep showed a sideways phone broken.
+
+- **The sweep:** 37 computers, phones and tablets on the Chrome, Safari and Firefox engines, now walking every
+  section, not only PROJECTS. Everything upright passed. By eye, an iPhone held sideways did not: the menu heading
+  hid behind the JATIN mark, the ABOUT camera was cut off the top, the SKILLS card was buried under its words.
+- **Why:** the page called anything under 760 wide "a phone" and gave it the upright layout, on a screen 350 tall.
+- **Built:** the upright layout is now for upright phones only. Sideways, a phone is a very short, wide screen, so it
+  wears the desktop composition, with the pieces that had a minimum size let go smaller. On SKILLS there is no room
+  under a two-line heading, so the card stands beside it and the words hang off the card.
+- **Cut:** fitting the upright layout into a sideways frame. It is a different shape; the desktop one already is that
+  shape.
+
+Stills: `stills/2026-11-14-phone-sideways/` (before sheet, after sheet, SKILLS close).
+
 ## 2026-11-10 (last) — the posts let go of their props
 
 Once the type sat right, he took the props out: the prints, the cursor, the TV. What's left is his world, his words

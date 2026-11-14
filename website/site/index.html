@@ -425,7 +425,7 @@ body.apply #menuHint{display:none;}   /* menu keys that do nothing in apply mode
   .osViewBar{padding:.75em .9em;}
   .pcOS .osZoom button,.pcOS .osViewX{padding:.35em .6em;}
 }
-@media (max-width:760px){
+@media (max-width:760px) and (orientation:portrait){
   .osPath,.osBtns i{display:none;}
   .osPlate{font-size:1.25em;}
   .osPlate.back,.osTabs{top:.6em;}
@@ -866,7 +866,7 @@ body.menu #menuHint{opacity:1;}
    This full-bolt clip is the no-JS / reduced-motion state. */
 #sec-skills .secWedge{width:100vw;}
 #sec-skills .secBand{clip-path:polygon(56% -3%,104% -3%,104% 26%,63% 57%,71% 54%,33% 104%,3% 104%,38% 58%,30% 61%);}
-@media (max-width:760px){
+@media (max-width:760px) and (orientation:portrait){
   .skInfo{display:none;}
   /* no banner on a phone: the copy plate lies flat under the card, carrying the name itself */
   .skInfoB{left:5vw;right:5vw;top:auto;bottom:calc(11vh + 3.4rem);width:auto;transform:none;padding-top:0 !important;}
@@ -962,7 +962,7 @@ body.apply #sec-projects .backBtn{display:none;}
   background-image:var(--gold);
   background-size:100% 260%;background-position:0 var(--fy,50%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;text-shadow:none;}
-@media (max-width:759px){
+@media (max-width:760px) and (orientation:portrait){
   /* phone (2026-11-09: the chrome horns covered THE TOOLKIT): the card hangs off the heading like every page, horns
      included (~38px), and takes the height left above the copy plate, which overlaps its foot a little by design */
   .skSlot{left:50vw;--skH:clamp(150px,calc(100vh - var(--headTop) - 1.95 * var(--headFs) - 44px - 11vh - 3.4rem - 7.4rem),330px);
@@ -1259,7 +1259,7 @@ body.apply #sec-projects .backBtn{display:none;}
   font:600 .7rem var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85);
   background:rgba(0,0,0,.78);padding:.45em .8em;box-shadow:3px 3px 0 #000;}
 .skHint b{color:var(--acc);}
-@media (max-width:760px){.skHint{right:auto;left:50%;bottom:1.2vh;transform:translateX(-50%);font-size:.72rem;}
+@media (max-width:760px) and (orientation:portrait){.skHint{right:auto;left:50%;bottom:1.2vh;transform:translateX(-50%);font-size:.72rem;}
   /* QA rerun: no micro-label under 11px on a phone */
   .mItem .pNum,.skItem .pNum{font-size:max(11px,.34em);}
   .skInfoTags span{font-size:11px;}
@@ -1281,7 +1281,7 @@ html.cuOn,html.cuOn *{cursor:none!important;}
 #cuCv.on{visibility:visible;}
 
 /* ============ RESPONSIVE ============ */
-@media (max-width:760px){
+@media (max-width:760px) and (orientation:portrait){
   #logo{font-size:clamp(2.6rem,15vw,4.6rem);}
   body.menu #logo{font-size:clamp(1.1rem,4.6vw,1.5rem);}
   /* menu goes full-width: word up top, plates stacked below it.
@@ -1340,6 +1340,29 @@ html.cuOn,html.cuOn *{cursor:none!important;}
 #boot span{display:inline-block;width:0;overflow:hidden;vertical-align:bottom;animation:bootDots 1.2s steps(4,end) infinite;}
 @keyframes bootDots{to{width:4ch}}
 @media (prefers-reduced-motion:reduce){#boot span{animation:none;width:3ch;}}
+/* A PHONE HELD SIDEWAYS (2026-11-14): short and wide, so it wears the desktop layout (see upright()), with the pieces
+   that have a minimum size let go smaller. Nothing here applies to a laptop: 480px is shorter than any of them. */
+@media (orientation:landscape) and (max-height:480px){
+  #logoSub{display:none;}                                        /* the role line sat under the top plate */
+  .section{--headFs:clamp(1.9rem,12.5vh,3rem);--headTop:calc(var(--backTop) + 38px);}
+  .cgBubble{top:40vh;width:38vw;padding:.7em 1.2em .8em 1.1em;}
+  .cgBubble p{font-size:clamp(.6rem,2.9vh,.8rem);line-height:1.45;}
+  /* SKILLS: no room under a two-line heading, so the card stands beside it and the words hang off the card */
+  #sec-skills{--headFs:clamp(1.5rem,9.5vh,2.2rem);--skCx:calc(6vw + 6.4 * var(--headFs) + 28px + 66vh * .36);}   /* the card's left edge clears the heading */
+  .skSlot{--skH:66vh;top:56vh;}
+  .skMenu{top:14vh;}
+  .skItem{font-size:.68rem;}
+  .skInfo,.skInfoB{left:calc(var(--skCx) + 66vh * .36 - 2.6vw);top:47vh;}
+  .skInfo{min-width:0;}
+  .skInfoMain{font-size:clamp(.85rem,2.4vw,1.15rem);padding-right:2.2em;}
+  .skInfoNum{font-size:2.6rem;}
+  .skInfoTag{font-size:.6rem;}
+  .skInfoDesc{font-size:clamp(.5rem,1.25vw,.62rem);line-height:1.45;}
+  .skInfoTags{margin-top:.5em;}
+  .skInfoTags span{font-size:.5rem;}
+  .skInfoBody{padding:.5em 3.4em .6em 1em;max-width:calc(99vw - var(--skCx) - 66vh * .36 - 1.4em);}   /* never past the frame's right edge */
+  .skHint{font-size:.55rem;right:auto;left:3vw;bottom:3vh;}      /* bottom-left, under the heading: bottom-right is the description's */
+}
 </style>
 </head>
 <body>
@@ -1509,6 +1532,9 @@ html.cuOn,html.cuOn *{cursor:none!important;}
 <div class="grain"></div>
 
 <script>
+/* the phone layout is for an UPRIGHT phone only. A phone held sideways is short and wide, so it takes the desktop layout
+   (2026-11-14: sideways it buried the menu heading, the ABOUT camera and the SKILLS card). CSS: (max-width:760px) and (orientation:portrait) */
+function upright(){return innerWidth<=760&&innerHeight>=innerWidth;}
 function isTouch(){return matchMedia('(hover:none) and (pointer:coarse)').matches;}   /* phones + tablets: say tap, not click */
 /* ================= QUALITY: the frame governor =================
    2026-11-09, his note: friends on laptops and PCs see dropped frames, worst on CONTACT. Measured on this Mac's GPU,
@@ -1897,7 +1923,7 @@ const ChainFX=(()=>{
   }
   /* size of one link pitch in px — the same for every canvas, so both edges match */
   function pitchOf(){
-    const w=innerWidth,h=innerHeight,ph=w<760;
+    const w=innerWidth,h=innerHeight,ph=upright();
     return PITCH*(ph?3:4)*Math.min(w,h)/900*(ph?1.7:1.15);
   }
   /* shift: fraction of the path (the slam whips along it); off: px of
@@ -1907,7 +1933,7 @@ const ChainFX=(()=>{
     const R=Math.min(devicePixelRatio||1,1.5);
     if(cv.width!==Math.round(W*R)||cv.height!==Math.round(H*R)){cv.width=Math.round(W*R);cv.height=Math.round(H*R);}
     const g=cv.getContext('2d');g.setTransform(R,0,0,R,0,0);g.clearRect(0,0,W,H);
-    const ph=innerWidth<760,s=ph?3:4,pitch=pitchOf(),k=pitch/(PITCH*s);
+    const ph=upright(),s=ph?3:4,pitch=pitchOf(),k=pitch/(PITCH*s);
     const sec=cv.closest('.section'),pal=sec?(sec._chainPal||(sec._chainPal=palOf(getComputedStyle(sec).getPropertyValue('--acc')))):null;
     /* 2026-11-08: the chains no longer ride banner edges; each canvas carries its own path (his drawing's green
        lines), as fractions of the section in data-path, smoothed through a Catmull-Rom spline. AboutFX sets it. */
@@ -1970,7 +1996,7 @@ const ChainFX=(()=>{
   const RUN_SPLIT_D=7,RUN_SPLIT_P=5;                 /* key index where it comes round in front of him */
   let runRaf=0;
   function runPath(W,H){
-    const ph=W<760,K=ph?RUN_P:RUN_D,z=Math.min(W,H)/900*(ph?1.7:1),kp=K.map(([x,y,k])=>[x*W,y*H,k*z]),S=[];let sp=0;
+    const ph=upright(),K=ph?RUN_P:RUN_D,z=Math.min(W,H)/900*(ph?1.7:1),kp=K.map(([x,y,k])=>[x*W,y*H,k*z]),S=[];let sp=0;
     for(let i=0;i<kp.length-1;i++){const p0=kp[Math.max(0,i-1)],p1=kp[i],p2=kp[i+1],p3=kp[Math.min(kp.length-1,i+2)];
       if(i===(ph?RUN_SPLIT_P:RUN_SPLIT_D))sp=S.length;
       for(let j=0;j<16;j++){const t=j/16,t2=t*t,t3=t2*t,cr=c=>.5*(2*p1[c]+(-p0[c]+p2[c])*t+(2*p0[c]-5*p1[c]+4*p2[c]-p3[c])*t2+(-p0[c]+3*p1[c]-3*p2[c]+p3[c])*t3);
@@ -3064,7 +3090,7 @@ void main(){
   function buildWrap(){
     const W=host.clientWidth,H=host.clientHeight,D=Math.hypot(W,H);
     const mk=([ox,oy,ang,s,front,delay,half])=>{
-      if(half&&W<760)s*=.55;                                       /* phone: the near V would bury BACK and the plates */
+      if(half&&upright())s*=.55;                                       /* phone: the near V would bury BACK and the plates */
       const pitch=LINKPX*s,L=half?D*1.1:2*D,n=Math.ceil(L/pitch)+2;
       const ay=half?Math.max(ctrY+oy*hh,H*.99):ctrY+oy*hh;         /* the V's point stays at the frame's bottom edge on every screen */
       return {ax:ctrX+ox*hw,ay,ux:Math.cos(ang),uy:Math.sin(ang),ang,s,front,delay,pitch,L,half,n:n+(n%2)};
@@ -3284,7 +3310,7 @@ void main(){
   function restage(deal){
     info.classList.remove('show');void info.offsetWidth;info.classList.add('show');
     const h=info.offsetHeight;infoB.style.transformOrigin=`0 ${h/2}px`;   /* the banner's own pivot: they turn as one */
-    if(innerWidth>760){                                              /* the plate IS the stripe's lower half (his note): flush under the name */
+    if(!upright()){                                              /* the plate IS the stripe's lower half (his note): flush under the name */
       const mn=info.querySelector('.skInfoMain'),bd=infoB.querySelector('.skInfoBody');
       infoB.style.paddingTop=(mn.offsetTop+mn.offsetHeight)+'px';
       const ml=parseFloat(getComputedStyle(bd).marginLeft),right=mn.offsetWidth*.94;   /* the name stripe's bottom edge ends at 94% */
@@ -3799,7 +3825,7 @@ void main(){
   function rest(R){
     const W=cv.clientWidth,H=cv.clientHeight;
     let x,y,w,h;
-    if(W<760){x=0;y=.24*H;w=W;h=.6*H;}
+    if(upright()){x=0;y=.24*H;w=W;h=.6*H;}
     else{const fs=parseFloat(getComputedStyle(host.querySelector('.secHead')).fontSize)||100;
       x=.06*W+5*fs;y=.04*H;w=.94*W-5*fs;h=.92*H;}
     return {cx:R*(x+w/2),cy:R*(H-(y+h/2)),S:R*Math.min(w*1.08,h*1.15)};
@@ -4815,7 +4841,7 @@ const BgRaster=(()=>{
   }
   /* the field is centred on the vanishing point, so its slow turn pivots
      there — the whole world wheels around the light source */
-  const VP=()=>innerWidth<=760?[.55,.3]:[.68,.44];
+  const VP=()=>upright()?[.55,.3]:[.68,.44];
   function need(){const [vx,vy]=VP(),x=vx*innerWidth,y=vy*innerHeight;
     return Math.ceil(2*Math.max(Math.hypot(x,y),Math.hypot(innerWidth-x,y),Math.hypot(x,innerHeight-y),Math.hypot(innerWidth-x,innerHeight-y))*1.03);}
   function place(){
@@ -6026,7 +6052,7 @@ function fitWedgePhone(){
 }
 function fitWedge(){
   wedgeText.classList.add('fitted');          /* reveal once sized, never before */
-  if(innerWidth<=760){wedgeText.style.left='';wedgeWord.style.fontSize='';fitWedgePhone();return;}
+  if(upright()){wedgeText.style.left='';wedgeWord.style.fontSize='';fitWedgePhone();return;}
   /* The plates are a diagonal staircase, so only the plates level with the
      heading matter — the long top plate sits above it. Layout metrics only
      (offset*), never rects: plates animate (slide-in, select scale) and a
@@ -6112,7 +6138,7 @@ function toMenu(){
    as a fallback for tabs where rAF truly stops. Whichever fires first wins. */
 /* where the world points: behind the wedge word on the menu, behind the
    portrait on ABOUT, over the right-hand band on the other sections */
-const menuVP=()=>innerWidth<=760?[.55,.3]:[.68,.44];
+const menuVP=()=>upright()?[.55,.3]:[.68,.44];
 const SECTION_WORLD={
   'sec-about':[.28,.25,'#00f0d8'],'sec-projects':[.72,.42,'#ff2e88'],
   'sec-skills':[.72,.42,'#8d96b2'],
@@ -6661,7 +6687,7 @@ const AboutFX=(()=>{
   }
   function layout(){
     if(!sec)return;
-    const W=sec.clientWidth,H=sec.clientHeight,ph=W<760;if(!W||!H)return;
+    const W=sec.clientWidth,H=sec.clientHeight,ph=upright();if(!W||!H)return;
     /* the lens and the two edge directions (his reference: the top edge runs out shallow to the right, the bottom
        edge drops steeply); on a phone the beam opens down the page */
     /* phone (2026-11-09, his screenshot: the camera sat jammed under BACK and off the top): the lens comes down and in,
@@ -7381,7 +7407,7 @@ void main(){
      its height filling most of the section (phone: under the heading) */
   function rest(R){
     const W=cv.clientWidth,H=cv.clientHeight;let x,y,w,h;
-    if(W<760){x=0;y=.24*H;w=W;h=.64*H;}
+    if(upright()){x=0;y=.24*H;w=W;h=.64*H;}
     else{const fs=parseFloat(getComputedStyle(host.querySelector('.secHead')).fontSize)||100;x=.06*W+2.6*fs;y=.06*H;w=.9*W-2.6*fs;h=.9*H;}
     return {cx:R*(x+w/2),cy:R*(H-(y+h/2)),S:R*Math.min(h/1.42,w/1.)};
   }
@@ -7620,7 +7646,7 @@ void main(){
   function pops(q,ms){
     if(reduce||!host)return;
     if(!pop1)mkPops();
-    const st=stage(ms),W=host.clientWidth,H=host.clientHeight,narrow=W<760,k=PP([0,-.5,0],q)[2];
+    const st=stage(ms),W=host.clientWidth,H=host.clientHeight,narrow=upright(),k=PP([0,-.5,0],q)[2];
     /* each burst is placed by its tip: the element's transform-origin is the tip, so the pop / punch / rotation all
        pivot on the point that touches the phone */
     const place=(el,tip,w,rot,mir)=>{const tx=((mir?510-TIP[0]:TIP[0])-VB[0])/VB[2]*w,ty=(TIP[1]-VB[1])/VB[2]*w,h=w*VB[3]/VB[2];
@@ -7653,7 +7679,7 @@ void main(){
     /* QA: on a phone the keyboard covered NEXT. While a chat field has focus, the LCD (soft keys and all)
        fits the band the keyboard leaves visible */
     const ae=document.activeElement,vv=window.visualViewport,
-      kb=W<760&&chat&&!chat.hidden&&ae&&chat.contains(ae)&&/^(INPUT|TEXTAREA)$/.test(ae.tagName)&&!ae.classList.contains('phHp'),
+      kb=upright()&&chat&&!chat.hidden&&ae&&chat.contains(ae)&&/^(INPUT|TEXTAREA)$/.test(ae.tagName)&&!ae.classList.contains('phHp'),
       Hv=kb&&vv?Math.min(H,vv.height):H,top=kb&&vv?Math.max(0,vv.offsetTop):0;
     const key=W+'x'+H+'x'+R+(kb?'k'+Math.round(Hv)+'_'+Math.round(top):'');
     if(zCache&&zCache.key===key)return zCache;
@@ -7661,9 +7687,9 @@ void main(){
     for(let p=-1.2;p<=1.2;p+=.0025){const w=toW(n,{yaw:0,pitch:p,roll:0});if(w[2]>best){best=w[2];pitch=p;}}
     const q={yaw:0,pitch,roll:0,lift:0,R,cx:0,cy:0,S:1};
     const c=toW(lidToObj([0,.52,0],.3),q),zc=4.6-c[2];
-    const want=kb?Math.min(Hv*.9/.51,W*.98/.4):Math.min(H*(W<760?.66:.62)/.51,W*(W<760?.97:.86)/.4);   /* 2026-11-09, his phone clip: "hard to read". On a phone the LCD takes the width (the bezel runs off the sides) */           /* the LCD's height on the page, in CSS px per unit */
+    const want=kb?Math.min(Hv*.9/.51,W*.98/.4):Math.min(H*(upright()?.66:.62)/.51,W*(upright()?.97:.86)/.4);   /* 2026-11-09, his phone clip: "hard to read". On a phone the LCD takes the width (the bezel runs off the sides) */           /* the LCD's height on the page, in CSS px per unit */
     q.S=want*R*zc/3.3;
-    const k=want;q.cx=R*(W/2-c[0]*k);q.cy=R*((kb?top+Hv*.5:H*(W<760?.48:.5))-c[1]*k);   /* the LCD's centre on the page's centre */
+    const k=want;q.cx=R*(W/2-c[0]*k);q.cy=R*((kb?top+Hv*.5:H*(upright()?.48:.5))-c[1]*k);   /* the LCD's centre on the page's centre */
     q.key=key;return zCache=q;
   }
   function lcdRect(q){                                          /* the LCD's four corners on the page */

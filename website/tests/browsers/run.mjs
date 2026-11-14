@@ -62,6 +62,11 @@ const CONFIGS = [
   ['galaxy-tab-s9', chromium, devices['Galaxy Tab S9']],
   ['ipad-gen-11', webkit, devices['iPad (gen 11)']],
   ['ipad-pro-11-landscape', webkit, devices['iPad Pro 11 landscape']],
+  // phones held sideways: short and wide, they take the desktop layout (upright() in the page)
+  ['iphone-se-landscape', webkit, devices['iPhone SE (3rd gen) landscape']],
+  ['iphone-17-pro-max-landscape', webkit, devices['iPhone 17 Pro Max landscape']],
+  ['pixel-9-landscape', chromium, devices['Pixel 9 landscape']],
+  ['galaxy-s24-landscape', chromium, devices['Galaxy S24 landscape']],
 ].filter(([n]) => !process.env.ONLY || process.env.ONLY.split(',').some((o) => n.includes(o)));
 
 const serve = () => serveSite('127.0.0.1');   // range-aware, like GitHub Pages: tests/serve.mjs
