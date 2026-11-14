@@ -1,0 +1,392 @@
+{
+ "rig": "gpu",
+ "cpu": 2,
+ "url": "http://127.0.0.1:51172/",
+ "phases": [
+  {
+   "label": "intro: float (waiting)",
+   "fps": 29.9,
+   "p95": 733.3,
+   "jank": 66.7,
+   "worst": 733,
+   "longTasks": 1,
+   "longMs": 1827,
+   "Q": 0.7,
+   "top": [
+    "drawImage<blitChains:5804 2ms",
+    "chain3D:5819 2ms",
+    "put:5795 1ms",
+    "draw3Links:5778 1ms",
+    "pGrid:5330 1ms",
+    "(anon):5738 1ms"
+   ]
+  },
+  {
+   "label": "intro: snap → menu",
+   "fps": 29.9,
+   "p95": 2033.2,
+   "jank": 42.9,
+   "worst": 2033,
+   "longTasks": 2,
+   "longMs": 4380,
+   "Q": 0.574,
+   "top": [
+    "loseContext<stop:6016 2190ms",
+    "livingWedge:4709 9ms",
+    "draw:4763 7ms",
+    "putImageData<livingWedge:4709 4ms",
+    "sprite:1741 3ms",
+    "boltPts:5288 3ms"
+   ]
+  },
+  {
+   "label": "menu: idle",
+   "fps": 0.2,
+   "p95": 5116.5,
+   "jank": 50,
+   "worst": 5117,
+   "longTasks": 2,
+   "longMs": 5868,
+   "Q": 0.574,
+   "top": [
+    "getImageData<build:4972 5736ms",
+    "getImageData<casePlan:2894 735ms",
+    "drawImage<tint:4929 41ms",
+    "build:4972 22ms",
+    "livingWedge:4709 10ms",
+    "paint:4517 8ms"
+   ]
+  },
+  {
+   "label": "menu: browsing",
+   "fps": 2.1,
+   "p95": 2083.3,
+   "jank": 100,
+   "worst": 2083,
+   "longTasks": 11,
+   "longMs": 6887,
+   "Q": 0.574,
+   "top": [
+    "toBlob<finish:2966 1994ms",
+    "draw:4763 23ms",
+    "paint:4517 12ms",
+    "finish:2966 8ms",
+    "select:6214 6ms",
+    "getClientRects<(anon):4554 5ms"
+   ]
+  },
+  {
+   "label": "about: open",
+   "Q": 0.574,
+   "top": [
+    "getContext<init:6622 3538ms",
+    "frame:6655 535ms",
+    "getShaderParameter<sh:6625 213ms",
+    "getProgramParameter<init:6622 132ms",
+    "(anon):8038 18ms",
+    "draw:5001 4ms"
+   ]
+  },
+  {
+   "label": "about: idle",
+   "fps": 2.3,
+   "p95": 733.3,
+   "jank": 100,
+   "worst": 733,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.574,
+   "top": [
+    "paint:4517 10ms",
+    "draw:5001 9ms",
+    "putImageData<paint:4517 5ms",
+    "sn:4500 3ms",
+    "getClientRects<(anon):4554 2ms",
+    "addColorStop<grid:4594 2ms"
+   ]
+  },
+  {
+   "label": "about: back to menu",
+   "fps": 1.9,
+   "p95": 533.4,
+   "jank": 100,
+   "worst": 533,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.471,
+   "top": [
+    "livingWedge:4709 6ms",
+    "draw:4763 5ms",
+    "getClientRects<(anon):4554 5ms",
+    "paint:4517 4ms",
+    "fsin:4707 3ms",
+    "querySelectorAll<tick:4550 2ms"
+   ]
+  },
+  {
+   "label": "projects: open",
+   "fps": 0.4,
+   "p95": 2266.5,
+   "jank": 100,
+   "worst": 2267,
+   "longTasks": 2,
+   "longMs": 3462,
+   "Q": 0.471,
+   "top": [
+    "getContext<init:3785 1841ms",
+    "size:3820 1187ms",
+    "getShaderParameter<sh:3788 234ms",
+    "getProgramParameter<init:3785 112ms",
+    "drawImage<upload:3763 7ms",
+    "frame:3992 3ms"
+   ]
+  },
+  {
+   "label": "projects: idle",
+   "fps": 15,
+   "p95": 1666.6,
+   "jank": 100,
+   "worst": 1667,
+   "longTasks": 1,
+   "longMs": 1617,
+   "Q": 0.471,
+   "top": [
+    "size:3820 1596ms",
+    "fillText<drawScreen:3669 6ms",
+    "texSubImage2D<pushScreen:3739 5ms",
+    "paint:4517 3ms",
+    "sprite:1741 2ms",
+    "chrome:3650 2ms"
+   ]
+  },
+  {
+   "label": "projects: dolly → OS",
+   "fps": 0.4,
+   "p95": 2466.5,
+   "jank": 100,
+   "worst": 2467,
+   "longTasks": 2,
+   "longMs": 4742,
+   "Q": 0.471,
+   "top": [
+    "size:3820 2371ms",
+    "toDataURL<dither:4059 2306ms",
+    "placeOS:4366 20ms",
+    "appendChild<buildOS:4079 8ms",
+    "showOS:4379 6ms",
+    "ditherCanvas:4063 5ms"
+   ]
+  },
+  {
+   "label": "projects: OS browse",
+   "fps": 2.7,
+   "p95": 3449.9,
+   "jank": 100,
+   "worst": 3450,
+   "longTasks": 1,
+   "longMs": 3459,
+   "Q": 0.471,
+   "top": [
+    "size:3820 3077ms",
+    "toDataURL<dither:4059 353ms",
+    "paintHero:4192 11ms",
+    "getBoundingClientRect<full:4405 10ms",
+    "paint:4517 9ms",
+    "draw:4763 2ms"
+   ]
+  },
+  {
+   "label": "projects: open folder",
+   "Q": 0.471,
+   "top": [
+    "toDataURL<dither:4059 2489ms",
+    "fillGrid:4238 4ms",
+    "pad2:4050 1ms",
+    "draw:4763 1ms",
+    "mix3:4074 1ms",
+    "shots:4227 1ms"
+   ]
+  },
+  {
+   "label": "projects: back to menu",
+   "Q": 0.471,
+   "top": [
+    "size:3820 2104ms",
+    "texSubImage2D<pushScreen:3739 3ms",
+    "at:1869 1ms",
+    "paint:4517 1ms",
+    "fillRect<chrome:3650 1ms",
+    "addColorStop<grid:4594 1ms"
+   ]
+  },
+  {
+   "label": "skills: open",
+   "fps": 0.3,
+   "p95": 3516.6,
+   "jank": 100,
+   "worst": 3517,
+   "longTasks": 2,
+   "longMs": 3658,
+   "Q": 0.45,
+   "top": [
+    "getContext<init:2795 2451ms",
+    "getShaderParameter<sh:2544 267ms",
+    "getShaderParameter<sh:2326 220ms",
+    "getShaderParameter<sh:2797 199ms",
+    "getProgramParameter<init:2325 155ms",
+    "getProgramParameter<init:2543 140ms"
+   ]
+  },
+  {
+   "label": "skills: idle",
+   "fps": 0.4,
+   "p95": 2666.5,
+   "jank": 100,
+   "worst": 2667,
+   "longTasks": 1,
+   "longMs": 2667,
+   "Q": 0.45,
+   "top": [
+    "size:2811 2232ms",
+    "drawCase:3038 426ms",
+    "texImage2D<paint:2295 14ms",
+    "restage:3313 2ms",
+    "paint:4517 2ms",
+    "putImageData<paint:4517 2ms"
+   ]
+  },
+  {
+   "label": "skills: deal a card",
+   "fps": 15,
+   "p95": 66.6,
+   "jank": 100,
+   "worst": 67,
+   "longTasks": 2,
+   "longMs": 6024,
+   "Q": 0.45,
+   "top": [
+    "drawCase:3038 5955ms",
+    "texImage2D<paint:2295 11ms",
+    "paint:4517 2ms",
+    "restage:3313 2ms",
+    "tick:4550 1ms",
+    "select:3329 1ms"
+   ]
+  },
+  {
+   "label": "skills: back to menu",
+   "fps": 0.8,
+   "p95": 1233.3,
+   "jank": 100,
+   "worst": 1233,
+   "longTasks": 1,
+   "longMs": 1252,
+   "Q": 0.45,
+   "top": [
+    "livingWedge:4709 3ms",
+    "putImageData<paint:4517 2ms",
+    "drawCase:3038 1ms",
+    "draw:4763 1ms",
+    "set src<(anon):2265 1ms",
+    "paint:4517 1ms"
+   ]
+  },
+  {
+   "label": "contact: open",
+   "fps": 0.2,
+   "p95": 5249.8,
+   "jank": 100,
+   "worst": 5250,
+   "longTasks": 1,
+   "longMs": 5262,
+   "Q": 0.45,
+   "top": [
+    "getContext<init:7391 4857ms",
+    "getShaderParameter<sh:7394 201ms",
+    "getProgramParameter<init:7391 122ms",
+    "smooth:7311 22ms",
+    "(anon):7323 16ms",
+    "texImage2D<tex:7382 4ms"
+   ]
+  },
+  {
+   "label": "contact: idle",
+   "fps": 12,
+   "p95": 83.3,
+   "jank": 100,
+   "worst": 83,
+   "longTasks": 1,
+   "longMs": 3341,
+   "Q": 0.45,
+   "top": [
+    "size:7409 3310ms",
+    "pops:7654 9ms",
+    "frame:7987 3ms",
+    "tag:7495 3ms",
+    "paint:4517 3ms",
+    "putImageData<paint:4517 2ms"
+   ]
+  },
+  {
+   "label": "contact: flip open",
+   "Q": 0.45,
+   "top": [
+    "size:7409 3163ms",
+    "proj:7467 2ms",
+    "texImage2D<retex:7389 1ms",
+    "fillText<outer:7351 1ms",
+    "link:1782 1ms",
+    "paint:4517 1ms"
+   ]
+  },
+  {
+   "label": "contact: buzzing",
+   "fps": 0.8,
+   "p95": 1999.9,
+   "jank": 100,
+   "worst": 2000,
+   "longTasks": 2,
+   "longMs": 3697,
+   "Q": 0.45,
+   "top": [
+    "size:7409 493ms",
+    "paint:4517 4ms",
+    "querySelectorAll<tick:4550 2ms",
+    "texImage2D<retex:7389 2ms",
+    "ropeStep:7477 2ms",
+    "beginPath<grid:4594 2ms"
+   ]
+  },
+  {
+   "label": "contact: chat",
+   "Q": 0.45,
+   "top": [
+    "texImage2D<retex:7389 2ms",
+    "paint:4517 2ms",
+    "uniform2f<draw:7445 1ms",
+    "frame:7987 1ms",
+    "get clientWidth<rest:7416 1ms",
+    "querySelectorAll<tick:4550 1ms"
+   ]
+  },
+  {
+   "label": "contact: back to menu",
+   "fps": 1.4,
+   "p95": 1383.3,
+   "jank": 100,
+   "worst": 1383,
+   "longTasks": 5,
+   "longMs": 3868,
+   "Q": 0.45,
+   "top": [
+    "paint:4517 19ms",
+    "proj:7467 14ms",
+    "grid:4594 7ms",
+    "draw:4763 5ms",
+    "getClientRects<(anon):4554 5ms",
+    "querySelectorAll<tick:4550 4ms"
+   ]
+  }
+ ],
+ "errors": []
+}

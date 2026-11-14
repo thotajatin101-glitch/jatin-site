@@ -288,6 +288,16 @@ Everything comes from his logo animation. Do not soften or "clean up" this look.
     - Never decode or sample a whole photo library up front: the eye loads 48 random thumbs, swatches on lock.
     - A 2D canvas uploaded into WebGL every few frames is `willReadFrequently` (CPU-backed), or the upload is a GPU
       readback.
+    - **Lag pass, 2026-11-14** (his note: "the hosted website has alot off lag during transitions", worst on CONTACT):
+      - Never change a full-screen GL canvas's size on a pulse. The phone's render scale followed each ring and buzz, so
+        the canvas was re-allocated four times a ring (`size` was CONTACT's top cost). One size holds per stage.
+      - The models are built BEFORE their page opens (`Warm`): shaders compile in the background while the menu idles
+        (KHR_parallel_shader_compile), then one 1px draw. A new model adds a `warm(done)` and joins the queue in
+        `cascadeMenu`.
+      - No box read in a draw applies to every model (`cw()` / `chh()` in MonitorFX and PhoneFX, `bw`/`bh` in CamFX), and
+        `upright()` is cached per resize.
+      - Tried and dropped: `createImageBitmap` per photo for the eye's swatches (it blocked for longer than the read it
+        replaced).
   - **The intro's opening draws every vsync** (the chained phase + the first
     7 frames after the snap, up to `SMOOTH`): smooth S-curves on a 24fps clock read as lag (his note). From
     the fan slam on, frames render only on a new 24fps frame, on 2s; that

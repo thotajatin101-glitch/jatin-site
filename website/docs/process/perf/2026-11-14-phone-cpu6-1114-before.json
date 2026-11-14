@@ -1,0 +1,422 @@
+{
+ "rig": "phone",
+ "cpu": 6,
+ "url": "http://127.0.0.1:51172/",
+ "phases": [
+  {
+   "label": "intro: float (waiting)",
+   "fps": 120.5,
+   "p95": 9.2,
+   "jank": 0,
+   "worst": 17,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.932,
+   "top": [
+    "uniformMatrix4fv<draw3Links:5778 242ms",
+    "drawImage<blitChains:5804 171ms",
+    "uniform3fv<draw3Links:5778 161ms",
+    "draw3Links:5778 134ms",
+    "pGrid:5330 89ms",
+    "(anon):5741 82ms"
+   ]
+  },
+  {
+   "label": "intro: snap → menu",
+   "fps": 120.5,
+   "p95": 16.5,
+   "jank": 1,
+   "worst": 357,
+   "longTasks": 3,
+   "longMs": 381,
+   "Q": 1,
+   "top": [
+    "livingWedge:4709 353ms",
+    "drawImage<tint:4929 128ms",
+    "draw:4763 87ms",
+    "paint:4517 83ms",
+    "uniformMatrix4fv<draw3Links:5778 81ms",
+    "grid:4594 78ms"
+   ]
+  },
+  {
+   "label": "menu: idle",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 17,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 1,
+   "top": [
+    "livingWedge:4709 404ms",
+    "grid:4594 147ms",
+    "paint:4517 108ms",
+    "drawImage<link:1782 87ms",
+    "menu:1881 70ms",
+    "stroke<grid:4594 56ms"
+   ]
+  },
+  {
+   "label": "menu: browsing",
+   "fps": 116.3,
+   "p95": 17.2,
+   "jank": 1.1,
+   "worst": 58,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 1,
+   "top": [
+    "livingWedge:4709 394ms",
+    "paint:4517 243ms",
+    "wedgeGeo:4690 116ms",
+    "grid:4594 112ms",
+    "stroke<grid:4594 57ms",
+    "drawImage<link:1782 55ms"
+   ]
+  },
+  {
+   "label": "about: open",
+   "fps": 119,
+   "p95": 24.9,
+   "jank": 1.5,
+   "worst": 133,
+   "longTasks": 1,
+   "longMs": 143,
+   "Q": 0.932,
+   "top": [
+    "draw:5001 353ms",
+    "fan:6795 298ms",
+    "paint:4517 296ms",
+    "grid:4594 89ms",
+    "(anon):8038 66ms",
+    "addColorStop<grid:4594 54ms"
+   ]
+  },
+  {
+   "label": "about: idle",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 18,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 1,
+   "top": [
+    "draw:5001 364ms",
+    "paint:4517 244ms",
+    "grid:4594 76ms",
+    "stroke<grid:4594 47ms",
+    "addColorStop<grid:4594 43ms",
+    "drawImage<link:1782 42ms"
+   ]
+  },
+  {
+   "label": "about: back to menu",
+   "fps": 119,
+   "p95": 17,
+   "jank": 0,
+   "worst": 25,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.82,
+   "top": [
+    "livingWedge:4709 198ms",
+    "paint:4517 69ms",
+    "grid:4594 57ms",
+    "wedgeGeo:4690 54ms",
+    "draw:5001 42ms",
+    "menu:1881 37ms"
+   ]
+  },
+  {
+   "label": "projects: open",
+   "fps": 119,
+   "p95": 17.3,
+   "jank": 2.1,
+   "worst": 74,
+   "longTasks": 2,
+   "longMs": 126,
+   "Q": 0.932,
+   "top": [
+    "drawImage<link:1782 162ms",
+    "texSubImage2D<pushScreen:3739 148ms",
+    "grid:4594 110ms",
+    "sprite:1741 78ms",
+    "menu:1881 76ms",
+    "paint:4517 71ms"
+   ]
+  },
+  {
+   "label": "projects: idle",
+   "fps": 120.5,
+   "p95": 9.2,
+   "jank": 0,
+   "worst": 17,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 1,
+   "top": [
+    "grid:4594 125ms",
+    "drawImage<link:1782 100ms",
+    "paint:4517 92ms",
+    "stroke<grid:4594 75ms",
+    "wedgeGeo:4690 63ms",
+    "menu:1881 43ms"
+   ]
+  },
+  {
+   "label": "projects: dolly → OS",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0.3,
+   "worst": 100,
+   "longTasks": 1,
+   "longMs": 100,
+   "Q": 1,
+   "top": [
+    "paint:4517 134ms",
+    "grid:4594 133ms",
+    "wedgeGeo:4690 96ms",
+    "drawImage<link:1782 95ms",
+    "menu:1881 70ms",
+    "stroke<grid:4594 70ms"
+   ]
+  },
+  {
+   "label": "projects: OS browse",
+   "fps": 119,
+   "p95": 9.2,
+   "jank": 0.4,
+   "worst": 34,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 1,
+   "top": [
+    "paint:4517 102ms",
+    "grid:4594 99ms",
+    "wedgeGeo:4690 92ms",
+    "drawImage<link:1782 75ms",
+    "stroke<grid:4594 57ms",
+    "menu:1881 45ms"
+   ]
+  },
+  {
+   "label": "projects: open folder",
+   "fps": 120.5,
+   "p95": 15.6,
+   "jank": 0.7,
+   "worst": 67,
+   "longTasks": 1,
+   "longMs": 82,
+   "Q": 1,
+   "top": [
+    "paint:4517 137ms",
+    "grid:4594 101ms",
+    "drawImage<link:1782 88ms",
+    "wedgeGeo:4690 75ms",
+    "stroke<grid:4594 52ms",
+    "addColorStop<grid:4594 52ms"
+   ]
+  },
+  {
+   "label": "projects: back to menu",
+   "fps": 119,
+   "p95": 16.9,
+   "jank": 0,
+   "worst": 25,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 1,
+   "top": [
+    "livingWedge:4709 231ms",
+    "paint:4517 76ms",
+    "grid:4594 65ms",
+    "menu:1881 45ms",
+    "drawImage<link:1782 42ms",
+    "stroke<grid:4594 39ms"
+   ]
+  },
+  {
+   "label": "skills: open",
+   "fps": 114.9,
+   "p95": 41.6,
+   "jank": 7,
+   "worst": 108,
+   "longTasks": 6,
+   "longMs": 395,
+   "Q": 1,
+   "top": [
+    "texImage2D<paint:2295 287ms",
+    "getImageData<swatch:2270 188ms",
+    "wrapFrame:3170 171ms",
+    "paint:4517 123ms",
+    "grid:4594 87ms",
+    "drawImage<link:1782 82ms"
+   ]
+  },
+  {
+   "label": "skills: idle",
+   "fps": 119,
+   "p95": 16.3,
+   "jank": 1.5,
+   "worst": 49,
+   "longTasks": 1,
+   "longMs": 53,
+   "Q": 0.672,
+   "top": [
+    "texImage2D<paint:2295 400ms",
+    "wrapFrame:3170 146ms",
+    "grid:4594 109ms",
+    "paint:4517 86ms",
+    "stroke<grid:4594 56ms",
+    "addColorStop<grid:4594 53ms"
+   ]
+  },
+  {
+   "label": "skills: deal a card",
+   "fps": 117.6,
+   "p95": 16.8,
+   "jank": 0,
+   "worst": 33,
+   "longTasks": 1,
+   "longMs": 69,
+   "Q": 0.672,
+   "top": [
+    "wrapFrame:3170 270ms",
+    "drawCase:3038 170ms",
+    "paint:4517 124ms",
+    "grid:4594 116ms",
+    "wedgeGeo:4690 51ms",
+    "texImage2D<paint:2295 50ms"
+   ]
+  },
+  {
+   "label": "skills: back to menu",
+   "fps": 107.5,
+   "p95": 24.9,
+   "jank": 1.8,
+   "worst": 116,
+   "longTasks": 1,
+   "longMs": 111,
+   "Q": 0.672,
+   "top": [
+    "livingWedge:4709 170ms",
+    "paint:4517 60ms",
+    "wrapFrame:3170 57ms",
+    "grid:4594 44ms",
+    "wedgeGeo:4690 31ms",
+    "drawImage<link:1782 23ms"
+   ]
+  },
+  {
+   "label": "contact: open",
+   "fps": 119,
+   "p95": 17.2,
+   "jank": 1,
+   "worst": 216,
+   "longTasks": 2,
+   "longMs": 312,
+   "Q": 0.452,
+   "top": [
+    "paint:4517 177ms",
+    "drawImage<link:1782 126ms",
+    "grid:4594 115ms",
+    "proj:7467 100ms",
+    "wedgeGeo:4690 64ms",
+    "(anon):7323 56ms"
+   ]
+  },
+  {
+   "label": "contact: idle",
+   "fps": 116.3,
+   "p95": 17.8,
+   "jank": 1.9,
+   "worst": 109,
+   "longTasks": 2,
+   "longMs": 161,
+   "Q": 0.452,
+   "top": [
+    "size:7409 212ms",
+    "proj:7467 126ms",
+    "paint:4517 108ms",
+    "drawImage<link:1782 97ms",
+    "grid:4594 92ms",
+    "addColorStop<grid:4594 45ms"
+   ]
+  },
+  {
+   "label": "contact: flip open",
+   "fps": 117.6,
+   "p95": 24.6,
+   "jank": 1.3,
+   "worst": 66,
+   "longTasks": 2,
+   "longMs": 120,
+   "Q": 0.514,
+   "top": [
+    "size:7409 149ms",
+    "grid:4594 102ms",
+    "drawImage<link:1782 102ms",
+    "proj:7467 90ms",
+    "paint:4517 89ms",
+    "wedgeGeo:4690 61ms"
+   ]
+  },
+  {
+   "label": "contact: buzzing",
+   "fps": 120.5,
+   "p95": 16.9,
+   "jank": 0,
+   "worst": 25,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.584,
+   "top": [
+    "paint:4517 140ms",
+    "grid:4594 129ms",
+    "drawImage<link:1782 85ms",
+    "proj:7467 73ms",
+    "stroke<grid:4594 62ms",
+    "wedgeGeo:4690 54ms"
+   ]
+  },
+  {
+   "label": "contact: chat",
+   "fps": 119,
+   "p95": 16.7,
+   "jank": 1.1,
+   "worst": 66,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.664,
+   "top": [
+    "grid:4594 137ms",
+    "paint:4517 125ms",
+    "drawImage<link:1782 88ms",
+    "draw:4763 57ms",
+    "addColorStop<grid:4594 53ms",
+    "menu:1881 53ms"
+   ]
+  },
+  {
+   "label": "contact: back to menu",
+   "fps": 120.5,
+   "p95": 9.3,
+   "jank": 0,
+   "worst": 18,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.755,
+   "top": [
+    "livingWedge:4709 240ms",
+    "paint:4517 78ms",
+    "grid:4594 68ms",
+    "drawImage<link:1782 43ms",
+    "stroke<grid:4594 37ms",
+    "draw:4763 32ms"
+   ]
+  }
+ ],
+ "errors": []
+}

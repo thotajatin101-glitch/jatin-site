@@ -1537,7 +1537,39 @@ html.cuOn,html.cuOn *{cursor:none!important;}
 <script>
 /* the phone layout is for an UPRIGHT phone only. A phone held sideways is short and wide, so it takes the desktop layout
    (2026-11-14: sideways it buried the menu heading, the ABOUT camera and the SKILLS card). CSS: (max-width:760px) and (orientation:portrait) */
-function upright(){return innerWidth<=760&&innerHeight>=innerWidth;}
+let UPR=null;addEventListener('resize',()=>{UPR=null;});
+function upright(){return UPR==null?(UPR=innerWidth<=760&&innerHeight>=innerWidth):UPR;}   /* asked every frame by the dither and the models: read once per resize, a fresh read forces a layout */
+/* ================= WARM-UP: build the 3D models before their page is opened =================
+   2026-11-14, his note: "the hosted website has alot off lag during transitions". Each raymarched model compiled its
+   shader the moment its section opened, on the transition's swap frame: 70–110ms of blocked main thread on a slow
+   laptop, plus the driver's own compile on the first draw. Now, while the menu sits idle, each one is compiled in the
+   background (KHR_parallel_shader_compile: the page never waits on it), then built and drawn once at 1px so the first
+   real frame is already paid for. If he opens a page before its warm-up is done, it builds on the spot as before. */
+const Warm=(()=>{
+  const pre=new WeakMap();
+  /* the program a module would build, compiled without asking for the result (asking is what blocks) */
+  function begin(gl,VS,FS){
+    const mk=(t,src)=>{const o=gl.createShader(t);gl.shaderSource(o,src);gl.compileShader(o);return o;};
+    const pr=gl.createProgram();gl.attachShader(pr,mk(gl.VERTEX_SHADER,VS));gl.attachShader(pr,mk(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);
+    pre.set(gl,pr);return pr;
+  }
+  function take(gl){const pr=pre.get(gl);if(!pr)return null;pre.delete(gl);return gl.getProgramParameter(pr,gl.LINK_STATUS)?pr:null;}
+  /* run(canvas, attrs, VS, FS, then): `then` is called once the program is linked (or at once without the extension) */
+  function run(c,attrs,VS,FS,then){
+    try{const gl=c&&c.getContext('webgl',attrs);if(!gl)return;
+      const ext=gl.getExtension('KHR_parallel_shader_compile'),pr=begin(gl,VS,FS),t0=performance.now();
+      const poll=()=>{if(ext&&!gl.getProgramParameter(pr,ext.COMPLETION_STATUS_KHR)&&performance.now()-t0<8000)return setTimeout(poll,60);
+        try{then(gl);}catch(e){}};
+      setTimeout(poll,ext?60:0);
+    }catch(e){}
+  }
+  /* one after another, only while the menu is up and nothing is in transition */
+  let q=[],going=false;
+  function next(){if(!q.length){going=false;return;}
+    if(!document.body.classList.contains('menu')||document.querySelector('.section.active')||(typeof TransFX!=='undefined'&&TransFX.active())){going=false;return;}
+    going=true;const f=q.shift();try{f(()=>setTimeout(next,220));}catch(e){setTimeout(next,220);}}
+  return {run,take,add(f){q.push(f);},go(){if(!going)next();}};
+})();
 function isTouch(){return matchMedia('(hover:none) and (pointer:coarse)').matches;}   /* phones + tablets: say tap, not click */
 /* ================= QUALITY: the frame governor =================
    2026-11-09, his note: friends on laptops and PCs see dropped frames, worst on CONTACT. Measured on this Mac's GPU,
@@ -2262,7 +2294,7 @@ void main(){
          up front was the SKILLS entrance's biggest cost. */
       for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}
       list=list.slice(0,48);
-      const one=src=>new Promise(r=>{const im=new Image();im.decoding='async';im.onload=()=>{REFS.push({im,sw:null});r();};im.onerror=r;im.src=src;});
+      const one=src=>new Promise(r=>{const im=new Image();im.decoding='async';im.onload=()=>{const ok=()=>{REFS.push({im,sw:null});r();};im.decode?im.decode().then(ok,ok):ok();};   /* decoded off the main thread: an undecoded photo drawn into the feed decodes right there, mid-frame (2026-11-14) */im.onerror=r;im.src=src;});
       let q=list.slice();const lane=()=>q.length?one(q.shift()).then(lane):null;
       return Promise.all([lane(),lane(),lane()]);
     }
@@ -3563,6 +3595,9 @@ void main(){
   }
   gl_FragColor=vec4(col.rgb*col.a,col.a);
 }`;
+  /* the canvas's box, from a ResizeObserver: a clientWidth read in a draw forces a layout every frame (2026-11-14) */
+  let ro=null,bw=0,bh=0;
+  const cw=()=>{if(!ro){ro=new ResizeObserver(e=>{const b=e[0].contentRect;bw=b.width;bh=b.height;dirty=true;});ro.observe(cv);}if(!bw||!bh){bw=cv.clientWidth;bh=cv.clientHeight;}return bw;},chh=()=>(cw(),bh);
   let cv=null,gl=null,prog=null,U={},tex=null,raf=0,host=null,t0=0,dirty=true,ok=true;
   const st={yaw:.5,pitch:.06,lift:0},par={x:0,y:0},parT={x:0,y:0};
   const REST_YAW=.5,REST_PITCH=.06;   /* three-quarter view onto the LEFT side, like the reference */
@@ -3788,8 +3823,9 @@ void main(){
     const sh=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
       if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;};
     try{
-      prog=gl.createProgram();gl.attachShader(prog,sh(gl.VERTEX_SHADER,VS));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FS));
-      gl.linkProgram(prog);if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(prog));
+      prog=Warm.take(gl);
+      if(!prog){prog=gl.createProgram();gl.attachShader(prog,sh(gl.VERTEX_SHADER,VS));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FS));
+      gl.linkProgram(prog);if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(prog));}
     }catch(e){console.warn('MonitorFX:',e.message);ok=false;cv.style.display='none';return false;}
     gl.useProgram(prog);
     const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);
@@ -3818,7 +3854,8 @@ void main(){
      re-rendered crisp. Parallax and the screen intro stay full-res. */
   let heavy=false;
   function size(){
-    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:1)*Q.s,w=Math.max(1,Math.round(cv.clientWidth*R)),h=Math.max(1,Math.round(cv.clientHeight*R));
+    cw();
+    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:1)*Q.s,w=Math.max(1,Math.round(bw*R)),h=Math.max(1,Math.round(bh*R));
     if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;dirty=true;}
     return R;
   }
@@ -3826,7 +3863,7 @@ void main(){
      have as its own canvas). The canvas now covers the whole section so the
      dolly can carry the screen to the middle of the page. */
   function rest(R){
-    const W=cv.clientWidth,H=cv.clientHeight;
+    const W=cw(),H=chh();
     let x,y,w,h;
     if(upright()){x=0;y=.24*H;w=W;h=.6*H;}
     else{const fs=parseFloat(getComputedStyle(host.querySelector('.secHead')).fontSize)||100;
@@ -3884,13 +3921,13 @@ void main(){
     const y2=cp*y+sp*z;z=-sp*y+cp*z;y=y2+q.lift;              /* undo the pitch, add the lift */
     const ro=q.ro,ta=q.ta,ww=nrm3([ta[0]-ro[0],ta[1]-ro[1],ta[2]-ro[2]]),uu=nrm3(cross3(ww,[0,1,0])),vv=cross3(uu,ww);
     const d=[x-ro[0],y-ro[1],z-ro[2]],zz=d[0]*ww[0]+d[1]*ww[1]+d[2]*ww[2];
-    const Rf=cv.width/cv.clientWidth,k=1.95/zz*q.S;
+    const Rf=cv.width/cw(),k=1.95/zz*q.S;
     return [(q.cx+(d[0]*uu[0]+d[1]*uu[1]+d[2]*uu[2])*k)/Rf,(cv.height-(q.cy+(d[0]*vv[0]+d[1]*vv[1]+d[2]*vv[2])*k))/Rf,zz,k/Rf];
   }
   const nrm3=a=>{const l=Math.hypot(a[0],a[1],a[2]);return [a[0]/l,a[1]/l,a[2]/l];};
   const cross3=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
   function sizeChains(){
-    const R=Math.min(devicePixelRatio||1,1.5),w=Math.round(cv.clientWidth*R),h=Math.round(cv.clientHeight*R);
+    const R=Math.min(devicePixelRatio||1,1.5),w=Math.round(cw()*R),h=Math.round(chh()*R);
     for(const [c,g] of [[chB,gB],[chF,gF]]){if(c.width!==w||c.height!==h){c.width=w;c.height=h;}g.setTransform(R,0,0,R,0,0);g.clearRect(0,0,w,h);}
   }
   function wrapFrame(q,now){
@@ -4468,7 +4505,9 @@ void main(){
     if(e.key==='Enter'){e.preventDefault();ready()?open():queue();return true;}   /* Return opens the computer */
     return false;
   }
-  return {enter,key,isOpen:()=>mode!=='idle',close,
+  function warm(done){const c=document.querySelector('#sec-projects .pcCv');if(cv||!c)return done();
+    Warm.run(c,{premultipliedAlpha:true,antialias:false,alpha:true},VS,FS,g=>{if(!cv&&init(c)&&ok){g.viewport(0,0,1,1);g.drawArrays(g.TRIANGLES,0,3);}done();});}
+  return {warm,enter,key,isOpen:()=>mode!=='idle',close,
     peek(n){held=n==null?null:(n>=21?['click',2,(n-21)%20]:['intro',n|0,0]);dirty=true;return scr;},
     hold(ms){holdMs=ms;if(ms!=null&&ms<1100){bits=null;wrapDone=false;}dirty=true;}};
 })();
@@ -6175,6 +6214,8 @@ let lastSec=null;        /* QA: back from a section, the menu lands on that sect
 function cascadeMenu(){
   menuReady=false;
   setTimeout(()=>{try{SkillFX.prep();}catch(e){}},1400);   /* build the SKILLS card's chrome case while the menu is up */
+  if(!cascadeMenu.warmed){cascadeMenu.warmed=1;Warm.add(d=>CamFX.warm(d));Warm.add(d=>MonitorFX.warm(d));Warm.add(d=>PhoneFX.warm(d));}
+  setTimeout(()=>Warm.go(),2100);                          /* then the three models, one at a time (see Warm) */
   /* paint the wedge to item 0 up front — select(0) is 670ms away, and until
      it fires the wedge would otherwise show the accent fallback */
   const k0=Math.max(0,items.findIndex(it=>it.dataset.target===lastSec));
@@ -6602,7 +6643,7 @@ void main(){
   gl_FragColor=vec4(col.rgb*col.a,col.a);
 }`;
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let cv=null,gl=null,U={},ok=true,host=null,raf=0,t0=0,tgt=null,holdMs=null,heavy=false;
+  let cv=null,gl=null,U={},ok=true,host=null,raf=0,t0=0,tgt=null,holdMs=null,heavy=false,ro=null,bw=0,bh=0;
   /* the pose: the lens faces down-right into the beam and a little toward you, the near side (the heart) showing */
   const REST={yaw:-.62,roll:-.36,pitch:.2},IN=1000;
   /* round 10, his note: "the camera isn't angled properly, the projection is coming out at a weird angle". The lens
@@ -6624,8 +6665,9 @@ void main(){
     if(!gl){ok=false;return false;}
     const sh=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
       if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;};
-    try{const prog=gl.createProgram();gl.attachShader(prog,sh(gl.VERTEX_SHADER,VS));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FS));
-      gl.linkProgram(prog);if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(prog));gl.useProgram(prog);
+    try{let prog=Warm.take(gl);
+      if(!prog){prog=gl.createProgram();gl.attachShader(prog,sh(gl.VERTEX_SHADER,VS));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FS));
+      gl.linkProgram(prog);if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(prog));}gl.useProgram(prog);
       const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
       const loc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
       ['uCtr','uS','uYaw','uRoll','uPitch','uDpr'].forEach(n=>U[n]=gl.getUniformLocation(prog,n));}
@@ -6654,7 +6696,8 @@ void main(){
   }
   function frame(ms){
     if(!ok||!tgt)return;
-    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:1)*Q.s,W=cv.clientWidth,H=cv.clientHeight;
+    if(!ro){ro=new ResizeObserver(e=>{const b=e[0].contentRect;bw=b.width;bh=b.height;});ro.observe(cv);}if(!bw||!bh){bw=cv.clientWidth;bh=cv.clientHeight;}   /* no layout read per frame (0 while the section is hidden: read once on the way back in) */
+    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:1)*Q.s,W=bw,H=bh;
     const w=Math.round(W*R),h=Math.round(H*R);if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;}
     const q=pose(ms,W,H),S=q.S*R,lw=toW(LENS,q),kk=3.3*S/(4.6-lw[2]);
     const cx=q.x*R-lw[0]*kk,cy=(H-q.y)*R-lw[1]*kk;                      /* the lens lands on (q.x, q.y) */
@@ -6675,6 +6718,8 @@ void main(){
   return {
     /* lens: where the lens mouth lands (CSS px in the section); size: CSS px per object unit, roughly */
     place(lens,size,dir){aim(dir);tgt={x:lens[0],y:lens[1],S:size};if(cv&&holdMs==null&&performance.now()-t0>IN)frame(IN);else if(cv)frame(holdMs!=null?holdMs:performance.now()-t0);},
+    warm(done){const c=document.querySelector('#sec-about .camCv');if(cv||!c)return done();
+      Warm.run(c,{premultipliedAlpha:true,antialias:false,alpha:true},VS,FS,g=>{if(!cv&&init(c)&&ok){g.viewport(0,0,1,1);g.drawArrays(g.TRIANGLES,0,3);}done();});},
     start(sec){host=sec;if(!cv&&!init(sec.querySelector('.camCv')))return;t0=performance.now();loop();},
     hold(ms){holdMs=ms;loop();},
     get ok(){return ok;}
@@ -7290,7 +7335,7 @@ void main(){
   }
   gl_FragColor=vec4(col.rgb*col.a,col.a);
 }`;
-  let cv=null,gl=null,prog=null,U={},scr=null,keyTex=null,outTex=null,raf=0,host=null,t0=0,ok=true,P=null,holdMs=null,scrKey='',lastDraw=0;
+  let cv=null,gl=null,prog=null,U={},scr=null,keyTex=null,outTex=null,raf=0,host=null,t0=0,ok=true,P=null,holdMs=null,scrKey='',lastDraw=0,wired=false;
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const par={x:0,y:0},parT={x:0,y:0};let parAt=0;
   const REST={yaw:.3,pitch:-.38,roll:.22};                    /* round 6, his note: "the head of the phone is in front and the bottom in the back … angle it in a sitting angle". NEGATIVE pitch sends the top AWAY and brings the bottom near (rounds 5/5b had the sign backwards) */
@@ -7393,8 +7438,9 @@ void main(){
     if(!gl){ok=false;cv.style.display='none';return false;}
     const sh=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
       if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;};
-    try{prog=gl.createProgram();gl.attachShader(prog,sh(gl.VERTEX_SHADER,VS));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FS));
-      gl.linkProgram(prog);if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(prog));}
+    try{prog=Warm.take(gl);
+      if(!prog){prog=gl.createProgram();gl.attachShader(prog,sh(gl.VERTEX_SHADER,VS));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FS));
+      gl.linkProgram(prog);if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(prog));}}
     catch(e){console.warn('PhoneFX:',e.message);ok=false;cv.style.display='none';return false;}
     gl.useProgram(prog);
     const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
@@ -7405,16 +7451,20 @@ void main(){
       retex(keyTex,keyAtlas());retex(outTex,outer(outKind));scrKey='';P=null;},()=>{});
     return true;
   }
-  let heavy=false,shaking=false;
+  let heavy=false,shaking=false,ro=null,bw=0,bh=0;
+  const cw=()=>{if(!ro){ro=new ResizeObserver(e=>{const b=e[0].contentRect;bw=b.width;bh=b.height;P=null;});ro.observe(cv);}if(!bw||!bh){bw=cv.clientWidth;bh=cv.clientHeight;}return bw;},chh=()=>(cw(),bh);
   function size(){
-    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:shaking?.78:1)*Q.s,w=Math.max(1,Math.round(cv.clientWidth*R)),h=Math.max(1,Math.round(cv.clientHeight*R));
+    /* the canvas's box comes from a ResizeObserver: reading clientWidth here forced a layout on every frame (2026-11-14:
+       `size` was the top cost on CONTACT in the slow-machine profile) */
+    cw();
+    const R=Math.min(devicePixelRatio||1,1.5)*(heavy?.55:shaking?.78:1)*Q.s,w=Math.max(1,Math.round(bw*R)),h=Math.max(1,Math.round(bh*R));
     if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;P=null;}
     return R;
   }
   /* where it rests: with the text box gone (his call, round 2) it owns the page: nearer the middle, clear of the heading,
      its height filling most of the section (phone: under the heading) */
   function rest(R){
-    const W=cv.clientWidth,H=cv.clientHeight;let x,y,w,h;
+    const W=cw(),H=chh();let x,y,w,h;
     if(upright()){x=0;y=.24*H;w=W;h=.64*H;}
     else{const fs=parseFloat(getComputedStyle(host.querySelector('.secHead')).fontSize)||100;x=.06*W+2.6*fs;y=.06*H;w=.9*W-2.6*fs;h=.9*H;}
     return {cx:R*(x+w/2),cy:R*(H-(y+h/2)),S:R*Math.min(h/1.42,w/1.)};
@@ -7466,7 +7516,7 @@ void main(){
   function toW(o,q){const v=o.slice();rot(v,q.roll,0,1);rot(v,q.pitch,1,2);rot(v,q.yaw,2,0);return v;}
   function proj(w,q){                                           /* (world, lift not added) → CSS px, px per unit, depth (the shader's camera) */
     const rx=w[0],ry=w[1]+q.lift,rz=w[2]-4.6,k=3.3*q.S/(-rz)/q.R;
-    return [q.cx/q.R+rx*k,cv.clientHeight-(q.cy/q.R+ry*k),k,-rz];
+    return [q.cx/q.R+rx*k,chh()-(q.cy/q.R+ry*k),k,-rz];
   }
   function pin(ms){const a=angles(ms),w=toW(SA,a);w[1]+=a.lift;return w;}    /* the knuckle, lift included: the rope lives in real world space */
   function ropeReset(ms){
@@ -7512,7 +7562,7 @@ void main(){
     if(!chB){const mk=f=>{const c=document.createElement('canvas');c.className='phChain'+(f?' front':'');c.setAttribute('aria-hidden','true');return c;};
       chB=mk(0);chF=mk(1);cv.before(chB);cv.after(chF);gB=chB.getContext('2d');gF=chF.getContext('2d');
       tagCv=tag();document.fonts&&document.fonts.load('92px "Cyberway Riders"').then(()=>{tagCv=tag();P=null;},()=>{});}
-    const R=Math.min(devicePixelRatio||1,1.5),w=Math.round(cv.clientWidth*R),h=Math.round(cv.clientHeight*R);
+    const R=Math.min(devicePixelRatio||1,1.5),w=Math.round(cw()*R),h=Math.round(chh()*R);
     for(const [c,g] of [[chB,gB],[chF,gF]]){if(c.width!==w||c.height!==h){c.width=w;c.height=h;}g.setTransform(R,0,0,R,0,0);g.clearRect(0,0,w,h);}
     if(!strapPal)strapPal=ChainFX.palOf(getComputedStyle(host).getPropertyValue('--acc'));
     ropeTo(q.ms);
@@ -7683,7 +7733,7 @@ void main(){
   let zA=0,zT=0,zNow=0,zt0=-1e9,zState='rest',zCache=null,chat=null;
   function lidToObj(v,th){const o=v.slice();rot(o,th,1,2);return o;}
   function zoomPose(R){
-    const W=cv.clientWidth,H=cv.clientHeight;
+    const W=cw(),H=chh();
     /* QA: on a phone the keyboard covered NEXT. While a chat field has focus, the LCD (soft keys and all)
        fits the band the keyboard leaves visible */
     const ae=document.activeElement,vv=window.visualViewport,
@@ -7991,7 +8041,10 @@ function frame(now){
     else{const dt=Math.min(.1,(now-(parAt||now))/1000),k=1-Math.exp(-dt*5);par.x+=(parT.x-par.x)*k;par.y+=(parT.y-par.y)*k;}   /* eased like the computer's */
     parAt=now;
     const ms=now-t0;if(ms<0){if(P!==false){gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);P=false;}return;}
-    const was=heavy,wasS=shaking;heavy=!reduce&&ms<SPIN;shaking=!reduce&&(ringEnv(ms)>0||buzzEnv(ms)>0||(ms>SNAP-150&&ms<SNAP+600));if(was!==heavy||wasS!==shaking)P=null;
+    const was=heavy,wasS=shaking;heavy=!reduce&&ms<SPIN;shaking=!reduce&&!heavy&&c2==null;if(was!==heavy||wasS!==shaking)P=null;
+    /* 2026-11-14: `shaking` used to follow each ring and buzz pulse, so the render size flipped .78 ↔ 1 four times a ring and
+       every flip re-allocated the full-screen GL canvas: `size` was the top cost on CONTACT (450–616ms per phase on the slow
+       rig), which is the lag he felt there. Now one size holds from the landing until the second click. */
     cv.classList.toggle('still',!heavy);
     const R=size(),k=zState==='open'?'chat':zState==='in'?'on':screenKind(ms);
     const ok2=stage(ms)==='ring'?'call':stage(ms)==='notify'||stage(ms)==='snap'?'msg':'idle';
@@ -8015,7 +8068,8 @@ function frame(now){
   }
   function enter(section,delay){
     const c=section.querySelector('.phCv');if(!c)return;
-    if(!cv){if(!init(c))return;addEventListener('pointermove',e=>{parT.x=e.clientX/innerWidth-.5;parT.y=e.clientY/innerHeight-.5;},{passive:true});
+    if(!cv&&!init(c))return;
+    if(!wired){wired=true;addEventListener('pointermove',e=>{parT.x=e.clientX/innerWidth-.5;parT.y=e.clientY/innerHeight-.5;},{passive:true});
       section.addEventListener('click',e=>{if(zState!=='rest'||e.target.closest('button,a,.phChat'))return;
         const onPop=!!e.target.closest('.phPop'),st=stage(performance.now()-t0);
         if(st==='ring'&&(onPop||hit(e)))breakChains();else if(st==='notify'&&(onPop||hit(e)))answer();
@@ -8028,7 +8082,9 @@ function frame(now){
   }
   /* hold(ms): freeze the entrance ms after it starts (e.g. 500 mid-turn, 1100 the snap, 1500 lit); hold(null) releases */
   function hold(ms,b,a){holdMs=ms;P=null;rope=null;bits=null;if(b!==undefined){c1=b;c2=a==null?null:a;SNAP=b==null?1e9:b;BOOT=SNAP+180;answered=false;}}
-  return {enter,hold,key,isOpen:()=>zState!=='rest',close};
+  function warm(done){const c=document.querySelector('#sec-contact .phCv');if(cv||!c)return done();
+    Warm.run(c,{premultipliedAlpha:true,antialias:false,alpha:true},VS,FS,g=>{if(!cv&&init(c)&&ok){g.viewport(0,0,1,1);g.drawArrays(g.TRIANGLES,0,3);}done();});}
+  return {warm,enter,hold,key,isOpen:()=>zState!=='rest',close};
 })();
 
 function openSection(id,fromHistory){

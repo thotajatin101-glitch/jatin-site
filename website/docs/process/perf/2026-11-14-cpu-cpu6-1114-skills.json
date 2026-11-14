@@ -1,0 +1,96 @@
+{
+ "rig": "cpu",
+ "cpu": 6,
+ "url": "http://127.0.0.1:51920/",
+ "phases": [
+  {
+   "label": "intro: float (waiting)",
+   "fps": 120.5,
+   "p95": 9.2,
+   "jank": 0,
+   "worst": 9,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.932,
+   "top": null
+  },
+  {
+   "label": "intro: snap → menu",
+   "fps": 119,
+   "p95": 16.9,
+   "jank": 1.7,
+   "worst": 343,
+   "longTasks": 5,
+   "longMs": 623,
+   "Q": 0.82,
+   "top": null
+  },
+  {
+   "label": "menu: idle",
+   "fps": 119,
+   "p95": 16.8,
+   "jank": 0.3,
+   "worst": 159,
+   "longTasks": 1,
+   "longMs": 151,
+   "Q": 0.82,
+   "top": null
+  },
+  {
+   "label": "menu: browsing",
+   "fps": 61.3,
+   "p95": 25.1,
+   "jank": 2,
+   "worst": 59,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.82,
+   "top": null
+  },
+  {
+   "label": "skills: open",
+   "fps": 59.5,
+   "p95": 59.4,
+   "jank": 20,
+   "worst": 167,
+   "longTasks": 13,
+   "longMs": 911,
+   "Q": 0.672,
+   "top": null
+  },
+  {
+   "label": "skills: idle",
+   "fps": 116.3,
+   "p95": 32.4,
+   "jank": 4.2,
+   "worst": 141,
+   "longTasks": 4,
+   "longMs": 321,
+   "Q": 0.452,
+   "top": null
+  },
+  {
+   "label": "skills: deal a card",
+   "fps": 58.1,
+   "p95": 33.6,
+   "jank": 7.3,
+   "worst": 50,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  },
+  {
+   "label": "skills: back to menu",
+   "fps": 58.5,
+   "p95": 34.3,
+   "jank": 11.3,
+   "worst": 50,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": null
+  }
+ ],
+ "errors": []
+}

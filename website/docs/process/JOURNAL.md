@@ -13,6 +13,22 @@ by piece and marked "Oct 2026".
 
 
 
+## 2026-11-14 (last) — where the lag was
+
+His note: "do the same for the contact page and find why it feels laggy infact i want you to do that for the whole
+website cuz the hosted website has alot off lag during transitions".
+
+No look changed; this is a timing pass. The slow-machine test, with profiling on, named three things:
+
+- **CONTACT:** the phone changed its render size on every ring pulse, and each change rebuilt its whole canvas. One size
+  now holds from the landing to the second click.
+- **Every transition:** the camera, the computer and the phone were each built on the frame their page opened, under
+  the slam. They are now built quietly while the menu is up.
+- **Every frame:** three models and the upright-phone check were measuring the page inside their draw.
+
+Cut: a shortcut for the eye's colour swatches that measured worse than what it replaced. Still heavy: SKILLS and ABOUT
+opening.
+
 ## 2026-11-14 (later) — the SKILLS background that pulsed
 
 His note, with four screenshots from his phone: "This skill page is glitchy for some reason like the back ground and

@@ -1,0 +1,422 @@
+{
+ "rig": "cpu",
+ "cpu": 6,
+ "url": "http://127.0.0.1:51720/",
+ "phases": [
+  {
+   "label": "intro: float (waiting)",
+   "fps": 120.5,
+   "p95": 9.2,
+   "jank": 0,
+   "worst": 16,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.932,
+   "top": [
+    "drawImage<blitChains:5843 165ms",
+    "uniformMatrix4fv<draw3Links:5817 122ms",
+    "draw3Links:5817 101ms",
+    "pGrid:5369 98ms",
+    "uniform3fv<draw3Links:5817 95ms",
+    "(anon):5780 63ms"
+   ]
+  },
+  {
+   "label": "intro: snap → menu",
+   "fps": 119,
+   "p95": 17.1,
+   "jank": 1.5,
+   "worst": 350,
+   "longTasks": 3,
+   "longMs": 457,
+   "Q": 0.82,
+   "top": [
+    "livingWedge:4748 555ms",
+    "draw:4802 136ms",
+    "drawImage<tint:4968 127ms",
+    "paint:4556 125ms",
+    "grid:4633 66ms",
+    "fsin:4746 66ms"
+   ]
+  },
+  {
+   "label": "menu: idle",
+   "fps": 119,
+   "p95": 17,
+   "jank": 0.4,
+   "worst": 159,
+   "longTasks": 1,
+   "longMs": 154,
+   "Q": 0.82,
+   "top": [
+    "livingWedge:4748 781ms",
+    "paint:4556 181ms",
+    "grid:4633 129ms",
+    "drawImage<link:1814 84ms",
+    "fsin:4746 76ms",
+    "(anon):7368 55ms"
+   ]
+  },
+  {
+   "label": "menu: browsing",
+   "fps": 59.5,
+   "p95": 41.4,
+   "jank": 9.1,
+   "worst": 83,
+   "longTasks": 1,
+   "longMs": 53,
+   "Q": 0.82,
+   "top": [
+    "livingWedge:4748 820ms",
+    "paint:4556 358ms",
+    "grid:4633 81ms",
+    "fsin:4746 79ms",
+    "wedgeGeo:4729 58ms",
+    "drawImage<link:1814 53ms"
+   ]
+  },
+  {
+   "label": "about: open",
+   "fps": 107.5,
+   "p95": 58.2,
+   "jank": 10.7,
+   "worst": 134,
+   "longTasks": 13,
+   "longMs": 840,
+   "Q": 0.82,
+   "top": [
+    "paint:4556 480ms",
+    "draw:5040 429ms",
+    "fan:6840 384ms",
+    "grid:4633 78ms",
+    "livingWedge:4748 64ms",
+    "(anon):8094 58ms"
+   ]
+  },
+  {
+   "label": "about: idle",
+   "fps": 60.2,
+   "p95": 32.8,
+   "jank": 0.7,
+   "worst": 34,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.672,
+   "top": [
+    "draw:5040 830ms",
+    "paint:4556 449ms",
+    "sn:4539 68ms",
+    "grid:4633 61ms",
+    "drawImage<link:1814 49ms",
+    "addColorStop<grid:4633 25ms"
+   ]
+  },
+  {
+   "label": "about: back to menu",
+   "fps": 61.3,
+   "p95": 24.3,
+   "jank": 0,
+   "worst": 33,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.672,
+   "top": [
+    "livingWedge:4748 345ms",
+    "paint:4556 172ms",
+    "grid:4633 45ms",
+    "fsin:4746 43ms",
+    "draw:5040 42ms",
+    "drawImage<link:1814 37ms"
+   ]
+  },
+  {
+   "label": "projects: open",
+   "fps": 119,
+   "p95": 17.5,
+   "jank": 1.7,
+   "worst": 42,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.672,
+   "top": [
+    "drawImage<link:1814 166ms",
+    "texSubImage2D<pushScreen:3774 155ms",
+    "grid:4633 124ms",
+    "paint:4556 122ms",
+    "sprite:1773 90ms",
+    "livingWedge:4748 86ms"
+   ]
+  },
+  {
+   "label": "projects: idle",
+   "fps": 120.5,
+   "p95": 9.2,
+   "jank": 0,
+   "worst": 17,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.868,
+   "top": [
+    "paint:4556 139ms",
+    "drawImage<link:1814 91ms",
+    "grid:4633 89ms",
+    "wedgeGeo:4729 53ms",
+    "fill<streaks:4660 49ms",
+    "stroke<grid:4633 44ms"
+   ]
+  },
+  {
+   "label": "projects: dolly → OS",
+   "fps": 120.5,
+   "p95": 9.4,
+   "jank": 0.6,
+   "worst": 84,
+   "longTasks": 2,
+   "longMs": 147,
+   "Q": 0.986,
+   "top": [
+    "paint:4556 200ms",
+    "grid:4633 114ms",
+    "drawImage<link:1814 100ms",
+    "wedgeGeo:4729 79ms",
+    "menu:1913 63ms",
+    "stroke<grid:4633 62ms"
+   ]
+  },
+  {
+   "label": "projects: OS browse",
+   "fps": 113.6,
+   "p95": 25,
+   "jank": 2.4,
+   "worst": 208,
+   "longTasks": 2,
+   "longMs": 378,
+   "Q": 0.663,
+   "top": [
+    "size:3856 337ms",
+    "paint:4556 123ms",
+    "grid:4633 65ms",
+    "wedgeGeo:4729 60ms",
+    "drawImage<link:1814 59ms",
+    "addColorStop<grid:4633 43ms"
+   ]
+  },
+  {
+   "label": "projects: open folder",
+   "fps": 114.9,
+   "p95": 24.9,
+   "jank": 2,
+   "worst": 200,
+   "longTasks": 1,
+   "longMs": 212,
+   "Q": 0.544,
+   "top": [
+    "paint:4556 140ms",
+    "toDataURL<dither:4096 133ms",
+    "grid:4633 76ms",
+    "drawImage<link:1814 75ms",
+    "wedgeGeo:4729 54ms",
+    "draw:4802 44ms"
+   ]
+  },
+  {
+   "label": "projects: back to menu",
+   "fps": 61.3,
+   "p95": 25.5,
+   "jank": 1,
+   "worst": 42,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.507,
+   "top": [
+    "livingWedge:4748 418ms",
+    "paint:4556 143ms",
+    "fsin:4746 59ms",
+    "grid:4633 47ms",
+    "putImageData<livingWedge:4748 33ms",
+    "drawImage<link:1814 31ms"
+   ]
+  },
+  {
+   "label": "skills: open",
+   "fps": 59.5,
+   "p95": 66.6,
+   "jank": 19,
+   "worst": 117,
+   "longTasks": 14,
+   "longMs": 935,
+   "Q": 0.45,
+   "top": [
+    "texImage2D<paint:2327 318ms",
+    "getImageData<swatch:2302 317ms",
+    "paint:4556 186ms",
+    "wrapFrame:3202 100ms",
+    "drawImage<link:1814 94ms",
+    "livingWedge:4748 77ms"
+   ]
+  },
+  {
+   "label": "skills: idle",
+   "fps": 113.6,
+   "p95": 24.7,
+   "jank": 2.4,
+   "worst": 51,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": [
+    "texImage2D<paint:2327 370ms",
+    "wrapFrame:3202 282ms",
+    "paint:4556 185ms",
+    "grid:4633 73ms",
+    "stroke<grid:4633 49ms",
+    "draw:4802 29ms"
+   ]
+  },
+  {
+   "label": "skills: deal a card",
+   "fps": 60.2,
+   "p95": 32.3,
+   "jank": 4.8,
+   "worst": 76,
+   "longTasks": 1,
+   "longMs": 76,
+   "Q": 0.45,
+   "top": [
+    "wrapFrame:3202 219ms",
+    "drawCase:3070 218ms",
+    "paint:4556 200ms",
+    "grid:4633 75ms",
+    "stroke<grid:4633 42ms",
+    "texImage2D<paint:2327 31ms"
+   ]
+  },
+  {
+   "label": "skills: back to menu",
+   "fps": 40.5,
+   "p95": 41.7,
+   "jank": 16.7,
+   "worst": 50,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": [
+    "livingWedge:4748 275ms",
+    "paint:4556 122ms",
+    "wrapFrame:3202 51ms",
+    "fsin:4746 48ms",
+    "burst:4709 32ms",
+    "grid:4633 26ms"
+   ]
+  },
+  {
+   "label": "contact: open",
+   "fps": 63.3,
+   "p95": 33.1,
+   "jank": 4.1,
+   "worst": 93,
+   "longTasks": 4,
+   "longMs": 268,
+   "Q": 0.45,
+   "top": [
+    "paint:4556 178ms",
+    "drawImage<link:1814 115ms",
+    "grid:4633 72ms",
+    "livingWedge:4748 70ms",
+    "stroke<grid:4633 44ms",
+    "sprite:1773 43ms"
+   ]
+  },
+  {
+   "label": "contact: idle",
+   "fps": 114.9,
+   "p95": 24.7,
+   "jank": 2.6,
+   "worst": 209,
+   "longTasks": 2,
+   "longMs": 278,
+   "Q": 0.45,
+   "top": [
+    "paint:4556 117ms",
+    "grid:4633 80ms",
+    "drawImage<link:1814 75ms",
+    "rot:7515 35ms",
+    "sprite:1773 27ms",
+    "addColorStop<grid:4633 25ms"
+   ]
+  },
+  {
+   "label": "contact: flip open",
+   "fps": 113.6,
+   "p95": 17.7,
+   "jank": 1,
+   "worst": 218,
+   "longTasks": 1,
+   "longMs": 211,
+   "Q": 0.45,
+   "top": [
+    "paint:4556 125ms",
+    "drawImage<link:1814 94ms",
+    "grid:4633 79ms",
+    "wedgeGeo:4729 48ms",
+    "stroke<grid:4633 41ms",
+    "sprite:1773 37ms"
+   ]
+  },
+  {
+   "label": "contact: buzzing",
+   "fps": 119,
+   "p95": 16.7,
+   "jank": 0.4,
+   "worst": 58,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.45,
+   "top": [
+    "paint:4556 176ms",
+    "drawImage<link:1814 101ms",
+    "grid:4633 96ms",
+    "stroke<grid:4633 67ms",
+    "addColorStop<grid:4633 35ms",
+    "wedgeGeo:4729 31ms"
+   ]
+  },
+  {
+   "label": "contact: chat",
+   "fps": 120.5,
+   "p95": 16.7,
+   "jank": 1.1,
+   "worst": 66,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.581,
+   "top": [
+    "paint:4556 275ms",
+    "drawImage<link:1814 92ms",
+    "grid:4633 89ms",
+    "size:7456 60ms",
+    "wedgeGeo:4729 47ms",
+    "addColorStop<grid:4633 40ms"
+   ]
+  },
+  {
+   "label": "contact: back to menu",
+   "fps": 119,
+   "p95": 16.9,
+   "jank": 0,
+   "worst": 17,
+   "longTasks": 0,
+   "longMs": 0,
+   "Q": 0.476,
+   "top": [
+    "livingWedge:4748 424ms",
+    "paint:4556 114ms",
+    "grid:4633 58ms",
+    "drawImage<link:1814 48ms",
+    "fsin:4746 45ms",
+    "stroke<grid:4633 35ms"
+   ]
+  }
+ ],
+ "errors": []
+}
