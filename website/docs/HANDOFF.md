@@ -117,7 +117,8 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
   `Warm`, in the background from the menu); per-frame box reads in the computer, phone and camera; `upright()` cached
   (that one was a slowdown shipped this morning). Slow-laptop rig, worst frame: CONTACT open 350 → 83ms, PROJECTS open
   208 → 67ms, SKILLS deal 192 → 50ms, menu browsing 41 → 60fps. Browser subset 12/12, check.mjs passes.
-- **Next:** needs his "deploy". Still heavy: SKILLS open (blocked ~900ms on the 6× rig: the eye's feed upload and photo
+- **Deployed 2026-11-14 on his "Deploy"** (with the SKILLS band fix). Rollback: `git revert` back to `69eef3c` and push.
+- **Next:** Still heavy: SKILLS open (blocked ~900ms on the 6× rig: the eye's feed upload and photo
   decode) and ABOUT open (DitherFX force-paint + the light fan + CutGlow). `intro: snap → menu` has one ~350ms frame.
 - **Watch out:** the warm-up puts one or two short hiccups in the menu ~2s after it lands (the models' atlases being
   painted). The software-GPU rig is still unusable (0.2–15fps); the "lite mode" call is still open.
