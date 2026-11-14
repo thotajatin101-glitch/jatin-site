@@ -557,6 +557,13 @@ into tweens.
   The event doesn't fire reliably when the tab is throttled, and a stuck `.in`
   pins the selected plate's transform. Same rule as the old opacity bug:
   visibility lives on classes, never inline.
+- **Flicker is found on film, not on stills** (2026-11-14, his note: SKILLS on his phone was "glitchy … the back ground",
+  and "since u view the page through only stills u wont be able to notice"). `node tests/flicker/film.mjs <tag> [engine]
+  [idle|bar|scroll] [section]` films a section on a phone frame by frame; `python3 tests/flicker/diff.py tests/flicker/out/<tag>`
+  prints how much of the screen changed between frames and where. What it found: on an upright phone only a narrow strip
+  of the SKILLS chrome band shows, so its black-to-white mirror ramp filled the strip with one tone at a time and the
+  whole background pulsed dark, pale, dark. There the band stays steel (`CHROME_PH`) with tighter bands. A shape that
+  shows only a sliver of a wide dither must not run a full black-to-white ramp.
 - **A phone held SIDEWAYS takes the desktop layout** (2026-11-14, found by the browser sweep: sideways, the phone layout
   buried the menu heading, the ABOUT camera and the SKILLS card). The phone layout is for an upright phone only: JS asks
   `upright()` (width ≤760 AND taller than wide), CSS uses `(max-width:760px) and (orientation:portrait)`. Never test

@@ -4490,6 +4490,10 @@ const DitherFX=(()=>{
   const SEL='.mItem,.skItem,.skInfoMain,.skInfoTag,.skInfoBody,.secBand,.card,.backBtn,.cgBubble,.cgTag,.cgInnerT,.cgInnerB,.cgField,#wedgeSub,#wedgeDesc,.osBack,.osTab';
   const BAYER=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5].map(v=>(v+.5)/16);
   const CHROME=[[10,14,30],[58,68,102],[138,147,179],[207,213,234],[255,255,255]];   /* SKILLS: the card's mirror metal (the bolt) */
+  /* the same band on an UPRIGHT phone: only a narrow strip of it shows, so one tone fills it at a time and the black-to-white
+     ramp read as the whole background pulsing dark, pale, dark (his note, 2026-11-14: "glitchy … the back ground"). There it
+     stays steel, deep to pale, and the bands run tighter so the strip shows metal moving through it, not one flat tone */
+  const CHROME_PH=[[70,80,116],[108,117,150],[138,147,179],[172,179,206],[204,210,232]];
   const CHROME_LT=[[112,121,152],[152,160,190],[196,202,224],[229,233,245],[255,255,255]];   /* small plates: no black step, so ink type stays legible */
   const reg=new WeakMap();let last=0,acc=[0,240,216],seedN=0;
   const LUT=new Float32Array(4096);for(let i=0;i<4096;i++)LUT[i]=Math.sin(i/4096*Math.PI*2);
@@ -4516,10 +4520,11 @@ const DitherFX=(()=>{
     rec.cv.style.display='';
     const lw=Math.max(1,Math.ceil(w/rec.cell)),lh=Math.max(1,Math.ceil(h/rec.cell));
     if(rec.cv.width!==lw||rec.cv.height!==lh){rec.cv.width=lw;rec.cv.height=lh;rec.img=rec.x.createImageData(lw,lh);}
+    const tight=rec.chrome&&rec.cell===5&&upright(),fq=tight?2.3:1.05;
     const dark=(b[0]*.3+b[1]*.59+b[2]*.11)<40;
     const lo=dark?b:mix(b,[40,6,90],.36),hi=dark?mix(b,acc,.2):mix(b,[255,255,255],.42);
     const ramp=dark?[lo,mix(lo,hi,.25),mix(lo,hi,.5),mix(lo,hi,.75),hi]
-              :rec.chrome?(el.matches('.secBand')?CHROME:CHROME_LT):[lo,mix(lo,b,.5),b,mix(b,hi,.5),hi];
+              :rec.chrome?(el.matches('.secBand')?(tight?CHROME_PH:CHROME):CHROME_LT):[lo,mix(lo,b,.5),b,mix(b,hi,.5),hi];
     const t=now/1000,ph=(now/5600+rec.seed)%1,M=Math.max(w,h),d=rec.img.data,T=Math.PI*2;
     const ang=.35+.15*Math.sin(t*.19+rec.seed*6),ca=Math.cos(ang),sa=Math.sin(ang);
     /* big shapes (section bands, ABOUT's fields: ~50k cells) repaint alternate rows each pass, like the wedge: one of
@@ -4530,7 +4535,7 @@ const DitherFX=(()=>{
       const v=y*rec.cell/M,by=(y&3)<<2;
       for(let x=0;x<lw;x++){
         const u=x*rec.cell/M,along=u*ca+v*sa,perp=-u*sa+v*ca;
-        const band=.5+.5*sn(T*(along*1.05-ph+.2*sn(perp*4+t*.5+rec.seed*9))+1e4);
+        const band=.5+.5*sn(T*(along*fq-ph+.2*sn(perp*4+t*.5+rec.seed*9))+1e4);
         let tone=band*.82+.1*sn(T*(perp*.6+t*.09)+1e4);tone=tone<0?0:tone>1?1:tone;
         const f=tone*4,k=f|0,c=ramp[Math.min(4,k+((f-k)>BAYER[by+(x&3)]?1:0))],o=(y*lw+x)<<2;
         d[o]=c[0];d[o+1]=c[1];d[o+2]=c[2];d[o+3]=255;

@@ -13,6 +13,22 @@ by piece and marked "Oct 2026".
 
 
 
+## 2026-11-14 (later) — the SKILLS background that pulsed
+
+His note, with four screenshots from his phone: "This skill page is glitchy for some reason like the back ground and
+few other elements since u view the page through only stills u wont be able to notice so figure a way to find the
+issue and fix".
+
+- **How it was found:** a small filming tool that shoots the page frame by frame on a phone and measures what changed
+  between frames. The top-right of the screen was changing completely, over and over.
+- **What it was:** the chrome band behind the card. Its dither runs the card's mirror ramp, black to white. On a
+  laptop you see several bands of it at once and it reads as metal. On a phone only a sliver shows, so the whole
+  sliver went dark, then pale, then dark.
+- **Built:** on an upright phone the band stays steel, deep to pale, with tighter bands so metal moves through it.
+- **Kept:** the full mirror ramp on desktop, where it works.
+
+Stills: `stills/2026-11-14-skills-pulse/` (eight frames in a row, before and after).
+
 ## 2026-11-14 — a phone held sideways
 
 His ask: "a playwright and browser test for each version of a browser modern computers and phones use", then

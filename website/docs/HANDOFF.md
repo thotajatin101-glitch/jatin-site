@@ -109,6 +109,16 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-14 · SKILLS background pulse on phones (not deployed)
+
+- **His note:** SKILLS on his phone is "glitchy … the back ground and few other elements", and stills can't show it.
+- **Did:** built `tests/flicker/` (film a section frame by frame on a phone, measure what changes between frames). It
+  showed the chrome band behind the card swinging near-black to near-white every few seconds. On upright phones the band
+  now stays steel with tighter bands (`CHROME_PH`, `tight` in `DitherFX.paint`). Desktop and sideways are unchanged.
+  Also filmed with the address bar sliding (height 652 ↔ 708): the layout rescales cleanly, nothing re-rolls.
+- **Next:** needs his "deploy", then his eye on his own phone: if "few other elements" still glitch, ask which.
+- **Watch out:** the menu wedge for SKILLS uses the same mirror ramp; not touched, he hasn't flagged it.
+
 ## 2026-11-14 · Browser sweep (37 computers and phones) + phones held sideways fixed
 
 - **Did:** `tests/browsers/run.mjs` grew from 14 to 37 configs (Edge, 1366×768, 2560×1440, MacBook Air, iPhone 11 → 17 / Air /
