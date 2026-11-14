@@ -713,6 +713,7 @@ into tweens.
     camera.
   - Small type uses a 1px glitch split; the 4px split doubled the letterforms.
   - Phones: the bubble ends at or under 49vw (border-box, 46vw from 3vw); his face starts ~53vw (his note: "my face being cover").
+  - Phones: the bubble sits BEHIND him (z6 under the portrait's z7; his note, 2026-11-14: the box sat "above my picture … just layer it back"). His hair overlaps its right corner, so the copy keeps a wider right margin (1.5em) and no word hides behind him. Check 390×652, 375×560 and 430×800.
   - Audited at 1440×900, 1440×700, 1280×800 and 375×812.
 - **Pixel-piece chains** (`ChainFX`, his ask from the same poster): chains
   built from the site's own pixel "puzzle pieces" (the stepped stickers on the

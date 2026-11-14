@@ -3,6 +3,15 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-14 · ABOUT on phones: the text box goes behind him (deployed)
+
+- **Did:** his screenshot showed the "Hey, I'm Jatin" box sitting over his hair on a phone ("just layer it back"). On
+  upright phones `.cgBubble` drops to z6, under the portrait (z7); his hair now overlaps the box's right corner. A wider
+  right margin (1.5em) keeps every word clear of his hair. Desktop unchanged. Stills:
+  `docs/process/stills/2026-11-14-about-box-behind/`.
+- **Also deployed with it:** the round 2 SKILLS fix (`body.under`), already live before this.
+- **Watch out:** if the bubble's copy or size changes, re-check that no word sits under his hair at 390×652.
+
 ## 2026-11-14 · SKILLS dropouts, round 2: the menu switches off under a section (not deployed)
 
 - **His note** (second recording, after the foil fix went live): "it's alot better but still requires some fixing".

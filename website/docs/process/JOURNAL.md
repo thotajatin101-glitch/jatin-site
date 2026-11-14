@@ -13,6 +13,17 @@ by piece and marked "Oct 2026".
 
 
 
+## 2026-11-14 (night, round 3) — the box steps behind him
+
+His screenshot from his phone: the ABOUT text box still sat a little over his picture, its edge cutting into his
+hair. His words: "in the phone that text box is still a bit above my picture could u just layer it back".
+
+The box now sits one layer under him on phones, so his head overlaps its corner instead of the box covering his head.
+That put the end of "chasing" behind his hair on the most common phone size, so the copy got a wider right margin. Now
+every word stays clear and he stands in front of it.
+
+![390×652](stills/2026-11-14-about-box-behind/390x652.jpg)
+
 ## 2026-11-14 (night, round 2) — the menu that was still there underneath
 
 **His note**, with a second recording: "ok it's alot better but still requires some fixing".

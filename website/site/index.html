@@ -1327,6 +1327,9 @@ html.cuOn,html.cuOn *{cursor:none!important;}
   .collage{--ph:min(66vh,128vw);}
   .cutWrap{top:auto;bottom:-4vh;left:calc(62vw + .12 * var(--pw));}
   .cgBubble{left:3vw;top:30vh;box-sizing:border-box;width:min(46vw,200px);padding:.7em .8em .8em .9em;}   /* right edge ≤49vw: his face starts ~53vw */
+  /* his note, 2026-11-14: on a phone the box still sat over his hair. It goes BEHIND him (z6, under the portrait's
+     z7), so his head overlaps the plate's corner instead of the plate cutting into his head. The wider right margin keeps every word clear of his hair */
+  .cgBubble{z-index:6;padding-right:1.5em;}
   .cgBubble p{font-size:.64rem;}
   .cgBubble::before,.cgBubble::after{display:none;}
   .spark-a{left:auto;right:4vw;top:27vh;--sz:12vw;}
