@@ -3294,12 +3294,18 @@ void main(){
     place(yaw,ly+dy,(1+kk)*dk,jx,jy,pitch,zl,rz);
     drop.style.transform=`translate3d(${jx.toFixed(1)}px,${(jy+ly+12+zl*.3).toFixed(1)}px,0) scale(${(1+zl/420).toFixed(3)})`;
     drop.style.opacity=(.55*Math.min(1,p*2.2)).toFixed(2);
-    const dr=Math.sin(now/2600)*6;                                   /* the foil breathes a little, even with the pointer still */
+    /* the foil HOLDS (2026-11-14, his screen recording: the band, BACK and the plates dropped out for single frames on
+       his phone). It used to "breathe": --fx slid ±6% on a 16s sine. Every step re-drew both faces, the four edges AND the
+       whole page behind them, 13 times a second (tests/flicker/raster.mjs: 93 paints/s, now 0), and a phone that can't
+       keep up with that drops whole layers for a frame. Nothing may write a CSS variable on the card while it rests. */
+    const dr=0;
     /* soft-clamped to 2–98%: past the ends the oversized foil runs out and its tile repeats, which drew a second gradient line at the extreme tilts */
     const sc=v=>(50+48*Math.tanh(v/48)).toFixed(1)+'%';
-    card.style.setProperty('--fx',sc(dr));card.style.setProperty('--fy',sc(-dr*.6));
-    card.style.setProperty('--ax',par.x.toFixed(3));card.style.setProperty('--ay',par.y.toFixed(3));
-    card.style.setProperty('--sx','50%');card.style.setProperty('--sy','36%');
+    const cv=sc(dr)+sc(-dr*.6)+par.x.toFixed(3)+par.y.toFixed(3);
+    if(cv!==place.cv){place.cv=cv;
+      card.style.setProperty('--fx',sc(dr));card.style.setProperty('--fy',sc(-dr*.6));
+      card.style.setProperty('--ax',par.x.toFixed(3));card.style.setProperty('--ay',par.y.toFixed(3));
+      card.style.setProperty('--sx','50%');card.style.setProperty('--sy','36%');}
     if(Math.cos(yaw)>0)Space.draw(reduce?4e3:now-t0+4e3,par.x,par.y,reduce);
     drawRays(par.x,par.y);lastYaw=yaw;lastPitch=pitch;drawCase(yaw,pitch);
     wrapFrame(now);

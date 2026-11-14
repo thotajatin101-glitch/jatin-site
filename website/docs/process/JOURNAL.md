@@ -13,6 +13,27 @@ by piece and marked "Oct 2026".
 
 
 
+## 2026-11-14 (night) — the frames where SKILLS lost its background
+
+**His note**, with a screen recording from his phone: "i recorded the screen for the skills section so u can get a
+better view so try fixing it now".
+
+**What the clip showed.** Stepping through its 166 frames: every second or so, for exactly one frame, the steel band,
+the BACK tab and the plates behind the card are gone and the depth grid shows through. In one frame the band is cut off
+on a straight horizontal line. Nothing in the page draws that; it is the phone giving up on a layer it could not
+re-draw in time.
+
+**Why.** The card's foil "breathed": a slow sine slid its gradients a hair even with nothing touching it. Each tiny
+step made the browser re-draw both card faces, the four edges and the whole page behind them, 13 times a second. A
+laptop absorbs that. His phone can't, and drops layers.
+
+**Built.** The foil holds still at rest. A new counter, `tests/flicker/raster.mjs`, measures how many times a second
+an idle page is re-drawn: SKILLS went from 93 to 0.
+
+**Cut.** The foil's idle drift. It was nearly invisible and it cost the whole page.
+
+Stills: [stills/2026-11-14-skills-dropout/](stills/2026-11-14-skills-dropout/).
+
 ## 2026-11-14 (last) — where the lag was
 
 His note: "do the same for the contact page and find why it feels laggy infact i want you to do that for the whole

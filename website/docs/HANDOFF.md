@@ -3,6 +3,18 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-14 · SKILLS: layers dropping out on his phone (not deployed)
+
+- **His note:** a screen recording of SKILLS on his phone, "so u can get a better view so try fixing it now".
+- **Found** (frame by frame in his clip): for single frames the steel band, BACK and the plates behind the card vanish
+  and the grid shows through; once the band is cut off on a straight line. That is the phone dropping layers it can't
+  re-draw in time. Cause: the card's foil "breathing" (`--fx` on a sine) re-drew the card and the whole page 13×/s.
+- **Did:** the foil holds still; the card's variables are written only when they change. New `tests/flicker/raster.mjs`
+  counts idle re-draws per second: SKILLS 93 → 0, the other three sections 0. Film steady, browser subset 6/6.
+- **Next:** he says "deploy", then checks SKILLS on his phone. This can't be reproduced on a desktop; his phone is the proof.
+- **Watch out:** the foil no longer drifts at rest (a ±6% slide over 16s). If he misses it, bring it back as a transform
+  on its own layer, never as a background-position variable. Stills `docs/process/stills/2026-11-14-skills-dropout/`.
+
 ## 2026-11-12 — identity video, round 2: taste, not branding (his note)
 - **His note:** shift the context "from branding to building a taste and an identity or style because branding has become something that takes the meaning of stuff".
 - **Did:** rewrote `personal-brand/videos/2026-11-12-identity/script.md`. Title "I never designed my style. I built my taste." Three words fixed: taste = input, style = output, identity = others noticing. "Brand" appears once (scene 2, as what swallowed the meaning); scene 5's line is "taste isn't liking more things, it's knowing what to cut". Lesson saved to memory (`taste-not-branding`).

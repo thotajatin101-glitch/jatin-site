@@ -574,6 +574,11 @@ into tweens.
   of the SKILLS chrome band shows, so its black-to-white mirror ramp filled the strip with one tone at a time and the
   whole background pulsed dark, pale, dark. There the band stays steel (`CHROME_PH`) with tighter bands. A shape that
   shows only a sliver of a wide dither must not run a full black-to-white ramp.
+- **Nothing writes a CSS variable every frame on a resting page** (2026-11-14, his screen recording of SKILLS: the steel
+  band, BACK and the plates dropped out for single frames). The card's foil "breathed" (`--fx` on a slow sine), and each
+  step re-drew both faces, the edges and the whole page behind them 13 times a second; a phone that can't keep up drops
+  whole layers for a frame. The foil holds now. `node tests/flicker/raster.mjs <section>` counts re-draws per second on an
+  idle page: it must print 0. Idle motion lives on canvases and transforms only.
 - **A phone held SIDEWAYS takes the desktop layout** (2026-11-14, found by the browser sweep: sideways, the phone layout
   buried the menu heading, the ABOUT camera and the SKILLS card). The phone layout is for an upright phone only: JS asks
   `upright()` (width ≤760 AND taller than wide), CSS uses `(max-width:760px) and (orientation:portrait)`. Never test
