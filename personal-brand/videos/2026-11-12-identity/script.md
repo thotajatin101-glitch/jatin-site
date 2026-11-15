@@ -4,7 +4,7 @@ Context line (his, round 1): *Made my own brand identity without trying to make 
 making it; consuming to your heart's content is the key to creating your own identity.*
 
 **Round 2 shift (his note):** move the context from branding to **building a taste, an identity, a style**, "because
-branding has become something that takes the meaning of stuff." So the word *brand* is out of the video. It only
+branding has become something that takes the meaning out of stuff." So the word *brand* is out of the video. It only
 appears once, as the thing that swallowed the meaning (scene 2).
 
 The three words, used the same way everywhere:
