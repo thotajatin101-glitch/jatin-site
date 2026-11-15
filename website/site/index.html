@@ -74,7 +74,9 @@ button{cursor:pointer;}
 /* Texture is STATIC and light. Scanlines were removed — 1px lines every 3px
    moiréd against the halftone dots and read as glitch/noise. Grain alone
    carries the print finish. Do not reintroduce a line overlay. */
-.grain{position:fixed;inset:-100px;z-index:99;pointer-events:none;opacity:.06;
+/* inset 0 (2026-11-15): the -100px margin was for the grain jump he cut long ago. On a static overlay it only made a
+   layer 1.5x the screen, ~9MB of picture memory on a phone, for nothing. */
+.grain{position:fixed;inset:0;z-index:99;pointer-events:none;opacity:.06;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -1350,6 +1352,11 @@ html.cuOn,html.cuOn *{cursor:none!important;}
    to chrome"). Instagram / Facebook / Threads / TikTok open links in their own browser, which runs the intro and the
    models worst. The script right after <body> jumps to Chrome on Android (an intent) and tries Safari on iPhone
    (x-safari-https); when the app blocks the jump, this card says how to open it properly. Normal browsers never see it. */
+/* html.iab = we are inside one of those apps (and stayed). Their browsers get far less picture memory than Chrome, and
+   SKILLS still dropped layers there after the fixes that cured it in Chrome (his note, 2026-11-15). So in-app only,
+   the film grain goes: at 6% it barely shows, but it is a full-screen layer at the phone's full resolution (~9MB).
+   Canvases are cheap by comparison (drawn at 1.5x, not 3x): never hide the depth canvas for this, it is half of the look. */
+.iab .grain{display:none;}
 #iab{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:16px;box-sizing:border-box;background:#000;
   font-family:'IBM Plex Mono',monospace;color:var(--paper);}
 #iab .arrow{position:absolute;top:16px;right:20px;font:400 2.4rem/1 var(--font-menu);color:var(--acid);transform:rotate(-8deg);
@@ -1408,6 +1415,7 @@ html.cuOn,html.cuOn *{cursor:none!important;}
   if(!/Instagram|FBAN|FBAV|FB_IAB|FBIOS|Barcelona|musical_ly|BytedanceWebview|TikTok/i.test(ua))return;
   var android=/Android/i.test(ua),ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
   if(!android&&!ios)return;
+  document.documentElement.classList.add('iab');                     /* the light version for in-app browsers */
   var app=/Instagram/i.test(ua)?'Instagram':/Barcelona/i.test(ua)?'Threads':/musical_ly|Bytedance|TikTok/i.test(ua)?'TikTok':'Facebook';
   var u=new URL(location.href),mode=u.searchParams.get('iab'),back=mode!==null;u.searchParams.delete('iab');var clean=u.href;
   if(mode==='0'){try{history.replaceState(null,'',clean);}catch(e){}return;}   /* "stay here anyway": a clean page, no jump, no card */

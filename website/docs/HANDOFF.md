@@ -3,6 +3,17 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-15 · SKILLS in Instagram's browser: lighter on picture memory (not deployed)
+
+- **Did:** his note: the SKILLS dropouts are gone in Chrome but still show in Instagram's browser. Measured the
+  page's layers on a 390×652 phone at 3x: ~101MB. The biggest waste was the film grain, still 100px past every edge
+  from its old jump (a layer 1.5× the screen). Now screen-sized everywhere (~92MB, no visible change), and switched off
+  inside in-app browsers (`html.iab`, ~83MB). Tried and dropped: hiding the depth canvas (the speed grid is half of
+  SKILLS' look, and a 1.5x canvas saves little).
+- **Next:** he checks SKILLS from his Instagram bio, tapping "stay here anyway" if the card comes up.
+- **Watch out:** if it still drops there, the next DOM layers to look at are the section's print screen (`::after`)
+  and the band's red/cyan `drop-shadow` wrapper (`.secWedge`). Both are part of the look: ask him before trading.
+
 ## 2026-11-15 · Instagram visitors sent to a real browser (deployed)
 
 - **Did:** in-app browser bypass (CLAUDE.md "In-app browsers"). Android Instagram jumps to Chrome; iPhone tries

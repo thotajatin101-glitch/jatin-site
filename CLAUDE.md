@@ -1153,6 +1153,12 @@ LINK, and "stay here anyway". Rules:
 - A tap on the card must never start the intro (the card stops the press).
 - "stay here anyway" reloads with `?iab=0` (no jump, no card), because a blocked jump can leave the page half-loaded.
 - iPhone can't be forced into Safari; the card is the honest fallback, not a bug to chase.
+- **In-app browsers get less picture memory than Chrome** (his note, 2026-11-15: the SKILLS dropouts were gone in
+  Chrome "but in the instagram browser it's showing up"). `html.iab` turns the film grain off there. Count memory
+  right: a DOM layer costs screen × DPR² (a phone at 3x: ~9MB per full-screen layer), a canvas only its own backing
+  size, so hiding canvases saves little. The depth canvas is half of SKILLS' look; never hide it for memory.
+- Every overlay is the size of the screen, never bigger: the grain sat at `inset:-100px` (from its cut jump) and was
+  a layer 1.5× the screen.
 
 ## Apply mode + REVERT MAIN (2026-10-30)
 

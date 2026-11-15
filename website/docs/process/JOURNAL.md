@@ -13,6 +13,15 @@ by piece and marked "Oct 2026".
 
 
 
+## 2026-11-15 (later) — the grain that was bigger than the screen
+
+His note: "Skills page shuttering problem we had before is not showing up in chrome but in the instagram browser it's
+showing up." The fix worked; Instagram's browser simply has less memory for pictures than Chrome. Listing every
+layer SKILLS holds turned up one that was bigger than the screen: the faint film grain over everything, still cut 100
+pixels past each edge for a jump it stopped doing long ago. It's screen-sized now, which costs nothing to the eye.
+Inside Instagram the grain goes altogether (at 6% it barely reads on a phone). The speed grid was a candidate too,
+and it stays: without it SKILLS lost half its depth, for almost no memory back.
+
 ## 2026-11-15 — getting out of Instagram's browser
 
 His question: "Is there a way to avoid people visiting my site within instagram browser and send them directly to
