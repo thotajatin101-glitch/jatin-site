@@ -1142,6 +1142,18 @@ into tweens.
   loops a press (12fps, 1.67s: rest, glide in, the button sinks onto its drop with a click flash, drift back).
 - Full keyboard nav, like a game: arrows to move, Enter to select, Esc to back.
 
+## In-app browsers (2026-11-15)
+
+His ask: "avoid people visiting my site within instagram browser and send them directly to chrome". A small script
+right after `<body>` spots Instagram / Facebook / Threads / TikTok and, once per session, jumps: Android to Chrome
+(an `intent://` with a fallback back to `?iab=1`), iPhone to Safari (`x-safari-https://`, which the apps allow only
+sometimes). If the page is still showing after 900ms, `#iab` covers it: OPEN IN SAFARI / CHROME, the two taps, COPY
+LINK, and "stay here anyway". Rules:
+- Normal browsers never see any of it; test with an in-app user agent.
+- A tap on the card must never start the intro (the card stops the press).
+- "stay here anyway" reloads with `?iab=0` (no jump, no card), because a blocked jump can leave the page half-loaded.
+- iPhone can't be forced into Safari; the card is the honest fallback, not a bug to chase.
+
 ## Apply mode + REVERT MAIN (2026-10-30)
 
 For a Vogue application he asked for the intro to go **straight to PROJECTS**,

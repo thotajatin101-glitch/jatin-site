@@ -13,6 +13,16 @@ by piece and marked "Oct 2026".
 
 
 
+## 2026-11-15 — getting out of Instagram's browser
+
+His question: "Is there a way to avoid people visiting my site within instagram browser and send them directly to
+chrome?" Most visitors come from his Instagram bio, and the app's own browser is the worst stage for the intro and
+the models. On Android the page can hand itself to Chrome. On iPhone, Apple doesn't let it, so the page tries the one
+shortcut Instagram sometimes allows and otherwise puts up a card in the site's own language: OPEN IN SAFARI, the two
+taps, and an arrow at the corner where the menu sits. "stay here anyway" is there, because nobody should be trapped.
+
+![the card](stills/2026-11-15-open-in-browser/card-android.jpg)
+
 ## 2026-11-14 (night, round 3) — the box steps behind him
 
 His screenshot from his phone: the ABOUT text box still sat a little over his picture, its edge cutting into his

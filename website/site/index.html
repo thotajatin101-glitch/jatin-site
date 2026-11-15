@@ -1346,6 +1346,28 @@ html.cuOn,html.cuOn *{cursor:none!important;}
    has arrived (13s on slow 3G). This line shows as soon as <body> starts; the script removes it */
 #boot{position:fixed;inset:0;z-index:70;display:grid;place-items:center;background:#000;color:var(--acid);
   font:clamp(1.1rem,2.4vw,1.6rem)/1 'VT323','IBM Plex Mono',monospace;letter-spacing:.16em;}
+/* IN-APP BROWSERS (2026-11-15, his ask: "avoid people visiting my site within instagram browser and send them directly
+   to chrome"). Instagram / Facebook / Threads / TikTok open links in their own browser, which runs the intro and the
+   models worst. The script right after <body> jumps to Chrome on Android (an intent) and tries Safari on iPhone
+   (x-safari-https); when the app blocks the jump, this card says how to open it properly. Normal browsers never see it. */
+#iab{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:16px;box-sizing:border-box;background:#000;
+  font-family:'IBM Plex Mono',monospace;color:var(--paper);}
+#iab .arrow{position:absolute;top:16px;right:20px;font:400 2.4rem/1 var(--font-menu);color:var(--acid);transform:rotate(-8deg);
+  text-shadow:-2px 0 var(--cyan),2px 0 var(--pink);animation:iabPoint 1s steps(2,end) infinite;}
+@keyframes iabPoint{50%{transform:rotate(-8deg) translate(4px,-4px);}}
+#iab .plate{width:min(92vw,380px);background:var(--paper);color:var(--ink);border:3px solid var(--ink);
+  box-shadow:8px 9px 0 var(--acid);transform:rotate(-2deg);padding:1.1em 1.2em 1.2em;box-sizing:border-box;}
+#iab h2{margin:0 0 .5em;font:400 clamp(1.6rem,8vw,2.2rem)/1.05 var(--font-menu);letter-spacing:var(--track);transform:rotate(-2deg);
+  text-shadow:-2px 0 var(--cyan),2px 0 var(--pink);}
+#iab p{margin:0 0 .9em;font-size:.86rem;line-height:1.45;font-weight:600;}
+#iab ol{margin:0 0 1.1em;padding:0;list-style:none;counter-reset:s;}
+#iab li{counter-increment:s;display:flex;gap:.6em;align-items:baseline;font-size:.95rem;font-weight:700;margin:.35em 0;}
+#iab li::before{content:counter(s);flex:none;display:inline-grid;place-items:center;width:1.5em;height:1.5em;background:var(--ink);color:var(--acid);font-size:.8rem;}
+#iab li b{background:var(--acid);padding:0 .25em;}
+#iab .row{display:flex;gap:.6em;flex-wrap:wrap;align-items:center;}
+#iab button{font:700 .85rem 'IBM Plex Mono',monospace;cursor:pointer;border:3px solid var(--ink);padding:.55em .9em;}
+#iab .copy{background:var(--ink);color:var(--acid);box-shadow:4px 4px 0 var(--pink);}
+#iab .stay{background:none;border-color:transparent;text-decoration:underline;color:var(--ink);padding:.55em .2em;}
 #boot span{display:inline-block;width:0;overflow:hidden;vertical-align:bottom;animation:bootDots 1.2s steps(4,end) infinite;}
 @keyframes bootDots{to{width:4ch}}
 @media (prefers-reduced-motion:reduce){#boot span{animation:none;width:3ch;}}
@@ -1379,6 +1401,43 @@ html.cuOn,html.cuOn *{cursor:none!important;}
 </head>
 <body>
 <div id="boot" aria-hidden="true">LOADING<span>...</span></div>
+<script>
+/* IN-APP BROWSERS: see #iab in the stylesheet. Runs before the rest of the page arrives, so the jump costs nothing. */
+(function(){try{
+  var ua=navigator.userAgent||'';
+  if(!/Instagram|FBAN|FBAV|FB_IAB|FBIOS|Barcelona|musical_ly|BytedanceWebview|TikTok/i.test(ua))return;
+  var android=/Android/i.test(ua),ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
+  if(!android&&!ios)return;
+  var app=/Instagram/i.test(ua)?'Instagram':/Barcelona/i.test(ua)?'Threads':/musical_ly|Bytedance|TikTok/i.test(ua)?'TikTok':'Facebook';
+  var u=new URL(location.href),mode=u.searchParams.get('iab'),back=mode!==null;u.searchParams.delete('iab');var clean=u.href;
+  if(mode==='0'){try{history.replaceState(null,'',clean);}catch(e){}return;}   /* "stay here anyway": a clean page, no jump, no card */
+  var tried=false;try{tried=sessionStorage.getItem('iabTried')==='1';sessionStorage.setItem('iabTried','1');}catch(e){}
+  if(!back&&!tried){
+    if(android){
+      var fb=new URL(clean);fb.searchParams.set('iab','1');            /* no Chrome: it comes back here once, and gets the card */
+      location.href='intent://'+clean.replace(/^https?:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(fb.href)+';end';
+    }else location.href='x-safari-'+clean;                             /* newer iPhones: straight to Safari, when the app lets it */
+  }
+  function card(){
+    if(document.getElementById('iab')||!document.body)return;
+    var b=ios?'Safari':'Chrome',d=document.createElement('div');d.id='iab';d.setAttribute('role','dialog');d.setAttribute('aria-label','Open in '+b);
+    d.innerHTML='<div class="arrow" aria-hidden="true">&#8599;</div><div class="plate"><h2>OPEN IN '+b.toUpperCase()+'</h2>'
+      +'<p>'+app+'&rsquo;s browser can&rsquo;t keep up with this site. Two taps and you get the real thing:</p>'
+      +'<ol><li><span>Tap <b>'+(ios?'&middot;&middot;&middot;':'&#8942;')+'</b> top right</span></li><li><span>'+(ios?'Open in external browser':'Open in Chrome')+'</span></li></ol>'
+      +'<div class="row"><button class="copy" type="button">COPY LINK</button><button class="stay" type="button">stay here anyway</button></div></div>';
+    d.addEventListener('pointerdown',function(e){e.stopPropagation();});   /* the intro starts on any press: not this one */
+    d.addEventListener('keydown',function(e){e.stopPropagation();});
+    /* a blocked jump can leave the page half-loaded behind the card, so staying reloads it clean with the jump off */
+    d.querySelector('.stay').onclick=function(){var r=new URL(clean);r.searchParams.set('iab','0');location.replace(r.href);};
+    d.querySelector('.copy').onclick=function(){var t=this;function ok(){t.textContent='COPIED';}
+      try{navigator.clipboard.writeText(clean).then(ok,fall);}catch(e){fall();}
+      function fall(){var i=document.createElement('input');i.value=clean;d.appendChild(i);i.select();try{document.execCommand('copy');ok();}catch(e){}i.remove();}};
+    document.body.appendChild(d);
+  }
+  setTimeout(function(){if(document.visibilityState!=='hidden')card();},back||tried?0:900);   /* the jump didn't happen: show the way */
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')card();});   /* back in the app after jumping */
+}catch(e){}})();
+</script>
 
 
 <!-- persistent shatter background -->

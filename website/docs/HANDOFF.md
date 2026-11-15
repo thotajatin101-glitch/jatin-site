@@ -3,6 +3,17 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+## 2026-11-15 · Instagram visitors sent to a real browser (deployed)
+
+- **Did:** in-app browser bypass (CLAUDE.md "In-app browsers"). Android Instagram jumps to Chrome; iPhone tries
+  Safari, and when that's blocked, a card in the site's style gives the two taps plus COPY LINK. Tested with
+  Instagram user agents on WebKit and Chromium: the card shows, tapping it doesn't start the intro, staying gives a
+  clean intro; plain browsers unchanged; check.mjs passes. Still `docs/process/stills/2026-11-15-open-in-browser/`.
+- **Next:** he tests from his Instagram bio, and a friend on the other kind of phone. Only real phones can show
+  whether Instagram allows the jump.
+- **Watch out:** Meta changes what the jump does without warning. If people report a loop or a blank page from
+  Instagram, take the jump lines out first and leave the card.
+
 ## 2026-11-14 · ABOUT on phones: the text box goes behind him (deployed)
 
 - **Did:** his screenshot showed the "Hey, I'm Jatin" box sitting over his hair on a phone ("just layer it back"). On
