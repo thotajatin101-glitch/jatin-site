@@ -1,88 +1,43 @@
-# Building my site — Insta reel, round 5 (2026-11-21)
+# Building my site — Insta reel, round 6 (2026-11-21)
 
-**His notes, in order:**
-- Round 3: shorter, Insta only, grab attention and keep it.
-- Round 4: no "I never designed this"; a natural tone, not trying too hard. The research is in `research.md`.
-- Round 5: "more of conversation than a script, with a hook in the start, and i don't want to be mentioning the where
-  i got the refrences like persona 5 etc. i want to talk about my journey of 'building this site'."
+**His notes:**
+- Round 3: shorter, Insta only.
+- Round 4: natural, not try-hard; no "I never designed this".
+- Round 5: a conversation, not a script; a hook up front; no naming references; it's about the journey of building
+  the site.
+- Round 6: he picked reference reels (elliotisacoolguy, digital_spaghetti, maybe.quoteme) for the tone, and asked
+  for two agents on hooks and scripts that cross-check each other. The conclusion is in `../HOOKS-AND-SCRIPTS.md`.
 
-**So this is not a script.** It's one hook line, then things to talk about, as if a friend asked you how the site got
-made. Talk to them, not to the lens. The lines under each beat are only how it *might* come out; say it your way.
-No references are named anywhere: no games, no shows.
+**Tone:** sincere, said straight, and the edit makes the joke. You never act funny; the cut and the sound do it.
 
-**Length:** aim for 30–40s once it's cut. Talk longer than that on the day; the edit finds the reel.
-
-**Every fact below comes from the build log.** Anything only you know is marked **[YOU]**.
-
----
-
-## The hook (the only fixed line)
-
-> "I'm not a developer. And I built my own website."
-
-It's true, it's specific, and it makes people ask "how?". Then you answer it.
-
-Backup, if you have the number: *"My website took me [YOU: how many] weeks, and I can't code."*
-
-*On screen: the intro playing, the chains snapping, as you say "my own website".*
+**Shoot it like this:** say the hook word for word. Everything else is a bullet: talk it through as if a friend
+asked "how'd you make your website?" Do two or three loose takes; the edit finds the 35–40s.
 
 ---
 
-## Things to talk through
+| Time | You (talking points) | On screen | Sound |
+|---|---|---|---|
+| 0–3s | **Word for word:** "i'm not a developer. i built my website by giving it editing notes." | Your face, then a hard cut to the site's intro slamming in. Text: *built a website with editing notes* | The site's own impact hit on frame 1, then quiet room tone under your line |
+| 3–9s | **So:** how that worked: notes like on an edit. "too slow." "hits too soft." "hold that longer." | The intro scrubbed frame by frame, like a timeline | Nothing. Let it breathe |
+| 9–15s | **But:** it lagged on your friends' laptops. | Screen recording of it stuttering | **Joke cue 1** (e.g. a record scratch), in the gap after your line, then hold your face for a second |
+| 15–21s | **But:** a friend opened it in Safari and saw dots. Just dots, where your photos should be. | The dots screenshot | **Joke cue 2** (e.g. crickets). The deadpan hold is the punchline |
+| 21–30s | **So (the turn):** fixing it meant taking things out, and the more you took out, the more it looked like you. The screen effect that "looked like something was wrong with the TV". | Pieces of the site switching off, cut on your words | **Joke cue 3**, optional, on the last thing going. Then the music comes back warmer |
+| 30–36s | **The take, in your own words.** One soft line about what you learned. Don't read it; find it on camera. | You, close and still | Dry. No cue |
+| 36–38s | — | The site working, matching the opening frame so it loops | The music resolves on the loop point |
 
-**1. Why not just a normal site**
-What you wanted: no scrolling. One screen, like a menu: you pick something and it opens.
-> *"I didn't want something you scroll through. I wanted it to feel like you're picking something, and it opens up."*
+**Caption** (lowercase, a second joke):
+> built my whole website by telling it "too slow." it still doesn't load on my friend's laptop.
 
-*On screen: the menu, a plate being picked, the section slamming open.*
-
-**2. How you built it without code**
-You gave notes the way you'd give notes on an edit: "too slow", "hits too soft", "hold that longer".
-> *"I don't know code. But I know when a cut's too slow. So that's how I worked on it. Like editing."*
-
-**[YOU]** Say how you actually built it. If AI helped, saying so plainly makes it more believable, not less. It's
-your call whether to mention it.
-
-*On screen: the intro scrubbed frame by frame, like a timeline.*
-
-**3. What went wrong**
-Two real moments from the log:
-- Your friends opened it on their laptops and it lagged.
-- A friend opened it in Safari and your photos showed up as tiny dots.
-> *"First time my friends opened it, it lagged on all their laptops. One of them just saw dots where my photos were
-> supposed to be."*
-
-This is the beat that makes it feel real. Don't rush past it.
-
-*On screen: a laggy, stuttering clip of the site, if you have one; otherwise just you.*
-
-**4. What made it mine**
-It was what you took out, not what you added: the dark edges, the lines over the screen, a glitch that never
-stopped.
-> *"It looked like something was wrong with the TV. So I kept taking stuff out until it felt like me."*
-
-*On screen: each piece on, then gone, cut on your words.*
+**[YOU]** Only keep the second half if it's still true. If it's fixed, try: *"my friend still thinks my portfolio is
+just dots."*
 
 ---
 
-## The close (loose, but land here)
-
-It's still not done. Leave it open instead of wrapping it up.
-> *"It's still not finished. I don't think it ever will be."*
-
-*On screen: the finished site, clean, held. No end card.*
-
-**[YOU]** If something else is more true, say that instead: what you'd tell someone starting theirs, or what you're
-building next.
-
----
-
-**Caption:**
-> Built this without writing a line of code. Still not finished.
-
-**[YOU]** Keep "without writing a line of code" only if it's true for you.
-
-## How to shoot it
-- Have someone off camera ask you "how'd you make your website?" and just answer. Cut their voice out after.
-- Do two or three loose takes, don't learn lines. The edit pulls the best bits from each.
-- On camera stays calm; the site's glitch edit lives on the B-roll only.
+## Your calls
+1. **"giving it editing notes"**: people will wonder who you were giving notes to. If it was AI, decide whether to
+   say it. Saying it plainly is honest and still interesting, but it starts to turn the reel into a tool video. My
+   pick: don't name it in the reel, and answer it in the comments if asked.
+2. **The turn (21–30s)** has to be true. In the build, some things went because they slowed it down and some went
+   because they didn't feel like you (the TV-glitch look). Say it the way it actually happened.
+3. **The three sounds** are suggestions in the references' spirit. Pick ones you'd actually laugh at. Three is the
+   ceiling, not the goal.
