@@ -3,6 +3,93 @@
 Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
+
+## 2026-11-21 · justjatin posts: white look round 1, one viewer
+- **Did:** his direction change to a white, simpler poster look (refs 026 MEMORIAS + Sr. Motion Designer, with the
+  site as the pinch). Dark look rounds 1–10 archived to `personal-brand/kit/archive/2026-11-09-dark-look/`. White
+  round 1 (`w1`–`w3` in `studio.html`) in `personal-brand/kit/concepts/2026-11-21-white-look/`. One viewer:
+  `personal-brand/kit/index.html`, a drop-down per look, a drop-down per round inside.
+- **Next:** his notes on white round 1.
+- **Watch out:** canvas text needs its font weight loaded first (`document.fonts.load` in the boot), or it falls back to a serif.
+
+## 2026-11-15 · Site intro video: first sound pass, synthesised (not committed)
+
+- **Did:** `personal-brand/kit/studio/video/sfx.py` builds the whole soundtrack from the engine's cue times + the probe
+  (whooshes follow real object speed). Mastered −14.7 LUFS / −1.2 dBTP, muxed into `site-intro-r13-sound.mp4`. Stems in
+  `.local/sfx/r13/`. Review page + README updated.
+- **Then:** his note "drop the whoosh sound fx from the whole thing": all whooshes removed (cursor, objects, blowout rush);
+  `sfx.py <outDir>` no longer reads the probe. Re-mastered and re-muxed.
+- **Then:** the swallow pulls were noise sweeps ("still sounds like whoosh"): now a gravity groan + down-bend, no noise.
+  The collapse riser is rebuilt the same way (his yes): buzz tightening into a whine + converging tones, no noise.
+  Noise still left: the hole's wind bed, the float's air bed, the hit cracks, the end card's rule shimmer (a sweep).
+- **Then:** the JATIN shine ("choppy … not so quick") is smooth on every frame over 1.17s with a soft band; its sound is
+  as long and ≈14dB louder. Video re-rendered (`site-intro-r13.mp4`) and re-muxed.
+- **Then:** the SKILLS card went into the hole BEHIND its disc; its orbit is mirrored in depth so it falls in from the front
+  (`VDEPTH()` hook added). Re-rendered and re-muxed.
+- **Then:** chain links and flying pieces also go in from the front (`front()` lifts a captured piece's last approach to the
+  near side outside the core; `VHIDE()` measures it: hidden 4.4 → 0.3 per frame). Re-rendered and re-muxed.
+- **Then:** end card: the address is replaced by TAP ANYWHERE + the opening's pixel hand tapping (3 taps, ripples, tap sounds).
+  Upload file `site-intro-r13-UPLOAD-2K.mp4` (1440×2560, TV range BT.709 — the render master is full range, untagged). Edits
+  link bubbles only reach IG accounts/reels: link to his profile, site in bio. Upload checklist on the review page.
+- **Then:** his note "the cursor is coming out of nowhere in the end": the end hand glides in on the opening cursor's arc
+  (same ease, blur, depth), lands smaller (140px) under TAP ANYWHERE and taps at card f41/57/73; `sfx.py` TAPS moved to match.
+  Everything re-rendered: master, sound mux, web copies, UPLOAD-2K.
+- **Then:** "only do a double taptap and that's it": taps are card f46/f51 only (quicker press), sound matched. Re-rendered all.
+- **Then:** "add 3 more seconds in the end": DUR 15.35 (engine + sfx.py); a quiet held chord under the hold. Re-rendered all. Then "bring it down to 13.5 secs": DUR 13.5, re-rendered all.
+- **Then (round 14):** his ask "run all the fixes" from the reel critique (`critique/`, artifact FGsJYbWe2oYWmbK87eGRvj).
+  - The film is cut in one place (`EDIT` in the engine, `edit()` in sfx.py). The snap is at 2.0s, and the cursor glide is retimed to land on it.
+  - Chain groan opening. NEW SITE · CLICK TO ENTER. NOW LIVE ×2. TAP THE BUBBLE.
+  - The end name sits on the opening name, so the reel loops. Aftermath 4 frames. 10.75s.
+  - Files: `site-intro-r14*` + cover. Round 13 files kept.
+  - 14b: NEW SITE removed from the opening prompt (his note); it reads CLICK TO ENTER.
+  - 14c: opening groan removed (his note); sfx = round 13's, cut in sync with the picture.
+  - 14d: his song matched in Resolve (project "intro web"): drop on the snap, stop under the hit, crash on the name cut; his cut kept as a backup timeline. Preview mux only (song not committed).
+  - 14e: his soundtrack exported from Resolve (audio only, peak-limited) and muxed: `site-intro-r14-song-UPLOAD-2K.mp4` is the one to post.
+- **Then (round 15):** "Make all the high critique changes" (round 14 critique, `critique-r14/`, HIGH 2 + 3; HIGH 1 is posting
+  as a Trial Reel). Stems from his timeline (clip-enabled solos: `SetTrackEnable` does NOT change a render) into
+  `.local/sfx/r15-stems/`; mixed by `.local/sfx/r15/mix15.py ./ -6 -3`. Music bed (A2–A6) −6dB over 3.5–7.4s, climbing to −3
+  into a 3-frame dry gap (7.875–8.0); −6dB ducks + gulps +8dB at 4.63/5.46/6.29/6.96; limiter 0.84. −14.1 LUFS, −1.4 dBTP
+  (−1.2 after AAC 128k). HIT 6.3 LU over the middle. His Resolve timeline unchanged.
+  - 15b: "Do the medium fixes now". 262 frames, the blink starts ON, no fade-out (1-frame micro-fade), bed HP 110Hz + 3kHz
+    presence on the snap/HIT layers (`.local/sfx/r15/mix15b.py`), and a cover with NOW LIVE / JATIN (`site-intro-r15b-COVER.jpg`).
+    **Post `site-intro-r15b-UPLOAD-2K.mp4`.** Watch out: A1's last clip fade is 27 frames now (his was 28); the API can't set 28.
+  - Posted r15b as a Trial Reel (2026-11-15, 1080p `-UPLOAD-PHONE.mp4` via Edits): 3 views after 7h, nothing flagged in
+    Account Status. His call (2026-11-16): leave it a few days, take it down, repost later after prepping other content.
+    When he reposts: avoid a near-identical re-upload (reach suppression); fresh cut or own-sound version.
+  - 15c: "remove the music and just keep mine and your sfx": no song, his rock layers + A1 (`.local/sfx/r15/mix15c.py`).
+    −14.8 LUFS, −1.4 dBTP; the HIT is the loudest moment again. **The repost file is `site-intro-r15c-UPLOAD-2K.mp4`** (or
+    `-UPLOAD-PHONE.mp4`). His rock layers are library sounds (ROCKBrk/ROCKImpt "Cinematic Stone"): check that their licence covers social posts.
+- **Then (round 16):** "produce something similar to the song … avoid rights risk": `personal-brand/kit/studio/video/score.py`
+  writes an ORIGINAL score (G minor, 120 BPM, intro → funk drop on the snap → HIT → half-time end card, loop-wrapped). Mixed by
+  `.local/sfx/r16/mix16.py` in place of the song. The HIT is the loudest moment, with a chord on frame 0. Files `site-intro-r16-*`.
+  Not heard by me; he judges whether the synth sound holds up. Fallback: r15c (no music).
+  - Third reel critique (`critique-r15/`, artifact HvYfBN31jsYE3A3LXoeoam): 7.5/10. Top: a clank on frame 0; the HIT louder than
+    the snap and taps (end-card music −4dB 9.6–10.4 + a low tail on the HIT); rebuild the SFX-only fallback on the r15b picture.
+- **Then (round 17):** "make 2 version one from fl studio option and other ocular sound bundle", to LISTEN before choosing.
+  A = `score_fl.py` (round 16's arrangement on FL's Stage Grand / Slap bass / Brass Section / HQ Funk Kit, `SCORE_KIT=fl`);
+  B = `score_ocular.py` (a cinematic score from his Ocular bundle: cello arp, chain hit, braaams, 90-BPM loops played 4/3 fast
+  = the 120 grid). Mixed by `.local/sfx/r17/mix17.py`; files `site-intro-r17-FL-` / `-OCULAR-UPLOAD-PHONE.mp4`.
+  - 17b: he picked **B**, "the ending is getting cut off". It now ends on a G minor piano note on tap 2 and is silent by the last
+    frame (`END=10.45,10.9` in mix17). File `site-intro-r17b-OCULAR-UPLOAD-PHONE.mp4`. Mix inputs are in `.local/sfx/r17/in/`.
+  - 17c cut the metal percussion loop: WRONG, he likes it. 17d: the chime was the intro chain tinkles (sfx.py `metal()`
+    placeholders, 0–1.7s), now subtracted from A1 (`SFXV=_notink` in mix17). Metal loop back. **Current file:
+    `site-intro-r17d-OCULAR-UPLOAD-PHONE.mp4`.**
+  - Round 18: a piano melody ON TOP of B (his ask), from his Multiply Sound "CHPTRS Film Score Collection" single notes
+    (`MELODY=1 MEL_G=0.4` in score_ocular.py). File `site-intro-r18-MELODY-UPLOAD-PHONE.mp4`. **Licence: the pack came with
+    a free-sharing Telegram link; confirm he bought it before posting.**
+- **Next:** his ear notes. Chain/metal samples from him into `.local/sfx/` to replace the synth links (`metal()`).
+- **Watch out:** I can't hear; it was balanced on meters and a spectrogram. Re-run the probe if the cut's timing changes.
+
+## 2026-11-15 · Site intro video round 13: a new end card (not committed)
+
+- **His note:** the DON'T WATCH IT / CLICK IT card was "generic and kind of cringe"; he wants "cool and calm but gives hype".
+- **Did:** `endCard` rebuilt: 0.4s aftermath (the point, one slow ring, embers), a hard cut to JATIN pushing in slowly, NOW
+  LIVE, an acid rule, the address typing on 2s with a block cursor, one glint. Master `site-intro-r13.mp4`, review page
+  round 13, README round 13. Old card stills in `img12-card-before/`.
+- **Next:** his notes on the card. Sound still undecided.
+- **Watch out:** NOW LIVE is my copy; swap it if he wants another line. The wordmark is re-centred by hand (`W/2 + 186·.2`)
+  because letterSpacing pads the last glyph.
+
 ## 2026-11-15 · SKILLS in Instagram's browser: lighter on picture memory (not deployed)
 
 - **Did:** his note: the SKILLS dropouts are gone in Chrome but still show in Instagram's browser. Measured the
@@ -58,8 +145,158 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 - **Watch out:** the foil no longer drifts at rest (a ±6% slide over 16s). If he misses it, bring it back as a transform
   on its own layer, never as a background-position variable. Stills `docs/process/stills/2026-11-14-skills-dropout/`.
 
+## 2026-11-14 · Lag pass: transitions and CONTACT (not deployed)
+
+- **His note:** find why CONTACT feels laggy, and the whole site: "the hosted website has alot off lag during transitions".
+- **Did:** `PROF=1 node tests/perf.mjs` before and after (`docs/process/perf/2026-11-14-*-1114-before|after.json`). Fixed:
+  the phone re-allocating its canvas on every ring pulse; the three models building on the transition's swap frame (now
+  `Warm`, in the background from the menu); per-frame box reads in the computer, phone and camera; `upright()` cached
+  (that one was a slowdown shipped this morning). Slow-laptop rig, worst frame: CONTACT open 350 → 83ms, PROJECTS open
+  208 → 67ms, SKILLS deal 192 → 50ms, menu browsing 41 → 60fps. Browser subset 12/12, check.mjs passes.
+- **Deployed 2026-11-14 on his "Deploy"** (with the SKILLS band fix). Rollback: `git revert` back to `69eef3c` and push.
+- **Next:** Still heavy: SKILLS open (blocked ~900ms on the 6× rig: the eye's feed upload and photo
+  decode) and ABOUT open (DitherFX force-paint + the light fan + CutGlow). `intro: snap → menu` has one ~350ms frame.
+- **Watch out:** the warm-up puts one or two short hiccups in the menu ~2s after it lands (the models' atlases being
+  painted). The software-GPU rig is still unusable (0.2–15fps); the "lite mode" call is still open.
+
+## 2026-11-14 · SKILLS background pulse on phones (not deployed)
+
+- **His note:** SKILLS on his phone is "glitchy … the back ground and few other elements", and stills can't show it.
+- **Did:** built `tests/flicker/` (film a section frame by frame on a phone, measure what changes between frames). It
+  showed the chrome band behind the card swinging near-black to near-white every few seconds. On upright phones the band
+  now stays steel with tighter bands (`CHROME_PH`, `tight` in `DitherFX.paint`). Desktop and sideways are unchanged.
+  Also filmed with the address bar sliding (height 652 ↔ 708): the layout rescales cleanly, nothing re-rolls.
+- **Next:** needs his "deploy", then his eye on his own phone: if "few other elements" still glitch, ask which.
+- **Watch out:** the menu wedge for SKILLS uses the same mirror ramp; not touched, he hasn't flagged it.
+
+## 2026-11-14 · Browser sweep (37 computers and phones) + phones held sideways fixed
+
+- **Did:** `tests/browsers/run.mjs` grew from 14 to 37 configs (Edge, 1366×768, 2560×1440, MacBook Air, iPhone 11 → 17 / Air /
+  16e / 13 mini, Pixel 7a / 10 / 10 Pro XL, Galaxy A55 / Z Flip 7 / Z Fold 7 / Tab S9, iPad gen 11, iPad landscape, four
+  phones sideways) and now walks the WHOLE site: after PROJECTS it goes menu → ABOUT → SKILLS → CONTACT by plate and BACK
+  (overflow, clipped plates, BACK on screen, errors, a still of each).
+- **Fixed:** a phone held sideways broke the menu, ABOUT and SKILLS. It now takes the desktop layout (`upright()` in JS,
+  `orientation:portrait` on the phone media queries) plus one short-landscape block at the end of the stylesheet. Rules in
+  CLAUDE.md (Layout rules). Stills `docs/process/stills/2026-11-14-phone-sideways/`, JOURNAL chapter 2026-11-14.
+- **Deployed 2026-11-14 on his "deploy"** (push to main, Pages builds `website/site`). Rollback: `git revert` back to
+  `8f9656c` (the last live commit) and push. The 37-config sweep passed after one more fix: JATIN OS hides its date
+  strip, header and HOW TO USE while a photo is open on a sideways phone (the photo was 143px tall on a Pixel).
+- **Next:** a real phone turned sideways.
+- **Watch out:** Playwright runs today's engine builds only; it can't run older Safari/Chrome versions or real Samsung
+  Internet. Sweep stills (`docs/process/stills/2026-11-13-browsers/`, 229MB+) are not committed. `PH` is taken (a colour
+  in the page); the phone test is `upright()`.
+
+## 2026-11-14 · Site intro video, round 12 (the collapse)
+
+- **Did:** his note: the hole collapses into itself instead of rushing the lens, then impact frames like the click. `crush()` on the
+  hole's radius over the last .6s, `impactEnd()` (6 frames, GULP!!), end card offset to land 3 frames after. Master
+  `site-intro-r12.mp4`, web copy, `img12/`, README Round 12, review page republished.
+- **Watch out:** GULP is my word choice; he may want another. Nothing committed.
+
+## 2026-11-13 · Site intro video, round 11 (12.3s)
+
+- **Did:** his notes: blowout + hang 3.25–6.0 → 3.25–4.5, swallows 6.0–10 → 4.5–8.0. New `RT()`, DUR 12.3. Heroes are now placed
+  with round 8's FIN/END (`FIN8`/`END8`): the camera's final push moved earlier and was re-placing the computer (1.6s dead hang).
+  Master `site-intro-r11.mp4`, web copy, `img11/`, README Round 11, review page republished. Audit clean.
+- **Watch out:** `VRETUNE` re-runs `heroInit` with the live FIN/END, so it no longer matches the render. Nothing committed.
+
+## 2026-11-13 · Site intro video, round 10 (tighter: 14.3s)
+
+- **Did:** his notes: hang 4.5–7.2 → 4.5–6.0, taking 7.2–12.7 → 6.0–10.0, same pace. `RT()` in intro-video.js retimes the
+  capture times only; the hang is round 8's frame for frame. Master `site-intro-r10.mp4`, web copy, `img10/`, README Round 10,
+  review page republished. Audit clean.
+- **Watch out:** heroes are placed on round 8's timeline and then re-bodied with RT'd capture times; `VRETUNE` does not re-apply RT.
+  Nothing committed.
+
+## 2026-11-13 · Site intro video, round 9 (the card's edge)
+
+- **Did:** his note "the cards edge kind of phases through the black" — first fix (horizon eats falling things) was wrong and is
+  undone. Real cause: at 5.96s the card, wider than the hole, crossed the hole's depth and was re-sorted behind it whole in one frame.
+  His call: the card is 20% smaller (size 6.8) instead; the tile split I tried is removed. Its back face uses the front's outline. Master
+  `site-intro-r9.mp4` re-rendered, web copy, README Round 9, review page republished. Motion unchanged.
+- **Watch out:** any big object can pop the same way when its centre crosses the hole's depth; the models (phone, computer,
+  handycam) are still sorted whole. Nothing committed.
+
+## 2026-11-13 · Site intro video, round 8 (cursor landing, flow audit fixes)
+
+- **Did:** his note + a recording of the cursor's "sudden swave" before the click, "cursor can be a little smaller by the end", and
+  go on the round 8 fixes from the flow audit. Cursor path no longer hooks back, drifts to rest, lands at 165 px; camera tilt settles
+  in one move; camera drift .3 rad/s so nothing stands still in the hang; flatter orbits; computer tumble, rings and disc re-searched.
+  Master `personal-brand/videos/2026-11-11-site-intro/site-intro-r8.mp4`, web copy + `img8/` + README Round 8 in the concept folder,
+  review page republished.
+- **Next:** his notes on round 8. Sound still undecided.
+- **Watch out:** `window.VAZD(v)` / `window.VRETUNE(k, over)` re-run the hero setup in place for tuning; any change to the camera drift
+  needs VFACE + VRINGS (incl. the disc normal `DN`) searched again. Nothing committed.
+
+## 2026-11-13 · Motion playbook + flow audit (learned from a friend's session)
+
+- **Did:** he shared Aneeket's hook session (V10b → V10h) "to analyse the motion … make dependencies that will help in making
+  motion animations better". Built, in `personal-brand/kit/studio/video/`:
+  - `MOTION.md`: the rules, his friend's notes mapped to what the graph showed and what fixed them;
+  - `flow-audit.mjs`: per-object speed/size graph (SVG) plus flags: dead hang, V-dip, jolt, corner, linear, straight, wobble, pump;
+  - `motion-lib.js` (`window.MOTION`: smootherstep, its integral, cubic-bezier, hand-off, swoop, spring), loaded before intro-video.js;
+  - `render-video.mjs probe <out.json>` and `window.VPROBE` / `window.VCUR` in intro-video.js (the cursor pose was pulled out into
+    `curPose`; the frames are unchanged).
+- **Found on round 7:** the computer is a dead hang on screen from 4.5 to 10.8 s (median 32 px/s); a wobble bump at ~4.1 s after the
+  blowout; the handycam and card fall on straight lines into the hole. Written up at the end of MOTION.md as round 8's first fixes.
+- **Next:** his notes on round 7; then round 8 with the audit run before handing over.
+- **Watch out:** the engine's `ss` is smoothstep (C1). Use `MOTION.smoother` for anything the eye follows. qlmanage crops SVGs to a
+  square: open the graph in a browser to see all of it. Nothing committed.
+
+## 2026-11-13 · Site intro video, round 7 (real 3D bodies, black-hole gravity, one clock)
+
+- **Did:** his note (with two movement recordings): objects must move like "an actual 3d object", "natural movements
+  how the black holes would effect … objects in a zero g space", "easing in and outs are not smooth". The world section
+  of `personal-brand/kit/studio/video/intro-video.js` is rewritten:
+  - the site's models take a full rotation (`uM`, patched at serve time in `render-video.mjs`; `website/site` untouched);
+  - the card is a slab with a front and a back; links, stars and shards are plates with thickness and stepped light;
+  - one world clock `tau(u)`, a gravity law for orbit speed (`omega`, `body`), one-axis one-rate tumbles (`spin`);
+  - shutter blur (`worldMB`) and focus blur (`coc`); heroes laid out by the lens and taken one by one.
+  Master `personal-brand/videos/2026-11-11-site-intro/site-intro-r7.mp4`; review page republished (version 7).
+- **Checked:** per-frame strips of the whole world section and the mean change between consecutive frames (one smooth
+  curve; only the impact frames and three swallow kicks jump). Not checked: playback at speed.
+- **In flight:** his notes on round 7. Nothing committed this session.
+- **Next:** his notes; sound still undecided.
+- **Watch out:**
+  - Dev read-outs: `render-video.mjs eval x "VFACE({k:'mon'})"` (how squarely an object's front faces the lens over
+    time) and `"VRINGS()"` (how open each chain ring is). Use them before moving a hero or a ring: a ring that goes
+    edge-on lies as a bar across the hole, and the computer's back is a blank box.
+  - A full render is ~1m25s; the frames land in a temp `jatin-video-*` folder, so strips can be cut with ffmpeg
+    without rendering again.
+  - Web copies must stay under 15MB for the artifact (crf 25 at 720×1280 gives ~12MB).
+
+## 2026-11-13 · Site intro video, round 6 (zero gravity, real depth)
+
+- **Did:** his note was that the hole and objects read as "sticker png" with no distance. Objects now orbit the hole in
+  world space at their own depths, the camera never stops (orbit, sway, dolly), the hole and its disc are depth-sorted,
+  the cursor drifts in weightless. Master `personal-brand/videos/2026-11-11-site-intro/site-intro-r6.mp4`.
+- **In flight:** his notes, beat by beat. Nothing committed this session.
+- **Next:** his notes on round 6; sound still undecided.
+- **Watch out:** the handycam hides behind the computer; the card is on the far side until ~10s. Anything placed in
+  camera space at one depth reads as a sticker to him: keep objects in the world.
+
+## 2026-11-13 · Site intro video, round 5 (bird glide, hole from the click, blowout)
+
+- **Did:** cursor glides his line by arc length with heading roll, bank and a flare before the click; the black hole
+  is born on the click in the impact frames and stays small with a palette disc; computer, phone, card and handycam
+  are blown out with everything else, stay in frame, then go in one by one. Master
+  `personal-brand/videos/2026-11-11-site-intro/site-intro-r5.mp4`; review page republished.
+- **In flight:** his notes, beat by beat. Nothing committed this session.
+- **Next:** his notes on round 5; sound still undecided.
+- **Watch out:** the card clips the bottom-left edge while hanging; round 4 script is only in the session scratchpad.
+
+## 2026-11-13 · Site intro video, round 4 (cursor path, impact frames)
+
+- **Did:** cursor follows his drawn line (from behind the camera on the right, low arc, hook up onto the name);
+  the white fade after the click is replaced by six impact frames (`impact(t)` in
+  `personal-brand/kit/studio/video/intro-video.js`): dark, dark + embers, white on black, negative ×2 with CLICK!!,
+  pink. Master `personal-brand/videos/2026-11-11-site-intro/site-intro-r4.mp4`; review page republished.
+- **In flight:** he is giving notes beat by beat. Nothing committed this session.
+- **Next:** his notes on round 4; sound is still undecided.
+- **Watch out:** first world frame (3.25s) is still very white; the name is busy under the chains in the negative.
+
 ## 2026-11-12 — identity video, round 2: taste, not branding (his note)
-- **His note:** shift the context "from branding to building a taste and an identity or style because branding has become something that takes the meaning of stuff".
+- **His note:** shift the context "from branding to building a taste and an identity or style because branding has become something that takes the meaning out of stuff".
 - **Did:** rewrote `personal-brand/videos/2026-11-12-identity/script.md`. Title "I never designed my style. I built my taste." Three words fixed: taste = input, style = output, identity = others noticing. "Brand" appears once (scene 2, as what swallowed the meaning); scene 5's line is "taste isn't liking more things, it's knowing what to cut". Lesson saved to memory (`taste-not-branding`).
 - **Next:** same `[YOU: …]` gaps as round 1.
 
@@ -163,47 +400,6 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 - **Watch out:** `lights()`/`floor()` are post-only; reels still use `propRender`'s own lights.
 
 ---
-
-## 2026-11-14 · Lag pass: transitions and CONTACT (not deployed)
-
-- **His note:** find why CONTACT feels laggy, and the whole site: "the hosted website has alot off lag during transitions".
-- **Did:** `PROF=1 node tests/perf.mjs` before and after (`docs/process/perf/2026-11-14-*-1114-before|after.json`). Fixed:
-  the phone re-allocating its canvas on every ring pulse; the three models building on the transition's swap frame (now
-  `Warm`, in the background from the menu); per-frame box reads in the computer, phone and camera; `upright()` cached
-  (that one was a slowdown shipped this morning). Slow-laptop rig, worst frame: CONTACT open 350 → 83ms, PROJECTS open
-  208 → 67ms, SKILLS deal 192 → 50ms, menu browsing 41 → 60fps. Browser subset 12/12, check.mjs passes.
-- **Deployed 2026-11-14 on his "Deploy"** (with the SKILLS band fix). Rollback: `git revert` back to `69eef3c` and push.
-- **Next:** Still heavy: SKILLS open (blocked ~900ms on the 6× rig: the eye's feed upload and photo
-  decode) and ABOUT open (DitherFX force-paint + the light fan + CutGlow). `intro: snap → menu` has one ~350ms frame.
-- **Watch out:** the warm-up puts one or two short hiccups in the menu ~2s after it lands (the models' atlases being
-  painted). The software-GPU rig is still unusable (0.2–15fps); the "lite mode" call is still open.
-
-## 2026-11-14 · SKILLS background pulse on phones (not deployed)
-
-- **His note:** SKILLS on his phone is "glitchy … the back ground and few other elements", and stills can't show it.
-- **Did:** built `tests/flicker/` (film a section frame by frame on a phone, measure what changes between frames). It
-  showed the chrome band behind the card swinging near-black to near-white every few seconds. On upright phones the band
-  now stays steel with tighter bands (`CHROME_PH`, `tight` in `DitherFX.paint`). Desktop and sideways are unchanged.
-  Also filmed with the address bar sliding (height 652 ↔ 708): the layout rescales cleanly, nothing re-rolls.
-- **Next:** needs his "deploy", then his eye on his own phone: if "few other elements" still glitch, ask which.
-- **Watch out:** the menu wedge for SKILLS uses the same mirror ramp; not touched, he hasn't flagged it.
-
-## 2026-11-14 · Browser sweep (37 computers and phones) + phones held sideways fixed
-
-- **Did:** `tests/browsers/run.mjs` grew from 14 to 37 configs (Edge, 1366×768, 2560×1440, MacBook Air, iPhone 11 → 17 / Air /
-  16e / 13 mini, Pixel 7a / 10 / 10 Pro XL, Galaxy A55 / Z Flip 7 / Z Fold 7 / Tab S9, iPad gen 11, iPad landscape, four
-  phones sideways) and now walks the WHOLE site: after PROJECTS it goes menu → ABOUT → SKILLS → CONTACT by plate and BACK
-  (overflow, clipped plates, BACK on screen, errors, a still of each).
-- **Fixed:** a phone held sideways broke the menu, ABOUT and SKILLS. It now takes the desktop layout (`upright()` in JS,
-  `orientation:portrait` on the phone media queries) plus one short-landscape block at the end of the stylesheet. Rules in
-  CLAUDE.md (Layout rules). Stills `docs/process/stills/2026-11-14-phone-sideways/`, JOURNAL chapter 2026-11-14.
-- **Deployed 2026-11-14 on his "deploy"** (push to main, Pages builds `website/site`). Rollback: `git revert` back to
-  `8f9656c` (the last live commit) and push. The 37-config sweep passed after one more fix: JATIN OS hides its date
-  strip, header and HOW TO USE while a photo is open on a sideways phone (the photo was 143px tall on a Pixel).
-- **Next:** a real phone turned sideways.
-- **Watch out:** Playwright runs today's engine builds only; it can't run older Safari/Chrome versions or real Samsung
-  Internet. Sweep stills (`docs/process/stills/2026-11-13-browsers/`, 229MB+) are not committed. `PH` is taken (a colour
-  in the page); the phone test is `upright()`.
 
 ## 2026-11-10 — Slow-machine test rig + the lag it found. DEPLOYED (Pages run 42680683777, 54b0c34)
 - **Deploy:** his word "deploy". Rollback point: run 42596277255 (707106c). Two Pages runs timed out in GitHub's

@@ -65,7 +65,7 @@ brand and inside personal brand it will be videos and posts"):
   title but i love the mixed media background"). No photo of him, no burst stickers, chips, stars or icons. Maximal is
   the background, not the count of things on top; the background scraps carry the topic.
 - **Reels: he does concept, I do the execution** and deliver rendered video (`personal-brand/kit/studio/render-reel.mjs`).
-- Round log: the white look in `personal-brand/kit/concepts/2026-11-21-white-look/README.md`; the dark look (rounds 1–10) is archived in `personal-brand/kit/archive/2026-11-09-dark-look/` (`index.html` = every round as a drop-down).
+- Round log: the white look in `personal-brand/kit/concepts/2026-11-21-white-look/README.md`; the dark look (rounds 1–10) is archived in `personal-brand/kit/archive/2026-11-09-dark-look/` ; `personal-brand/kit/index.html` shows both looks, one drop-down each.
 - **Videos: motion comes from physics, not keyframes** (site intro video, rounds 5–7, 2026-11-13; log
   `personal-brand/kit/concepts/2026-11-11-site-intro-video/README.md`). His words: objects pinned to the screen "look
   like a sticker png"; they must move like "an actual 3d object", with "natural movements how the black holes would

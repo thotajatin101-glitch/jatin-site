@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <title>JATIN studio</title>
 <!-- Dev-only still renderer for posts and reel frames. Never ships. three.js r128 from cdnjs. -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,500;0,600;0,700;1,700&family=VT323&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,500;0,600;0,700;1,700&family=VT323&family=Permanent+Marker&display=swap">
 <style>
 @font-face{font-family:"Cyberway Riders";src:url(../../../CyberwayRiders-lg97d.ttf) format("truetype")}
 html,body{margin:0;background:#111}
@@ -72,29 +72,32 @@ function paintType(cw,ch,lines,opt={}){
   const bands=[],late=[];
   for(const L of lines){
     const style=L.style||'marker';
-    const size=L.size*cw;
+    // round 8: marker lines track at .2 (was .1: the rims fused, CUT IT read CUTTT) and can be fitted to a width
+    const face=style==='mono'?'italic 700 "IBM Plex Mono"':(style==='pix'?'"VT323"':'"Cyberway Riders"'),trk=L.track??(style==='marker'?.2:.02);
+    const size=L.fit?L.fit*cw*100/glyphRun(L.t,face,100,trk).w:L.size*cw;
     const font=style==='mono'?'700 '+'"IBM Plex Mono"':style==='pix'?'"VT323"':'"Cyberway Riders"';
     const fontStr=f=>style==='mono'?`italic 700 ${size}px "IBM Plex Mono"`:`${size}px ${style==='pix'?'"VT323"':'"Cyberway Riders"'}`;
-    const run=glyphRun(L.t,style==='mono'?'italic 700 "IBM Plex Mono"':(style==='pix'?'"VT323"':'"Cyberway Riders"'),size,L.track??(style==='marker'?.1:.02));
+    const run=glyphRun(L.t,face,size,trk);
     let x0=L.x*cw-(L.align==='left'?0:L.align==='right'?run.w:run.w/2);
     const y0=L.y*ch;
     if(style==='plate'){const rot=L.rot||0,cx=L.x*cw,cy=y0;late.push(()=>silverPlate(O,L.t,cx,cy,size,rot,cw));continue}
     bands.push({y:y0-size*.55,h:size*1.05});
     run.g.forEach((gl,i)=>{
       const seed=(L.seed||1)*97+i;
-      const rot=(L.rot||0)+(hash(seed,1)-.5)*(L.jit??.14);
-      const sc=1+(hash(seed,2)-.5)*(L.sjit??.14);
-      const dy=(hash(seed,3)-.5)*size*(L.yjit??.08);
+      const rot=(L.rot||0)+(hash(seed,1)-.5)*(L.jit??.07);
+      const sc=1+(hash(seed,2)-.5)*(L.sjit??.07);
+      const dy=(hash(seed,3)-.5)*size*(L.yjit??.05);
       const cx=x0+gl.x+gl.w/2,cy=y0+dy;
       const put=(ctx,fn)=>{ctx.save();ctx.translate(cx,cy);ctx.rotate(rot);ctx.scale(sc,sc);ctx.font=fontStr();ctx.textAlign='center';ctx.textBaseline='middle';ctx.lineJoin='round';ctx.lineCap='round';fn(ctx);ctx.restore()};
       if(style==='marker'){
-        const ow=size*(L.ow||.15);
+        const ow=size*(L.ow||.1);
         put(O,c=>{ // ink drop
           c.translate(size*.05,size*.06);c.lineWidth=ow;c.strokeStyle='#000';c.fillStyle='#000';c.strokeText(gl.ch,0,0);c.fillText(gl.ch,0,0)});
         put(O,c=>{ // rough marker outline: three passes, slightly off each other
           c.strokeStyle=L.outline||PAL.pink;c.fillStyle=L.outline||PAL.pink;
           for(let k=0;k<3;k++){c.save();c.translate((hash(seed,10+k)-.5)*size*.018,(hash(seed,20+k)-.5)*size*.018);c.lineWidth=ow*(.92+hash(seed,30+k)*.16);c.strokeText(gl.ch,0,0);c.restore()}
-          c.fillText(gl.ch,0,0)});
+          c.fillText(gl.ch,0,0);
+          c.lineWidth=size*.028;c.strokeStyle='#000';c.strokeText(gl.ch,0,0)}); // ink keyline between fill and rim
         put(F,c=>{c.fillStyle=L.fill||PAL.acid;c.fillText(gl.ch,0,0)});
       } else if(style==='mono'||style==='pix'){
         late.push(()=>{put(O,c=>{c.translate(size*.04,size*.05);c.lineWidth=size*.16;c.strokeStyle='#000';c.strokeText(gl.ch,0,0);c.fillStyle='#000';c.fillText(gl.ch,0,0)});
@@ -298,7 +301,7 @@ const SHARD_FAM={
 const R3TYPE={fill:PAL.acid,outline:PAL.pink,foot:PAL.green},TYPE_ON={[PAL.pink]:R3TYPE,[PAL.cyan]:R3TYPE,[PAL.acid]:R3TYPE};
 const worldType=(acc,lines)=>paintType(PW*2,PH*2,lines.map(L=>L.style?L:{...L,fill:TYPE_ON[acc].fill,outline:TYPE_ON[acc].outline}),{foot:TYPE_ON[acc].foot});
 function siteWorld(acc,o){
-  SEED=o.seed||7;const w=PW,h=PH,c=mk(w*SS2,h*SS2),x=c.getContext('2d');x.scale(SS2,SS2);
+  SEED=o.seed||7;const w=o.w||PW,h=o.h||PH,c=mk(w*SS2,h*SS2),x=c.getContext('2d');x.scale(SS2,SS2);
   const [vx,vy]=o.vp,A=hx(acc),R=Math.hypot(w,h);
   x.fillStyle='#000';x.fillRect(0,0,w,h);
   // sky: the accent pooled at the light, falling to black by the frame edge (no vignette: nothing is darkened, it just isn't lit)
@@ -451,62 +454,380 @@ function menuPlate(num,text,acc,w=760,h=118){const c=mk(w+40,h+40),x=c.getContex
   x.font='italic 700 50px "IBM Plex Mono"';x.fillStyle='#fff';x.fillText(text,h*.3+80,h*.52);return c}
 
 const DRAFTS={};
-DRAFTS.p1=async()=>{ // STOP editing SAFE — pink world; the chain comes out of the light and snaps
-  const acc=PAL.pink,VP=[790,560];
-  postStage(acc,{vp:VP,seed:11,wedge:[[150,760],[1260,-520],[1260,1900]],
-    streaks:[[-2.6,900,9],[-.35,800,6],[.55,1000,11],[2.25,700,5]],ink:[[-1.25,.06],[1.9,.05]],
-    stars:[[110,1180,46,PAL.acid],[1000,1240,34,PAL.cyan],[60,560,30,PAL.pink]],sparkles:[[960,130,40],[150,330,26],[1010,900,22]],
-    pixels:[[110,860,PAL.cyan,0,.3],[1000,1060,PAL.acid,1,-.2]],scribbles:[[200,1050,'#e8ff00'],[860,1180,'#00f0d8']]});
-  // the chain: out of the light, one wide sweep round the left and back across toward the lens; it snaps on the way
-  const pal=chPal(PAL.acid),links=chainCurve([[790,560],[420,760],[330,1000],[560,1230],[1320,1420]],.3,2.8,6);
-  const brk=links.findIndex(l=>l.x>600&&l.y>1200),keep=links.filter((l,i)=>i<brk||i>brk+1);
-  const [cc,cx]=frameCanvas();layChain(cx,keep,pal);burst(cx,links[brk].x+20,links[brk].y-10,62,5);SCN.add(framePlane(cc,.6));
-  const [dc,dx]=frameCanvas();[[0,-150,-170,1.2],[1,150,-340,-.7]].forEach(([n,ox,oy,da])=>{const l=links[brk+n];chLink(dx,l.i,l.x+ox,l.y+oy,l.a+da,l.c*1.1,pal)});SCN.add(framePlane(dc,1.9));
-  const T=worldType(acc,[
-    {t:'STOP',size:.27,x:.48,y:.185,rot:-.07,seed:3},
-    {t:'editing',style:'plate',size:.052,x:.72,y:.31,rot:-.05,seed:5},
-    {t:'SAFE',size:.28,x:.5,y:.435,rot:.04,seed:9}
-  ]);
-  SCN.add(framePlane(T,.9));
-  const bp=panel(menuPlate('01','do this instead..',acc),6.4,.75);bp.rotation.z=.06;const [bx,bz]=at(340,790,.75);bp.position.set(bx,.75,bz);SCN.add(bp);
-  R.render(SCN,CAM);return finishPost(R.domElement,acc,'EDIT NOTES · 01');
-};
-DRAFTS.p2=async()=>{ // FRAMES i almost DELETED — cyan world; the chain loops out of the light and runs at the lens
-  const acc=PAL.cyan,VP=[560,610];
-  postStage(acc,{vp:VP,seed:23,wedge:[[90,640],[1250,-560],[1250,1840]],
-    streaks:[[-2.9,800,7],[-.6,900,9],[.4,950,10],[2.5,800,6]],ink:[[-1.7,.05],[1.25,.06]],
-    stars:[[980,330,40,PAL.pink],[90,1240,34,PAL.acid],[1010,1010,26,PAL.pink]],sparkles:[[90,420,34],[1000,560,22],[300,320,18]],
-    pixels:[[1000,1180,PAL.pink,0,.2],[80,860,PAL.acid,1,-.3]],scribbles:[[140,980,'#ff2e88'],[880,420,'#e8ff00']]});
-  const pal=chPal(PAL.pink),links=chainCurve([[560,610],[820,590],[950,760],[880,960],[620,1060],[200,1160],[-250,1500]],.28,2.8,6);
-  const [cc,cx]=frameCanvas();layChain(cx,links,pal);SCN.add(framePlane(cc,1.1));
-  const T=worldType(acc,[
-    {t:'FRAMES',size:.185,x:.52,y:.16,rot:-.05,seed:11},
-    {t:'i almost',style:'plate',size:.052,x:.28,y:.75,rot:-.06,seed:2},
-    {t:'DELETED',size:.19,x:.5,y:.87,rot:.05,seed:21}
-  ]);
-  SCN.add(framePlane(T,1.5));
-  R.render(SCN,CAM);return finishPost(R.domElement,acc,'CONTACT SHEET · 03');
-};
-DRAFTS.p3=async()=>{ // CUT IT in one NIGHT — acid world; the chain comes out of the light
-  const acc=PAL.acid,VP=[520,990];
-  postStage(acc,{vp:VP,seed:5,wedge:[[60,1020],[1250,-300],[1250,2200]],
-    streaks:[[-2.2,1000,10],[-1.2,1100,8],[-.3,900,9],[.5,700,6]],ink:[[-.75,.05],[-1.75,.04]],
-    stars:[[1000,760,44,PAL.pink],[90,700,30,PAL.cyan],[960,1260,30,PAL.pink]],sparkles:[[110,820,30],[1010,640,22]],
-    pixels:[[760,1180,PAL.pink,1,.25],[70,1250,PAL.cyan,0,-.2]],scribbles:[[120,760,'#ff2e88'],[900,1120,'#00f0d8']]});
-  const T=worldType(acc,[
-    {t:'CUT IT',size:.25,x:.49,y:.17,rot:-.06,seed:4},
-    {t:'in one',style:'plate',size:.052,x:.76,y:.285,rot:-.05,seed:8},
-    {t:'NIGHT',size:.25,x:.5,y:.385,rot:.04,seed:6}
-  ]);
-  SCN.add(framePlane(T,1.2));
-  // the chain comes out of the light, swings wide right and runs at the lens, bottom right
-  const pal=chPal(PAL.pink),links=chainCurve([[520,990],[740,830],[930,840],[1030,1040],[1080,1300],[1150,1560]],.3,2.8,6);
+// ---- round 8: every post has a SUBJECT again, as a flat cut sticker (never a 3D prop): a framed still with a paper
+// rim, ink rule and red/cyan edge, or his cut-out. Each sits on its own lifted plane so the shadow is real.
+function card(x,img,cx,cy,w,rot,rim='#fff'){const h=w*img.height/img.width,b=w*.03;x.save();x.translate(cx,cy);x.rotate(rot);
+  [['#ff2048',-8],['#00e0ff',8]].forEach(([c,d])=>{x.fillStyle=c;x.fillRect(-w/2-b+d,-h/2-b,w+2*b,h+2*b)});
+  x.fillStyle=rim;x.fillRect(-w/2-b,-h/2-b,w+2*b,h+2*b);x.drawImage(img,-w/2,-h/2,w,h);
+  x.lineWidth=6;x.strokeStyle='#000';x.strokeRect(-w/2-b,-h/2-b,w+2*b,h+2*b);x.lineWidth=4;x.strokeRect(-w/2,-h/2,w,h);x.restore()}
+const cardPlane=(img,cx,cy,w,rot,rim,L)=>{const [c,x]=frameCanvas();card(x,img,cx,cy,w,rot,rim);SCN.add(framePlane(c,L))};
+const TAG=n=>'JUST JATIN · '+n;
+DRAFTS.p1r8=async()=>{ // MADE IT without TRYING — pink world. Layout A: type on top, he stands in the wedge, chain behind him
+  const acc=PAL.pink,VP=[640,720];
+  postStage(acc,{vp:VP,seed:11,wedge:[[90,820],[1260,-420],[1260,1900]],
+    streaks:[[-2.7,900,9],[-.5,800,6],[2.3,700,5]],ink:[[-1.2,.05],[2.0,.05]],
+    stars:[[96,1240,44,PAL.acid],[70,600,28,PAL.pink]],sparkles:[[990,560,34],[170,420,22]],
+    pixels:[[120,930,PAL.cyan,0,.3]],scribbles:[[210,1080,'#e8ff00']]});
+  // the chain comes out of the light behind his head, sweeps left and runs at the lens off the bottom left
+  const pal=chPal(PAL.acid),links=chainCurve([[640,720],[380,700],[200,860],[250,1080],[60,1260],[-260,1500]],.3,2.6,6);
   const [cc,cx]=frameCanvas();layChain(cx,links,pal);SCN.add(framePlane(cc,.5));
-  const lp=panel(menuPlate('02','edit notes',acc,620),4.9,.7);lp.rotation.z=.05;const [lx,lz]=at(330,1290,.7);lp.position.set(lx,.7,lz);SCN.add(lp);
-  R.render(SCN,CAM);return finishPost(R.domElement,acc,'EDIT NOTES · 02');
+  const cut=await loadImg('../../../website/site/jatin-cutout.png'),st=sticker(cut,13,PAL.acid);
+  const [sc,sx]=frameCanvas(),sw=900,sh=sw*st.height/st.width;sx.drawImage(st,PW-sw+70,PH-sh+120,sw,sh);SCN.add(framePlane(sc,2.0)); // in front of the type: his hair cuts into TRYING
+  SCN.add(framePlane(worldType(acc,[
+    {t:'MADE IT',fit:.84,x:.5,y:.145,rot:-.05,seed:3},
+    {t:'without',style:'plate',size:.05,x:.3,y:.262,rot:-.05},
+    {t:'TRYING',fit:.8,x:.52,y:.365,rot:.035,seed:9}]),1.3));
+  R.render(SCN,CAM);return finishPost(R.domElement,acc,TAG('01'));
+};
+DRAFTS.p2r8=async()=>{ // CONSUME to your heart's content FIRST — cyan world. Layout B: the work fanned in the centre, type top and bottom
+  const acc=PAL.cyan,VP=[430,690];
+  postStage(acc,{vp:VP,seed:23,wedge:[[1010,700],[-200,-420],[-200,1820]],
+    streaks:[[-.45,900,8],[.5,950,9],[2.6,700,6]],ink:[[-1.45,.05],[1.2,.05]],
+    stars:[[1010,1180,36,PAL.pink],[80,1262,30,PAL.acid]],sparkles:[[90,330,30],[1010,1000,22]],
+    pixels:[[990,470,PAL.pink,0,.2]],scribbles:[[900,1150,'#ff2e88']]});
+  const pal=chPal(PAL.pink),links=chainCurve([[430,690],[700,520],[960,640],[1000,900],[820,1090],[1000,1300],[1300,1560]],.28,2.6,6);
+  const [cc,cx]=frameCanvas();layChain(cx,links,pal);SCN.add(framePlane(cc,.4));
+  const ims=await Promise.all(['intro-snap','phone-break','menu-now'].map(n=>loadImg('../brief/img/'+n+'.jpg')));
+  cardPlane(ims[0],400,560,560,-.13,'#fff',.8);cardPlane(ims[1],690,640,560,.1,'#fff',1.15);cardPlane(ims[2],500,800,640,-.03,PAL.acid,1.5);
+  SCN.add(framePlane(worldType(acc,[
+    {t:'CONSUME',fit:.86,x:.5,y:.15,rot:-.04,seed:11},
+    {t:"to your heart's content",style:'plate',size:.031,x:.5,y:.255,rot:-.04},
+    {t:'FIRST',fit:.6,x:.36,y:.855,rot:.04,seed:21}]),1.9));
+  R.render(SCN,CAM);return finishPost(R.domElement,acc,TAG('02'));
+};
+DRAFTS.p3r8=async()=>{ // NO framework NO STEPS — acid world. Layout C: the chain breaks up top (the subject), type along the bottom
+  const acc=PAL.acid,VP=[560,430];
+  postStage(acc,{vp:VP,seed:5,wedge:[[560,90],[-420,1500],[1540,1500]],
+    streaks:[[-2.5,900,9],[-.6,900,8],[1.0,800,6],[2.2,800,6]],ink:[[1.35,.045],[1.85,.04]],
+    stars:[[1000,250,40,PAL.pink],[84,330,28,PAL.cyan]],sparkles:[[110,640,28],[1000,700,22]],
+    pixels:[[950,560,PAL.pink,1,.25]],scribbles:[[150,520,'#ff2e88']]});
+  // out of the light, one loop, and it SNAPS in the middle of the frame; the near end runs off the bottom right
+  const pal=chPal(PAL.pink),links=chainCurve([[560,430],[330,330],[210,520],[420,690],[700,640],[930,820],[1250,1250]],.34,2.7,6.4);
+  const brk=links.findIndex(l=>l.x>520&&l.y>640),keep=links.filter((l,i)=>i<brk-1||i>brk+1);
+  const [cc,cx]=frameCanvas();layChain(cx,keep,pal);burst(cx,links[brk].x,links[brk].y,150,5);SCN.add(framePlane(cc,.6));
+  const [dc,dx]=frameCanvas();[[-1,-170,-150,1.1],[0,40,-250,-.6],[1,210,-120,.9]].forEach(([n,ox,oy,da])=>{const l=links[brk+n];chLink(dx,l.i,l.x+ox,l.y+oy,l.a+da,l.c*1.15,pal)});SCN.add(framePlane(dc,2.2));
+  SCN.add(framePlane(worldType(acc,[
+    {t:'NO',fit:.3,x:.2,y:.665,rot:-.05,seed:4},
+    {t:'framework',style:'plate',size:.05,x:.66,y:.668,rot:-.04},
+    {t:'NO STEPS',fit:.88,x:.5,y:.845,rot:.03,seed:6}]),1.2));
+  R.render(SCN,CAM);return finishPost(R.domElement,acc,TAG('03'));
+};
+
+// ============================================================ ROUND 9: MAXIMALIST COLLAGE (2D, 2 texels per px)
+// His note: round 8 sat "in the comfort zone"; he wants maximalism, and the imagery has to come from what the post is
+// ABOUT. Reference: the Broken Frames poster (torn paper, coarse halftone and bitmap photos, spray with drips, burst
+// stickers, chunky type on a hard black drop). His palette, dither, pixel pieces, chain and fonts are the ingredients.
+const K=2,PAPER='#f4f1e8';
+function cstage(bg){const c=mk(PW*K,PH*K),x=c.getContext('2d');x.scale(K,K);x.fillStyle=bg;x.fillRect(0,0,PW,PH);return[c,x]}
+// one layer of paper: drawn on its own canvas, laid down with a hard shadow
+function lay(x,fn,sh=[9,11,.6]){const o=mk(PW*K,PH*K),g=o.getContext('2d');g.scale(K,K);fn(g);
+  if(sh){const q=mk(PW*K,PH*K),Q=q.getContext('2d');Q.drawImage(o,0,0);Q.globalCompositeOperation='source-in';Q.fillStyle='#000';Q.fillRect(0,0,q.width,q.height);
+    x.save();x.setTransform(1,0,0,1,0,0);x.globalAlpha=sh[2];x.drawImage(q,sh[0]*K,sh[1]*K);x.restore()}
+  x.save();x.setTransform(1,0,0,1,0,0);x.drawImage(o,0,0);x.restore()}
+function lumMap(img,w,h,fx=.5,fy=.5){const c=mk(w,h),g=c.getContext('2d');cover(g,img,0,0,w,h,fx,fy);const d=g.getImageData(0,0,w,h).data;
+  return(x,y)=>{x=clamp(x|0,0,w-1);y=clamp(y|0,0,h-1);const o=(y*w+x)*4;return[(d[o]*.3+d[o+1]*.59+d[o+2]*.11)/255,d[o+3]/255]}}
+// coarse print halftone of a photo: ink dots sized by darkness, on paper
+function ht(img,w,h,o={}){const {cell=6,ang=.5,ink='#000',paper='#fff',gam=1,gain=1,lift=1,fx=.5,fy=.5}=o,W=Math.round(w*K),H=Math.round(h*K),L=lumMap(img,W>>1,H>>1,fx,fy),c=mk(W,H),g=c.getContext('2d');
+  if(paper){g.fillStyle=paper;g.fillRect(0,0,W,H)}g.fillStyle=ink;const cs=cell*K,ca=Math.cos(ang),sa=Math.sin(ang),R=Math.hypot(W,H)/2+cs;
+  for(let v=-R;v<R;v+=cs)for(let u=-R;u<R;u+=cs){const px=W/2+u*ca-v*sa,py=H/2+u*sa+v*ca;if(px<-cs||py<-cs||px>W+cs||py>H+cs)continue;
+    const [l,a]=L(px/2,py/2);if(a<.5)continue;const d=clamp(Math.pow(1-clamp(l*lift),gam)*gain);if(d<.03)continue;g.beginPath();g.arc(px,py,cs*.74*Math.sqrt(d),0,7);g.fill()}
+  if(o.alpha){g.globalCompositeOperation='destination-in';g.drawImage(img,0,0,W,H)}return c}
+// 1-bit Bayer bitmap of a photo in chunky cells: the site's dither, used as a print
+function bd(img,w,h,o={}){const {cell=5,ink='#000000',paper='#ffffff',fx=.5,fy=.5,bias=0}=o,cw=Math.ceil(w/cell),chh=Math.ceil(h/cell),L=lumMap(img,cw,chh,fx,fy),c=mk(cw,chh),g=c.getContext('2d'),im=g.createImageData(cw,chh),I=hx(ink),Pp=hx(paper);
+  for(let y=0;y<chh;y++)for(let x=0;x<cw;x++){const cc=L(x,y)[0]+bias>bay(x,y)?Pp:I,q=(y*cw+x)*4;im.data[q]=cc[0];im.data[q+1]=cc[1];im.data[q+2]=cc[2];im.data[q+3]=255}
+  g.putImageData(im,0,0);const out=mk(Math.round(w*K),Math.round(h*K)),G=out.getContext('2d');G.imageSmoothingEnabled=false;G.drawImage(c,0,0,out.width,out.height);return out}
+// a field of dots that swell from a to b ([u,v,size], 0..1)
+function dots(w,h,o={}){const {cell=16,ang=.26,col='#000',bg=null,a=[0,0,1],b=[1,1,0]}=o,W=Math.round(w*K),H=Math.round(h*K),c=mk(W,H),g=c.getContext('2d');if(bg){g.fillStyle=bg;g.fillRect(0,0,W,H)}
+  g.fillStyle=col;const cs=cell*K,ca=Math.cos(ang),sa=Math.sin(ang),R=Math.hypot(W,H)/2+cs,dx=b[0]-a[0],dy=b[1]-a[1],LL=dx*dx+dy*dy;
+  for(let v=-R;v<R;v+=cs)for(let u=-R;u<R;u+=cs){const px=W/2+u*ca-v*sa,py=H/2+u*sa+v*ca;if(px<-cs||py<-cs||px>W+cs||py>H+cs)continue;
+    const t=clamp(((px/W-a[0])*dx+(py/H-a[1])*dy)/LL),sz=a[2]+(b[2]-a[2])*t;if(sz<.05)continue;g.beginPath();g.arc(px,py,cs*.7*Math.min(sz,1.1),0,7);g.fill()}return c}
+function tornPts(w,h,seed,amp=6,step=14){const p=[],e=(x0,y0,x1,y1,k)=>{const n=Math.max(2,Math.hypot(x1-x0,y1-y0)/step|0),nx=(y1-y0),ny=-(x1-x0),L=Math.hypot(nx,ny);
+    for(let i=0;i<n;i++){const t=i/n,j=(hash(seed,k*1000+i)-.5)*2*amp*(hash(seed,k*77+(i>>2))<.55?1:.3);p.push([x0+(x1-x0)*t+nx/L*j-w/2,y0+(y1-y0)*t+ny/L*j-h/2])}};
+  e(0,0,w,0,1);e(w,0,w,h,2);e(w,h,0,h,3);e(0,h,0,0,4);return p}
+// a torn scrap: paper edge showing round a picture or a flat colour
+function scrap(g,src,cx,cy,w,h,rot,seed,o={}){const {edge=7,paper=PAPER,amp=6}=o;g.save();g.translate(cx,cy);g.rotate(rot);
+  const path=pts=>{g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath()};
+  if(edge){path(tornPts(w+edge*2,h+edge*2,seed+50,amp,11));g.fillStyle=paper;g.fill()}
+  path(tornPts(w,h,seed,amp,14));g.save();g.clip();if(typeof src==='string'){g.fillStyle=src;g.fillRect(-w/2-20,-h/2-20,w+40,h+40)}else g.drawImage(src,-w/2,-h/2,w,h);if(o.over)o.over(g,w,h);g.restore();g.restore()}
+// marker / spray stroke with drips and splatter
+function spray(g,pts,col,wd,seed=1,o={}){g.save();g.strokeStyle=col;g.fillStyle=col;g.lineCap='round';g.lineJoin='round';
+  for(let k=0;k<3;k++){g.lineWidth=wd*(1-.14*k);g.beginPath();pts.forEach((p,i)=>{const X=p[0]+(hash(seed,k*31+i)-.5)*wd*.3,Y=p[1]+(hash(seed,k*57+i)-.5)*wd*.3;i?g.lineTo(X,Y):g.moveTo(X,Y)});g.stroke()}
+  (o.drips||[]).forEach(([i,len],n)=>{const p=pts[i];g.lineWidth=wd*.26;g.beginPath();g.moveTo(p[0],p[1]);g.lineTo(p[0]+(hash(seed,n+9)-.5)*4,p[1]+len);g.stroke();g.beginPath();g.arc(p[0],p[1]+len,wd*.19,0,7);g.fill()});
+  const n=o.spl??12;for(let i=0;i<n;i++){const p=pts[(hash(seed,i+70)*pts.length)|0],a=hash(seed,i+90)*6.283,r=wd*(.9+hash(seed,i+110)*2.6);g.beginPath();g.arc(p[0]+Math.cos(a)*r,p[1]+Math.sin(a)*r,wd*(.05+hash(seed,i+130)*.17),0,7);g.fill()}
+  g.restore()}
+const arrow=(g,a,b,col,wd,seed)=>{const an=Math.atan2(b[1]-a[1],b[0]-a[0]),L=wd*3.2,h=k=>[b[0]-Math.cos(an+k)*L,b[1]-Math.sin(an+k)*L];spray(g,[a,[(a[0]+b[0])/2+(hash(seed,3)-.5)*wd*2,(a[1]+b[1])/2+(hash(seed,4)-.5)*wd*2],b],col,wd,seed,{spl:6});spray(g,[h(.55),b,h(-.55)],col,wd,seed+1,{spl:0})};
+const fstr=(font,size)=>/^\d00 /.test(font)?font.replace(/^(\d00) /,`$1 ${size}px `):`${size}px ${font}`;
+// chunky type: every glyph jostled, a thick ink rule and a hard black extrusion down-right
+function chunk(g,t,cx,cy,o={}){const {font='"Cyberway Riders"',fill=PAL.acid,ext='#000',depth=.09,rot=0,track=.13,ow=.11,jit=.05,seed=1}=o;
+  const size=o.fit?o.fit*100/glyphRun(t,font,100,track).w:o.size,run=glyphRun(t,font,size,track);g.save();g.translate(cx,cy);g.rotate(rot);g.font=fstr(font,size);g.textAlign='center';g.textBaseline='middle';g.lineJoin='round';
+  const each=fn=>run.g.forEach((gl,i)=>{g.save();g.translate(-run.w/2+gl.x+gl.w/2,(hash(seed,i)-.5)*size*jit);g.rotate((hash(seed,i+40)-.5)*jit*1.6);fn(gl.ch);g.restore()});
+  const D=size*depth;g.fillStyle=ext;g.strokeStyle=ext;g.lineWidth=size*ow;for(let k=D;k>=0;k-=1.5)each(ch=>{g.strokeText(ch,k,k);g.fillText(ch,k,k)});
+  if(o.rim){g.strokeStyle=o.rim;g.lineWidth=size*ow*.45;each(ch=>g.strokeText(ch,0,0))}
+  g.fillStyle=fill;each(ch=>g.fillText(ch,0,0));g.restore();return size}
+function boom(g,cx,cy,r,col,lines,rot=0,seed=3,o={}){SEED=seed;g.save();g.translate(cx,cy);g.rotate(rot);const n=o.n||16,pts=[];for(let i=0;i<n*2;i++){const a=i/(n*2)*6.283,rad=i%2?r*rr(.7,.77):r*rr(.93,1.08);pts.push([Math.cos(a)*rad,Math.sin(a)*rad])}
+  g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.fillStyle=col;g.fill();g.lineWidth=r*.04;g.strokeStyle='#000';g.lineJoin='miter';g.stroke();
+  const fs=o.fs||r*.24;g.font=`${fs}px "Permanent Marker"`;g.textAlign='center';g.textBaseline='middle';g.fillStyle=o.ink||'#000';lines.forEach((t,i)=>g.fillText(t,0,(i-(lines.length-1)/2)*fs*1.1));g.restore()}
+function chip(g,t,cx,cy,fs,bg,fg,rot=0,font='600 "IBM Plex Mono"'){g.save();g.translate(cx,cy);g.rotate(rot);g.font=fstr(font,fs);const w=g.measureText(t).width+fs*.9,h=fs*1.6;
+  g.fillStyle='#000';g.fillRect(-w/2+4,-h/2+5,w,h);g.fillStyle=bg;g.fillRect(-w/2,-h/2,w,h);g.fillStyle=fg;g.textAlign='center';g.textBaseline='middle';g.fillText(t,0,fs*.07);if(bg!=='#000'){g.lineWidth=2;g.strokeStyle='#000';g.strokeRect(-w/2,-h/2,w,h)}g.restore()}
+function pstar(g,cx,cy,r,rot,col=PAPER,n=5,inner=.45){g.save();g.translate(cx,cy);g.rotate(rot);g.beginPath();for(let i=0;i<n*2;i++){const rad=i%2?r*inner:r,a=-Math.PI/2+i*Math.PI/n;g.lineTo(Math.cos(a)*rad,Math.sin(a)*rad)}g.closePath();g.fillStyle=col;g.fill();g.restore()}
+const ICON={
+  tv:['00100000100','00010001000','11111111111','10000000101','10111110111','10111110101','10111110111','10000000101','11111111111'],
+  pad:['01111111110','11111111111','11011111011','10001110101','11011111011','11110001111','01100000110'],
+  cam:['00011100000','11111111111','11100011111','11001001101','11010101111','11001001111','11100011111','11111111111'],
+  play:['111111111','100000001','101000001','101110001','101111101','101110001','101000001','100000001','111111111'],
+  heart:['011000110','111101111','111111111','111111111','011111110','001111100','000111000','000010000'],
+  tape:['11111111111','10000000001','10110001101','10110001101','10000000001','10011111001','11111111111'],
+  phone:['0111110','0100010','0100010','0100010','0111110','0111110','0101010','0111110','0101010','0111110','0111110']};
+// a pixel sticker: paper rim, ink rule, colour printed with ink dots
+function icon(g,map,cx,cy,s,col,rot=0){const h=map.length,w=map[0].length;g.save();g.translate(cx,cy);g.rotate(rot);
+  for(const [fill,grow] of [[PAPER,.8],['#000',.3],[col,0]])map.forEach((row,j)=>[...row].forEach((b,i)=>{if(b!=='1')return;g.fillStyle=fill;g.fillRect((i-w/2)*s-s*grow,(j-h/2)*s-s*grow,s*(1+grow*2),s*(1+grow*2))}));
+  g.beginPath();map.forEach((row,j)=>[...row].forEach((b,i)=>{if(b==='1')g.rect((i-w/2)*s,(j-h/2)*s,s,s)}));g.clip();g.fillStyle=dotPattern(g,7,.4);g.fillRect(-w*s,-h*s,w*s*2,h*s*2);g.restore()}
+function checker(g,x0,y0,cols,rows,s,a='#000',b='#fff'){for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){g.fillStyle=(i+j)&1?a:b;g.fillRect(x0+i*s,y0+j*s,s,s)}}
+function barcode(g,x0,y0,w,h,seed){g.fillStyle='#fff';g.fillRect(x0-7,y0-7,w+14,h+14);g.fillStyle='#000';let x=x0,i=0;while(x<x0+w){const bw=2+hash(seed,i)*5;if(i&1)g.fillRect(x,y0,Math.min(bw,x0+w-x),h);x+=bw;i++}}
+function dil(c,r,col){const s=mk(c.width,c.height),S=s.getContext('2d');S.drawImage(c,0,0);S.globalCompositeOperation='source-in';S.fillStyle=col;S.fillRect(0,0,s.width,s.height);
+  const d=mk(c.width+r*4,c.height+r*4),D=d.getContext('2d');for(let a=0;a<28;a++)D.drawImage(s,r*2+Math.cos(a/28*6.283)*r,r*2+Math.sin(a/28*6.283)*r);D.drawImage(s,r*2,r*2);return d}
+function strip(g,t,cx,cy,fs,rot,seed,o={}){const {bg='#000',fg='#fff',font='"Permanent Marker"'}=o;g.save();g.font=fstr(font,fs);const w=g.measureText(t).width+fs*1.1;g.restore();
+  scrap(g,bg,cx,cy,w,fs*1.55,rot,seed,{edge:o.edge??0,amp:4});g.save();g.translate(cx,cy);g.rotate(rot);g.font=fstr(font,fs);g.textAlign='center';g.textBaseline='middle';g.fillStyle=fg;g.fillText(t,0,fs*.05);g.restore()}
+function eye(g,cx,cy,w,iris){const h=w*.52;g.save();g.translate(cx,cy);
+  const almond=()=>{g.beginPath();g.moveTo(-w/2,0);g.quadraticCurveTo(0,-h*1.08,w/2,0);g.quadraticCurveTo(0,h*.98,-w/2,0);g.closePath()};
+  g.strokeStyle='#000';g.lineWidth=w*.024;g.lineCap='round';for(let i=0;i<9;i++){const t=(i+1)/10,X=-w/2+w*t,Y=-h*.53*Math.sin(Math.PI*t);g.beginPath();g.moveTo(X,Y);g.lineTo(X+(t-.5)*w*.2,Y-h*.3);g.stroke()}
+  almond();g.fillStyle='#fff';g.fill();g.save();almond();g.clip();const r=h*.5;
+  g.save();g.beginPath();g.arc(0,0,r,0,7);g.clip();g.drawImage(iris,-r,-r,r*2,r*2);g.restore();g.lineWidth=w*.022;g.strokeStyle='#000';g.beginPath();g.arc(0,0,r,0,7);g.stroke();
+  g.fillStyle='#000';g.beginPath();g.arc(0,0,r*.4,0,7);g.fill();g.fillStyle='#fff';g.beginPath();g.arc(-r*.32,-r*.36,r*.17,0,7);g.fill();g.beginPath();g.arc(r*.28,r*.32,r*.07,0,7);g.fill();
+  g.drawImage(dots(w,h*.55,{cell:6,ang:.4,a:[.5,0,.95],b:[.5,1,0]}),-w/2,-h/2,w,h*.55);g.restore();
+  almond();g.lineWidth=w*.032;g.strokeStyle='#000';g.lineJoin='round';g.stroke();g.restore()}
+function finishMax(cv){const o=mk(PW,PH),X=o.getContext('2d'),t=mk(PW,PH),T=t.getContext('2d'),base=mk(PW,PH);base.getContext('2d').drawImage(cv,0,0,PW,PH);
+  X.fillStyle='#000';X.fillRect(0,0,PW,PH); // a 2px print misregistration over the whole sheet
+  [['#ff0000',-1.25],['#00ffff',1.25]].forEach(([c,d])=>{T.globalCompositeOperation='source-over';T.drawImage(base,0,0);T.globalCompositeOperation='multiply';T.fillStyle=c;T.fillRect(0,0,PW,PH);X.globalCompositeOperation='lighter';X.drawImage(t,d,0)});
+  X.globalCompositeOperation='source-over';grain(X,PW,PH,24);return o}
+const brandMark=(x,n)=>{lay(x,g=>{scrap(g,'#000',132,70,230,92,-.05,91,{edge:0,amp:4});splitText(g,'JATIN',132,72,46,-.06,2)},[6,7,.55]);lay(x,g=>chip(g,'JUST JATIN · '+n,PW-150,62,21,PAL.acid,'#000',.03),null)};
+const B=n=>loadImg('../brief/img/'+n+'.jpg');
+
+DRAFTS.p1r9=async()=>{ // MADE IT without TRYING: the identity nobody planned. Scraps of the site torn and piled up, him in the middle of it.
+  const [c,x]=cstage('#0b0a0f'),[snap,menu,about,cut]=await Promise.all([B('intro-snap'),B('menu-now'),B('about-now'),loadImg('../../../website/site/jatin-cutout.png')]);
+  x.drawImage(dots(PW,720,{cell:15,col:'#000',bg:PAL.acid,a:[.1,0,.2],b:[.8,1,1.05]}),0,0,PW,720);
+  x.drawImage(dots(PW,640,{cell:13,ang:.5,col:PAL.mag,bg:'#14041f',a:[.5,0,.1],b:[.5,1,1]}),0,710,PW,640);
+  lay(x,g=>scrap(g,ht(snap,780,490,{cell:4.2,gam:1.1,lift:1.25}),690,370,780,490,.07,3,{amp:9}));
+  lay(x,g=>scrap(g,bd(menu,640,400,{cell:3.2,bias:.1}),290,660,640,400,-.09,7,{amp:8}));
+  lay(x,g=>scrap(g,PAL.pink,600,900,1000,330,-.04,12,{edge:0,amp:16,over:(g,w,h)=>g.drawImage(dots(w,h,{cell:11,col:'#000',a:[0,0,.75],b:[.7,1,0]}),-w/2,-h/2,w,h)}));
+  lay(x,g=>{spray(g,[[40,150],[330,40]],PAL.pink,34,2,{drips:[[0,70]]});spray(g,[[70,250],[420,110]],PAL.pink,26,5);spray(g,[[840,720],[1050,640],[1010,770]],PAL.green,30,8,{drips:[[2,110],[1,60]]})},[5,6,.5]);
+  lay(x,g=>scrap(g,ht(about,470,294,{cell:5,ink:'#7a12b0',gam:.8}),215,1150,470,294,.11,21,{amp:7}));
+  { const w=830,h=w*cut.height/cut.width,H=ht(cut,w,h,{cell:3.6,gam:1.25,lift:2.6,alpha:true}),rim=dil(H,14,PAPER),X0=PW-w+60,Y0=PH-h+70;
+    lay(x,g=>{g.drawImage(rim,X0-14,Y0-14,rim.width/K,rim.height/K);g.drawImage(H,X0,Y0,w,h)},[14,16,.65]) }
+  lay(x,g=>{spray(g,[[470,500],[520,440],[610,470],[690,410],[770,470],[850,450]],PAL.acid,18,31,{spl:8});arrow(g,[150,930],[400,820],PAL.acid,20,44)},[4,5,.5]);
+  lay(x,g=>chunk(g,'MADE IT',540,238,{fit:960,rot:-.05,fill:PAL.green,seed:3}),[0,0,0]);
+  lay(x,g=>strip(g,'without',250,418,66,-.07,5),[7,8,.6]);
+  lay(x,g=>chunk(g,'TRYING',560,1075,{fit:900,rot:.04,fill:'#fff',seed:9,depth:.1}),[0,0,0]);
+  lay(x,g=>boom(g,925,610,150,PAL.acid,['it was an','ACCIDENT.'],.1,5),[8,10,.6]);
+  lay(x,g=>{chip(g,'NO MOODBOARD',170,505,24,'#fff','#000',-.08);chip(g,'ROUND 49',930,860,26,PAL.cyan,'#000',.06);chip(g,'NO PLAN',120,800,26,PAL.pink,'#000',.05);chip(g,'JUST KEPT MAKING',770,1290,24,'#000','#fff',-.03);chip(g,'v1 v2 v3 … v49',420,1295,20,PAL.acid,'#000',.03)},null);
+  lay(x,g=>{pstar(g,1000,330,58,.2);pstar(g,70,1010,44,-.3);pstar(g,455,560,28,.5,PAL.acid);icon(g,ICON.heart,985,985,9,PAL.pink,.2);const pal=chPal(PAL.cyan);chLink(g,0,90,620,-.6,6.5,pal);chLink(g,1,170,585,.5,6.5,pal)},[6,7,.55]);
+  checker(x,PW-150,PH-46,10,2,15,'#000',PAL.acid);barcode(x,34,PH-70,150,44,7);
+  brandMark(x,'01');return finishMax(c);
+};
+DRAFTS.p2r9=async()=>{ // CONSUME to your heart's content FIRST: an eye wide open, everything he feeds it stuck round it like a sticker sheet
+  const [c,x]=cstage(PAL.purple),ph=await loadImg('../../../website/site/work/flux-02/03.jpg');
+  x.drawImage(dots(PW,PH,{cell:17,ang:.3,col:PAL.pink,bg:PAL.purple,a:[0,0,0],b:[1,1,1.05]}),0,0,PW,PH);
+  lay(x,g=>scrap(g,'#0b0a0f',560,150,1200,330,-.03,4,{edge:0,amp:14}));
+  lay(x,g=>{spray(g,[[20,560],[260,470]],PAL.cyan,30,3,{drips:[[0,90]]});spray(g,[[820,1250],[1060,1140]],PAL.cyan,34,6,{drips:[[1,70]]})},[5,6,.5]);
+  lay(x,g=>scrap(g,PAPER,540,700,800,520,.03,9,{edge:0,amp:11,over:(g,w,h)=>g.drawImage(dots(w,h,{cell:9,col:'#d9d3c2',a:[0,0,1],b:[1,1,.2]}),-w/2,-h/2,w,h)}),[12,14,.6]);
+  lay(x,g=>eye(g,540,715,650,bd(ph,300,300,{cell:6,ink:'#000000',paper:PAL.pink,bias:.3})),[0,0,0]);
+  const I=[['tv',150,455,15,PAL.acid,-.14,'BAD TV'],['cam',935,450,15,PAL.cyan,.12,'FILMS'],['pad',135,930,15,PAL.green,.1,'GAMES'],['tape',945,930,15,PAL.acid,-.1,'MUSIC VIDEOS'],['play',650,1050,12,PAL.pink,.08,null],['phone',410,1085,12,PAL.cyan,-.12,null],['heart',290,1005,9,PAL.pink,.2,null]];
+  lay(x,g=>I.forEach(([k,ix,iy,s,col,rot])=>icon(g,ICON[k],ix,iy,s,col,rot)),[8,9,.6]);
+  lay(x,g=>{arrow(g,[240,500],[330,590],PAL.acid,15,11);arrow(g,[850,500],[760,585],PAL.acid,15,13);arrow(g,[225,880],[320,810],PAL.acid,15,15);arrow(g,[860,880],[765,815],PAL.acid,15,17)},[4,5,.5]);
+  lay(x,g=>I.forEach(([k,ix,iy,s,col,rot,t],i)=>t&&chip(g,t,ix+(ix<540?20:-20),iy+ICON[k].length*s/2+34,21,i&1?'#000':'#fff',i&1?'#fff':'#000',-rot*.5)),null);
+  lay(x,g=>{chip(g,'ANIME',770,1000,21,'#fff','#000',.05);chip(g,'POSTERS',505,985,21,'#000','#fff',-.05)},null);
+  lay(x,g=>chunk(g,'CONSUME',540,170,{fit:950,rot:-.04,fill:PAL.acid,seed:11}),[0,0,0]);
+  lay(x,g=>strip(g,"to your heart's content",600,322,46,-.03,8,{bg:PAL.pink,fg:'#000'}),[7,8,.6]);
+  lay(x,g=>chunk(g,'FIRST',745,1245,{fit:540,rot:.05,fill:'#fff',seed:21,depth:.1}),[0,0,0]);
+  lay(x,g=>boom(g,200,1210,140,PAL.cyan,['then','MAKE.'],-.1,9,{fs:42}),[8,10,.6]);
+  lay(x,g=>{pstar(g,1010,300,46,.2);pstar(g,60,700,36,-.2,PAL.acid);pstar(g,1015,700,30,.4)},[6,7,.55]);
+  checker(x,0,PH-30,12,2,15,'#000',PAL.pink);barcode(x,PW-190,PH-74,150,44,3);
+  brandMark(x,'02');return finishMax(c);
+};
+DRAFTS.p3r9=async()=>{ // NO FRAMEWORK NO STEPS: a how-to list struck out, the staircase tagged over, the chained computer torn loose
+  const [c,x]=cstage(PAL.cyan),pc=await B('pc-chained');
+  x.drawImage(dots(PW,PH,{cell:16,ang:.2,col:'#000',bg:PAL.cyan,a:[1,0,0],b:[0,1,.95]}),0,0,PW,PH);
+  lay(x,g=>scrap(g,ht(pc,700,440,{cell:5.5,gam:.8}),720,430,700,440,.06,5,{amp:9}));
+  lay(x,g=>scrap(g,PAL.pink,300,560,720,250,-.06,14,{edge:0,amp:15}));
+  // the framework: a blueprint how-to sheet
+  const bp=mk(560*K,640*K),b=bp.getContext('2d');b.scale(K,K);b.fillStyle='#fdfdf6';b.fillRect(0,0,560,640);b.strokeStyle='rgba(0,150,170,.45)';b.lineWidth=1;for(let i=0;i<=560;i+=28){b.beginPath();b.moveTo(i,0);b.lineTo(i,640);b.stroke()}for(let j=0;j<=640;j+=28){b.beginPath();b.moveTo(0,j);b.lineTo(560,j);b.stroke()}
+  b.fillStyle='#000';b.font='700 34px "IBM Plex Mono"';b.fillText('HOW TO BUILD',40,78);b.fillText('A BRAND',40,120);b.font='600 15px "IBM Plex Mono"';b.fillText('THE 5-STEP FRAMEWORK™',42,152);
+  ['find your niche','pick 3 colours','make a moodboard','post every day','stay consistent'].forEach((t,i)=>{const y=222+i*84;b.lineWidth=4;b.strokeStyle='#000';b.strokeRect(42,y-30,38,38);b.font='700 22px "IBM Plex Mono"';b.fillText('STEP '+(i+1),100,y-12);b.font='600 24px "IBM Plex Mono"';b.fillText(t,100,y+18)});
+  lay(x,g=>scrap(g,bp,300,1035,500,571,-.07,17,{amp:8}),[12,14,.6]);
+  lay(x,g=>{spray(g,[[110,850],[510,1270]],PAL.pink,24,3,{drips:[[1,50]]});spray(g,[[520,880],[90,1280]],PAL.pink,24,6,{drips:[[1,60]]})},[5,6,.5]);
+  // the steps: a pixel staircase, numbered, tagged over
+  lay(x,g=>{const s=70;for(let i=0;i<5;i++){const X=670+i*s,Y=1300-(i+1)*s;g.fillStyle=PAPER;g.fillRect(X-7,Y-7,s+14,(i+1)*s+14)}for(let i=0;i<5;i++){const X=670+i*s,Y=1300-(i+1)*s;g.fillStyle='#000';g.fillRect(X,Y,s,(i+1)*s);g.drawImage(dots(s,(i+1)*s,{cell:6,col:PAL.purple,a:[.5,0,.9],b:[.5,1,0]}),X,Y,s,(i+1)*s);g.fillStyle=PAL.acid;g.font='40px "Permanent Marker"';g.textAlign='center';g.fillText(i+1,X+s/2,Y+46)}},[10,12,.6]);
+  lay(x,g=>spray(g,[[640,1250],[770,1130],[850,1180],[960,1010],[1050,1050]],PAL.green,22,19,{drips:[[2,70],[4,60]]}),[5,6,.5]);
+  lay(x,g=>{chunk(g,'NO',175,235,{size:250,rot:-.06,fill:PAL.acid,seed:4});chunk(g,'FRAMEWORK',690,215,{fit:680,rot:-.03,fill:PAL.acid,seed:14})},[0,0,0]);
+  lay(x,g=>chunk(g,'NO STEPS',560,650,{fit:800,rot:.04,fill:'#fff',seed:6,depth:.1}),[0,0,0]);
+  lay(x,g=>boom(g,905,835,112,PAL.acid,['just','START.'],.1,7,{fs:36}),[8,10,.6]);
+  lay(x,g=>{chip(g,'NICHE?',150,420,25,'#fff','#000',-.07);chip(g,'CONTENT PILLARS',860,345,21,'#000','#fff',.04);chip(g,'RULES: NONE',300,500,26,PAL.acid,'#000',.05);chip(g,'BRAND GUIDELINES.PDF',760,1318,19,'#fff','#000',-.02)},null);
+  lay(x,g=>{[[150,420,150],[860,345,230],[760,1318,250]].forEach(([cx,cy,w],i)=>spray(g,[[cx-w/2,cy+3],[cx+w/2,cy-4]],PAL.pink,7,i+50,{spl:0}))},null);
+  lay(x,g=>{pstar(g,70,330,50,.2);pstar(g,1010,640,40,-.3);const pal=chPal(PAL.pink);chLink(g,0,560,470,.5,6.5,pal);chLink(g,1,495,440,-.5,6.5,pal);chLink(g,2,1015,470,1.1,6.5,pal)},[6,7,.55]);
+  checker(x,PW-180,PH-30,12,2,15,'#000','#fff');barcode(x,34,PH-70,150,44,11);
+  brandMark(x,'03');return finishMax(c);
+};
+
+// ---- round 10 (his note on round 9): "i just want the title but i love the mixed media background". No photo of him,
+// no stickers, chips, stars, icons or barcodes. The background scraps carry the topic; the title is the only thing on top.
+const mark10=x=>lay(x,g=>{scrap(g,'#000',132,70,230,92,-.05,91,{edge:0,amp:4});splitText(g,'JATIN',132,72,46,-.06,2)},[6,7,.55]);
+DRAFTS.p1=async()=>{ // MADE IT without TRYING: scraps of the site, torn and piled up
+  const [c,x]=cstage('#0b0a0f'),[snap,menu,about,phone]=await Promise.all([B('intro-snap'),B('menu-now'),B('about-now'),B('phone-break')]);
+  x.drawImage(dots(PW,720,{cell:15,col:'#000',bg:PAL.acid,a:[.1,0,.2],b:[.8,1,1.05]}),0,0,PW,720);
+  x.drawImage(dots(PW,640,{cell:13,ang:.5,col:PAL.mag,bg:'#14041f',a:[.5,0,.1],b:[.5,1,1]}),0,710,PW,640);
+  lay(x,g=>scrap(g,ht(snap,780,490,{cell:4.2,gam:1.1,lift:1.25}),690,370,780,490,.07,3,{amp:9}));
+  lay(x,g=>scrap(g,bd(menu,640,400,{cell:3.2,bias:.1}),290,660,640,400,-.09,7,{amp:8}));
+  lay(x,g=>scrap(g,ht(phone,560,350,{cell:4.5,gam:1.1,lift:1.2}),810,760,560,350,.05,33,{amp:8}));
+  lay(x,g=>scrap(g,PAL.pink,560,930,1040,360,-.04,12,{edge:0,amp:16,over:(g,w,h)=>g.drawImage(dots(w,h,{cell:11,col:'#000',a:[0,0,.75],b:[.7,1,0]}),-w/2,-h/2,w,h)}));
+  lay(x,g=>{spray(g,[[40,150],[330,40]],PAL.pink,34,2,{drips:[[0,70]]});spray(g,[[70,250],[420,110]],PAL.pink,26,5);spray(g,[[820,1190],[1060,1090]],PAL.green,32,8,{drips:[[1,90]]})},[5,6,.5]);
+  lay(x,g=>scrap(g,ht(about,520,325,{cell:5,ink:'#7a12b0',gam:.8}),240,1170,520,325,.1,21,{amp:7}));
+  lay(x,g=>chunk(g,'MADE IT',540,250,{fit:960,rot:-.05,fill:PAL.green,seed:3}),[0,0,0]);
+  lay(x,g=>strip(g,'without',260,440,70,-.07,5),[7,8,.6]);
+  lay(x,g=>chunk(g,'TRYING',550,935,{fit:940,rot:.04,fill:'#fff',seed:9,depth:.1}),[0,0,0]);
+  mark10(x);return finishMax(c);
+};
+DRAFTS.p2=async()=>{ // CONSUME to your heart's content FIRST: an eye printed into the paper, his own frames torn round it
+  const [c,x]=cstage(PAL.purple),[ph,a,b2]=await Promise.all(['flux-02/03','outstation/02','flux-03/02'].map(n=>loadImg('../../../website/site/work/'+n+'.jpg')));
+  x.drawImage(dots(PW,PH,{cell:17,ang:.3,col:PAL.pink,bg:PAL.purple,a:[0,0,0],b:[1,1,1.05]}),0,0,PW,PH);
+  lay(x,g=>scrap(g,'#0b0a0f',560,150,1200,330,-.03,4,{edge:0,amp:14}));
+  lay(x,g=>scrap(g,ht(a,520,640,{cell:5,gam:1,lift:1.3}),230,820,520,640,-.08,41,{amp:9}));
+  lay(x,g=>scrap(g,bd(b2,480,560,{cell:4,bias:.08,ink:'#000000',paper:'#00f0d8'}),880,930,480,560,.07,43,{amp:9}));
+  lay(x,g=>{spray(g,[[20,520],[280,420]],PAL.cyan,30,3,{drips:[[0,90]]});spray(g,[[780,480],[1060,400]],PAL.acid,26,6,{drips:[[1,70]]})},[5,6,.5]);
+  // round 10b (his note): no paper behind the eye, just the eye, a bit bigger
+  lay(x,g=>eye(g,540,730,820,bd(ph,300,300,{cell:6,ink:'#000000',paper:PAL.pink,bias:.3})),[12,14,.6]);
+  lay(x,g=>chunk(g,'CONSUME',540,170,{fit:950,rot:-.04,fill:PAL.acid,seed:11}),[0,0,0]);
+  lay(x,g=>strip(g,"to your heart's content",560,322,48,-.03,8,{bg:PAL.pink,fg:'#000'}),[7,8,.6]);
+  lay(x,g=>chunk(g,'FIRST',560,1150,{fit:760,rot:.04,fill:'#fff',seed:21,depth:.1}),[0,0,0]);
+  mark10(x);return finishMax(c);
+};
+DRAFTS.p3=async()=>{ // NO FRAMEWORK NO STEPS: the how-to sheet, crossed out
+  const [c,x]=cstage(PAL.cyan),pc=await B('pc-chained');
+  x.drawImage(dots(PW,PH,{cell:16,ang:.2,col:'#000',bg:PAL.cyan,a:[1,0,0],b:[0,1,.95]}),0,0,PW,PH);
+  lay(x,g=>scrap(g,ht(pc,720,450,{cell:5.5,gam:.8}),720,440,720,450,.06,5,{amp:9}));
+  lay(x,g=>scrap(g,PAL.pink,300,570,760,270,-.06,14,{edge:0,amp:15}));
+  const bp=mk(560*K,640*K),b=bp.getContext('2d');b.scale(K,K);b.fillStyle='#fdfdf6';b.fillRect(0,0,560,640);b.strokeStyle='rgba(0,150,170,.45)';b.lineWidth=1;for(let i=0;i<=560;i+=28){b.beginPath();b.moveTo(i,0);b.lineTo(i,640);b.stroke()}for(let j=0;j<=640;j+=28){b.beginPath();b.moveTo(0,j);b.lineTo(560,j);b.stroke()}
+  b.fillStyle='#000';b.font='700 34px "IBM Plex Mono"';b.fillText('HOW TO BUILD',40,78);b.fillText('A BRAND',40,120);b.font='600 15px "IBM Plex Mono"';b.fillText('THE 5-STEP FRAMEWORK™',42,152);
+  ['find your niche','pick 3 colours','make a moodboard','post every day','stay consistent'].forEach((t,i)=>{const y=222+i*84;b.lineWidth=4;b.strokeStyle='#000';b.strokeRect(42,y-30,38,38);b.font='700 22px "IBM Plex Mono"';b.fillText('STEP '+(i+1),100,y-12);b.font='600 24px "IBM Plex Mono"';b.fillText(t,100,y+18)});
+  lay(x,g=>scrap(g,bp,560,1020,620,708,-.05,17,{amp:8}),[12,14,.6]);
+  lay(x,g=>{spray(g,[[300,790],[830,1300]],PAL.pink,30,3,{drips:[[1,40]]});spray(g,[[840,800],[290,1290]],PAL.pink,30,6,{drips:[[1,50]]});spray(g,[[30,930],[200,1250]],PAL.green,30,19,{drips:[[1,70]]})},[5,6,.5]);
+  lay(x,g=>{chunk(g,'NO',175,235,{size:250,rot:-.06,fill:PAL.acid,seed:4});chunk(g,'FRAMEWORK',690,215,{fit:680,rot:-.03,fill:PAL.acid,seed:14})},[0,0,0]);
+  lay(x,g=>chunk(g,'NO STEPS',550,650,{fit:880,rot:.04,fill:'#fff',seed:6,depth:.1}),[0,0,0]);
+  mark10(x);return finishMax(c);
 };
 
 // ============================================================ REELS (1080 x 1920)
+// ============================================================ WHITE LOOK, ROUND 1 (2026-11-21)
+// His note: "simpler like my reference but also including our style with a white background too keep it more liking to
+// audience". Refs (concepts/2026-11-21-white-look/img): 026 MEMORIAS (white paper, ONE black line-engraved hero, a few
+// loud colour tiles, black pixel blocks, thin crosshairs, a zoom box to an inset, vertical caps) and Sr. Motion Designer
+// (dot-grid white, a pixel colour blob, huge black title with boxed mono labels between the words). Our pinch: the
+// palette in the tiles and blob, Bayer dither, the pixel cursor and chain, the red/cyan split on the title.
+const WP='#f6f6f2',INK='#0a0a0a';
+const HOT=['#14041f',PAL.purple,PAL.mag,PAL.pink,PAL.acid],COOL=['#03102a','#0b3a8c',PAL.cyan,PAL.green,PAL.acid],RAIN=['#14041f',PAL.mag,PAL.pink,PAL.acid,PAL.green,PAL.cyan];
+function wstage(){const [c,x]=cstage(WP);x.fillStyle='rgba(0,0,0,.12)';for(let j=27;j<PH;j+=36)for(let i=27;i<PW;i+=36){x.beginPath();x.arc(i,j,1.5,0,7);x.fill()}return[c,x]}
+// line engraving: ink lines whose width follows darkness; F gives each point its line phase (px)
+function engrave(L,F,o={}){const {pitch=9,gam=1,x0=0,y0=0,w=PW,h=PH}=o,W=Math.round(w*K),H=Math.round(h*K),c=mk(W,H),g=c.getContext('2d'),im=g.createImageData(W,H),d=im.data,pk=pitch*K;
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){const X=x0+x/K,Y=y0+y/K,[l,a]=L(X,Y);if(a<=0)continue;const dk=Math.pow(clamp(1-l),gam);if(dk<.03)continue;
+    const ph=F(X,Y)/pitch,fr=ph-Math.floor(ph),cov=clamp((dk*.5-Math.abs(fr-.5))*pk+.5)*a;if(cov<=0)continue;const q=(y*W+x)*4;d[q]=10;d[q+1]=10;d[q+2]=10;d[q+3]=255*cov}
+  g.putImageData(im,0,0);return c}
+const ragged=(e,x,y,s=1)=>e<1?1:(hash(Math.floor(x/13)+s*991,Math.floor(y/13))>(e-1)/.28?1:0);
+// a photo through a palette ramp in 3px Bayer steps: the colour tiles
+function gmap(img,w,h,ramp,o={}){const {cell=3,lo=.06,hi=.94,fx=.5,fy=.5}=o,cw=Math.ceil(w/cell),ch=Math.ceil(h/cell),L=lumMap(img,cw,ch,fx,fy),c=mk(cw,ch),g=c.getContext('2d'),im=g.createImageData(cw,ch),R=ramp.map(hx),n=R.length-1;
+  for(let y=0;y<ch;y++)for(let x=0;x<cw;x++){const t=clamp((L(x,y)[0]-lo)/(hi-lo))*n,i=Math.min(n-1,Math.floor(t)),col=(t-i)>bay(x,y)?R[i+1]:R[i],q=(y*cw+x)*4;im.data[q]=col[0];im.data[q+1]=col[1];im.data[q+2]=col[2];im.data[q+3]=255}
+  g.putImageData(im,0,0);const out=mk(Math.round(w*K),Math.round(h*K)),G=out.getContext('2d');G.imageSmoothingEnabled=false;G.drawImage(c,0,0,out.width,out.height);return out}
+const tile=(g,img,x,y,w,h,ramp,o)=>g.drawImage(gmap(img,w,h,ramp,o),x,y,w,h);
+// the colour blob behind the hero, in big pixel cells with a dithered edge
+function pblob(g,cx,cy,rw,rh,col,cell=34,seed=1){g.fillStyle=col;for(let j=Math.floor((cy-rh*1.4)/cell);j<=(cy+rh*1.4)/cell;j++)for(let i=Math.floor((cx-rw*1.4)/cell);i<=(cx+rw*1.4)/cell;i++){
+  const X=(i+.5)*cell,Y=(j+.5)*cell,e=1-Math.hypot((X-cx)/rw,(Y-cy)/rh)+(hash(seed*31+Math.floor(i/2),Math.floor(j/2)*7)-.5)*.45;if(e>bay(i,j)*.45)g.fillRect(i*cell,j*cell,cell+.5,cell+.5)}}
+function cross(g,cx,cy,r,rot=.12,lw=1.8){g.save();g.translate(cx,cy);g.rotate(rot);g.strokeStyle=INK;g.lineWidth=lw;g.beginPath();g.moveTo(-r,0);g.lineTo(r,0);g.moveTo(0,-r);g.lineTo(0,r);g.stroke();g.restore()}
+function pixels(g,x0,y0,map,s){map.forEach((row,j)=>[...row].forEach((b,i)=>{if(b==='1'){g.fillStyle=INK;g.fillRect(x0+i*s,y0+j*s,s+.5,s+.5)}}))}
+function trio(g,x,y,vert=false){[PAL.pink,PAL.cyan,PAL.acid,INK,'#9a9a9a'].forEach((c,i)=>{g.fillStyle=c;g.beginPath();g.arc(x+(vert?0:i*24),y+(vert?i*24:0),6.5,0,7);g.fill()})}
+function zoom(g,a,b,pairs){g.save();g.strokeStyle=INK;g.lineWidth=1.6;g.strokeRect(...a);g.strokeRect(...b);const C=r=>[[r[0],r[1]],[r[0]+r[2],r[1]],[r[0]+r[2],r[1]+r[3]],[r[0],r[1]+r[3]]];
+  pairs.forEach(k=>{g.beginPath();g.moveTo(...C(a)[k]);g.lineTo(...C(b)[k]);g.stroke()});g.restore()}
+function blabel(g,t,x,y,fs=22,o={}){const {align='left',fill=WP,col=INK}=o;g.save();g.font=`500 ${fs}px "IBM Plex Mono"`;g.letterSpacing=(fs*.14)+'px';const tw=g.measureText(t).width-fs*.14,w=tw+fs*1.1,h=fs*1.6,X=align==='center'?x-w/2:align==='right'?x-w:x;
+  g.fillStyle=fill;g.fillRect(X,y-h/2,w,h);g.lineWidth=2.2;g.strokeStyle=col;g.strokeRect(X,y-h/2,w,h);g.fillStyle=col;g.textBaseline='middle';g.fillText(t,X+fs*.55,y+fs*.05);g.restore()}
+function vlabel(g,t,x,y,fs=24){g.save();g.translate(x,y);g.rotate(-Math.PI/2);g.font=`500 ${fs}px "IBM Plex Mono"`;g.letterSpacing=(fs*.55)+'px';g.fillStyle=INK;g.textAlign='center';g.textBaseline='middle';g.fillText(t,0,0);g.restore()}
+// the title: black Cyberway on a paper rim, the site's static split (cyan left, pink right)
+function wtitle(g,t,cx,cy,o={}){const {font='"Cyberway Riders"',rot=-.035,track=.14,sp=5}=o,size=o.fit?o.fit*100/glyphRun(t,font,100,track).w:o.size,run=glyphRun(t,font,size,track);
+  g.save();g.translate(cx,cy);g.rotate(rot);g.font=`${size}px ${font}`;g.textBaseline='middle';g.lineJoin='round';const each=(dx,f)=>run.g.forEach(q=>f(q.ch,-run.w/2+q.x+dx));
+  g.strokeStyle=WP;g.lineWidth=size*.11;each(0,(ch,X)=>g.strokeText(ch,X,0));for(const [dx,c] of [[-sp,PAL.cyan],[sp,PAL.pink],[0,INK]]){g.fillStyle=c;each(dx,(ch,X)=>g.fillText(ch,X,0))}g.restore();return size}
+// the site's pixel cursor, extruded: accent side, ink rule, paper face
+function wcursor(g,cx,cy,s,side){const draw=(dx,dy,fn)=>CURSOR.forEach((row,j)=>[...row].forEach((b,i)=>{if(b!=='.'){g.fillStyle=fn(b);g.fillRect(cx+i*s+dx,cy+j*s+dy,s+.5,s+.5)}}));
+  for(let k=4;k>0;k--)draw(k*s*.45,k*s*.45,()=>k===4?INK:side);draw(0,0,b=>b==='K'?INK:'#fff')}
+function hlLine(g,x,y,parts,fs=21){g.save();g.font=`500 ${fs}px "IBM Plex Mono"`;g.textBaseline='middle';let X=x;parts.forEach(([t,h])=>{const w=g.measureText(t).width;if(h){g.fillStyle=INK;g.fillRect(X-4,y-fs*.72,w+8,fs*1.44);g.fillStyle=WP}else g.fillStyle=INK;g.fillText(t,X,y+1);X+=w+(h?6:0)});g.restore()}
+function wfoot(x,n,parts){x.fillStyle=INK;x.fillRect(0,1262,PW,2);[[0,1263],[PW/2,1263],[PW,1263]].forEach(([cx,cy])=>{x.fillStyle=WP;x.fillRect(cx-9,cy-9,18,18);x.lineWidth=2;x.strokeStyle=INK;x.strokeRect(cx-9,cy-9,18,18)});
+  x.fillStyle=INK;x.fillRect(34,1284,140,46);splitText(x,'JATIN',104,1308,28,0,1.2);hlLine(x,200,1307,parts);barcode(x,PW-210,1283,150,40,n*7);x.font='500 15px "IBM Plex Mono"';x.fillStyle=INK;x.textBaseline='alphabetic';x.fillText('0'+n+' / 03',PW-210,1342)}
+function finishW(cv){const o=mk(PW,PH),X=o.getContext('2d');X.drawImage(cv,0,0,PW,PH);grain(X,PW,PH,7);return o}
+const PIX={chk:['101','010','101'],ell:['10','10','11'],step:['001','011','111'],bar:['1101']};
+const WORK=n=>loadImg('../../../website/site/work/'+n+'.jpg');
+
+DRAFTS.w1=async()=>{ // MADE IT without TRYING: identity is a fingerprint, nobody designs theirs. Its core zooms out to the JATIN mark.
+  const [c,x]=wstage(),[logo,menu,about,snap]=await Promise.all([B('intro-float'),B('menu-now'),B('about-now'),B('intro-snap')]);
+  pblob(x,430,820,400,310,PAL.acid,34,3);
+  const cx=545,cy=730,rx=330,ry=430;
+  x.drawImage(engrave((X,Y)=>{const dx=(X-cx)/rx,dy=(Y-cy)/ry,e=Math.hypot(dx,dy);return[.42+.22*e+.12*Math.sin(X*.011+Y*.007),ragged(e,X,Y)]},
+    (X,Y)=>{const dx=X-cx,dy=(Y-cy-40)*.82,r=Math.hypot(dx,dy),a=Math.atan2(dy,dx);return r+16*Math.sin(a*2+r*.011)+9*Math.sin(a*3-r*.02)},{pitch:11.5,y0:250,h:960}),0,250,PW,960);
+  tile(x,menu,52,500,170,250,HOT,{fx:.3});tile(x,about,820,880,220,140,COOL,{fx:.6});tile(x,snap,96,1050,230,104,RAIN);
+  const ins=[772,292,262,176];x.fillStyle=WP;x.fillRect(...ins);tile(x,logo,ins[0]+8,ins[1]+8,ins[2]-16,ins[3]-16,RAIN,{fy:.45});zoom(x,[488,650,112,96],ins,[0,3]);
+  pixels(x,40,330,PIX.chk,30);pixels(x,960,1080,PIX.ell,28);pixels(x,900,210,PIX.bar,16);
+  cross(x,330,330,34);cross(x,975,770,28,-.2);cross(x,690,1110,22);trio(x,46,880,true);trio(x,860,520);
+  vlabel(x,'IDENTITY',1046,660);vlabel(x,'NO MOODBOARD',30,1080,20);
+  wcursor(x,640,905,5.2,PAL.acid);
+  wtitle(x,'MADE IT',540,160,{fit:800});blabel(x,'WITHOUT',540,292,30,{align:'center'});wtitle(x,'TRYING',548,1160,{fit:860,rot:.03});
+  wfoot(x,1,[['the look was never planned. it came from ',0],['making things',1],['.',0]]);return finishW(c);
+};
+DRAFTS.w2=async()=>{ // CONSUME to your heart's content FIRST: an eye printed in rings; his own frames in the iris and round it
+  const [c,x]=wstage(),[iris,a,b2,c3]=await Promise.all(['flux-02/03','outstation/02','flux-03/02','flux-01/01'].map(WORK));
+  pblob(x,420,800,430,300,PAL.pink,34,7);
+  const cx=540,cy=700,w=840,h=w*.44,R=h*.42;
+  const up=xn=>-h*.58*Math.pow(1-xn*xn,.85),dn=xn=>h*.44*Math.pow(1-xn*xn,1.05);
+  const L=(X,Y)=>{const xn=(X-cx)/(w/2),dy=Y-cy,e=Math.hypot((X-cx)/(w*.57),(Y-cy)/(h*1.12));const a=ragged(e,X,Y,2);if(!a)return[1,0];
+    if(Math.abs(xn)<1&&dy>up(xn)&&dy<dn(xn)){const top=clamp(1-(dy-up(xn))/38);return[.93-.45*Math.pow(Math.abs(xn),3)-.4*top,a]}
+    const edge=Math.abs(xn)<1?Math.min(Math.abs(dy-up(xn)),Math.abs(dy-dn(xn))):60,crease=Math.abs(xn)<.85?Math.abs(dy-(up(xn)-h*.3)):99,brow=Math.abs(dy+h*1.05+20*xn*xn)<h*.17&&Math.abs(xn)<1.05;
+    return[brow?.22:crease<10?.18:edge<26?.3+edge/80:.66-.12*Math.abs(xn),a]};
+  x.drawImage(engrave(L,(X,Y)=>{const dx=X-cx,dy=(Y-cy)*1.15,r=Math.hypot(dx,dy);return r+5*Math.sin(Math.atan2(dy,dx)*6+r*.02)},{pitch:9,y0:200,h:1000}),0,200,PW,1000);
+  x.save();x.beginPath();x.arc(cx,cy,R,0,7);x.clip();x.drawImage(gmap(iris,R*2,R*2,RAIN),cx-R,cy-R,R*2,R*2);x.restore();
+  x.lineWidth=5;x.strokeStyle=INK;x.beginPath();x.arc(cx,cy,R,0,7);x.stroke();x.fillStyle=INK;x.beginPath();x.arc(cx,cy,R*.38,0,7);x.fill();
+  x.fillStyle='#fff';x.fillRect(cx-R*.5,cy-R*.54,R*.16,R*.16);x.fillRect(cx-R*.34,cy-R*.46,R*.1,R*.1);
+  x.beginPath();for(let i=0;i<=40;i++){const xn=-1+i/20;x.lineTo(cx+xn*w/2,cy+up(xn))}for(let i=40;i>=0;i--){const xn=-1+i/20;x.lineTo(cx+xn*w/2,cy+dn(xn))}x.closePath();x.lineWidth=8;x.lineJoin='round';x.strokeStyle=INK;x.stroke();
+  tile(x,a,40,900,210,140,COOL);tile(x,b2,830,950,210,124,HOT);tile(x,c3,64,300,150,210,COOL,{fx:.5});
+  const ins=[770,292,270,196];x.fillStyle=WP;x.fillRect(...ins);tile(x,iris,ins[0]+8,ins[1]+8,ins[2]-16,ins[3]-16,RAIN);zoom(x,[cx-R-12,cy-R-12,R*2+24,R*2+24],ins,[0,2]);
+  pixels(x,40,560,PIX.chk,26);pixels(x,40,1100,PIX.step,26);
+  cross(x,320,560,30);cross(x,900,830,26,-.2);cross(x,170,1180,24);trio(x,1010,570,true);trio(x,300,1110);
+  
+  wcursor(x,900,505,5,PAL.pink);
+  wtitle(x,'CONSUME',540,150,{fit:880});blabel(x,"TO YOUR HEART'S CONTENT",600,262,24,{align:'center'});wtitle(x,'FIRST',660,1150,{fit:620,rot:.03});
+  wfoot(x,2,[['take it all in. ',0],['then make',1],['.',0]]);return finishW(c);
+};
+DRAFTS.w3=async()=>{ // NO FRAMEWORK NO STEPS: an engraved staircase, struck through; the 5-step how-to closed with the cursor
+  const [c,x]=wstage(),[pc,snap]=await Promise.all([B('pc-chained'),B('intro-snap')]);
+  pblob(x,640,830,400,300,PAL.cyan,34,11);
+  const x0=220,sw=128,sh=108,yb=1120,dx=110,dy=-92,N=5,col=X=>Math.floor((X-x0)/sw);
+  const face=(X,Y)=>{const i=col(X);if(i>=0&&i<N&&Y<=yb&&Y>=yb-(i+1)*sh)return['f',i];
+    for(let k=N-1;k>=0;k--){const t=(Y-(yb-(k+1)*sh))/dy;if(t>=0&&t<=1){const xe=X-t*dx;if(xe>=x0+k*sw&&xe<=x0+(k+1)*sw)return['t',k]}}
+    const t=(X-(x0+N*sw))/dx;if(t>=0&&t<=1){const ye=Y-t*dy;if(ye<=yb&&ye>=yb-N*sh)return['s',N-1]}return null};
+  x.drawImage(engrave((X,Y)=>{const f=face(X,Y);if(!f)return[1,0];return[f[0]==='t'?.86:f[0]==='s'?.1:(f[1]&1?.5:.3)-.14*((Y-(yb-(f[1]+1)*sh))/((f[1]+1)*sh)),1]},
+    (X,Y)=>{const f=face(X,Y);return!f?0:f[0]==='f'?Y:f[0]==='t'?(X*.64-Y*.77):X*.9+Y*.3},{pitch:8.5,y0:420,h:720}),0,420,PW,720);
+  x.save();x.strokeStyle=INK;x.lineWidth=3;x.lineJoin='round';for(let k=0;k<N;k++){const L0=x0+k*sw,T=yb-(k+1)*sh;x.strokeRect(L0,T,sw,yb-T);x.beginPath();x.moveTo(L0,T);x.lineTo(L0+dx,T+dy);x.lineTo(L0+sw+dx,T+dy);x.lineTo(L0+sw,T);x.stroke()}
+  {const R0=x0+N*sw;x.beginPath();x.moveTo(R0+dx,yb-N*sh+dy);x.lineTo(R0+dx,yb+dy);x.lineTo(R0,yb);x.stroke()}x.restore();
+  // struck through: a fat pink pixel stroke across the stairs
+  {const A=[170,1150],Bp=[1010,470],cell=22,L=Math.hypot(Bp[0]-A[0],Bp[1]-A[1]),nx=-(Bp[1]-A[1])/L,ny=(Bp[0]-A[0])/L;x.fillStyle=PAL.pink;
+   for(let j=10;j<1200/cell;j++)for(let i=0;i<PW/cell;i++){const X=(i+.5)*cell,Y=(j+.5)*cell,t=((X-A[0])*(Bp[0]-A[0])+(Y-A[1])*(Bp[1]-A[1]))/L/L,d=Math.abs((X-A[0])*nx+(Y-A[1])*ny)+(hash(i,j*3)-.5)*14;if(t<0||t>1)continue;if(1-d/48>bay(i,j)*.6)x.fillRect(i*cell,j*cell,cell+.5,cell+.5)}}
+  // the framework: a 5-step how-to window, every line struck out, the cursor on its close box
+  {const X0=56,Y0=282,Wd=430,Hd=330;x.fillStyle=INK;x.fillRect(X0+10,Y0+10,Wd,Hd);x.fillStyle=WP;x.fillRect(X0,Y0,Wd,Hd);x.lineWidth=3;x.strokeStyle=INK;x.strokeRect(X0,Y0,Wd,Hd);x.fillStyle=INK;x.fillRect(X0,Y0,Wd,40);
+   x.font='500 17px "IBM Plex Mono"';x.fillStyle=WP;x.textBaseline='middle';x.fillText('HOW_TO_BUILD_A_BRAND.PDF',X0+14,Y0+21);x.fillStyle=WP;x.fillRect(X0+Wd-34,Y0+8,24,24);x.fillStyle=INK;x.font='700 17px "IBM Plex Mono"';x.fillText('X',X0+Wd-27,Y0+21);
+   x.font='600 15px "IBM Plex Mono"';x.fillText('THE 5-STEP FRAMEWORK™',X0+18,Y0+66);
+   ['find your niche','pick 3 colours','make a moodboard','post every day','stay consistent'].forEach((t,i)=>{const y=Y0+108+i*44;x.lineWidth=2.5;x.strokeRect(X0+18,y-12,24,24);x.font='500 19px "IBM Plex Mono"';x.fillText('STEP '+(i+1)+'  '+t,X0+56,y+1);x.fillStyle=INK;x.fillRect(X0+50,y-1,x.measureText('STEP '+(i+1)+'  '+t).width+14,3)});
+   wcursor(x,X0+Wd-24,Y0+22,4.4,PAL.cyan)}
+  tile(x,pc,790,262,250,160,COOL,{fy:.5});tile(x,snap,60,700,150,210,RAIN,{fx:.5});
+  {const pal=chPal(PAL.pink),L=chainCurve([[300,612],[340,720],[470,790],[600,792]],.9,1.5,3.2);layChain(x,L.filter((l,i)=>i<7||i>10),pal)}
+  pixels(x,960,1040,PIX.step,28);pixels(x,40,1000,PIX.chk,24);pixels(x,600,300,PIX.bar,16);
+  cross(x,720,350,30);cross(x,1000,700,26,-.2);cross(x,330,1040,22);trio(x,520,640);trio(x,1030,470,true);
+  vlabel(x,'RULES: NONE',1050,1100,20);
+  wtitle(x,'NO FRAMEWORK',540,150,{fit:960});wtitle(x,'NO STEPS',560,1168,{fit:780,rot:.03});
+  wfoot(x,3,[['skip the ',0],['5-step plan',1],['. start making.',0]]);return finishW(c);
+};
+
 const RW=1080,RH=1920;
 async function propRender(build,w,h,camPos=[0,0,14],acc=PAL.cyan){ // transparent render of 3D props for 2D comps
   initGL(w,h,null);CAM=new THREE.PerspectiveCamera(30,w/h,.5,100);CAM.position.set(...camPos);CAM.lookAt(0,0,0);
@@ -593,10 +914,86 @@ function ransom(x,t,cx,cy,size,seed){ // mixed faces, jostled, a few letters on 
 function slices(x,w,h,seed){for(let i=0;i<5;i++){const y=hash(seed,i)*h,hh=10+hash(seed,i+9)*40,o=(hash(seed,i+19)-.5)*70;x.drawImage(x.canvas,0,y,w,hh,o,y,w,hh)}}
 function chips(x){[['SHOT 014',120,260,PAL.acid],['ISO 3200',760,1180,'#fff']].forEach(([t,cx,cy,c])=>{x.font='600 28px "IBM Plex Mono"';const w=x.measureText(t).width+30;x.fillStyle='#000';x.fillRect(cx+6,cy+6,w,44);x.fillStyle=c;x.fillRect(cx,cy,w,44);x.fillStyle='#000';x.fillText(t,cx+15,cy+31)})}
 
+// ============================================================ MOTION TEST (round 8): 7s, 24fps, hits on 2s
+// One built world per shot, type in depth (a word BEHIND him, a plate in FRONT), a new photo every few frames, the chain
+// strain -> white frame -> burst, the logo end card. Everything is pre-rendered once; a frame is only blits.
+// window.FRAME(n) draws frame n; render-reel.mjs walks it and hands the frames to ffmpeg.
+DRAFTS.m1=async()=>{
+  const out=mk(RW,RH),X=out.getContext('2d'),cmp=mk(RW,RH),x=cmp.getContext('2d'),tmp=mk(RW,RH),T=tmp.getContext('2d');
+  const half=c=>{const o=mk(RW,RH);o.getContext('2d').drawImage(c,0,0,RW,RH);return o};
+  const world=(acc,o)=>half(siteWorld(acc,{w:RW,h:RH,...o}));
+  const WP=world(PAL.pink,{vp:[560,760],seed:11,wedge:[[60,900],[1300,-500],[1300,2300]],streaks:[[-2.7,1100,10],[-.5,1000,7],[2.3,900,6]],ink:[[-1.2,.05],[2,.05]],stars:[[110,1500,50,PAL.acid]],sparkles:[[960,420,36]],pixels:[[130,1120,PAL.cyan,0,.3]]});
+  const WC=world(PAL.cyan,{vp:[540,800],seed:23,wedge:[[1040,860],[-240,-500],[-240,2300]],streaks:[[-.45,1100,9],[.5,1100,9],[2.6,900,6]],ink:[[-1.45,.05],[1.2,.05]],stars:[[960,1560,44,PAL.pink]],sparkles:[[120,420,34]],pixels:[[960,520,PAL.pink,0,.2]]});
+  const WA=world(PAL.acid,{vp:[540,900],seed:5,wedge:[[540,260],[-600,2300],[1680,2300]],streaks:[[-2.5,1100,10],[-.6,1100,9],[1,900,6],[2.2,900,6]],ink:[[1.35,.045],[1.85,.04]],stars:[[960,330,44,PAL.pink],[100,420,30,PAL.cyan]],sparkles:[[120,1000,30]],pixels:[[950,760,PAL.pink,1,.25]]});
+  const cut=await loadImg('../../../website/site/jatin-cutout.png');
+  const ME=sticker(cut,13,PAL.acid),MEP=sticker(cut,13,PAL.pink),SIL=sticker(cut,13,PAL.acid,{fill:PAL.pink});
+  const word=(t,fit,h=560)=>paintType(RW*1.25|0,h,[{t,fit:fit/1.25,x:.5,y:.5,seed:t.length*7+3}]);
+  const WD={never:word('I NEVER',.8),cons:word('CONSUMED',.8),until:word('UNTIL IT',.8),showed:word('SHOWED',.8),up:word('UP',.56,900)};
+  const plateC=(t,size)=>{const c=mk(RW,220),g=c.getContext('2d');silverPlate(g,t,RW/2,110,size,0,RW);return c};
+  const PL={brand:plateC('designed a brand',44),just:plateC('i just',54),jj:plateC('just jatin',46)};
+  const ph=await Promise.all(['flux-01/01','flux-02/03','outstation/02','flux-03/02','flux-01/05','outstation/05','flux-02/09','flux-03/05'].map(n=>loadImg('../../../website/site/work/'+n+'.jpg')));
+  const PH=ph.map(im=>{const c=mk(RW,RH);cover(c.getContext('2d'),im,0,0,RW,RH);return c});
+  const links=chainCurve([[540,800],[300,640],[190,900],[470,1160],[820,1190],[1300,1560]],.36,2.9,6.4),palA=chPal(PAL.acid);
+  const slam=k=>k<0?0:[1.7,.9,1.05,1][Math.min(k,3)],ease=t=>1-Math.pow(1-clamp(t),3);
+  const spr=(c,cx,cy,sc=1,rot=0,al=1)=>{if(sc<=0)return;x.save();x.globalAlpha=al;x.translate(cx,cy);x.rotate(rot);x.scale(sc,sc);x.drawImage(c,-c.width/2,-c.height/2);x.restore()};
+  const bg=(c,vp,z)=>{x.save();x.translate(vp[0],vp[1]);x.scale(z,z);x.translate(-vp[0],-vp[1]);x.drawImage(c,0,0);x.restore()};
+  const me=(c,dy=0,w=RW*.98,ox=40)=>{const h=w*c.height/c.width;x.drawImage(c,(RW-w)/2+ox,RH-h+70+dy,w,h)};
+  const speed=(cx,cy,seed,n=26)=>{x.save();x.fillStyle='#fff';for(let i=0;i<n;i++){const a=hash(seed,i)*6.283,r0=260+hash(seed,i+40)*300,r1=1500,wd=.006+hash(seed,i+80)*.012;x.beginPath();x.moveTo(cx+Math.cos(a)*r0,cy+Math.sin(a)*r0);x.lineTo(cx+Math.cos(a-wd)*r1,cy+Math.sin(a-wd)*r1);x.lineTo(cx+Math.cos(a+wd)*r1,cy+Math.sin(a+wd)*r1);x.fill()}x.restore()};
+  const mark=()=>{splitText(x,'JATIN',118,110,46,-.06,2)};
+  function scene(f){
+    const s2=f>>1;x.setTransform(1,0,0,1,0,0);x.globalAlpha=1;x.fillStyle='#000';x.fillRect(0,0,RW,RH);let split=0,sl=0;
+    if(f<2){}
+    else if(f<40){ // A · pink: the word lands BEHIND him, the plate in FRONT
+      const k=f-2;bg(WP,[560,760],1.5-.47*ease(k/6)+.0012*k);split=k<6?18*(1-k/6):0;
+      spr(WD.never,RW*.5,RH*.4,slam((f-6)>>1),-.05);
+      const mk2=(f-10)>>1;if(mk2>=0)me(ME,[420,-34,12,0][Math.min(mk2,3)]);
+      if(f>=18)spr(PL.brand,RW*.5,RH*.8,slam((f-18)>>1),-.04); // on his chest, never over his face
+      if(f===6||f===7||f===10||f===11)split=22;if(f>=36)sl=f;mark();
+    } else if(f<80){ // B · his photos, a new one every 4 frames; he is a flat pink cut-out
+      const k=f-40;if(k<1){x.fillStyle='#fff';x.fillRect(0,0,RW,RH);return{split:0,sl:0}}
+      const i=(k>>2)%PH.length,z=1.06-.06*((k&3)/3);x.save();x.translate(RW/2,RH/2);x.scale(z,z);x.drawImage(PH[i],-RW/2,-RH/2);x.restore();
+      me(SIL,0,RW*.6,-210); // small, in the corner: the photos are the shot
+      spr(PL.just,RW*.3,RH*.27,slam((f-44)>>1),-.05);
+      spr(WD.cons,RW*.5,RH*.37,slam((f-48)>>1)*(1+.05*((k&7)<2&&f>56?1:0)),.03);
+      split=(k&3)===0?7:0;if((k&7)===0)sl=f;mark();
+    } else if(f<96){ // C · cyan: the chain pulled tight, straining
+      const k=f-80;bg(WC,[540,800],1.25-.22*ease(k/5)+.002*k);
+      const n=Math.min(links.length,2+k*4),j=k>8?(k-8)*.9:0;
+      x.save();x.translate((hash(s2,1)-.5)*j,(hash(s2,2)-.5)*j);layChain(x,links.slice(0,n),palA);x.restore();
+      spr(WD.until,RW*.5,RH*.2,slam((f-84)>>1),-.04);
+      split=k<4?16:j*1.2;if(k>10)sl=f;mark();
+    } else if(f<144){ // D · the snap: white frame, burst, acid world, he lands, beats on 8s
+      const k=f-96;if(k<2){x.fillStyle='#fff';x.fillRect(0,0,RW,RH);return{split:0,sl:0}}
+      const beat=(k>=8&&k%8<2)?1:0;bg(WA,[540,900],1.6-.57*ease((k-2)/5)+.0015*k+beat*.03);
+      if(k<8){speed(540,900,s2);burst(x,540,900,520-k*30,5)}
+      spr(WD.showed,RW*.5,RH*.17,slam((f-100)>>1)*(1+beat*.04),-.05);
+      spr(WD.up,RW*.5,RH*.36,slam((f-104)>>1)*(1+beat*.06),.04);
+      const mk2=(f-108)>>1;if(mk2>=0)me(MEP,[460,-40,14,0][Math.min(mk2,3)]);
+      split=k<8?26*(1-k/8):beat*9;if(beat&&k>16)sl=f;mark();
+    } else { // E · end card
+      const k=f-144;if(k<1){x.fillStyle='#fff';x.fillRect(0,0,RW,RH);return{split:0,sl:0}}
+      const sc=slam(k>>1);x.save();x.translate(RW/2,RH*.46);x.scale(sc,sc);splitText(x,'JATIN',0,0,300,-.05,k<8?14:5);x.restore();
+      if(k>=6)spr(PL.jj,RW*.5,RH*.57,slam((k-6)>>1),-.04);split=k<6?20:0;if(k>=20)sl=f;
+    }
+    return{split,sl};
+  }
+  window.NFRAMES=168;
+  window.FRAME=f=>{
+    const {split,sl}=scene(f);if(sl)slices(x,RW,RH,sl);
+    X.globalCompositeOperation='source-over';X.fillStyle='#000';X.fillRect(0,0,RW,RH);
+    if(split>.5){ // true channel split: red left, green+blue right, added back
+      [['#ff0000',-split],['#00ffff',split]].forEach(([c,d])=>{T.globalCompositeOperation='source-over';T.drawImage(cmp,0,0);T.globalCompositeOperation='multiply';T.fillStyle=c;T.fillRect(0,0,RW,RH);X.globalCompositeOperation='lighter';X.drawImage(tmp,d,0)});
+      X.globalCompositeOperation='source-over';
+    } else X.drawImage(cmp,0,0);
+    grain(X,RW,RH,9);return out;
+  };
+  window.FRAME(+Q.get('f')||30);return out;
+};
+
 // ============================================================ boot
 (async()=>{
   try{
-    await Promise.all([document.fonts.load('100px "Cyberway Riders"'),document.fonts.load('700 40px "IBM Plex Mono"'),document.fonts.load('italic 700 40px "IBM Plex Mono"'),document.fonts.load('600 40px "IBM Plex Mono"'),document.fonts.load('40px VT323')]);
+    await Promise.all([document.fonts.load('100px "Cyberway Riders"'),document.fonts.load('700 40px "IBM Plex Mono"'),document.fonts.load('italic 700 40px "IBM Plex Mono"'),document.fonts.load('600 40px "IBM Plex Mono"'),document.fonts.load('500 40px "IBM Plex Mono"'),document.fonts.load('40px VT323'),document.fonts.load('40px "Permanent Marker"')]);
     const out=await DRAFTS[DRAFT]();out.id='out';document.body.appendChild(out);window.READY=true;
   }catch(e){window.ERR=String(e&&e.stack||e);console.error(e)}
 })();

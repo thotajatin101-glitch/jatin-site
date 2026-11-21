@@ -247,4 +247,4 @@ staircase. Titles are bigger. Round 9 code kept as `p1r9`–`p3r9`.
 
 ---
 
-**Archived 2026-11-21.** This look is closed: posts moved to a white ground (see `../../concepts/2026-11-21-white-look/`). Open `index.html` here to browse every round.
+**Archived 2026-11-21.** This look is closed: posts moved to a white ground (see `../../concepts/2026-11-21-white-look/`). Browse every round in `personal-brand/kit/index.html`.
