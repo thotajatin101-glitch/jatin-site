@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <title>JATIN studio</title>
 <!-- Dev-only still renderer for posts and reel frames. Never ships. three.js r128 from cdnjs. -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,500;0,600;0,700;1,700&family=VT323&family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:ital,wght@0,500;0,600;0,700;1,700&family=VT323&family=Permanent+Marker&display=swap">
 <style>
 @font-face{font-family:"Cyberway Riders";src:url(../../../CyberwayRiders-lg97d.ttf) format("truetype")}
 html,body{margin:0;background:#111}
@@ -761,7 +761,7 @@ function finishW(cv){const o=mk(PW,PH),X=o.getContext('2d');X.drawImage(cv,0,0,P
 const PIX={chk:['101','010','101'],ell:['10','10','11'],step:['001','011','111'],bar:['1101']};
 const WORK=n=>loadImg('../../../website/site/work/'+n+'.jpg');
 
-DRAFTS.w1=async()=>{ // MADE IT without TRYING: identity is a fingerprint, nobody designs theirs. Its core zooms out to the JATIN mark.
+DRAFTS.w1r1=async()=>{ // MADE IT without TRYING: identity is a fingerprint, nobody designs theirs. Its core zooms out to the JATIN mark.
   const [c,x]=wstage(),[logo,menu,about,snap]=await Promise.all([B('intro-float'),B('menu-now'),B('about-now'),B('intro-snap')]);
   pblob(x,430,820,400,310,PAL.acid,34,3);
   const cx=545,cy=730,rx=330,ry=430;
@@ -776,7 +776,7 @@ DRAFTS.w1=async()=>{ // MADE IT without TRYING: identity is a fingerprint, nobod
   wtitle(x,'MADE IT',540,160,{fit:800});blabel(x,'WITHOUT',540,292,30,{align:'center'});wtitle(x,'TRYING',548,1160,{fit:860,rot:.03});
   wfoot(x,1,[['the look was never planned. it came from ',0],['making things',1],['.',0]]);return finishW(c);
 };
-DRAFTS.w2=async()=>{ // CONSUME to your heart's content FIRST: an eye printed in rings; his own frames in the iris and round it
+DRAFTS.w2r1=async()=>{ // CONSUME to your heart's content FIRST: an eye printed in rings; his own frames in the iris and round it
   const [c,x]=wstage(),[iris,a,b2,c3]=await Promise.all(['flux-02/03','outstation/02','flux-03/02','flux-01/01'].map(WORK));
   pblob(x,420,800,430,300,PAL.pink,34,7);
   const cx=540,cy=700,w=840,h=w*.44,R=h*.42;
@@ -799,7 +799,7 @@ DRAFTS.w2=async()=>{ // CONSUME to your heart's content FIRST: an eye printed in
   wtitle(x,'CONSUME',540,150,{fit:880});blabel(x,"TO YOUR HEART'S CONTENT",600,262,24,{align:'center'});wtitle(x,'FIRST',660,1150,{fit:620,rot:.03});
   wfoot(x,2,[['take it all in. ',0],['then make',1],['.',0]]);return finishW(c);
 };
-DRAFTS.w3=async()=>{ // NO FRAMEWORK NO STEPS: an engraved staircase, struck through; the 5-step how-to closed with the cursor
+DRAFTS.w3r1=async()=>{ // NO FRAMEWORK NO STEPS: an engraved staircase, struck through; the 5-step how-to closed with the cursor
   const [c,x]=wstage(),[pc,snap]=await Promise.all([B('pc-chained'),B('intro-snap')]);
   pblob(x,640,830,400,300,PAL.cyan,34,11);
   const x0=220,sw=128,sh=108,yb=1120,dx=110,dy=-92,N=5,col=X=>Math.floor((X-x0)/sw);
@@ -826,6 +826,77 @@ DRAFTS.w3=async()=>{ // NO FRAMEWORK NO STEPS: an engraved staircase, struck thr
   vlabel(x,'RULES: NONE',1050,1100,20);
   wtitle(x,'NO FRAMEWORK',540,150,{fit:960});wtitle(x,'NO STEPS',560,1168,{fit:780,rot:.03});
   wfoot(x,3,[['skip the ',0],['5-step plan',1],['. start making.',0]]);return finishW(c);
+};
+
+// ---- white round 2 (his note: "understand viewers reading patterns and font selection/hierarchy"). One path, top-left
+// first: the headline as one block -> the hero -> the support line -> the mark. Three type levels. The headline is a
+// readable face (DM Serif Display italic, the Sr. Motion ref's move); one word rides a palette marker strip. Cyberway
+// only on the JATIN mark. The support line is mono, 30px+, so it still reads at phone size.
+const HF='"DM Serif Display"';
+function head(g,lines,x,y,size,maxW=PW-x-70){g.save();g.font=`italic 400 ${size}px ${HF}`;const mw=Math.max(...lines.map(ln=>ln.reduce((s,[t,m])=>s+g.measureText(t).width+(m?size*.1:0),0)));if(mw>maxW){size*=maxW/mw;g.font=`italic 400 ${size}px ${HF}`}g.textBaseline='alphabetic';const lh=size*.96;
+  lines.forEach((ln,i)=>{const Y=y+i*lh;let X=x;ln.forEach(([t,mark])=>{const w=g.measureText(t).width;if(mark){g.fillStyle=mark;g.fillRect(X-size*.04,Y-size*.56,w+size*.14,size*.66)}g.fillStyle=INK;g.fillText(t,X,Y);X+=w})});g.restore()}
+function sub(g,x,y,lines,fs=31){lines.forEach((parts,i)=>hlLine(g,x,y+i*fs*1.6,parts,fs))}
+function wfoot2(x,n){x.fillStyle=INK;x.fillRect(0,1262,PW,2);[[0,1263],[PW/2,1263],[PW,1263]].forEach(([cx,cy])=>{x.fillStyle=WP;x.fillRect(cx-9,cy-9,18,18);x.lineWidth=2;x.strokeStyle=INK;x.strokeRect(cx-9,cy-9,18,18)});
+  x.fillStyle=INK;x.fillRect(70,1284,150,48);splitText(x,'JATIN',145,1309,30,0,1.2);x.font='500 20px "IBM Plex Mono"';x.letterSpacing='3px';x.fillStyle=INK;x.textBaseline='middle';x.fillText('JUST JATIN · 0'+n+' / 03',248,1309);x.letterSpacing='0px';barcode(x,PW-220,1287,150,40,n*7)}
+
+DRAFTS.w1=async()=>{ // Made it without trying.
+  const [c,x]=wstage(),[logo,menu]=await Promise.all([B('intro-float'),B('menu-now')]);
+  pblob(x,560,820,360,250,PAL.acid,34,3);
+  const cx=620,cy=800,rx=290,ry=320;
+  x.drawImage(engrave((X,Y)=>{const dx=(X-cx)/rx,dy=(Y-cy)/ry,e=Math.hypot(dx,dy);return[.42+.22*e+.12*Math.sin(X*.011+Y*.007),ragged(e,X,Y)]},
+    (X,Y)=>{const dx=X-cx,dy=(Y-cy-30)*.82,r=Math.hypot(dx,dy),a=Math.atan2(dy,dx);return r+15*Math.sin(a*2+r*.012)+8*Math.sin(a*3-r*.02)},{pitch:10.5,y0:440,h:700}),0,440,PW,700);
+  tile(x,menu,70,640,150,230,HOT,{fx:.3});
+  const ins=[790,470,250,170];x.fillStyle=WP;x.fillRect(...ins);tile(x,logo,ins[0]+8,ins[1]+8,ins[2]-16,ins[3]-16,RAIN,{fy:.45});zoom(x,[570,730,100,84],ins,[0,3]);
+  pixels(x,70,930,PIX.chk,26);pixels(x,960,1010,PIX.ell,26);cross(x,300,520,30);cross(x,960,900,24,-.2);trio(x,800,676);
+  wcursor(x,700,960,5,PAL.acid);
+  head(x,[[['Made it',0]],[['without ',0],['trying.',PAL.acid]]],70,205,168);
+  sub(x,70,1170,[[['the look was never planned.',0]],[['it came from ',0],['making things',1],['.',0]]]);
+  wfoot2(x,1);return finishW(c);
+};
+DRAFTS.w2=async()=>{ // Consume to your heart's content first.
+  const [c,x]=wstage(),[iris,a,b2]=await Promise.all(['flux-02/03','outstation/02','flux-03/02'].map(WORK));
+  pblob(x,470,820,400,250,PAL.pink,34,7);
+  const cx=560,cy=790,w=760,h=w*.44,R=h*.42;
+  const up=xn=>-h*.58*Math.pow(1-xn*xn,.85),dn=xn=>h*.44*Math.pow(1-xn*xn,1.05);
+  const L=(X,Y)=>{const xn=(X-cx)/(w/2),dy=Y-cy,e=Math.hypot((X-cx)/(w*.6),(Y-cy)/(h*1.02));const a=ragged(e,X,Y,2);if(!a)return[1,0];
+    if(Math.abs(xn)<1&&dy>up(xn)&&dy<dn(xn)){const top=clamp(1-(dy-up(xn))/34);return[.93-.45*Math.pow(Math.abs(xn),3)-.4*top,a]}
+    const edge=Math.abs(xn)<1?Math.min(Math.abs(dy-up(xn)),Math.abs(dy-dn(xn))):60,crease=Math.abs(xn)<.85?Math.abs(dy-(up(xn)-h*.3)):99;
+    return[crease<9?.18:edge<24?.3+edge/80:.66-.12*Math.abs(xn),a]};
+  x.drawImage(engrave(L,(X,Y)=>{const dx=X-cx,dy=(Y-cy)*1.15,r=Math.hypot(dx,dy);return r+5*Math.sin(Math.atan2(dy,dx)*6+r*.02)},{pitch:8.5,y0:420,h:740}),0,420,PW,740);
+  x.save();x.beginPath();x.arc(cx,cy,R,0,7);x.clip();x.drawImage(gmap(iris,R*2,R*2,RAIN),cx-R,cy-R,R*2,R*2);x.restore();
+  x.lineWidth=5;x.strokeStyle=INK;x.beginPath();x.arc(cx,cy,R,0,7);x.stroke();x.fillStyle=INK;x.beginPath();x.arc(cx,cy,R*.38,0,7);x.fill();
+  x.fillStyle='#fff';x.fillRect(cx-R*.5,cy-R*.54,R*.16,R*.16);x.fillRect(cx-R*.34,cy-R*.46,R*.1,R*.1);
+  x.beginPath();for(let i=0;i<=40;i++){const xn=-1+i/20;x.lineTo(cx+xn*w/2,cy+up(xn))}for(let i=40;i>=0;i--){const xn=-1+i/20;x.lineTo(cx+xn*w/2,cy+dn(xn))}x.closePath();x.lineWidth=7;x.lineJoin='round';x.strokeStyle=INK;x.stroke();
+  tile(x,a,60,930,180,120,COOL);tile(x,b2,850,560,170,230,HOT);
+  pixels(x,960,1040,PIX.step,24);cross(x,180,560,28);cross(x,930,1000,24,-.2);trio(x,860,520);
+  wcursor(x,770,880,5,PAL.pink);
+  head(x,[[['Consume to your',0]],[["heart's content ",0],['first.',PAL.pink]]],70,185,118);
+  sub(x,70,1200,[[['take it all in. ',0],['then make',1],['.',0]]]);
+  wfoot2(x,2);return finishW(c);
+};
+DRAFTS.w3=async()=>{ // No framework. No steps.
+  const [c,x]=wstage(),[snap]=await Promise.all([B('intro-snap')]);
+  pblob(x,680,850,360,260,PAL.cyan,34,11);
+  const x0=290,sw=116,sh=96,yb=1110,dx=100,dy=-84,N=5,col=X=>Math.floor((X-x0)/sw);
+  const face=(X,Y)=>{const i=col(X);if(i>=0&&i<N&&Y<=yb&&Y>=yb-(i+1)*sh)return['f',i];
+    for(let k=N-1;k>=0;k--){const t=(Y-(yb-(k+1)*sh))/dy;if(t>=0&&t<=1){const xe=X-t*dx;if(xe>=x0+k*sw&&xe<=x0+(k+1)*sw)return['t',k]}}
+    const t=(X-(x0+N*sw))/dx;if(t>=0&&t<=1){const ye=Y-t*dy;if(ye<=yb&&ye>=yb-N*sh)return['s',N-1]}return null};
+  x.drawImage(engrave((X,Y)=>{const f=face(X,Y);if(!f)return[1,0];return[f[0]==='t'?.86:f[0]==='s'?.1:(f[1]&1?.5:.3)-.14*((Y-(yb-(f[1]+1)*sh))/((f[1]+1)*sh)),1]},
+    (X,Y)=>{const f=face(X,Y);return!f?0:f[0]==='f'?Y:f[0]==='t'?(X*.64-Y*.77):X*.9+Y*.3},{pitch:8,y0:500,h:640}),0,500,PW,640);
+  x.save();x.strokeStyle=INK;x.lineWidth=3;x.lineJoin='round';for(let k=0;k<N;k++){const L0=x0+k*sw,T=yb-(k+1)*sh;x.strokeRect(L0,T,sw,yb-T);x.beginPath();x.moveTo(L0,T);x.lineTo(L0+dx,T+dy);x.lineTo(L0+sw+dx,T+dy);x.lineTo(L0+sw,T);x.stroke()}
+  {const R0=x0+N*sw;x.beginPath();x.moveTo(R0+dx,yb-N*sh+dy);x.lineTo(R0+dx,yb+dy);x.lineTo(R0,yb);x.stroke()}x.restore();
+  {const A=[250,1130],Bp=[1020,560],cell=20,L=Math.hypot(Bp[0]-A[0],Bp[1]-A[1]),nx=-(Bp[1]-A[1])/L,ny=(Bp[0]-A[0])/L;x.fillStyle=PAL.pink;
+   for(let j=20;j<1200/cell;j++)for(let i=0;i<PW/cell;i++){const X=(i+.5)*cell,Y=(j+.5)*cell,t=((X-A[0])*(Bp[0]-A[0])+(Y-A[1])*(Bp[1]-A[1]))/L/L,d=Math.abs((X-A[0])*nx+(Y-A[1])*ny)+(hash(i,j*3)-.5)*12;if(t<0||t>1)continue;if(1-d/42>bay(i,j)*.6)x.fillRect(i*cell,j*cell,cell+.5,cell+.5)}}
+  {const X0=60,Y0=470,Wd=380,Hd=300;x.fillStyle=INK;x.fillRect(X0+10,Y0+10,Wd,Hd);x.fillStyle=WP;x.fillRect(X0,Y0,Wd,Hd);x.lineWidth=3;x.strokeStyle=INK;x.strokeRect(X0,Y0,Wd,Hd);x.fillStyle=INK;x.fillRect(X0,Y0,Wd,38);
+   x.font='500 16px "IBM Plex Mono"';x.fillStyle=WP;x.textBaseline='middle';x.fillText('HOW_TO_BUILD_A_BRAND.PDF',X0+14,Y0+20);x.fillRect(X0+Wd-32,Y0+7,24,24);x.fillStyle=INK;x.font='700 16px "IBM Plex Mono"';x.fillText('X',X0+Wd-25,Y0+20);
+   ['find your niche','pick 3 colours','make a moodboard','post every day','stay consistent'].forEach((t,i)=>{const y=Y0+78+i*44;x.lineWidth=2.5;x.strokeRect(X0+18,y-12,24,24);x.font='500 18px "IBM Plex Mono"';const s='STEP '+(i+1)+'  '+t;x.fillText(s,X0+56,y+1);x.fillRect(X0+50,y-1,x.measureText(s).width+12,3)});
+   wcursor(x,X0+Wd-22,Y0+20,4.2,PAL.cyan)}
+  tile(x,snap,60,860,150,200,RAIN,{fx:.5});
+  {const pal=chPal(PAL.pink),L=chainCurve([[260,782],[300,880],[420,940],[520,950]],.85,1.4,3);layChain(x,L.filter((l,i)=>i<6||i>9),pal)}
+  pixels(x,960,1030,PIX.step,26);cross(x,860,500,28);cross(x,1010,760,24,-.2);trio(x,860,440);
+  head(x,[[['No framework.',0]],[['No ',0],['steps.',PAL.cyan]]],70,215,170);
+  sub(x,70,1200,[[['skip the ',0],['5-step plan',1],['. start making.',0]]]);
+  wfoot2(x,3);return finishW(c);
 };
 
 const RW=1080,RH=1920;
@@ -993,7 +1064,7 @@ DRAFTS.m1=async()=>{
 // ============================================================ boot
 (async()=>{
   try{
-    await Promise.all([document.fonts.load('100px "Cyberway Riders"'),document.fonts.load('700 40px "IBM Plex Mono"'),document.fonts.load('italic 700 40px "IBM Plex Mono"'),document.fonts.load('600 40px "IBM Plex Mono"'),document.fonts.load('500 40px "IBM Plex Mono"'),document.fonts.load('40px VT323'),document.fonts.load('40px "Permanent Marker"')]);
+    await Promise.all([document.fonts.load('100px "Cyberway Riders"'),document.fonts.load('700 40px "IBM Plex Mono"'),document.fonts.load('italic 700 40px "IBM Plex Mono"'),document.fonts.load('600 40px "IBM Plex Mono"'),document.fonts.load('500 40px "IBM Plex Mono"'),document.fonts.load('italic 400 40px "DM Serif Display"'),document.fonts.load('40px VT323'),document.fonts.load('40px "Permanent Marker"')]);
     const out=await DRAFTS[DRAFT]();out.id='out';document.body.appendChild(out);window.READY=true;
   }catch(e){window.ERR=String(e&&e.stack||e);console.error(e)}
 })();

@@ -36,3 +36,18 @@ got lost in them (cut).
 **Open:** still busier than his references; MADE IT's site tiles read as abstract colour.
 
 **Stills:** `img/w1.jpg`–`img/w3.jpg`. Viewer: `personal-brand/kit/index.html` (white look and dark look, one drop-down each).
+
+## Round 2 — 2026-11-21 · one reading path, a readable headline
+
+**His note, in his words:** "overall the design looks good but the problem is u need to understand viewers reading
+patterns and font selection/hierarchy for the readers to read to easily."
+
+**Built** (drafts `w1`–`w3`; round 1 kept as `w1r1`–`w3r1`):
+- One path, top-left first: headline block → hero → support line → JATIN mark. No sentence split round the hero.
+- Headline in DM Serif Display italic (`head`, fitted to the width), one word on a palette marker strip; Cyberway only on
+  the mark; no split on the headline.
+- Three levels: headline, a 31px mono support line (`sub`), the footer mark (`wfoot2`). Cut: the boxed WITHOUT, the side
+  words, the 21px footer sentence, extra tiles.
+- Checked at phone width (`img/round2-phone.jpg`).
+
+**Stills:** round 1 is `img/w*-round1.jpg`; round 2 is `img/w*.jpg`.
