@@ -1,5 +1,8 @@
 # What works in his reels: hooks and scripts (2026-11-21)
 
+> This is the research record. The working rules are the `video-scripts` skill
+> (`.claude/skills/video-scripts/SKILL.md`), which is used for every script.
+
 **His ask:** check his reference reels, then run two agents, one on hooks and one on scripts, that cross-check each
 other and land on what actually works.
 

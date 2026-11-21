@@ -50,6 +50,10 @@ brand and inside personal brand it will be videos and posts"):
 
 ## justjatin posts and reels (lessons, 2026-11-11)
 
+- **Video scripts and hooks: always use the `video-scripts` skill** (`.claude/skills/video-scripts/SKILL.md`, his ask
+  2026-11-21: "i want it to be used every time i make scripts for my videos"). It holds the tone, the hook and script
+  rules and the delivery format; update it when he corrects a script.
+
 - **MAJOR CHANGE 2026-11-21: posts go WHITE and simple** (his words: "something that is simpler like my reference but
   also including our style with a white background too keep it more liking to audience"). Refs: `concepts/2026-11-21-white-look/img/ref11-1.jpg` (026
   MEMORIAS: white paper, one black line-engraved hero, a few loud colour tiles, pixel blocks, thin crosshairs, boxed
