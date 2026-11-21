@@ -924,7 +924,7 @@ DRAFTS.w2m5=async()=>{TRACK=true;return DRAFTS.w2m()};
 // raytraced in one shader; its tone is gradient-mapped through the palette (paper -> grey -> ink -> purple -> pink ->
 // acid -> paper, cyclic) in Bayer steps, and the map flows outward from the pupil. One clock; it loops every 4s.
 const EYE_FS=`precision highp float;
-uniform vec2 uR;uniform float uT,uK;
+uniform vec2 uR;uniform float uT,uK,uM;
 float bay(vec2 p){p=mod(floor(p),4.);float i=p.x+p.y*4.;
   return i<1.?0.:i<2.?8.:i<3.?2.:i<4.?10.:i<5.?12.:i<6.?4.:i<7.?14.:i<8.?6.:i<9.?3.:i<10.?11.:i<11.?1.:i<12.?9.:i<13.?15.:i<14.?7.:i<15.?13.:5.;}
 vec3 stop(float i){i=mod(i,6.);return i<1.?vec3(.965,.965,.95):i<2.?vec3(.55,.55,.56):i<3.?vec3(.04):i<4.?vec3(.478,.071,.69):i<5.?vec3(1.,.18,.533):vec3(.91,1.,0.);}
@@ -947,6 +947,8 @@ void main(){
   // the gradient map flows outward from the pupil; Bayer steps between the stops, 2px cells
   float m=(s*1.15+r*.95)*6.-uT*3.;float i=floor(m),f=m-i;
   vec3 col=f>(bay(gl_FragCoord.xy/(2.*uK))+.5)/16.?stop(i+1.):stop(i);
+  if(uM>.5&&uM<1.5){float q=clamp(s*1.15+.05,0.,.999)*3.,qi=floor(q),qf=q-qi;vec3 A=qi<1.?vec3(.02,.08,.22):qi<2.?vec3(0.,.55,.95):vec3(.62,.95,1.),Bc=qi<1.?vec3(0.,.55,.95):qi<2.?vec3(.62,.95,1.):vec3(1.);col=qf>(bay(gl_FragCoord.xy/(2.*uK))+.5)/16.?Bc:A;}
+  if(uM>1.5)col=vec3(clamp(.12+.85*s,0.,1.));
   if(pup>.5)col=vec3(.03);
   // glossy cornea: hard white window reflections, bulged over the iris
   vec3 nc=normalize(n+g*.45*smoothstep(IR+.08,IR-.05,r)),R=reflect(rd,nc);
@@ -961,7 +963,7 @@ function eyeGL(S){const c=mk(S,S),gl=c.getContext('webgl',{preserveDrawingBuffer
   const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}'));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,EYE_FS));gl.linkProgram(pr);gl.useProgram(pr);
   const bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
   const U=k=>gl.getUniformLocation(pr,k);gl.uniform2f(U('uR'),S,S);gl.uniform1f(U('uK'),S/760);
-  return{c,draw(t){gl.viewport(0,0,S,S);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.uniform1f(U('uT'),t);gl.drawArrays(gl.TRIANGLES,0,3);return c}}}
+  return{c,draw(t,m=0){gl.viewport(0,0,S,S);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.uniform1f(U('uT'),t);gl.uniform1f(U('uM'),m);gl.drawArrays(gl.TRIANGLES,0,3);return c}}}
 let EYEBOX=null;
 // CONSUME, round 4: the 3D eye is the hero. Static layers are built once; the eye is drawn per frame between them.
 async function consume4(){
@@ -997,6 +999,61 @@ function eyeBoxes(O,t){const w=6.2831853*t/4,g=[.30*Math.sin(w),.16*Math.sin(w*2
   scope(O,src,px-125,py-125,250,250,PAL.cyan,1.12,j(95,1));scope(O,src,610,930,200,150,PAL.pink,2.2,j(86,2));scope(O,src,250,620,170,130,PAL.acid,2.4,j(40,3))}
 DRAFTS.w2=async()=>{TRACK=2;EYEBOX=eyeBoxes;return DRAFTS.w2r4()};
 DRAFTS.w2m6=async()=>{TRACK=2;EYEBOX=eyeBoxes;return DRAFTS.w2m()};
+
+// ---- white round 7 (his clip, 2026-11-21: "here is an example how the tracery effect works"). The tracking effect is a
+// SEQUENCE, read off his clip: (1) trace: micro boxes and points scatter over the object's surface; (2) windows open on
+// parts and show another render pass of the object (his clip's blue surface; ours: the eye's cyan pass), labelled, with
+// square handles; (3) the object drops to grey with dashed orbits; (4) a pixel-block wipe floods the ground in the accent
+// and the object is gone; (5) the windows become a staggered row of macro specimens of named parts, joined by thin curves,
+// with dashed guides. 24fps, one clock: the eye keeps looking around under all of it.
+const TR={trace:[2,30],win:[26,44],grey:[44,62],wipe:[58,72],row:[70,98],end:132};
+const ease=t=>{t=clamp(t);return t*t*t*(t*(t*6-15)+10)};
+function eyeFrame(t){const w=6.2831853*t/4,g=[.30*Math.sin(w),.16*Math.sin(w*2+1)+.05,1],L=Math.hypot(...g);return g.map(v=>v/L)}
+function eyePt(t,r,phi){const g=eyeFrame(t);let ax=[g[2],0,-g[0]];const la=Math.hypot(...ax);ax=ax.map(v=>v/la);const ay=[g[1]*ax[2]-g[2]*ax[1],g[2]*ax[0]-g[0]*ax[2],g[0]*ax[1]-g[1]*ax[0]];
+  const n=[0,1,2].map(k=>Math.cos(r)*g[k]+Math.sin(r)*(Math.cos(phi)*ax[k]+Math.sin(phi)*ay[k])),d=4.2-n[2];return{x:540+n[0]/d/.255*380,y:800-n[1]/d/.255*380,z:n[2]}}
+function handles(O,x,y,w,h,col='#fff'){O.save();O.lineWidth=1.6;O.strokeStyle=INK;[[x,y],[x+w,y],[x+w,y+h],[x,y+h]].forEach(([X,Y])=>{O.fillStyle=col;O.fillRect(X-5,Y-5,10,10);O.strokeRect(X-5,Y-5,10,10)});O.restore()}
+function tlabel(O,t,x,y,col=INK,fs=15){O.save();O.font=`500 ${fs}px "IBM Plex Mono"`;O.letterSpacing='1px';O.fillStyle=col;O.textBaseline='alphabetic';O.fillText(t,x,y);O.restore()}
+const WINS=[['IRIS_01',.36,2.6,150,112],['PUPIL_02',0,0,176,128],['SCLERA_03',.95,-.5,160,112],['VEIN_04',1.22,3.7,140,104]];
+const PARTS=[['Pupil',0,0,150,140],['Iris',.34,2.2,150,170],['Limbal ring',.52,-.9,150,180],['Sclera',.72,.6,150,160],['Vein',.98,3.8,150,135]];
+const ROW=[[105,700],[285,735],[465,770],[645,740],[825,700]];
+async function consume7(){
+  const [c,x]=wstage();cross(x,180,560,28);cross(x,930,1060,24,-.2);trio(x,860,460);pixels(x,960,1100,PIX.step,24);
+  const fg=mk(PW*K,PH*K),F=fg.getContext('2d');F.scale(K,K);HEADF=s=>`${s}px "Sterion"`;HL=HL3[2];head(F,[],70,0,100);HL=null;
+  sub(F,70,1200,[[['take it all in. ',0],['then make',1],['.',0]]]);wfoot2(F,2);
+  const E=eyeGL(1520),bg=mk(PW,PH);bg.getContext('2d').drawImage(c,0,0,PW,PH);
+  const alt=mk(1520,1520),A=alt.getContext('2d'),out=mk(PW,PH),O=out.getContext('2d');
+  // the specimens are cut from the eye at the moment the wipe lands
+  const t0=TR.wipe[0]/24;E.draw(t0,0);const frz=mk(1520,1520);frz.getContext('2d').drawImage(E.c,0,0);
+  const spec=PARTS.map(([n,r,phi,w,h])=>{const p=eyePt(t0,r,phi),z=1.7,cw=w/z,ch=h/z,cv=mk(w*2,h*2);cv.getContext('2d').drawImage(frz,(p.x-cw/2-160)*2,(p.y-ch/2-420)*2,cw*2,ch*2,0,0,w*2,h*2);return{n,w,h,cv,from:p}});
+  const pts=[];SEED=17;for(let i=0;i<70;i++){const r=Math.acos(1-rnd()*1.1),phi=rnd()*6.283;pts.push({r,phi,k:TR.trace[0]+rnd()*(TR.trace[1]-TR.trace[0]),w:5+rnd()*16,h:4+rnd()*10,lab:rnd()<.22?('x.'+String(Math.floor(rnd()*999)).padStart(3,'0')):null})}
+  return f=>{const t=f/24;O.drawImage(bg,0,0);
+    const wipeP=clamp((f-TR.wipe[0])/(TR.wipe[1]-TR.wipe[0])),mode=f>=TR.grey[0]?2:0;
+    if(f<TR.wipe[1]){O.save();O.fillStyle='rgba(0,0,0,.10)';O.beginPath();O.ellipse(555,1150,250,22,0,0,7);O.fill();O.restore();O.drawImage(E.draw(t,mode),160,420,760,760)}
+    // (1) trace
+    if(f>=TR.trace[0]&&f<TR.wipe[1]){O.save();O.strokeStyle=f>=TR.grey[0]?PAL.pink:INK;O.fillStyle=O.strokeStyle;O.lineWidth=1.6;
+      pts.forEach(q=>{if(f<q.k)return;const p=eyePt(t,q.r,q.phi);if(p.z<.15)return;O.strokeRect(p.x-q.w/2,p.y-q.h/2,q.w,q.h);O.fillRect(p.x-1.5,p.y-1.5,3,3);if(q.lab){O.font='500 10px "IBM Plex Mono"';O.fillText(q.lab,p.x+q.w/2+3,p.y-q.h/2)}});O.restore()}
+    // (3) grey scan: dashed orbits
+    if(f>=TR.grey[0]&&f<TR.wipe[1]){O.save();O.setLineDash([7,7]);O.lineWidth=1.6;O.strokeStyle=INK;O.lineDashOffset=-f*2;O.beginPath();O.ellipse(540,800,420,150,-.35,0,7);O.stroke();O.beginPath();O.ellipse(540,800,170,430,.5,0,7);O.stroke();O.restore()}
+    // (4) pixel-block wipe in the accent, from the eye outward, Bayer-ordered
+    if(wipeP>0){const cell=40;O.save();O.beginPath();O.rect(0,450,PW,718);O.clip();O.fillStyle=PAL.pink;for(let j=Math.floor(440/cell);j<1170/cell;j++)for(let i=0;i<PW/cell;i++){const X=(i+.5)*cell,Y=(j+.5)*cell,o=Math.hypot((X-540)/540,(Y-800)/380)*.72+bay(i,j)*.28;if(wipeP*1.3>o)O.fillRect(i*cell,j*cell,cell+.5,cell+.5)}O.restore()}
+    // (2) windows on the eye: its cyan surface pass
+    if(f>=TR.win[0]&&f<TR.row[0]){E.draw(t,1);A.clearRect(0,0,1520,1520);A.drawImage(E.c,0,0);if(f<TR.wipe[1])E.draw(t,mode);
+      WINS.forEach(([n,r,phi,w,h],i)=>{const k=Math.floor((f-TR.win[0]-i*3)/2)*2;if(k<0)return;const o=ease(k/8),p=f<TR.wipe[0]?eyePt(t,r,phi):eyePt(t0,r,phi),hh=h*o,x0=p.x-w/2,y0=p.y-h/2;
+        O.save();O.beginPath();O.rect(x0,y0,w,hh);O.clip();O.fillStyle='#000';O.fillRect(x0,y0,w,hh);O.drawImage(alt,(x0-160)*2,(y0-420)*2,w*2,h*2,x0,y0,w,h);O.restore();
+        O.save();O.strokeStyle=INK;O.lineWidth=1.6;O.strokeRect(x0,y0,w,hh);O.restore();if(o>.99){handles(O,x0,y0,w,h);tlabel(O,n,x0,y0-12,wipeP>.5?'#fff':INK)}})}
+    // (5) the specimen row
+    if(f>=TR.row[0]){const land=PARTS.length;
+      O.save();O.setLineDash([6,8]);O.strokeStyle='rgba(255,255,255,.85)';O.lineWidth=1.4;[[0,690],[0,935]].forEach(([a,y])=>{O.beginPath();O.moveTo(0,y);O.lineTo(PW,y);O.stroke()});[80,1000].forEach(X=>{O.beginPath();O.moveTo(X,450);O.lineTo(X,1160);O.stroke()});O.restore();
+      const R=spec.map((sp,i)=>{const e=ease((f-TR.row[0]-i*3)/22),[tx,ty]=ROW[i],dr=Math.sin(t*1.3+i)*3*clamp((f-TR.row[1])/10);
+        const fx=sp.from.x-sp.w/2,fy=sp.from.y-sp.h/2;return{x:fx+(tx-fx)*e,y:fy+(ty-fy)*e+dr,w:sp.w,h:sp.h,e}});
+      const done=clamp((f-TR.row[1]+4)/10);if(done>0){O.save();O.globalAlpha=done;O.strokeStyle='#fff';O.lineWidth=1.3;
+        for(let i=0;i<R.length-1;i++){const a=R[i],b=R[i+1];O.beginPath();O.moveTo(a.x,a.y+a.h);O.bezierCurveTo(a.x+40,a.y+a.h+120,b.x+b.w-40,b.y+b.h+120,b.x+b.w,b.y+b.h);O.stroke();
+          O.beginPath();O.moveTo(a.x+a.w,a.y);O.quadraticCurveTo((a.x+b.x+b.w)/2,Math.min(a.y,b.y)-70,b.x+b.w*.5,b.y);O.stroke()}O.restore()}
+      R.forEach((b,i)=>{O.fillStyle='#000';O.fillRect(b.x,b.y,b.w,b.h);O.drawImage(spec[i].cv,b.x,b.y,b.w,b.h);O.strokeStyle='#fff';O.lineWidth=1.6;O.strokeRect(b.x,b.y,b.w,b.h)});
+      R.forEach((b,i)=>{handles(O,b.x,b.y,b.w,b.h);if(b.e>.9)tlabel(O,spec[i].n,b.x+4,b.y-12,'#fff',16)})}
+    O.drawImage(fg,0,0,PW,PH);if(f<TR.wipe[0])wcursor(O,800,930,5,PAL.pink);grain(O,PW,PH,7);return out}}
+DRAFTS.w2r7=async()=>{const fr=await consume7();return fr(+(Q.get('f')||40))};
+DRAFTS.w2m7=async()=>{const fr=await consume7();window.NFRAMES=TR.end;window.FRAME=fr;return fr(+(Q.get('f')||40))};
 
 const RW=1080,RH=1920;
 async function propRender(build,w,h,camPos=[0,0,14],acc=PAL.cyan){ // transparent render of 3D props for 2D comps

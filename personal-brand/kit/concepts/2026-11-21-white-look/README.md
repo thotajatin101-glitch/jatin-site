@@ -109,3 +109,21 @@ follows it; the confidence numbers tick at 6/s. Photo tiles and MADE IT's logo i
 **Fixed while checking:** the pupil box at 1.8× zoom was solid dark; at 1.12× it frames pupil and iris.
 
 **Files:** round 5 is `img/w*-round5.jpg`, `w2-motion-round5.mp4`; round 6 is `img/w*.jpg`, `w2-motion.mp4`.
+
+## Round 7 · the tracking sequence (CONSUME)
+
+His clip (`Screen Recording 2026-11-21 at 4.54.32 PM.mov`): "here is an example how the tracery effect works". Read off
+the clip, it's five beats, and CONSUME now plays them on the 3D eye at 24fps (132 frames, `w2m7`; still `w2r7`, f40):
+
+1. **Trace** f2–30: 70 micro boxes and points (some with tiny ids) pop onto sphere points in the gaze frame, so they ride
+   the eye as it looks round.
+2. **Windows** f26–44: IRIS_01 / PUPIL_02 / SCLERA_03 / VEIN_04 open in 2-frame steps, staggered; each shows the eye's
+   cyan surface pass (shader mode 1, his clip's blue surface) cut at the same spot; white square handles, mono labels.
+3. **Scan** f44–62: the eye goes grey (mode 2), two dashed orbits turn, the trace marks go pink.
+4. **Wipe** f58–72: 40px pink pixel blocks flood out from the eye (distance + Bayer order) and the eye is gone.
+5. **Specimens** f70–98: five macro crops of the eye frozen at the wipe (Pupil, Iris, Limbal ring, Sclera, Vein) fly
+   into a staggered row (smootherstep, staggered 3 frames), thin white curves between handles, dashed guides; slow drift
+   to f132.
+
+His clip's red ground → our pink; flower parts → eye parts. Round 6's still and loop are kept as `img/w2-round6.jpg` and
+`w2-motion-round6.mp4`.
