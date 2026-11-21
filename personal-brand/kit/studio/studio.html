@@ -4,6 +4,7 @@
 <!-- Dev-only still renderer for posts and reel frames. Never ships. three.js r128 from cdnjs. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:ital,wght@0,500;0,600;0,700;1,700&family=VT323&family=Permanent+Marker&display=swap">
 <style>
+@font-face{font-family:"Sterion";src:url(../fonts/SterionItalic-R99PA.ttf) format("truetype")}
 @font-face{font-family:"Cyberway Riders";src:url(../../../CyberwayRiders-lg97d.ttf) format("truetype")}
 html,body{margin:0;background:#111}
 canvas{display:block}
@@ -832,14 +833,18 @@ DRAFTS.w3r1=async()=>{ // NO FRAMEWORK NO STEPS: an engraved staircase, struck t
 // first: the headline as one block -> the hero -> the support line -> the mark. Three type levels. The headline is a
 // readable face (DM Serif Display italic, the Sr. Motion ref's move); one word rides a palette marker strip. Cyberway
 // only on the JATIN mark. The support line is mono, 30px+, so it still reads at phone size.
-const HF='"DM Serif Display"';
-function head(g,lines,x,y,size,maxW=PW-x-70){g.save();g.font=`italic 400 ${size}px ${HF}`;const mw=Math.max(...lines.map(ln=>ln.reduce((s,[t,m])=>s+g.measureText(t).width+(m?size*.1:0),0)));if(mw>maxW){size*=maxW/mw;g.font=`italic 400 ${size}px ${HF}`}g.textBaseline='alphabetic';const lh=size*.96;
+let HEADF=s=>`italic 400 ${s}px "DM Serif Display"`; // round 3 swaps in Sterion (his pick)
+let HL=null; // round 3: Sterion is wide, so its headlines get their own breaks and fill the top block (y 80-440)
+function head(g,lines,x,y,size,maxW=PW-x-70){if(HL){lines=HL;g.save();g.font=HEADF(100);const mw=Math.max(...lines.map(ln=>ln.reduce((s,[t,m])=>s+g.measureText(t).width+(m?10:0),0)));
+  size=Math.min(100*maxW/mw,330/(lines.length*.92-.2));const lh=size*.92;g.font=HEADF(size);y=88+size*.7;
+  lines.forEach((ln,i)=>{const Y=y+i*lh;let X=x;ln.forEach(([t,mark])=>{const w=g.measureText(t).width;if(mark){g.fillStyle=mark;g.fillRect(X-size*.05,Y-size*.64,w+size*.12,size*.74)}g.fillStyle=INK;g.fillText(t,X,Y);X+=w})});g.restore();return}
+  g.save();g.font=HEADF(size);const mw=Math.max(...lines.map(ln=>ln.reduce((s,[t,m])=>s+g.measureText(t).width+(m?size*.1:0),0)));if(mw>maxW){size*=maxW/mw;g.font=HEADF(size)}g.textBaseline='alphabetic';const lh=size*.96;
   lines.forEach((ln,i)=>{const Y=y+i*lh;let X=x;ln.forEach(([t,mark])=>{const w=g.measureText(t).width;if(mark){g.fillStyle=mark;g.fillRect(X-size*.04,Y-size*.56,w+size*.14,size*.66)}g.fillStyle=INK;g.fillText(t,X,Y);X+=w})});g.restore()}
 function sub(g,x,y,lines,fs=31){lines.forEach((parts,i)=>hlLine(g,x,y+i*fs*1.6,parts,fs))}
 function wfoot2(x,n){x.fillStyle=INK;x.fillRect(0,1262,PW,2);[[0,1263],[PW/2,1263],[PW,1263]].forEach(([cx,cy])=>{x.fillStyle=WP;x.fillRect(cx-9,cy-9,18,18);x.lineWidth=2;x.strokeStyle=INK;x.strokeRect(cx-9,cy-9,18,18)});
   x.fillStyle=INK;x.fillRect(70,1284,150,48);splitText(x,'JATIN',145,1309,30,0,1.2);x.font='500 20px "IBM Plex Mono"';x.letterSpacing='3px';x.fillStyle=INK;x.textBaseline='middle';x.fillText('JUST JATIN · 0'+n+' / 03',248,1309);x.letterSpacing='0px';barcode(x,PW-220,1287,150,40,n*7)}
 
-DRAFTS.w1=async()=>{ // Made it without trying.
+DRAFTS.w1r2=async()=>{ // Made it without trying.
   const [c,x]=wstage(),[logo,menu]=await Promise.all([B('intro-float'),B('menu-now')]);
   pblob(x,560,820,360,250,PAL.acid,34,3);
   const cx=620,cy=800,rx=290,ry=320;
@@ -853,7 +858,7 @@ DRAFTS.w1=async()=>{ // Made it without trying.
   sub(x,70,1170,[[['the look was never planned.',0]],[['it came from ',0],['making things',1],['.',0]]]);
   wfoot2(x,1);return finishW(c);
 };
-DRAFTS.w2=async()=>{ // Consume to your heart's content first.
+DRAFTS.w2r2=async()=>{ // Consume to your heart's content first.
   const [c,x]=wstage(),[iris,a,b2]=await Promise.all(['flux-02/03','outstation/02','flux-03/02'].map(WORK));
   pblob(x,470,820,400,250,PAL.pink,34,7);
   const cx=560,cy=790,w=760,h=w*.44,R=h*.42;
@@ -874,7 +879,7 @@ DRAFTS.w2=async()=>{ // Consume to your heart's content first.
   sub(x,70,1200,[[['take it all in. ',0],['then make',1],['.',0]]]);
   wfoot2(x,2);return finishW(c);
 };
-DRAFTS.w3=async()=>{ // No framework. No steps.
+DRAFTS.w3r2=async()=>{ // No framework. No steps.
   const [c,x]=wstage(),[snap]=await Promise.all([B('intro-snap')]);
   pblob(x,680,850,360,260,PAL.cyan,34,11);
   const x0=290,sw=116,sh=96,yb=1110,dx=100,dy=-84,N=5,col=X=>Math.floor((X-x0)/sw);
@@ -898,6 +903,11 @@ DRAFTS.w3=async()=>{ // No framework. No steps.
   sub(x,70,1200,[[['skip the ',0],['5-step plan',1],['. start making.',0]]]);
   wfoot2(x,3);return finishW(c);
 };
+
+// ---- white round 3 (his pick, 2026-11-21: "i just downloaded a font called sterion font use that instead"): the
+// headline in Sterion Italic (wide, squared, slanted). Same layout and reading path as round 2.
+const HL3={1:[[['MADE IT',0]],[['WITHOUT',0]],[['TRYING.',PAL.acid]]],2:[[['CONSUME TO',0]],[["YOUR HEART'S",0]],[['CONTENT ',0],['FIRST.',PAL.pink]]],3:[[['NO',0]],[['FRAMEWORK.',0]],[['NO ',0],['STEPS.',PAL.cyan]]]};
+for(const n of [1,2,3])DRAFTS['w'+n]=async()=>{HEADF=s=>`${s}px "Sterion"`;HL=HL3[n];return DRAFTS['w'+n+'r2']()};
 
 const RW=1080,RH=1920;
 async function propRender(build,w,h,camPos=[0,0,14],acc=PAL.cyan){ // transparent render of 3D props for 2D comps
@@ -1064,7 +1074,7 @@ DRAFTS.m1=async()=>{
 // ============================================================ boot
 (async()=>{
   try{
-    await Promise.all([document.fonts.load('100px "Cyberway Riders"'),document.fonts.load('700 40px "IBM Plex Mono"'),document.fonts.load('italic 700 40px "IBM Plex Mono"'),document.fonts.load('600 40px "IBM Plex Mono"'),document.fonts.load('500 40px "IBM Plex Mono"'),document.fonts.load('italic 400 40px "DM Serif Display"'),document.fonts.load('40px VT323'),document.fonts.load('40px "Permanent Marker"')]);
+    await Promise.all([document.fonts.load('100px "Cyberway Riders"'),document.fonts.load('700 40px "IBM Plex Mono"'),document.fonts.load('italic 700 40px "IBM Plex Mono"'),document.fonts.load('600 40px "IBM Plex Mono"'),document.fonts.load('500 40px "IBM Plex Mono"'),document.fonts.load('italic 400 40px "DM Serif Display"'),document.fonts.load('40px "Sterion"'),document.fonts.load('40px VT323'),document.fonts.load('40px "Permanent Marker"')]);
     const out=await DRAFTS[DRAFT]();out.id='out';document.body.appendChild(out);window.READY=true;
   }catch(e){window.ERR=String(e&&e.stack||e);console.error(e)}
 })();

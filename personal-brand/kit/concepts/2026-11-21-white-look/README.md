@@ -51,3 +51,16 @@ patterns and font selection/hierarchy for the readers to read to easily."
 - Checked at phone width (`img/round2-phone.jpg`).
 
 **Stills:** round 1 is `img/w*-round1.jpg`; round 2 is `img/w*.jpg`.
+
+## Round 3 — 2026-11-21 · Sterion headlines
+
+**His pick, in his words:** "i just downloaded a font called sterion font use that instead".
+
+**Built:** headlines in Sterion Italic (`kit/fonts/SterionItalic-R99PA.ttf`, loaded in `studio.html`). It's wide, so
+each headline gets its own breaks (`HL3`) and is fitted to fill the top block (y 80–440). Layout, reading path and the
+marker strip are round 2's (`w*r2`; `w*` wraps them with the Sterion headline).
+
+**Licence:** Sterion is CC BY-NC (non-commercial), from fontspace (`kit/fonts/sterion-info.txt`). Fine for personal
+posts; a paid job or ad would need a commercial licence.
+
+**Stills:** round 2 is `img/w*-round2.jpg`; round 3 is `img/w*.jpg`.

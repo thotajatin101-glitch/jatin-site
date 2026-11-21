@@ -59,7 +59,7 @@ brand and inside personal brand it will be videos and posts"):
   topic-first and title-first rules stay.
 - **Posts read in one path** (his note on white round 1: "understand viewers reading patterns and font selection/hierarchy
   for the readers to read to easily"): headline as one block top-left → hero → support line → JATIN mark; never split a
-  sentence round the hero; three type levels max; headline in a readable face (DM Serif Display italic), Cyberway only
+  sentence round the hero; three type levels max; headline in Sterion Italic (his pick, white round 3; `personal-brand/kit/fonts/`, CC BY-NC), Cyberway only
   for the mark; support copy ≥30px on the 1080 canvas; check at phone size.
 - **(Before 2026-11-21) Posts are maximalist collage, built from the post's topic** (his note: round 8 was "sitting too much in the comfort
   zone … our post design has to be relavant to the context of what the post is about"). Keeping his style "doe'snt mean
