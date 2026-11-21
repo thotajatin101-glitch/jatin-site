@@ -4,8 +4,30 @@
     {
       "name": "jatin-site",
       "runtimeExecutable": "node",
-      "runtimeArgs": [".claude/serve.js"],
+      "runtimeArgs": [
+        ".claude/serve.js"
+      ],
       "port": 5178
+    },
+    {
+      "name": "jatin-menu",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        ".local/menu-serve.cjs"
+      ],
+      "port": 5179
+    },
+    {
+      "name": "kit-archive",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        ".claude/serve.js"
+      ],
+      "env": {
+        "SITE_DIR": "personal-brand/kit",
+        "PORT": "5181"
+      },
+      "port": 5181
     }
   ]
 }

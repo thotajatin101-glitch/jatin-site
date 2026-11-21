@@ -245,15 +245,6 @@ staircase. Titles are bigger. Round 9 code kept as `p1r9`–`p3r9`.
 
 **Round 10b (same day), his note on CONSUME:** "could u remove the white paper bg for the eye i want just the eye and make the eye a bit bigger". The paper scrap is gone; the eye sits straight on the collage with a hard shadow, 640 → 820 wide. The paper version is `img/p2-round10.jpg`.
 
-## Direction change — 2026-11-21 · white and simple
+---
 
-**His note, in his words:** "i want my content creation design style to be changing into something like this but with a
-pinch of our own style, essentially wanted to go for something that is simpler like my reference but also including our
-style with a white background too keep it more liking to audience".
-
-**References:** `img/ref11-1.jpg` (026 MEMORIAS poster) and `img/ref11-2.jpg` (Sr. Motion Designer poster).
-
-**New base:** white paper ground, lots of air, one hero subject plus the title, black doing most of the work, colour in
-small loud doses. **Our pinch:** palette tiles and blobs, Bayer dither and pixel steps, the pixel chain and cursor, the
-red/cyan split, boxed mono labels. Replaces the dark shard world and the full-bleed mixed-media background. Nothing built
-yet; round 10 stays as `img/p*.jpg`.
+**Archived 2026-11-21.** This look is closed: posts moved to a white ground (see `../../concepts/2026-11-21-white-look/`). Open `index.html` here to browse every round.
