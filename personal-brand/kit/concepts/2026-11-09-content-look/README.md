@@ -157,3 +157,103 @@ chain ofc but the chain path is a bit wiggly need to it to have smooth curved pa
 **Rule:** a chain path is a few well-spaced points on a smooth spline. Never hand-set tangents.
 
 **Stills:** round 6 is `img/p*-round6.jpg`; round 7 is `img/p*.jpg`.
+
+## Round 8 — 2026-11-10 · a subject, readable headlines, three layouts + first motion test
+
+**His notes, in his words:** (after my review of round 7) "alright then try to improve them and since i already gave u
+the context see what u can do with that … u can make reels tests u are talking about so i can see how it could look
+like and for reels i prefer if u can do the work trying to shift to my execution to you so i can work on concept
+ideation and stuff". The context is his opening idea: "Made my own brand identity without trying to make it. And there
+is not framework or steps to making it but consuming to your heart's content is the key".
+
+**My review of round 7:** no subject left once the props went; headlines fused (CUT IT read CUTTT); three label
+systems; one layout three times; DELETED ran off the bottom.
+
+**Built (posts):**
+- **Copy from his idea:** MADE IT without TRYING / CONSUME to your heart's content FIRST / NO framework NO STEPS.
+- **A subject per post, as a flat cut sticker** (never a 3D prop, his round 7 call): his cut-out (p1), three site
+  stills fanned with `card()` (p2), the chain break itself (p3). Each on its own lifted plane, so shadows are real.
+- **Type:** marker tracking .1 → .2, rim .15 → .1, an ink keyline between fill and rim, less jostle, and `fit:` sizes a
+  line to a width. Colours unchanged (R3).
+- **Labels:** corner tag `JUST JATIN · NN` + one silver plate. `menuPlate` is no longer used by the posts.
+- **Layouts:** A type on top, subject below, wedge from the right. B subject centre, type top and bottom, wedge from
+  the left. C subject top, type bottom, wedge pointing up.
+
+**Built (motion test `m1`):** `DRAFTS.m1` exposes `FRAME(n)` / `NFRAMES`; `studio/render-reel.mjs <out.mp4> m1` walks it
+into ffmpeg. 168 frames at 24fps, hits on 2s: pink world + I NEVER + he slams in + plate / his photos every 4 frames
+with a pink cut-out / cyan chain strain / white frame, burst, acid world, SHOWED UP / logo card. `siteWorld` takes
+`w`/`h` now. File: `m1-motion-test.mp4`.
+
+**Fixed while checking:** TRYING sat on his hair (he now stands in front of it); the long plate touched both edges; a
+star sat on CONSUME's E; in the test the words ran off the frame, the plate covered his eyes, the split on the photos
+read as 3D glasses, and the pink cut-out hid the photos.
+
+**Open:** he is a still in the test (needs real footage); no word passes both behind and in front of him in one shot;
+no sound. r1–r7 stills are still round 1.
+
+**Stills:** round 7 is `img/p*-round7.jpg`; round 8 is `img/p*.jpg`.
+
+## Round 9 — 2026-11-11 · maximalist collage, built from the post's topic
+
+**His note, in his words:** "look right now the design is nice but it's sitting too much in the comfort zone. what i
+want is a maximalizm design graphic. like keeping doe'snt mean to use the same exact look and assets but rather to
+explore my style with the refrence ideas iam putting up to see what's make something look the way it does. especially
+the visual are relavent to the Broken Frames poster the i attached that goes pretty well with our theme. to put it
+simply our post design has to be relavant to the context of what the post is about."
+
+**References (`img/ref9-*.jpg`):** a maximalism board; a blue sticker-sheet poster of halftoned objects; a torn-paper
+duotone city collage with paper stars; the Broken Frames poster (his pick). What makes them look that way: torn paper
+with a white edge, coarse halftone and bitmap photos, spray strokes with drips, burst stickers, chunky type on a hard
+black drop, many small labels, the frame filled edge to edge.
+
+**Built (2D collage toolkit in studio.html, `ROUND 9`):** `ht` (coarse halftone of a photo), `bd` (1-bit Bayer bitmap),
+`dots` (swelling dot fields), `scrap` (torn paper), `spray` / `arrow` (drips, splatter), `chunk` (jostled type, ink
+rule, hard extrusion), `boom` (burst sticker, Permanent Marker), `chip`, `strip`, `pstar`, `icon` (pixel stickers),
+`eye`, `lay` (each layer with a hard shadow), `finishMax` (misregistration + grain). The 3D stage and `siteWorld` are
+not used by these posts; round 8 lives on as `p1r8`–`p3r8`.
+
+- **p1 MADE IT without TRYING:** torn halftone / bitmap scraps of the site, his cut-out in halftone with a paper rim,
+  IT WAS AN ACCIDENT burst, chips NO MOODBOARD / NO PLAN / ROUND 49 / JUST KEPT MAKING.
+- **p2 CONSUME to your heart's content FIRST:** a pop-art eye (one of his photos dithered into the iris) on torn paper,
+  pixel stickers of what he feeds it (TV, camera, gamepad, cassette, phone) with spray arrows, THEN MAKE burst.
+- **p3 NO FRAMEWORK NO STEPS:** a blueprint "HOW TO BUILD A BRAND, the 5-step framework" checklist crossed out in pink
+  spray, a numbered pixel staircase tagged over in green, the chained computer torn loose, struck-out chips.
+
+**Fixed while checking:** his cut-out printed as a black blob (lifted the tones before the halftone); the split was too
+wide; labels hidden under FIRST; a sticker and a chip sat on the checklist's title; NO FRAMEWORK on one line was small.
+
+**Open:** p2 is the tidiest; site scraps read as texture; stickers are drawn, not photographed objects.
+
+**Stills:** round 8 is `img/p*-round8.jpg`; round 9 is `img/p*.jpg`.
+
+## Round 10 — 2026-11-11 · just the title on the mixed-media background
+
+**His note, in his words** (on round 9's MADE IT): "This one is also good other then u keeping photo which i don't
+want but it's good it's comparatively less cluttered from the other posts. the whole points of these posts are
+supposed not too cluttered and for example even this photo there are alot of stickers here i just want the title but i
+love the mixed media background".
+
+**Built:** all three posts stripped to the title over the background. Out: his cut-out, burst stickers, chips, stars,
+pixel stickers, chain links, arrows, barcode, checker, the corner tag. Kept: dot fields, torn halftone / bitmap scraps,
+flat torn colour, spray with drips, the JATIN mark. p1 gains a fourth site scrap where he stood; p2 keeps the eye as
+printed background with two of his frames torn round it; p3 keeps the crossed-out how-to sheet, larger, and loses the
+staircase. Titles are bigger. Round 9 code kept as `p1r9`–`p3r9`.
+
+**Rule:** maximal is the background, not the count of things on top. Title only. No photo of him.
+
+**Stills:** round 9 is `img/p*-round9.jpg`; round 10 is `img/p*.jpg`.
+
+**Round 10b (same day), his note on CONSUME:** "could u remove the white paper bg for the eye i want just the eye and make the eye a bit bigger". The paper scrap is gone; the eye sits straight on the collage with a hard shadow, 640 → 820 wide. The paper version is `img/p2-round10.jpg`.
+
+## Direction change — 2026-11-21 · white and simple
+
+**His note, in his words:** "i want my content creation design style to be changing into something like this but with a
+pinch of our own style, essentially wanted to go for something that is simpler like my reference but also including our
+style with a white background too keep it more liking to audience".
+
+**References:** `img/ref11-1.jpg` (026 MEMORIAS poster) and `img/ref11-2.jpg` (Sr. Motion Designer poster).
+
+**New base:** white paper ground, lots of air, one hero subject plus the title, black doing most of the work, colour in
+small loud doses. **Our pinch:** palette tiles and blobs, Bayer dither and pixel steps, the pixel chain and cursor, the
+red/cyan split, boxed mono labels. Replaces the dark shard world and the full-bleed mixed-media background. Nothing built
+yet; round 10 stays as `img/p*.jpg`.

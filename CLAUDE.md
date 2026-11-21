@@ -48,6 +48,35 @@ brand and inside personal brand it will be videos and posts"):
   `CyberwayRiders-lg97d.ttf` (shared by both), `.local/` (gitignored raw
   material), `.claude/`, `.github/` (Pages deploys `website/site`).
 
+## justjatin posts and reels (lessons, 2026-11-11)
+
+- **MAJOR CHANGE 2026-11-21: posts go WHITE and simple** (his words: "something that is simpler like my reference but
+  also including our style with a white background too keep it more liking to audience"). Refs: `img/ref11-1.jpg` (026
+  MEMORIAS: white paper, one black line-engraved hero, a few loud colour tiles, pixel blocks, thin crosshairs, boxed
+  labels) and `img/ref11-2.jpg` (Sr. Motion Designer: dot-grid white, pixel acid blob, huge black serif title, glossy 3D
+  with pixel dissolve). Our pinch: palette as the colour doses, Bayer dither / pixel steps, the pixel chain and cursor,
+  red/cyan split on the hero, mono labels in boxes. This replaces the dark world and the maximal background below; the
+  topic-first and title-first rules stay.
+- **(Before 2026-11-21) Posts are maximalist collage, built from the post's topic** (his note: round 8 was "sitting too much in the comfort
+  zone … our post design has to be relavant to the context of what the post is about"). Keeping his style "doe'snt mean
+  to use the same exact look and assets": palette, dither, pixel pieces, chain and fonts are ingredients, never one
+  fixed layout. Reference: the Broken Frames poster (torn paper, halftone photos, spray, burst stickers).
+- **Title only, on the mixed-media background** (his round 10 note: "there are alot of stickers here i just want the
+  title but i love the mixed media background"). No photo of him, no burst stickers, chips, stars or icons. Maximal is
+  the background, not the count of things on top; the background scraps carry the topic.
+- **Reels: he does concept, I do the execution** and deliver rendered video (`personal-brand/kit/studio/render-reel.mjs`).
+- Round log: `personal-brand/kit/concepts/2026-11-09-content-look/README.md`.
+- **Videos: motion comes from physics, not keyframes** (site intro video, rounds 5–7, 2026-11-13; log
+  `personal-brand/kit/concepts/2026-11-11-site-intro-video/README.md`). His words: objects pinned to the screen "look
+  like a sticker png"; they must move like "an actual 3d object", with "natural movements how the black holes would
+  effect" and "objects in a zero g space"; hand-set eases read as "not smooth". So: everything in world space at its own
+  depth with the camera moving; a body turns about one axis at one rate and shows its sides and thickness; one clock
+  for the whole world; speed from distance to the hole; shutter and focus blur. Check motion frame to frame before
+  showing him, not on a few stills.
+- **Motion is checked on a speed graph** (2026-11-13, from a friend's session he shared to learn from): `render-video.mjs probe` +
+  `flow-audit.mjs` flag dead hangs, V-dips, jolts, pointed peaks, straight and constant-speed stretches per object. Rules in
+  `personal-brand/kit/studio/video/MOTION.md`, eases (smootherstep, cubic-bezier, hand-off, swoop) in `motion-lib.js`.
+
 ## What this is
 
 A single-page personal portfolio. It is not a scrolling website — it behaves
