@@ -1055,6 +1055,55 @@ async function consume7(){
 DRAFTS.w2r7=async()=>{const fr=await consume7();return fr(+(Q.get('f')||40))};
 DRAFTS.w2m7=async()=>{const fr=await consume7();window.NFRAMES=TR.end;window.FRAME=fr;return fr(+(Q.get('f')||40))};
 
+// ---- white round 8 (his note on round 7: "I don't want the whole part where it turns pink, Just this part of it ...
+// analyse the tracery effects to understand the snappiness of it and the motion animation can be quicker and smoother").
+// His trimmed clip is 0.8s and every change in it is a CUT: trace marks already on the subject; windows land full size in
+// one frame, ~4 frames apart (the last one wipes in over 2); a 2-frame flash of dithered pixel blocks; the subject in grey
+// with pink marks and dashed orbits; back to colour with striped pixel blocks masking it; windows back. The only smooth
+// motion is the subject drifting underneath. So: 30fps, the eye and everything pinned to it move every frame (smooth),
+// and every overlay change is a hard cut (snappy). One 60-frame beat, played twice with other windows; 4s seamless loop.
+const T8={win:[3,7,11,14],flash:[22,24],grey:[24,31],strip:[31,35],back:35,clear:[40,44]};
+const WINS8=[[['IRIS_01',.36,2.6,190,130],['PUPIL_02',0,0,200,150],['SCLERA_03',.92,-.5,180,120],['VEIN_04',1.2,3.7,170,115]],
+  [['LIMBAL_05',.5,-2.2,190,135],['PUPIL_06',.05,1.2,180,140],['IRIS_07',.32,.9,170,120],['SCLERA_08',.95,2.4,190,120]]];
+async function consume8(){
+  const [c,x]=wstage();cross(x,180,560,28);cross(x,930,1060,24,-.2);trio(x,860,460);pixels(x,960,1100,PIX.step,24);
+  const fg=mk(PW*K,PH*K),F=fg.getContext('2d');F.scale(K,K);HEADF=s=>`${s}px "Sterion"`;HL=HL3[2];head(F,[],70,0,100);HL=null;
+  sub(F,70,1200,[[['take it all in. ',0],['then make',1],['.',0]]]);wfoot2(F,2);
+  const E=eyeGL(1520),bg=mk(PW,PH);bg.getContext('2d').drawImage(c,0,0,PW,PH);
+  const alt=mk(1520,1520),A=alt.getContext('2d'),out=mk(PW,PH),O=out.getContext('2d');
+  // trace marks: sphere points riding the eye; a few joined by thin arcs
+  const pts=[];SEED=23;for(let i=0;i<90;i++){const r=Math.acos(1-rnd()*1.15),phi=rnd()*6.283;pts.push({r,phi,k:rnd()*3,w:5+rnd()*18,h:4+rnd()*11,lab:rnd()<.2?('x.'+String(Math.floor(rnd()*999)).padStart(3,'0')):null})}
+  const arcs=[];for(let i=0;i<10;i++)arcs.push([Math.floor(rnd()*90),Math.floor(rnd()*90),.25+rnd()*.4]);
+  // pixel-block masks, 40px cells over the hero, stepped shapes from coarse noise (fixed per beat)
+  const cells=(v,th)=>{const L=[];for(let j=11;j<29;j++)for(let i=3;i<24;i++){if(Math.hypot(i*40+20-540,j*40+20-800)>370)continue;const n=hash(Math.floor(i/3)+v*7,Math.floor(j/2)*5+v)*.65+hash(i,j+v*31)*.35;if(n>th)L.push([i*40,j*40])}return L};
+  const FL=[cells(0,.52),cells(1,.52)],ST=[cells(2,.6),cells(3,.6)];
+  const stripe=(i,j)=>{O.fillStyle=WP;O.fillRect(i,j,40.5,40.5);O.fillStyle=PAL.pink;for(let y=j+5;y<j+40;y+=9)O.fillRect(i,y,40.5,3)};
+  const dots=(i,j,col,dot)=>{O.fillStyle=col;O.fillRect(i,j,40.5,40.5);O.fillStyle=dot;for(let y=j+5;y<j+40;y+=10)for(let x=i+5;x<i+40;x+=10)O.fillRect(x-1.5,y-1.5,3,3)};
+  return f=>{const t=f/30,v=Math.floor(f/60)%2,lf=f%60,grey=lf>=T8.grey[0]&&lf<T8.grey[1],flash=lf>=T8.flash[0]&&lf<T8.flash[1];
+    O.drawImage(bg,0,0);O.save();O.fillStyle='rgba(0,0,0,.10)';O.beginPath();O.ellipse(555,1150,250,22,0,0,7);O.fill();O.restore();
+    O.drawImage(E.draw(t,grey?2:0),160,420,760,760);
+    // trace (always on, re-rolls which marks show on each cut)
+    if(!flash){O.save();const col=grey?PAL.pink:INK;O.strokeStyle=col;O.fillStyle=col;O.lineWidth=grey?2:1.4;const P=pts.map(q=>eyePt(t,q.r,q.phi));
+      pts.forEach((q,i)=>{const p=P[i];if(p.z<.15||(hash(i,v*3+(lf>=T8.back?1:0))<.25))return;O.strokeRect(p.x-q.w/2,p.y-q.h/2,q.w,q.h);O.fillRect(p.x-1.5,p.y-1.5,3,3);if(q.lab){O.font='500 10px "IBM Plex Mono"';O.fillText(q.lab,p.x+q.w/2+3,p.y-q.h/2)}});
+      O.globalAlpha=.55;O.lineWidth=1;arcs.forEach(([a,b,k])=>{const p=P[a],q=P[b];if(p.z<.15||q.z<.15)return;const mx=(p.x+q.x)/2,my=(p.y+q.y)/2,dx=q.x-p.x,dy=q.y-p.y;O.beginPath();O.moveTo(p.x,p.y);O.quadraticCurveTo(mx-dy*k,my+dx*k,q.x,q.y);O.stroke()});O.restore()}
+    // grey beat: dashed orbits
+    if(grey){O.save();O.setLineDash([7,7]);O.lineWidth=1.6;O.strokeStyle=INK;O.lineDashOffset=-f*3;O.beginPath();O.ellipse(540,800,430,150,-.35,0,7);O.stroke();O.beginPath();O.ellipse(540,800,170,440,.5,0,7);O.stroke();O.restore()}
+    // the 2-frame flash: ink blocks dotted with paper
+    if(flash)FL[(lf-T8.flash[0]+v)%2].forEach(([i,j])=>dots(i,j,INK,WP));
+    // back in colour: striped blocks, then dotted ones as they clear
+    if(lf>=T8.strip[0]&&lf<T8.clear[1]){const all=ST[v],n=lf<T8.clear[0]?all.length:Math.round(all.length*(1-(lf-T8.clear[0]+1)/(T8.clear[1]-T8.clear[0])));
+      all.slice(0,n).forEach(([i,j],k)=>k%5===0?dots(i,j,WP,INK):stripe(i,j))}
+    // windows: each lands full size on its frame (the last wipes in over 2), cut off for the flash and grey beats, back after
+    const on=!flash&&!grey;
+    if(on){E.draw(t,1);A.clearRect(0,0,1520,1520);A.drawImage(E.c,0,0);
+      const labs=[];WINS8[v].forEach(([n,r,phi,w,h],i)=>{const d=lf>=T8.back?lf-T8.back-i:lf-T8.win[i];if(d<0)return;const p=eyePt(t,r,phi),x0=p.x-w/2,y0=p.y-h/2,ww=(i===3||lf>=T8.back)&&d<1?w*.55:w;
+        O.save();O.beginPath();O.rect(x0,y0,ww,h);O.clip();O.fillStyle='#000';O.fillRect(x0,y0,w,h);O.drawImage(alt,(x0-160)*2,(y0-420)*2,w*2,h*2,x0,y0,w,h);O.restore();
+        O.save();O.strokeStyle=INK;O.lineWidth=1.6;O.strokeRect(x0,y0,ww,h);O.restore();handles(O,x0,y0,ww,h);labs.push([n,x0,y0])});
+      labs.forEach(([n,x0,y0])=>{O.save();O.font='500 15px "IBM Plex Mono"';O.letterSpacing='1px';const lw=O.measureText(n).width+14;O.fillStyle=WP;O.fillRect(x0,y0-30,lw,22);O.strokeStyle=INK;O.lineWidth=1.4;O.strokeRect(x0,y0-30,lw,22);O.restore();tlabel(O,n,x0+7,y0-14)})}
+    O.drawImage(fg,0,0,PW,PH);grain(O,PW,PH,7);return out}}
+DRAFTS.w2r8=async()=>{const fr=await consume8();return fr(+(Q.get('f')||20))};
+DRAFTS.w2m8=async()=>{const fr=await consume8();window.NFRAMES=120;window.FRAME=fr;return fr(+(Q.get('f')||20))};
+
 const RW=1080,RH=1920;
 async function propRender(build,w,h,camPos=[0,0,14],acc=PAL.cyan){ // transparent render of 3D props for 2D comps
   initGL(w,h,null);CAM=new THREE.PerspectiveCamera(30,w/h,.5,100);CAM.position.set(...camPos);CAM.lookAt(0,0,0);

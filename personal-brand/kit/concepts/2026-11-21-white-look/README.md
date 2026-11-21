@@ -127,3 +127,18 @@ the clip, it's five beats, and CONSUME now plays them on the 3D eye at 24fps (13
 
 His clip's red ground → our pink; flower parts → eye parts. Round 6's still and loop are kept as `img/w2-round6.jpg` and
 `w2-motion-round6.mp4`.
+
+## Round 8 · snappy tracking, no pink (CONSUME)
+
+His note: "I don't want the whole part where it turns pink, Just this part of it and i want you to analyse the tracery
+effects to understand the snappiness of it and the motion animation can be quicker and smoother as well". He trimmed the
+clip to 0.8s. Frame by frame it is: trace marks already on the subject; windows land FULL SIZE in one frame, ~4 frames
+apart, the last wiping in over 2; a 2-frame flash of dithered pixel blocks; the subject grey with pink marks and dashed
+orbits; back to colour under striped pixel blocks; windows back. **Snappy = overlays cut, never ease. Smooth = the
+subject keeps gliding under them every frame.** Round 7 grew its windows over 8 frames on 2s at 24fps and ran 5.5s,
+which is why it felt slow.
+
+Built (`w2m8`, still `w2r8` f20): 30fps; one 60-frame beat (windows at f3/7/11/14, hit f22–23, grey f24–30, blocks
+f31–39 with the windows back from f35, blocks clear f40–43), played twice with a second set of windows; 120 frames = the
+eye's 4s gaze loop, so it loops seamlessly. Pink wipe and specimen row cut. Labels in small paper boxes, drawn over every
+window. Round 7 kept as `w2-motion-round7.mp4`, `img/w2-round7.jpg`, `img/w2-specimens-round7.jpg`.
