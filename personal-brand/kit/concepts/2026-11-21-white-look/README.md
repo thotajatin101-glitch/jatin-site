@@ -64,3 +64,20 @@ marker strip are round 2's (`w*r2`; `w*` wraps them with the Sterion headline).
 posts; a paid job or ad would need a commercial licence.
 
 **Stills:** round 2 is `img/w*-round2.jpg`; round 3 is `img/w*.jpg`.
+
+## Round 4 — 2026-11-21 · the 3D eye (CONSUME)
+
+**His ask, in his words:** "i would rather u make a 3d eyeball model with a similar gradient animation like the screen
+recording i uploaded" (plus two eyeball refs: a glossy photo eye and a halftone cut-out eye). His clip (1.8s, 828×1234):
+a still, lit 3D object whose tones run through a gradient map, white → grey → black → crimson → orange → yellow, with
+the map flowing through the form; HUD labels type on beside it.
+
+**Built** (`studio.html`, `EYE_FS` / `eyeGL` / `consume4`; drafts `w2r4` still, `w2m` motion):
+- One fragment shader, no library: an analytic sphere, gaze frame, iris fibres, limbal ring, pupil, veins on the back,
+  hard window reflections on a bulged cornea, an ink rim at the silhouette.
+- Tone → cyclic palette ramp (paper, grey, ink, purple, pink, acid) in 2px Bayer steps; the map index is tone + angle
+  from the pupil − time, so the colour flows outward. Gaze turns on a 4s sine; the flow does 2 cycles in 4s: seamless loop.
+- Static post layers are built once; the eye is drawn per frame between them.
+- `render-reel.mjs` now launches Chromium with SwiftShader WebGL (headless had no GL for the shader).
+
+**Files:** `img/w2-eye.jpg` (still), `w2-motion.mp4` (4s, 24fps, 1080×1350).

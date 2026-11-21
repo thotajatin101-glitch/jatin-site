@@ -909,6 +909,63 @@ DRAFTS.w3r2=async()=>{ // No framework. No steps.
 const HL3={1:[[['MADE IT',0]],[['WITHOUT',0]],[['TRYING.',PAL.acid]]],2:[[['CONSUME TO',0]],[["YOUR HEART'S",0]],[['CONTENT ',0],['FIRST.',PAL.pink]]],3:[[['NO',0]],[['FRAMEWORK.',0]],[['NO ',0],['STEPS.',PAL.cyan]]]};
 for(const n of [1,2,3])DRAFTS['w'+n]=async()=>{HEADF=s=>`${s}px "Sterion"`;HL=HL3[n];return DRAFTS['w'+n+'r2']()};
 
+// ---- white round 4 (his ask, 2026-11-21: "make a 3d eyeball model with a similar gradient animation like the screen
+// recording"). His clip: a still, lit 3D object whose tones run through a gradient map (white -> grey -> black -> hot
+// core) that FLOWS through the form. Here: a real sphere eyeball (iris fibres, pupil, limbal ring, veins, glossy cornea)
+// raytraced in one shader; its tone is gradient-mapped through the palette (paper -> grey -> ink -> purple -> pink ->
+// acid -> paper, cyclic) in Bayer steps, and the map flows outward from the pupil. One clock; it loops every 4s.
+const EYE_FS=`precision highp float;
+uniform vec2 uR;uniform float uT,uK;
+float bay(vec2 p){p=mod(floor(p),4.);float i=p.x+p.y*4.;
+  return i<1.?0.:i<2.?8.:i<3.?2.:i<4.?10.:i<5.?12.:i<6.?4.:i<7.?14.:i<8.?6.:i<9.?3.:i<10.?11.:i<11.?1.:i<12.?9.:i<13.?15.:i<14.?7.:i<15.?13.:5.;}
+vec3 stop(float i){i=mod(i,6.);return i<1.?vec3(.965,.965,.95):i<2.?vec3(.55,.55,.56):i<3.?vec3(.04):i<4.?vec3(.478,.071,.69):i<5.?vec3(1.,.18,.533):vec3(.91,1.,0.);}
+void main(){
+  vec2 uv=(gl_FragCoord.xy-.5*uR)/uR.y*2.;vec3 ro=vec3(0.,0.,4.2),rd=normalize(vec3(uv*.255,-1.));
+  float b=dot(ro,rd),h=b*b-dot(ro,ro)+1.;if(h<0.){gl_FragColor=vec4(0.);return;}
+  vec3 p=ro+rd*(-b-sqrt(h)),n=normalize(p);
+  float w=6.2831853*uT/4.;vec3 g=normalize(vec3(.30*sin(w),.16*sin(w*2.+1.)+.05,1.));
+  vec3 ax=normalize(cross(vec3(0.,1.,0.),g)),ay=cross(g,ax);
+  float r=acos(clamp(dot(n,g),-1.,1.)),phi=atan(dot(n,ay),dot(n,ax));
+  const float IR=.52,PR=.2;vec3 L=normalize(vec3(-.55,.6,.75));float lam=clamp(dot(n,L),0.,1.);
+  float s,pup=0.;
+  if(r<PR){pup=1.;s=0.;}
+  else if(r<IR){float q=(r-PR)/(IR-PR);
+    float fib=.5+.3*sin(phi*64.+sin(phi*9.)*3.+q*5.)+.2*sin(phi*23.-q*8.);
+    s=(.2+.42*fib*q+.12*(1.-q))*mix(1.,.35,smoothstep(.72,1.,q))*(.55+.6*lam);}
+  else{float back=smoothstep(.85,1.9,r),v=abs(sin(phi*7.+sin(r*6.+phi*3.)*1.6)),v2=abs(sin(phi*15.-r*9.));
+    s=.42+.55*lam-.4*smoothstep(.07,0.,v)*back-.25*smoothstep(.05,0.,v2)*back*back;}
+  float e=dot(n,-rd);
+  // the gradient map flows outward from the pupil; Bayer steps between the stops, 2px cells
+  float m=(s*1.15+r*.95)*6.-uT*3.;float i=floor(m),f=m-i;
+  vec3 col=f>(bay(gl_FragCoord.xy/(2.*uK))+.5)/16.?stop(i+1.):stop(i);
+  if(pup>.5)col=vec3(.03);
+  // glossy cornea: hard white window reflections, bulged over the iris
+  vec3 nc=normalize(n+g*.45*smoothstep(IR+.08,IR-.05,r)),R=reflect(rd,nc);
+  float sp=step(.992,dot(R,normalize(vec3(-.42,.5,.76))))+step(.9965,dot(R,normalize(vec3(.30,.62,.73))));
+  vec2 wq=vec2(dot(R,vec3(1.,0.,0.)),dot(R,vec3(0.,1.,0.)));
+  sp+=step(abs(wq.x+.2),.16)*step(abs(wq.y-.46),.025)+step(abs(wq.x-.05),.06)*step(abs(wq.y-.38),.022);
+  col=mix(col,vec3(1.),clamp(sp,0.,1.));
+  if(e<.1)col=vec3(.03);
+  gl_FragColor=vec4(col,smoothstep(0.,.003*uK,h));}`;
+function eyeGL(S){const c=mk(S,S),gl=c.getContext('webgl',{preserveDrawingBuffer:true,premultipliedAlpha:false});if(!gl)throw new Error('no webgl');
+  const sh=(t,src)=>{const s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s};
+  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}'));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,EYE_FS));gl.linkProgram(pr);gl.useProgram(pr);
+  const bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
+  const U=k=>gl.getUniformLocation(pr,k);gl.uniform2f(U('uR'),S,S);gl.uniform1f(U('uK'),S/760);
+  return{c,draw(t){gl.viewport(0,0,S,S);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.uniform1f(U('uT'),t);gl.drawArrays(gl.TRIANGLES,0,3);return c}}}
+// CONSUME, round 4: the 3D eye is the hero. Static layers are built once; the eye is drawn per frame between them.
+async function consume4(){
+  const [c,x]=wstage(),[a,b2]=await Promise.all(['outstation/02','flux-03/02'].map(WORK));
+  tile(x,a,60,960,180,120,COOL);tile(x,b2,850,500,170,230,HOT);cross(x,180,560,28);cross(x,930,1060,24,-.2);trio(x,860,460);pixels(x,960,1100,PIX.step,24);
+  const fg=mk(PW*K,PH*K),F=fg.getContext('2d');F.scale(K,K);
+  HEADF=s=>`${s}px "Sterion"`;HL=HL3[2];head(F,[],70,0,100);HL=null;
+  wcursor(F,800,930,5,PAL.pink);sub(F,70,1200,[[['take it all in. ',0],['then make',1],['.',0]]]);wfoot2(F,2);
+  const E=eyeGL(1520),out=mk(PW,PH),O=out.getContext('2d'),bg=mk(PW,PH);bg.getContext('2d').drawImage(c,0,0,PW,PH);
+  return t=>{O.drawImage(bg,0,0);O.save();O.fillStyle='rgba(0,0,0,.10)';O.beginPath();O.ellipse(555,1150,250,22,0,0,7);O.fill();O.restore();
+    O.drawImage(E.draw(t),540-380,800-380,760,760);O.drawImage(fg,0,0,PW,PH);grain(O,PW,PH,7);return out}}
+DRAFTS.w2r4=async()=>{const fr=await consume4();return fr(+(Q.get('t')||.6))};
+DRAFTS.w2m=async()=>{const fr=await consume4();window.NFRAMES=96;window.FRAME=f=>fr(f/24);return fr(+(Q.get('t')||.6))};
+
 const RW=1080,RH=1920;
 async function propRender(build,w,h,camPos=[0,0,14],acc=PAL.cyan){ // transparent render of 3D props for 2D comps
   initGL(w,h,null);CAM=new THREE.PerspectiveCamera(30,w/h,.5,100);CAM.position.set(...camPos);CAM.lookAt(0,0,0);
