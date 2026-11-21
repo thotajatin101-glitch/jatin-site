@@ -737,7 +737,7 @@ function gmap(img,w,h,ramp,o={}){const {cell=3,lo=.06,hi=.94,fx=.5,fy=.5}=o,cw=M
   for(let y=0;y<ch;y++)for(let x=0;x<cw;x++){const t=clamp((L(x,y)[0]-lo)/(hi-lo))*n,i=Math.min(n-1,Math.floor(t)),col=(t-i)>bay(x,y)?R[i+1]:R[i],q=(y*cw+x)*4;im.data[q]=col[0];im.data[q+1]=col[1];im.data[q+2]=col[2];im.data[q+3]=255}
   g.putImageData(im,0,0);const out=mk(Math.round(w*K),Math.round(h*K)),G=out.getContext('2d');G.imageSmoothingEnabled=false;G.drawImage(c,0,0,out.width,out.height);return out}
 let TRACK=false; // round 5 (his ask): photo boxes become tracking boxes, like his face-detection ref
-function tile(g,img,x,y,w,h,ramp,o){if(!TRACK)return g.drawImage(gmap(img,w,h,ramp,o),x,y,w,h);
+function tile(g,img,x,y,w,h,ramp,o){if(TRACK===2)return;if(!TRACK)return g.drawImage(gmap(img,w,h,ramp,o),x,y,w,h);
   const col=ramp===HOT?PAL.pink:ramp===COOL?PAL.cyan:PAL.acid,H=a=>'#'+a.map(n=>n.toString(16).padStart(2,'0')).join('');
   g.drawImage(gmap(img,w,h,[H(mixA(col,[10,6,20],.8)),H(mixA(col,[10,6,20],.4)),col,H(mixA(col,[255,255,255],.55)),'#fbfbf6'],{...o,cell:2,lo:.04,hi:.9}),x,y,w,h);
   g.save();g.lineWidth=3;g.strokeStyle=col;g.strokeRect(x+1.5,y+1.5,w-3,h-3);const pc=String(Math.floor(30+hash(x|0,y|0)*69)).padStart(3,'0')+'%';
@@ -856,7 +856,7 @@ DRAFTS.w1r2=async()=>{ // Made it without trying.
   x.drawImage(engrave((X,Y)=>{const dx=(X-cx)/rx,dy=(Y-cy)/ry,e=Math.hypot(dx,dy);return[.42+.22*e+.12*Math.sin(X*.011+Y*.007),ragged(e,X,Y)]},
     (X,Y)=>{const dx=X-cx,dy=(Y-cy-30)*.82,r=Math.hypot(dx,dy),a=Math.atan2(dy,dx);return r+15*Math.sin(a*2+r*.012)+8*Math.sin(a*3-r*.02)},{pitch:10.5,y0:440,h:700}),0,440,PW,700);
   tile(x,menu,70,640,150,230,HOT,{fx:.3});
-  const ins=[790,470,250,170];x.fillStyle=WP;x.fillRect(...ins);tile(x,logo,ins[0]+8,ins[1]+8,ins[2]-16,ins[3]-16,RAIN,{fy:.45});zoom(x,[570,730,100,84],ins,[0,3]);
+  if(TRACK!==2){const ins=[790,470,250,170];x.fillStyle=WP;x.fillRect(...ins);tile(x,logo,ins[0]+8,ins[1]+8,ins[2]-16,ins[3]-16,RAIN,{fy:.45});zoom(x,[570,730,100,84],ins,[0,3])}
   pixels(x,70,930,PIX.chk,26);pixels(x,960,1010,PIX.ell,26);cross(x,300,520,30);cross(x,960,900,24,-.2);trio(x,800,676);
   wcursor(x,700,960,5,PAL.acid);
   head(x,[[['Made it',0]],[['without ',0],['trying.',PAL.acid]]],70,205,168);
@@ -914,8 +914,8 @@ DRAFTS.w3r2=async()=>{ // No framework. No steps.
 const HL3={1:[[['MADE IT',0]],[['WITHOUT',0]],[['TRYING.',PAL.acid]]],2:[[['CONSUME TO',0]],[["YOUR HEART'S",0]],[['CONTENT ',0],['FIRST.',PAL.pink]]],3:[[['NO',0]],[['FRAMEWORK.',0]],[['NO ',0],['STEPS.',PAL.cyan]]]};
 for(const n of [1,2,3])DRAFTS['w'+n+'r3']=async()=>{HEADF=s=>`${s}px "Sterion"`;HL=HL3[n];return DRAFTS['w'+n+'r2']()};
 // round 5: tracking boxes in place of the photo tiles; CONSUME is the 3D eye
-for(const n of [1,3])DRAFTS['w'+n]=async()=>{TRACK=true;return DRAFTS['w'+n+'r3']()};
-DRAFTS.w2=async()=>{TRACK=true;return DRAFTS.w2r4()};
+for(const n of [1,3])DRAFTS['w'+n+'r5']=async()=>{TRACK=true;return DRAFTS['w'+n+'r3']()};
+DRAFTS.w2r5=async()=>{TRACK=true;return DRAFTS.w2r4()};
 DRAFTS.w2m5=async()=>{TRACK=true;return DRAFTS.w2m()};
 
 // ---- white round 4 (his ask, 2026-11-21: "make a 3d eyeball model with a similar gradient animation like the screen
@@ -962,6 +962,7 @@ function eyeGL(S){const c=mk(S,S),gl=c.getContext('webgl',{preserveDrawingBuffer
   const bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
   const U=k=>gl.getUniformLocation(pr,k);gl.uniform2f(U('uR'),S,S);gl.uniform1f(U('uK'),S/760);
   return{c,draw(t){gl.viewport(0,0,S,S);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.uniform1f(U('uT'),t);gl.drawArrays(gl.TRIANGLES,0,3);return c}}}
+let EYEBOX=null;
 // CONSUME, round 4: the 3D eye is the hero. Static layers are built once; the eye is drawn per frame between them.
 async function consume4(){
   const [c,x]=wstage(),[a,b2]=await Promise.all(['outstation/02','flux-03/02'].map(WORK));
@@ -971,9 +972,31 @@ async function consume4(){
   wcursor(F,800,930,5,PAL.pink);sub(F,70,1200,[[['take it all in. ',0],['then make',1],['.',0]]]);wfoot2(F,2);
   const E=eyeGL(1520),out=mk(PW,PH),O=out.getContext('2d'),bg=mk(PW,PH);bg.getContext('2d').drawImage(c,0,0,PW,PH);
   return t=>{O.drawImage(bg,0,0);O.save();O.fillStyle='rgba(0,0,0,.10)';O.beginPath();O.ellipse(555,1150,250,22,0,0,7);O.fill();O.restore();
-    O.drawImage(E.draw(t),540-380,800-380,760,760);O.drawImage(fg,0,0,PW,PH);grain(O,PW,PH,7);return out}}
+    O.drawImage(E.draw(t),540-380,800-380,760,760);if(EYEBOX)EYEBOX(O,t);O.drawImage(fg,0,0,PW,PH);grain(O,PW,PH,7);return out}}
 DRAFTS.w2r4=async()=>{const fr=await consume4();return fr(+(Q.get('t')||.6))};
 DRAFTS.w2m=async()=>{const fr=await consume4();window.NFRAMES=96;window.FRAME=f=>fr(f/24);return fr(+(Q.get('t')||.6))};
+
+// ---- white round 6 (his note: "i don't want photos inside the boxes ... make it similar to the refrence where it above
+// and making a macro view finder"). No photo tiles. Tracking boxes sit ON the hero, each a macro viewfinder: the region
+// under it, magnified and tinted one colour in Bayer steps, a hard outline, corner brackets, a centre tick, and a
+// confidence tab. On the eye they lock to the pupil and follow its gaze.
+function scope(O,src,x,y,w,h,col,zoom=2,pc=90){const sc=src.width/PW,cw=w/zoom,ch=h/zoom,cx=x+w/2,cy=y+h/2,cr=mk(Math.round(cw*sc),Math.round(ch*sc));
+  cr.getContext('2d').drawImage(src,(cx-cw/2)*sc,(cy-ch/2)*sc,cw*sc,ch*sc,0,0,cr.width,cr.height);
+  const H=a=>'#'+a.map(n=>n.toString(16).padStart(2,'0')).join('');
+  O.drawImage(gmap(cr,w,h,[H(mixA(col,[10,6,20],.8)),H(mixA(col,[10,6,20],.4)),col,H(mixA(col,[255,255,255],.55)),'#fbfbf6'],{cell:2,lo:.03,hi:.97}),x,y,w,h);
+  O.save();O.strokeStyle=col;O.lineWidth=3;O.strokeRect(x+1.5,y+1.5,w-3,h-3);O.strokeStyle=INK;O.lineWidth=3;const b=Math.min(w,h)*.16;
+  [[x+9,y+9,1,1],[x+w-9,y+9,-1,1],[x+w-9,y+h-9,-1,-1],[x+9,y+h-9,1,-1]].forEach(([X,Y,dx,dy])=>{O.beginPath();O.moveTo(X+dx*b,Y);O.lineTo(X,Y);O.lineTo(X,Y+dy*b);O.stroke()});
+  O.lineWidth=2;O.beginPath();O.moveTo(cx-10,cy);O.lineTo(cx+10,cy);O.moveTo(cx,cy-10);O.lineTo(cx,cy+10);O.stroke();
+  const t=String(Math.round(pc)).padStart(3,'0')+'%';O.font='600 17px "IBM Plex Mono"';const tw=O.measureText(t).width+16;O.fillStyle=col;O.fillRect(x,y-25,Math.max(tw,w*.42),25);O.fillStyle=INK;O.textBaseline='middle';O.fillText(t,x+8,y-12);O.restore()}
+async function scoped(id,boxes){TRACK=2;const c=await DRAFTS[id]();TRACK=false;const src=mk(c.width,c.height);src.getContext('2d').drawImage(c,0,0);const g=c.getContext('2d');boxes.forEach(b=>scope(g,src,...b));return c}
+DRAFTS.w1=()=>scoped('w1r3',[[560,700,190,170,PAL.cyan,2.4,98],[330,880,190,140,PAL.pink,1.9,87],[430,560,170,130,PAL.acid,2,42]]);
+DRAFTS.w3=()=>scoped('w3r3',[[790,520,190,150,PAL.acid,2,95],[400,930,190,140,PAL.cyan,2.2,37],[600,760,160,120,PAL.pink,2.4,81]]);
+function eyeBoxes(O,t){const w=6.2831853*t/4,g=[.30*Math.sin(w),.16*Math.sin(w*2+1)+.05,1],L=Math.hypot(...g),G=g.map(v=>v/L),
+  P=k=>[540+G[0]*k/(4.2-G[2]*k)/.255*380,800-G[1]*k/(4.2-G[2]*k)/.255*380],[px,py]=P(1),src=mk(PW,PH);src.getContext('2d').drawImage(O.canvas,0,0);
+  const f=Math.floor(t*6),j=(a,b)=>a+hash(f,b)*3;
+  scope(O,src,px-125,py-125,250,250,PAL.cyan,1.12,j(95,1));scope(O,src,610,930,200,150,PAL.pink,2.2,j(86,2));scope(O,src,250,620,170,130,PAL.acid,2.4,j(40,3))}
+DRAFTS.w2=async()=>{TRACK=2;EYEBOX=eyeBoxes;return DRAFTS.w2r4()};
+DRAFTS.w2m6=async()=>{TRACK=2;EYEBOX=eyeBoxes;return DRAFTS.w2m()};
 
 const RW=1080,RH=1920;
 async function propRender(build,w,h,camPos=[0,0,14],acc=PAL.cyan){ // transparent render of 3D props for 2D comps

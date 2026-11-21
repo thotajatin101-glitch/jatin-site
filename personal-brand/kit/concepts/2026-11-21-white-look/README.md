@@ -95,3 +95,17 @@ Pink / cyan / acid stand in for the ref's red / blue / green. Drafts: `w1`, `w2`
 
 **Files:** round 3 is `img/w*-round3.jpg`, round 4's loop is `w2-motion-round4.mp4`; round 5 is `img/w*.jpg` and
 `w2-motion.mp4`.
+
+## Round 6 — 2026-11-21 · macro viewfinders on the hero
+
+**His note, in his words:** "No i don't want photos inside the boxes as well instead make it similar to the refrence where
+it above and making a macro view finder tracery effect".
+
+**Built:** `scope()` draws a tracking box ON the hero: the region under it, magnified (`zoom`), tinted one colour in 2px
+Bayer steps, outline, ink corner brackets, centre tick, confidence tab. `scoped()` renders a round 3 post with no tiles
+(`TRACK=2`) and lays the boxes over it. On the eye, `eyeBoxes` projects the pupil from the gaze each frame so the cyan box
+follows it; the confidence numbers tick at 6/s. Photo tiles and MADE IT's logo inset are gone.
+
+**Fixed while checking:** the pupil box at 1.8× zoom was solid dark; at 1.12× it frames pupil and iris.
+
+**Files:** round 5 is `img/w*-round5.jpg`, `w2-motion-round5.mp4`; round 6 is `img/w*.jpg`, `w2-motion.mp4`.
