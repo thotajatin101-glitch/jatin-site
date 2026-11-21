@@ -736,7 +736,12 @@ const ragged=(e,x,y,s=1)=>e<1?1:(hash(Math.floor(x/13)+s*991,Math.floor(y/13))>(
 function gmap(img,w,h,ramp,o={}){const {cell=3,lo=.06,hi=.94,fx=.5,fy=.5}=o,cw=Math.ceil(w/cell),ch=Math.ceil(h/cell),L=lumMap(img,cw,ch,fx,fy),c=mk(cw,ch),g=c.getContext('2d'),im=g.createImageData(cw,ch),R=ramp.map(hx),n=R.length-1;
   for(let y=0;y<ch;y++)for(let x=0;x<cw;x++){const t=clamp((L(x,y)[0]-lo)/(hi-lo))*n,i=Math.min(n-1,Math.floor(t)),col=(t-i)>bay(x,y)?R[i+1]:R[i],q=(y*cw+x)*4;im.data[q]=col[0];im.data[q+1]=col[1];im.data[q+2]=col[2];im.data[q+3]=255}
   g.putImageData(im,0,0);const out=mk(Math.round(w*K),Math.round(h*K)),G=out.getContext('2d');G.imageSmoothingEnabled=false;G.drawImage(c,0,0,out.width,out.height);return out}
-const tile=(g,img,x,y,w,h,ramp,o)=>g.drawImage(gmap(img,w,h,ramp,o),x,y,w,h);
+let TRACK=false; // round 5 (his ask): photo boxes become tracking boxes, like his face-detection ref
+function tile(g,img,x,y,w,h,ramp,o){if(!TRACK)return g.drawImage(gmap(img,w,h,ramp,o),x,y,w,h);
+  const col=ramp===HOT?PAL.pink:ramp===COOL?PAL.cyan:PAL.acid,H=a=>'#'+a.map(n=>n.toString(16).padStart(2,'0')).join('');
+  g.drawImage(gmap(img,w,h,[H(mixA(col,[10,6,20],.8)),H(mixA(col,[10,6,20],.4)),col,H(mixA(col,[255,255,255],.55)),'#fbfbf6'],{...o,cell:2,lo:.04,hi:.9}),x,y,w,h);
+  g.save();g.lineWidth=3;g.strokeStyle=col;g.strokeRect(x+1.5,y+1.5,w-3,h-3);const pc=String(Math.floor(30+hash(x|0,y|0)*69)).padStart(3,'0')+'%';
+  g.font='600 17px "IBM Plex Mono"';const tw=g.measureText(pc).width+16;g.fillStyle=col;g.fillRect(x,y-25,Math.max(tw,w*.42),25);g.fillStyle=INK;g.textBaseline='middle';g.fillText(pc,x+8,y-12);g.restore()}
 // the colour blob behind the hero, in big pixel cells with a dithered edge
 function pblob(g,cx,cy,rw,rh,col,cell=34,seed=1){g.fillStyle=col;for(let j=Math.floor((cy-rh*1.4)/cell);j<=(cy+rh*1.4)/cell;j++)for(let i=Math.floor((cx-rw*1.4)/cell);i<=(cx+rw*1.4)/cell;i++){
   const X=(i+.5)*cell,Y=(j+.5)*cell,e=1-Math.hypot((X-cx)/rw,(Y-cy)/rh)+(hash(seed*31+Math.floor(i/2),Math.floor(j/2)*7)-.5)*.45;if(e>bay(i,j)*.45)g.fillRect(i*cell,j*cell,cell+.5,cell+.5)}}
@@ -907,7 +912,11 @@ DRAFTS.w3r2=async()=>{ // No framework. No steps.
 // ---- white round 3 (his pick, 2026-11-21: "i just downloaded a font called sterion font use that instead"): the
 // headline in Sterion Italic (wide, squared, slanted). Same layout and reading path as round 2.
 const HL3={1:[[['MADE IT',0]],[['WITHOUT',0]],[['TRYING.',PAL.acid]]],2:[[['CONSUME TO',0]],[["YOUR HEART'S",0]],[['CONTENT ',0],['FIRST.',PAL.pink]]],3:[[['NO',0]],[['FRAMEWORK.',0]],[['NO ',0],['STEPS.',PAL.cyan]]]};
-for(const n of [1,2,3])DRAFTS['w'+n]=async()=>{HEADF=s=>`${s}px "Sterion"`;HL=HL3[n];return DRAFTS['w'+n+'r2']()};
+for(const n of [1,2,3])DRAFTS['w'+n+'r3']=async()=>{HEADF=s=>`${s}px "Sterion"`;HL=HL3[n];return DRAFTS['w'+n+'r2']()};
+// round 5: tracking boxes in place of the photo tiles; CONSUME is the 3D eye
+for(const n of [1,3])DRAFTS['w'+n]=async()=>{TRACK=true;return DRAFTS['w'+n+'r3']()};
+DRAFTS.w2=async()=>{TRACK=true;return DRAFTS.w2r4()};
+DRAFTS.w2m5=async()=>{TRACK=true;return DRAFTS.w2m()};
 
 // ---- white round 4 (his ask, 2026-11-21: "make a 3d eyeball model with a similar gradient animation like the screen
 // recording"). His clip: a still, lit 3D object whose tones run through a gradient map (white -> grey -> black -> hot
@@ -956,7 +965,7 @@ function eyeGL(S){const c=mk(S,S),gl=c.getContext('webgl',{preserveDrawingBuffer
 // CONSUME, round 4: the 3D eye is the hero. Static layers are built once; the eye is drawn per frame between them.
 async function consume4(){
   const [c,x]=wstage(),[a,b2]=await Promise.all(['outstation/02','flux-03/02'].map(WORK));
-  tile(x,a,60,960,180,120,COOL);tile(x,b2,850,500,170,230,HOT);cross(x,180,560,28);cross(x,930,1060,24,-.2);trio(x,860,460);pixels(x,960,1100,PIX.step,24);
+  tile(x,a,60,960,180,120,COOL);tile(x,b2,850,520,170,230,HOT);cross(x,180,560,28);cross(x,930,1060,24,-.2);trio(x,860,460);pixels(x,960,1100,PIX.step,24);
   const fg=mk(PW*K,PH*K),F=fg.getContext('2d');F.scale(K,K);
   HEADF=s=>`${s}px "Sterion"`;HL=HL3[2];head(F,[],70,0,100);HL=null;
   wcursor(F,800,930,5,PAL.pink);sub(F,70,1200,[[['take it all in. ',0],['then make',1],['.',0]]]);wfoot2(F,2);

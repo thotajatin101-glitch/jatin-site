@@ -81,3 +81,17 @@ the map flowing through the form; HUD labels type on beside it.
 - `render-reel.mjs` now launches Chromium with SwiftShader WebGL (headless had no GL for the shader).
 
 **Files:** `img/w2-eye.jpg` (still), `w2-motion.mp4` (4s, 24fps, 1080×1350).
+
+## Round 5 — 2026-11-21 · tracking boxes
+
+**His ask, in his words:** "Could u replace those picture boxes with these kind of tracery effect like in the refrence ?"
+(ref: a face cut into computer-vision detection boxes, each tinted one colour, outlined, with a "098%" tab).
+
+**Built:** `TRACK` switches `tile()` to a tracking box: the photo through a one-colour ramp (deep shade → colour →
+pale → paper) in 2px Bayer steps, a 3px outline in that colour, and a tab with a confidence number seeded by position.
+Pink / cyan / acid stand in for the ref's red / blue / green. Drafts: `w1`, `w2` (the 3D eye), `w3`, motion `w2m5`.
+
+**Fixed while checking:** the first tint had stray green pixels (the accent hex went through an rgba parser).
+
+**Files:** round 3 is `img/w*-round3.jpg`, round 4's loop is `w2-motion-round4.mp4`; round 5 is `img/w*.jpg` and
+`w2-motion.mp4`.
