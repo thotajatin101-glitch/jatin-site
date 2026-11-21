@@ -1,69 +1,88 @@
-# Where my style came from — Insta reel, round 4 (2026-11-21)
+# Building my site — Insta reel, round 5 (2026-11-21)
 
-**His notes:**
-- Round 3: "a quicker shorter version with a more impactful script that grabs audience's attention and keeps it,
-  forget about youtube for now let's work on insta only."
-- Round 4: "let's not say i never designed this cuz i think it defeats the purpose and i want the whole script to have
-  a more natural tone rather then trying to hard." He also asked for research on how organic scripts are made before
-  any rewrite; the findings are in `research.md`.
+**His notes, in order:**
+- Round 3: shorter, Insta only, grab attention and keep it.
+- Round 4: no "I never designed this"; a natural tone, not trying too hard. The research is in `research.md`.
+- Round 5: "more of conversation than a script, with a hook in the start, and i don't want to be mentioning the where
+  i got the refrences like persona 5 etc. i want to talk about my journey of 'building this site'."
 
-**What changed from round 3 (round 3 is in git, 8217066):**
-- The fake hook is gone. "I never designed this" was a claim he'd have to walk back, because he did design it.
-- So are the slogan lines and the one-word punch list ("Taste is what you cut." / "Vignette. Grunge. Scanlines. Glitch.").
-- The idea stays, told as a small true story instead: a year of Persona ended up on his site, and what made it his was
-  what he took out.
+**So this is not a script.** It's one hook line, then things to talk about, as if a friend asked you how the site got
+made. Talk to them, not to the lens. The lines under each beat are only how it *might* come out; say it your way.
+No references are named anywhere: no games, no shows.
 
-**Length:** about 25–30s, about 75 words.
+**Length:** aim for 30–40s once it's cut. Talk longer than that on the day; the edit finds the reel.
 
-**How to shoot it:** say the first and last lines word for word. Talk through the middle from the beats, in your own
-words; the lines under each beat are only a guide. Do one take with no notes first, and keep anything that comes out
-better than the page.
+**Every fact below comes from the build log.** Anything only you know is marked **[YOU]**.
 
 ---
 
-## Script
+## The hook (the only fixed line)
 
-**Open (word for word)**
-> "I spent most of this year playing Persona 5 Royal, and it ended up all over my website."
+> "I'm not a developer. And I built my own website."
 
-*On screen: the P5R menu, then a cut to your menu as you say "my website".*
+It's true, it's specific, and it makes people ask "how?". Then you answer it.
 
-**Beat 1: where it came from**
-> "The menu's basically Persona's. The colours and the glitch are more Cyberpunk and Edgerunners."
+Backup, if you have the number: *"My website took me [YOU: how many] weeks, and I can't code."*
 
-*On screen: each reference the moment you name it, with your version next to it. **[YOU: check the colours/glitch
-link is true. If it's not, say what you actually took from them, or drop it.]***
+*On screen: the intro playing, the chains snapping, as you say "my own website".*
 
-**Beat 2: the turn**
-> "But honestly, the bit that made it look like mine was the stuff I took out."
+---
 
-*On screen: back to you, no B-roll. The only still moment in the middle.*
+## Things to talk through
 
-**Beat 3: the proof**
-> "I had a vignette on it. Scanlines. A little glitch that never stopped. It looked like something was wrong with
-> the TV. So it all went."
+**1. Why not just a normal site**
+What you wanted: no scrolling. One screen, like a menu: you pick something and it opens.
+> *"I didn't want something you scroll through. I wanted it to feel like you're picking something, and it opens up."*
 
-*On screen: each one on the site, then gone, cut on your words. Before/after, no ✕ graphics.*
+*On screen: the menu, a plate being picked, the section slamming open.*
 
-**Beat 4: the admission**
-> "I don't know if that's taste or if I'm just picky. Probably the same thing."
+**2. How you built it without code**
+You gave notes the way you'd give notes on an edit: "too slow", "hits too soft", "hold that longer".
+> *"I don't know code. But I know when a cut's too slow. So that's how I worked on it. Like editing."*
 
-**Close (word for word)**
-> "Now when something feels off, I don't add anything. I take something out."
+**[YOU]** Say how you actually built it. If AI helped, saying so plainly makes it more believable, not less. It's
+your call whether to mention it.
 
-*On screen: the finished site, clean. End on it, no end card.*
+*On screen: the intro scrubbed frame by frame, like a timeline.*
+
+**3. What went wrong**
+Two real moments from the log:
+- Your friends opened it on their laptops and it lagged.
+- A friend opened it in Safari and your photos showed up as tiny dots.
+> *"First time my friends opened it, it lagged on all their laptops. One of them just saw dots where my photos were
+> supposed to be."*
+
+This is the beat that makes it feel real. Don't rush past it.
+
+*On screen: a laggy, stuttering clip of the site, if you have one; otherwise just you.*
+
+**4. What made it mine**
+It was what you took out, not what you added: the dark edges, the lines over the screen, a glitch that never
+stopped.
+> *"It looked like something was wrong with the TV. So I kept taking stuff out until it felt like me."*
+
+*On screen: each piece on, then gone, cut on your words.*
+
+---
+
+## The close (loose, but land here)
+
+It's still not done. Leave it open instead of wrapping it up.
+> *"It's still not finished. I don't think it ever will be."*
+
+*On screen: the finished site, clean, held. No end card.*
+
+**[YOU]** If something else is more true, say that instead: what you'd tell someone starting theirs, or what you're
+building next.
 
 ---
 
 **Caption:**
-> Most of this site came from a year of Persona 5 Royal. The rest came from deleting things.
+> Built this without writing a line of code. Still not finished.
 
-No hashtag wall, no question asked for comments.
+**[YOU]** Keep "without writing a line of code" only if it's true for you.
 
-**Edit:** the site's language stays (24fps, on 2s, a red/cyan split when a reference lands), but it's only on the
-B-roll cuts. When you're on camera, let it breathe. The edit shouldn't shout over a calm voice.
-
-## Your calls
-1. **"Most of this year"** has to be true. If you know the hours, a real number ("about 140 hours") is better than a
-   round one.
-2. **The Cyberpunk / Edgerunners line** (beat 1) is the only part I couldn't check.
+## How to shoot it
+- Have someone off camera ask you "how'd you make your website?" and just answer. Cut their voice out after.
+- Do two or three loose takes, don't learn lines. The edit pulls the best bits from each.
+- On camera stays calm; the site's glitch edit lives on the B-roll only.
