@@ -13,6 +13,27 @@ by piece and marked "Oct 2026".
 
 
 
+## 2026-11-23 — the phone that ran out of breath
+
+Someone sent him a screen recording from an Android phone. His words: "That ui in contact page is glitching out
+sometimes and sometimes it's not even opening up properly. I think it's possible because off the heavy amount ui
+elements in the website it's having hard time rendering."
+
+He was close. It isn't the number of things on screen; it's one thing drawn too expensively. The flip phone is
+raymarched: every pixel walks a ray into the model. Zoomed into the chat, the phone IS the screen, and every change on
+the chat redrew all of it. A phone's GPU has a timer. When a frame runs past it, the phone either shows only what got
+finished (the top of the phone cut off on a straight line, the LCD stuck on its white flash) or gives up on the page
+altogether (CONTACT went white).
+
+So each job got shorter instead of the look getting cheaper:
+- the screen is backlit, so it stopped computing shadows it never showed;
+- a new chat step repaints only the screen, not the whole phone (a third of the cost, 24ms down to 8ms);
+- a full frame goes out in four slices;
+- the zoom-in renders light, then lands crisp;
+- if the phone still drops the drawing, the page asks for it back and repaints the chat where it was.
+
+Nothing on screen changed: ![chat steps](stills/2026-11-23-contact-phone-gpu/chat-steps.jpg)
+
 ## 2026-11-15 (later) — the grain that was bigger than the screen
 
 His note: "Skills page shuttering problem we had before is not showing up in chrome but in the instagram browser it's

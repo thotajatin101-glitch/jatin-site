@@ -1153,6 +1153,14 @@ into tweens.
     - **Phone perf (his note: "after the flip phone in contact it's kind of laggy"):** the zoomed chat phone is
       still, so it redraws only on an LCD change or a re-framing; moving, it caps at 60fps; ringing, buzzing or
       snapping it renders at .78 res. A full-screen raymarch every vsync was the cursor stutter.
+    - **A phone GPU kills a long frame** (2026-11-23, a visitor's clip on Android: CONTACT went white, the LCD
+      sat on its flash for seconds, the phone came back with its top cut off). Keep each GPU job short:
+      - the LCD skips shadow and AO;
+      - the dolly renders at .55;
+      - a chat change redraws only the LCD (scissor + `preserveDrawingBuffer`, `lcdDirty`);
+      - a full zoomed frame goes out in four flushed bands;
+      - a lost context is restored, not left white.
+      `node tests/flicker/phcost.mjs` prints the GPU ms per draw.
     - **Launch QA rules (2026-11-08):**
       - every chat action goes through ONE guard in `act()`: no screen skips on double-clicks or Enter mashes;
       - presses during the entrances are queued (`q1`/`q2`, the computer's `queue()`, OS `qEsc`), never dropped;

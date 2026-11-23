@@ -4,6 +4,24 @@ Newest on top. Each entry: date · did · in flight · next · watch out.
 
 ---
 
+## 2026-11-23 · CONTACT phone breaking on an Android phone (a visitor's clip)
+- **Did:** his visitor's clip (Android Chrome) showed three failures:
+  - CONTACT going white;
+  - the chat LCD sitting on its white flash for 2–3s;
+  - the phone coming back with its top cut off on a straight line.
+  All three are the phone GPU giving up on a full-screen raymarch that runs too long. PhoneFX now:
+  - skips shadow + AO on the backlit LCD;
+  - renders the dolly at .55;
+  - redraws ONLY the LCD (scissored, `preserveDrawingBuffer`) when the chat screen changes;
+  - sends a full zoomed frame in four bands, each flushed;
+  - recovers from `webglcontextlost` (restores and repaints the chat).
+  Measured with the new `tests/flicker/phcost.mjs`: a chat step went from 24ms to 8ms of GPU in one job. Stills in
+  `docs/process/stills/2026-11-23-contact-phone-gpu/`.
+- **In flight:** not deployed; waiting on his "deploy".
+- **Next:** a real Android pass after the deploy (ask the visitor if possible).
+- **Watch out:** `PH_ATTR` must stay the same in `Warm.run` and `init` (the warm context is reused). Any new LCD
+  change goes through `pushLCD`, so it gets the LCD-only redraw.
+
 ## 2026-11-21 · justjatin posts: white look round 1, one viewer
 - **Did:** his direction change to a white, simpler poster look (refs 026 MEMORIAS + Sr. Motion Designer, with the
   site as the pinch). Dark look rounds 1–10 archived to `personal-brand/kit/archive/2026-11-09-dark-look/`. White

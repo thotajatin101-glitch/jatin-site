@@ -7287,11 +7287,14 @@ void main(){
   if(hit){
     vec3 p=ro+rd*t,n=nrm(p);
     vec3 L=normalize(vec3(-.5,.65,.6));L.zx=r2(L.zx,-uYaw);L.yz=r2(L.yz,-uPitch);L.xy=r2(L.xy,-uRoll);   /* key, up-left, in object space */
-    float sh=shadow(p+n*.003,L),oc=ao(p,n);
+    float m=h.y;
+    /* 2026-11-23 (a visitor's clip: the chat screen blanked, the phone came back cut in half): the LCD is backlit, so it
+       skips the shadow march and AO (26 map calls a pixel). Zoomed in, it is half the screen */
+    float sh=m==2.?1.:shadow(p+n*.003,L),oc=m==2.?1.:ao(p,n);
     vec3 nW=toW(n),vW=toW(-rd),rW=reflect(-vW,nW);
     float ndv=max(dot(nW,vW),0.),fr=pow(1.-ndv,5.),dk=clamp(dot(n,L),0.,1.);
     float spec=pow(max(dot(n,normalize(L-rd)),0.),160.);
-    float m=h.y;vec3 c;
+    vec3 c;
     if(m==2.){                                                /* the LCD: backlit, dithered, pixel lines like the reference */
       vec3 u=lid(p);vec2 s=(u.xy-vec2(0.,.52))/vec2(.4,.51)+.5;
       vec3 img=texture2D(uScr,vec2(s.x,1.-s.y)).rgb;
@@ -7514,10 +7517,16 @@ void main(){
     return t;
   }
   function retex(t,src){gl.bindTexture(gl.TEXTURE_2D,t);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,src);}
-  function pushLCD(kind){lcd(kind);retex(scr,sc);P=null;}
+  function pushLCD(kind){lcd(kind);if(lost)return;retex(scr,sc);if(zState==='open'&&P)lcdDirty=true;else P=null;}   /* zoomed in and still: only the screen redraws */
   function init(c){
-    cv=c;gl=cv.getContext('webgl',{premultipliedAlpha:true,antialias:false,alpha:true});
+    cv=c;gl=cv.getContext('webgl',PH_ATTR);
     if(!gl){ok=false;cv.style.display='none';return false;}
+    if(!cv.dataset.lossWired){cv.dataset.lossWired=1;
+      /* 2026-11-23 (a visitor's clip: CONTACT went white on an Android phone): a phone that runs out of GPU drops the
+         context. Ask for it back and rebuild on the new one; until then the loop draws nothing */
+      cv.addEventListener('webglcontextlost',e=>{e.preventDefault();lost=true;});
+      cv.addEventListener('webglcontextrestored',()=>{lost=false;ok=true;
+        if(init(cv)){if(zState==='open'){lcd('chat');retex(scr,sc);}P=null;scrKey='';outKind='';lcdDirty=false;}});}
     const sh=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
       if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;};
     try{prog=Warm.take(gl);
@@ -7533,7 +7542,8 @@ void main(){
       retex(keyTex,keyAtlas());retex(outTex,outer(outKind));scrKey='';P=null;},()=>{});
     return true;
   }
-  let heavy=false,shaking=false,ro=null,bw=0,bh=0;
+  let heavy=false,shaking=false,ro=null,bw=0,bh=0,lost=false,lcdDirty=false;
+  const PH_ATTR={premultipliedAlpha:true,antialias:false,alpha:true,preserveDrawingBuffer:true};   /* kept, so the screen can redraw alone; warm and init must match */
   const cw=()=>{if(!ro){ro=new ResizeObserver(e=>{const b=e[0].contentRect;bw=b.width;bh=b.height;P=null;});ro.observe(cv);}if(!bw||!bh){bw=cv.clientWidth;bh=cv.clientHeight;}return bw;},chh=()=>(cw(),bh);
   function size(){
     /* the canvas's box comes from a ResizeObserver: reading clientWidth here forced a layout on every frame (2026-11-14:
@@ -7574,7 +7584,7 @@ void main(){
   }
   function lit(ms){return reduce?1:ms<BOOT?0:1;}
   function screenKind(ms){return reduce?'on':ms<BOOT?'off':ms<BOOT+70?'flash':stage(ms)==='notify'&&c2==null?'msg':'on';}
-  function draw(q){
+  function draw(q,only){
     gl.viewport(0,0,cv.width,cv.height);gl.useProgram(prog);
     gl.uniform2f(U.uRes,cv.width,cv.height);gl.uniform2f(U.uCtr,q.cx,q.cy);gl.uniform1f(U.uS,q.S);
     gl.uniform1f(U.uYaw,q.yaw);gl.uniform1f(U.uPitch,q.pitch);gl.uniform1f(U.uRoll,q.roll);gl.uniform1f(U.uLift,q.lift);
@@ -7582,7 +7592,18 @@ void main(){
     gl.uniform1i(U.uScr,0);gl.uniform1i(U.uKey,1);gl.uniform1i(U.uOut,2);
     gl.activeTexture(gl.TEXTURE2);gl.bindTexture(gl.TEXTURE_2D,outTex);
     gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,keyTex);gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,scr);
-    gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.TRIANGLES,0,3);
+    gl.clearColor(0,0,0,0);
+    /* 2026-11-23: a phone GPU kills a frame that runs too long and shows only what it finished (the clip: the top of the
+       phone went missing, the LCD sat white for seconds). So a change on the chat screen redraws the screen alone, and a
+       full frame zoomed in goes out in four bands, each its own short job */
+    if(only){const pad=6*q.R,x=Math.max(0,Math.floor(only.x*q.R-pad)),y=Math.max(0,Math.floor((bh-only.y-only.h)*q.R-pad));
+      gl.enable(gl.SCISSOR_TEST);gl.scissor(x,y,Math.ceil(only.w*q.R+2*pad),Math.ceil(only.h*q.R+2*pad));
+      gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.TRIANGLES,0,3);gl.disable(gl.SCISSOR_TEST);return;}
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    if(zNow<.5){gl.drawArrays(gl.TRIANGLES,0,3);return;}
+    const n=4,hb=Math.ceil(cv.height/n);gl.enable(gl.SCISSOR_TEST);
+    for(let i=0;i<n;i++){gl.scissor(0,i*hb,cv.width,hb);gl.drawArrays(gl.TRIANGLES,0,3);gl.flush();}
+    gl.disable(gl.SCISSOR_TEST);
   }
   /* THE STRAP. Round 4 (his note: "change the beads to our chains concept"): the site's pixel-piece chain (ChainFX
      links, the section's accent) off the hinge's left knuckle. Round 8 (his note: "i dont want it looped just a chain
@@ -8122,8 +8143,9 @@ function frame(now){
     if(holdMs!=null){now=t0+holdMs;par.x=par.y=0;}
     else{const dt=Math.min(.1,(now-(parAt||now))/1000),k=1-Math.exp(-dt*5);par.x+=(parT.x-par.x)*k;par.y+=(parT.y-par.y)*k;}   /* eased like the computer's */
     parAt=now;
+    if(lost)return;                                            /* the GPU dropped it: wait for it back */
     const ms=now-t0;if(ms<0){if(P!==false){gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);P=false;}return;}
-    const was=heavy,wasS=shaking;heavy=!reduce&&ms<SPIN;shaking=!reduce&&!heavy&&c2==null;if(was!==heavy||wasS!==shaking)P=null;
+    const was=heavy,wasS=shaking;heavy=!reduce&&(ms<SPIN||zState==='in'||zState==='out');   /* the dolly too, like the computer's (2026-11-23) */shaking=!reduce&&!heavy&&c2==null;if(was!==heavy||wasS!==shaking)P=null;
     /* 2026-11-14: `shaking` used to follow each ring and buzz pulse, so the render size flipped .78 ↔ 1 four times a ring and
        every flip re-allocated the full-screen GL canvas: `size` was the top cost on CONTACT (450–616ms per phase on the slow
        rig), which is the lag he felt there. Now one size holds from the landing until the second click. */
@@ -8144,7 +8166,7 @@ function frame(now){
     /* PERF (his note, 2026-11-09: "after the flip phone in contact it's kind of laggy"): the phone fills the screen
        once the chat is up and doesn't move, so it only redraws when its LCD changes (pushLCD clears P) or its
        framing does (resize, the phone keyboard). Moving, it caps at 60fps: 120Hz screens drew it every vsync */
-    if(zState==='open'&&zp>=1&&P&&holdMs==null&&P.zk===zoomPose(R).key&&P.R===R)return;   /* zoomPose first: it re-keys on a resize (the iPhone toolbar sliding), so the phone redraws and the tap twin follows the LCD; it used to compare a stale key and keep both where they were */
+    if(zState==='open'&&zp>=1&&P&&holdMs==null&&P.zk===zoomPose(R).key&&P.R===R){if(lcdDirty){lcdDirty=false;draw(P,lcdRect(P));}return;}   /* zoomPose first: it re-keys on a resize (the iPhone toolbar sliding), so the phone redraws and the tap twin follows the LCD; it used to compare a stale key and keep both where they were */
     if(P&&holdMs==null&&now-lastDraw<15)return;
     lastDraw=now;P=pose(now,R);if(zState==='open'&&zp>=1){zoomPose(R);P.zk=zCache&&zCache.key;}draw(P);strap(P);wrap(P,ms);pops(P,ms);if(zState==='open')placeChat(P);
   }
@@ -8165,7 +8187,7 @@ function frame(now){
   /* hold(ms): freeze the entrance ms after it starts (e.g. 500 mid-turn, 1100 the snap, 1500 lit); hold(null) releases */
   function hold(ms,b,a){holdMs=ms;P=null;rope=null;bits=null;if(b!==undefined){c1=b;c2=a==null?null:a;SNAP=b==null?1e9:b;BOOT=SNAP+180;answered=false;}}
   function warm(done){const c=document.querySelector('#sec-contact .phCv');if(cv||!c)return done();
-    Warm.run(c,{premultipliedAlpha:true,antialias:false,alpha:true},VS,FS,g=>{if(!cv&&init(c)&&ok){g.viewport(0,0,1,1);g.drawArrays(g.TRIANGLES,0,3);}done();});}
+    Warm.run(c,PH_ATTR,VS,FS,g=>{if(!cv&&init(c)&&ok){g.viewport(0,0,1,1);g.drawArrays(g.TRIANGLES,0,3);}done();});}
   return {warm,enter,hold,key,isOpen:()=>zState!=='rest',close};
 })();
 
